@@ -116,7 +116,21 @@ int main()
         );
 
         /* 検索処理(FPGA) */
+        judge_temp = table_serch(
+            query,                              // クエリ格納配列
+            FP_DB,                              // FPデータベース
+            hash_table,                         // ハッシュテーブル
+            hash_table_pointer,                 // ハッシュテーブル末尾位置指定
+            bit_element                         // bit取得位置
+        );
 
+        /* 結果の集計 */
+        if (judge_temp < 0) not_find++;
+        else
+        {
+            if (music_index == judge_temp)  seikai++;
+            else                            huseikai++;
+        }
     }
 
 /****************************************************************************************************/
