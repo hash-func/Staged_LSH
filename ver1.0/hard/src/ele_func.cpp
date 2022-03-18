@@ -14,7 +14,7 @@ std::random_device rnd2;
 
 /* 楽曲DBを生成する関数 */
 void fp_db_generator(
-    ap_uint<32> FP_DB[],            // 楽曲DB配列
+    ap_uint<SUB_FP_SIZE> FP_DB[],            // 楽曲DB配列
     unsigned int music_num,         // 楽曲数
     unsigned int onemusic_subnum    // 1曲あたりのsubFP数
 )
@@ -43,7 +43,7 @@ void bit_element_get(
 
 /* 各フレーム先頭アドレスを配列に格納する関数 */
 void flame_addr_get(
-    ap_uint<32> FP_DB[],            // 楽曲DB
+    ap_uint<SUB_FP_SIZE> FP_DB[],            // 楽曲DB
     ap_uint<32>* flame_addr[],      // 各フレームへの先頭アドレス格納配列
     unsigned int music_num,         // 楽曲数
     unsigned int onemusic_subnum,   // 1曲あたりのsubFP数
@@ -63,4 +63,59 @@ void flame_addr_get(
         }
         i++;
     }
+}
+
+/* index楽曲格納 + 歪みのあるクエリの作成 */
+void distortion_query_create(
+    ap_uint<SUB_FP_SIZE> FP_DB[],            // FPデータベース
+    ap_uint<32> query[],            // クエリ格納配列
+    unsigned int music_index,       // 楽曲識別子
+    double distortion,              // 楽曲の歪み率
+    unsigned int onemusic_subnum    // 1曲あたりのsubFP数
+)
+{
+    unsigned int bit_error_num;     // bitエラー数
+    bit_error_num = FPID_SIZE * ((double)distortion / 100);
+
+    /* queryに対応する楽曲格納 */
+    for (int i=0; i<onemusic_subnum; i++)
+    {
+        query[i] = FP_DB[(onemusic_subnum * music_index) + i];
+    }
+
+    /* ランダムなbit反転処理 */
+    unsigned int* temp_banti;       // 番地格納
+    temp_banti = (unsigned int*) malloc(sizeof(unsigned int) * bit_error_num);
+    unsigned int* temp_bit;         // bit位置格納
+    temp_bit = (unsigned int*) malloc(sizeof(unsigned int) * bit_error_num);
+
+    unsigned int a = 0;
+    unsigned int b = 0;
+    bloom flg;
+    ap_uint<1> reverse = 1;
+
+    for (int j=0; j<bit_error_num; j++)
+    {
+        flg = true;
+        a = rnd2() % (onemusic_subnum);
+        b = rnd2() % SUB_FP_SIZE;
+        for (int m=0; m<j; m++)
+        {
+            if (temp_banti[m] == a && temp_bit[m] == b)
+            {
+                flg = false;
+                j--;
+                break;
+            }
+        }
+        if (flg == true)
+        {
+            /* bit反転処理 */
+            query[a][b] ^= reverse;
+            temp_banti[j] = a;
+            temp_bit[j] = b;
+        }
+    }
+    free(temp_banti);
+    free(temp_bit);
 }

@@ -8,6 +8,7 @@
 //#include <hls_stream.h>     // ストリームライブラリ(hls::stream<>)
 
 #include "main.h"
+#include "hash_func.h"
 
 /* Hashテーブルへの要素の格納 */
 void hash_table_stock(
@@ -26,7 +27,7 @@ void hash_table_stock(
     unsigned int l_hashnum      // ハッシュ関数の数
 )
 {
-    unsigned int hash_num = division_num - 1;           // 格納目安ハッシュ値
+    int hash_num = division_num - 1;                    // 格納目安ハッシュ値
     unsigned int table_index = full_table_size - 1;     // テーブル内格納位置
     unsigned int hash_temp = 0;                         // 一時格納ハッシュ値
 
@@ -70,7 +71,6 @@ void hash_table_stock(
                     table_index--;
                 }
             }
-
             // フレーム更新
             tempA32 = tempB32;
             tempB32 = tempC32;
@@ -78,6 +78,6 @@ void hash_table_stock(
         // 注目ハッシュ値更新
         hash_num--;
         // ハッシュテーブルの位置を示す配列に次のバケット末尾格納
-        hash_table_pointer[hash_num] = table_index;
+        if (hash_num >= 0) hash_table_pointer[hash_num] = table_index;
     }
 }

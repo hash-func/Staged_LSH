@@ -22,6 +22,11 @@ unsigned int hash_function(
     // k_hashbit個のbit取得
     for (int i=0; i<k_hashbit; i++)
     {
-
+        henkan = henkan | temp_flame96[bit_element[get_start + i]];
+        henkan <<= 1;
     }
+    // フレーム位置ごとの値に変換
+    henkan = henkan + (flame_index * std::pow(2, k_hashbit));
+
+    return henkan;
 }

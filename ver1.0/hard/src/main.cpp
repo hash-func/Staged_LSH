@@ -9,6 +9,10 @@
 
 #include "main.h"
 #include "ele_func.h"
+#include "hash_stock.h"
+#include "table_serch.h"        // FPGA
+
+std::random_device rnd1;
 
 /* main */
 int main()
@@ -30,7 +34,7 @@ int main()
 
 
     /* 必要配列(ヒープ領域) */
-    ap_uint<32> FP_DB[MUSIC_NUM*ONEMUSIC_SUBNUM];
+    ap_uint<SUB_FP_SIZE> FP_DB[MUSIC_NUM*ONEMUSIC_SUBNUM];
                                                 // FPデータベース
     unsigned int hash_table_pointer[division_num];
                                                 // ハッシュテーブルへの位置指定
@@ -69,7 +73,58 @@ int main()
 /****************************************************************************************************/
     
     /* Hashテーブルへの要素の格納 */
+    hash_table_stock(FP_DB,                     // FPデータベース
+                     hash_table,                // ハッシュテーブル
+                     hash_table_pointer,        // ハッシュテーブル末尾位置指定
+                     flame_addr,                // 各フレーム先頭アドレス
+                     bit_element,               // bit取得位置
+                     division_num,              // ハッシュテーブル分割数
+                     full_table_size,           // 全ハッシュテーブルサイズ
+                     MUSIC_NUM,                 // 楽曲数
+                     FLAME_IN_MUSIC,            // 1曲あたりのflame数
+                     K_HASHBIT,                 // ハッシュ関数のbit数
+                     L_HASHNUM                  // ハッシュ関数の数
+                    );
     
+/****************************************************************************************************/
+
+    /* 検索処理 */
+
+    /* 検索クエリの一時格納配列 */
+    ap_uint<SUB_FP_SIZE> query[ONEMUSIC_SUBNUM];
+
+    /* 結果格納変数宣言 */
+    unsigned int music_index = 0;               // 検索楽曲識別子(0~)
+    int judge_temp = -1;                        // 結果判定用(一時格納)
+    unsigned int seikai = 0;                    // 正解数
+    unsigned int huseikai = 0;                  // 偽陽性数（結果は出たが誤り）
+    unsigned int not_find = 0;                  // 未発見(負数)
+    
+    /* 指定回数検索処理実行 */
+    for (int i=0; i<QUERY_NUM; i++)
+    {
+        /* 楽曲識別子生成 */
+        music_index = rnd1() % MUSIC_NUM;
+
+        /* index楽曲格納 + 歪みのあるクエリの作成(ele_func.cpp) */
+        distortion_query_create(
+            FP_DB,                              // FPデータベース
+            query,                              // クエリ格納配列
+            music_index,                        // 楽曲識別子
+            DISTORTION,                         // 楽曲歪み率
+            ONEMUSIC_SUBNUM                     // 1曲あたりのsubFP数
+        );
+
+        /* 検索処理(FPGA) */
+
+    }
+
+/****************************************************************************************************/
+    /* 結果の表示 */
+    printf ("\n")
+    printf ("正解率 : %ls %\n", ((double)seikai/QUERY_NUM)*100);
+    printf ("不正解率 : %lf %\n", ((double)huseikai/QUERY_NUM)*100);
+    printf ("未発見 : %lf %\n", ((double)not_find/QUERY_NUM)*100);
 
 /****************************************************************************************************/
     /* 後処理後終了 */
