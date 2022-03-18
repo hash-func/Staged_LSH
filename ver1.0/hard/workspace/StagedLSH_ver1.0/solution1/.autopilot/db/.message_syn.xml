@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Messages>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0 seconds; current allocated memory: 191.892 MB." resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 191.892 MB." resolution=""/>
 	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1312" tag="" content="Analyzing design file &apos;../src/table_serch.cpp&apos; ..." resolution=""/>
-	<Message severity="ERROR" prefix="[HLS 207-3709]" key="HLS 207-3709" tag="" content="indirection requires pointer operand (&apos;ap_uint&lt;32&gt;&apos; invalid): ../src/table_serch.cpp:159:61" resolution=""/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command csynth_design CPU user time: 3.97 seconds. CPU system time: 0.22 seconds. Elapsed time: 3.93 seconds; current allocated memory: 193.096 MB." resolution=""/>
+	<Message severity="ERROR" prefix="[HLS 207-3709]" key="HLS 207-3709" tag="" content="indirection requires pointer operand (&apos;typename ap_int_base&lt;32, false&gt;::RType&lt;_AP_SIZE_int, true&gt;::plus&apos; (aka &apos;ap_int&lt;34&gt;&apos;) invalid): ../src/table_serch.cpp:159:62" resolution=""/>
+	<Message severity="ERROR" prefix="[HLS 207-3712]" key="HLS 207-3712" tag="" content="invalid operands to binary expression (&apos;ap_uint&lt;32&gt; *&apos; and &apos;int&apos;): ../src/table_serch.cpp:168:56" resolution=""/>
+	<Message severity="ERROR" prefix="[HLS 207-3712]" key="HLS 207-3712" tag="" content="invalid operands to binary expression (&apos;ap_slong&apos; (aka &apos;long long&apos;) and &apos;ap_uint&lt;32&gt; *&apos;): /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_base.h:1393:425" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 207-4230]" key="HLS 207-4230" tag="" content="in instantiation of function template specialization &apos;operator-&lt;ap_uint&lt;32&gt;, 32, false&gt;&apos; requested here: ../src/table_serch.cpp:168:43" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command csynth_design CPU user time: 3.93 seconds. CPU system time: 0.25 seconds. Elapsed time: 3.94 seconds; current allocated memory: 193.071 MB." resolution=""/>
 </Messages>

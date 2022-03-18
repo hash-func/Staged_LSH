@@ -1,4 +1,4 @@
-INFO-FLOW: Workspace /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1 opened at Fri Mar 18 20:54:50 JST 2022
+INFO-FLOW: Workspace /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1 opened at Fri Mar 18 21:00:28 JST 2022
 Execute     ap_set_clock -name default -period 10 -default=false 
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 Execute     import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus 
@@ -98,7 +98,7 @@ Command       add_library done; 0.12 sec.
 INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
 Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
 Execute       config_compile -quiet -complex-mul-dsp=0 
-Command     set_part done; 1.04 sec.
+Command     set_part done; 1.05 sec.
 Execute     ap_part_info -data single -name xcu200-fsgd2104-2-e 
 Execute     ap_part_info -name xcu200-fsgd2104-2-e -data resources 
 Execute     config_chip_info -resource {SLICE 147780} {LUT 1182240} {FF 2364480} {DSP 6840} {BRAM 4320} {URAM 960} {SLR 3} 
@@ -130,7 +130,7 @@ Execute     config_interface -m_axi_offset=slave
 Execute     send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
 INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
 Execute     config_rtl -register_reset_num=3 
-Command   open_solution done; 1.33 sec.
+Command   open_solution done; 1.32 sec.
 Execute   set_part xcu200-fsgd2104-2-e 
 INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
 INFO-FLOW: DBG:set_part: XILINX_VIVADO=/opt//Vivado/2020.2
@@ -168,7 +168,7 @@ Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.ge
 Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
 Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
 Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
-Command     add_library done; 0.11 sec.
+Command     add_library done; 0.12 sec.
 Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
 Execute     config_compile -quiet -complex-mul-dsp=0 
 Command   set_part done; 0.14 sec.
@@ -190,7 +190,7 @@ Execute     get_config_compile -skip_syncheck
 Execute     get_config_compile -skip_transform 
 Execute     get_config_compile -keep_printf 
 Execute     elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -skip_cdt=0 -skip_transform=0 -ng=0 -g=0 -opt_fp=0 -from_csynth_design=1 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0 seconds; current allocated memory: 191.892 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 191.892 MB.
 INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
 INFO-FLOW: Compiling one TU...
 Execute       get_config_compile -pragma_strict_mode 
@@ -210,22 +210,22 @@ INFO-FLOW: Setting directive 'TOP' name=table_serch
 Execute       list_core -type functional_unit 
 Execute       clang_tidy xilinx-systemc-detector /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/table_serch.pp.0.cpp std=gnu++14 -target fpga  -directive=/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/.systemc_flag 
 INFO-FLOW: exec /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-systemc-detector -import-directive=/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/.systemc_flag -fix-errors /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/table_serch.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
-Command       clang_tidy done; 0.51 sec.
+Command       clang_tidy done; 0.52 sec.
 INFO-FLOW: Running: clang-tidy CDT preprocess 39
 Execute       clang_tidy xilinx-directive2pragma /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/table_serch.pp.0.cpp std=gnu++14 -target fpga  -directive=/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/all.directive.json 
 INFO-FLOW: exec /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/all.directive.json -fix-errors /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/table_serch.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
-Command       clang_tidy done; 0.78 sec.
+Command       clang_tidy done; 0.77 sec.
 Execute       clang_tidy xilinx-constantarray-param,xilinx-remove-assert /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/table_serch.pp.0.cpp std=gnu++14 -target fpga  
 INFO-FLOW: exec /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-constantarray-param,xilinx-remove-assert -fix-errors /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/table_serch.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
-Command       clang_tidy done; 0.6 sec.
+Command       clang_tidy done; 0.59 sec.
 INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 1.4 seconds per iteration
 INFO-FLOW: Calling xilinx-label-all-loops ... 
 Execute       clang_tidy -errorcheck xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/table_serch.pp.0.cpp std=gnu++14 -target fpga  
 Execute         ap_eval exec -ignorestderr /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -export-fixes=/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/clang-tidy.table_serch.pp.0.cpp.diag.yml -header-filter=.* --checks=-*,xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute -fix-errors /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/table_serch.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 > /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/clang-tidy.table_serch.pp.0.cpp.out.log 2> /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/clang-tidy.table_serch.pp.0.cpp.err.log 
-Command         ap_eval done; 0.93 sec.
+Command         ap_eval done; 0.94 sec.
 Execute         source /opt/Vitis_HLS/2020.2/tps/tcl/tcllib1.11.1/yaml/yaml.tcl 
 Execute           source /opt/Vitis_HLS/2020.2/tps/tcl/tcllib1.11.1/cmdline/cmdline.tcl 
-Command       clang_tidy done; 0.95 sec.
+Command       clang_tidy done; 0.96 sec.
 Execute       get_config_dataflow -strict_mode 
 Execute       ap_eval exec -ignorestderr /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/xilinx-dataflow-lawyer.table_serch.pp.0.cpp.diag.yml /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/table_serch.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 -fstrict-dataflow > /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/xilinx-dataflow-lawyer.table_serch.pp.0.cpp.out.log 2> /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/xilinx-dataflow-lawyer.table_serch.pp.0.cpp.err.log 
 Command       ap_eval done; 0.48 sec.
@@ -233,9 +233,12 @@ Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info
 INFO-FLOW: compiling source code to llvm bc
 Execute       ap_eval exec -ignorestderr /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/clang.table_serch.pp.0.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/table_serch.pp.0.cpp -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /opt/Vitis_HLS/2020.2/common/technology/autopilot -I /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/table_serch.bc > /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/clang.table_serch.pp.0.cpp.out.log 2> /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/.autopilot/db/clang.table_serch.pp.0.cpp.err.log 
 Command       ap_eval done; error code: 1; 0.49 sec.
-ERROR: [HLS 207-3709] indirection requires pointer operand ('ap_uint<32>' invalid): ../src/table_serch.cpp:159:61
-Command     elaborate done; error code: 2; 3.93 sec.
-Command   csynth_design done; error code: 2; 3.93 sec.
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 3.97 seconds. CPU system time: 0.22 seconds. Elapsed time: 3.93 seconds; current allocated memory: 193.096 MB.
-Command ap_source done; error code: 1; 5.41 sec.
+ERROR: [HLS 207-3709] indirection requires pointer operand ('typename ap_int_base<32, false>::RType<_AP_SIZE_int, true>::plus' (aka 'ap_int<34>') invalid): ../src/table_serch.cpp:159:62
+ERROR: [HLS 207-3712] invalid operands to binary expression ('ap_uint<32> *' and 'int'): ../src/table_serch.cpp:168:56
+ERROR: [HLS 207-3712] invalid operands to binary expression ('ap_slong' (aka 'long long') and 'ap_uint<32> *'): /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_base.h:1393:425
+INFO: [HLS 207-4230] in instantiation of function template specialization 'operator-<ap_uint<32>, 32, false>' requested here: ../src/table_serch.cpp:168:43
+Command     elaborate done; error code: 2; 3.94 sec.
+Command   csynth_design done; error code: 2; 3.94 sec.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 3.93 seconds. CPU system time: 0.25 seconds. Elapsed time: 3.94 seconds; current allocated memory: 193.071 MB.
+Command ap_source done; error code: 1; 5.42 sec.
 Execute cleanup_all 

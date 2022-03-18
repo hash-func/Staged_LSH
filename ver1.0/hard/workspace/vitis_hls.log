@@ -1,6 +1,6 @@
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-104-generic) on Fri Mar 18 20:54:50 JST 2022
+INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-104-generic) on Fri Mar 18 21:00:28 JST 2022
 INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
 INFO: [HLS 200-10] In directory '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace'
 Sourcing Tcl script '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/csynth.tcl'
@@ -46,10 +46,13 @@ INFO: [HLS 200-1510] Running: create_clock -period 10 -name default
 INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
 INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0 seconds; current allocated memory: 191.892 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 191.892 MB.
 INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
-ERROR: [HLS 207-3709] indirection requires pointer operand ('ap_uint<32>' invalid): ../src/table_serch.cpp:159:61
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 3.97 seconds. CPU system time: 0.22 seconds. Elapsed time: 3.93 seconds; current allocated memory: 193.096 MB.
+ERROR: [HLS 207-3709] indirection requires pointer operand ('typename ap_int_base<32, false>::RType<_AP_SIZE_int, true>::plus' (aka 'ap_int<34>') invalid): ../src/table_serch.cpp:159:62
+ERROR: [HLS 207-3712] invalid operands to binary expression ('ap_uint<32> *' and 'int'): ../src/table_serch.cpp:168:56
+ERROR: [HLS 207-3712] invalid operands to binary expression ('ap_slong' (aka 'long long') and 'ap_uint<32> *'): /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_base.h:1393:425
+INFO: [HLS 207-4230] in instantiation of function template specialization 'operator-<ap_uint<32>, 32, false>' requested here: ../src/table_serch.cpp:168:43
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 3.93 seconds. CPU system time: 0.25 seconds. Elapsed time: 3.94 seconds; current allocated memory: 193.071 MB.
 Compilation of the preprocessed source 'table_serch' failed
     while executing
 "source /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/csynth.tcl"
@@ -61,4 +64,4 @@ Compilation of the preprocessed source 'table_serch' failed
     (procedure "hls_proc" line 16)
     invoked from within
 "hls_proc [info nameofexecutable] $argv"
-INFO: [HLS 200-112] Total CPU user time: 6.36 seconds. Total CPU system time: 0.46 seconds. Total elapsed time: 5.58 seconds; peak allocated memory: 192.737 MB.
+INFO: [HLS 200-112] Total CPU user time: 6.26 seconds. Total CPU system time: 0.55 seconds. Total elapsed time: 5.58 seconds; peak allocated memory: 192.711 MB.

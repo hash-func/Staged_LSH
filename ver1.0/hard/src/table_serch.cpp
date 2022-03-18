@@ -21,7 +21,7 @@ ap_uint<32> hash_fpga_func(
 /* 段階バケット探索 */
 int backet_serch(
     ap_uint<32> hash_value,                 // Hash値
-    ap_uint<32>* hash_table[],              // Hashテーブル
+    ap_uint<32> hash_table[],              // Hashテーブル
     unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
     ap_uint<SUB_FP_SIZE> query[],           // クエリ
     ap_uint<96> flame96,                    // 対象フレーム
@@ -35,7 +35,7 @@ int backet_serch(
 int table_serch(
     ap_uint<SUB_FP_SIZE> query[],           // クエリFP配列
     ap_uint<SUB_FP_SIZE> FP_DB[],           // FPデータベース
-    ap_uint<32>* hash_table[],              // ハッシュテーブル
+    ap_uint<32> hash_table[],              // ハッシュテーブル
     unsigned int hash_table_pointer[],      // ハッシュテーブルへの位置指定
     unsigned char bit_element[]             // bit取得位置
 )
@@ -122,7 +122,7 @@ ap_uint<32> hash_fpga_func(
 /* 段階バケット探索 */
 int backet_serch(
     ap_uint<32> hash_value,                 // Hash値
-    ap_uint<32>* hash_table[],              // Hashテーブル
+    ap_uint<32> hash_table[],              // Hashテーブル
     unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
     ap_uint<SUB_FP_SIZE> query[],           // クエリ
     ap_uint<96> flame96,                    // 対象フレーム
@@ -156,7 +156,7 @@ int backet_serch(
             // 32bitずつ計算
             haming_add_loop : for (int bit=0; bit<SUB_FP_SIZE; bit++)
             {
-                haming_dis += flame96[(subfp_num*SUB_FP_SIZE)+bit] ^ *(hash_table[i] + subfp_num)[bit];
+                haming_dis += flame96[(subfp_num*SUB_FP_SIZE)+bit] ^ (*(hash_table[i] + subfp_num))[bit];
             }
         }
         /* スクリーニング閾値と比較 */

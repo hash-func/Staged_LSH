@@ -50016,7 +50016,7 @@ ap_uint<32> hash_fpga_func(
 
 int backet_serch(
     ap_uint<32> hash_value,
-    ap_uint<32>* hash_table[],
+    ap_uint<32> hash_table[],
     unsigned int hash_table_pointer[],
     ap_uint<32> query[],
     ap_uint<96> flame96,
@@ -50030,7 +50030,7 @@ int backet_serch(
 __attribute__((sdx_kernel("table_serch", 0))) int table_serch(
     ap_uint<32> query[],
     ap_uint<32> FP_DB[],
-    ap_uint<32>* hash_table[],
+    ap_uint<32> hash_table[],
     unsigned int hash_table_pointer[],
     unsigned char bit_element[]
 )
@@ -50120,7 +50120,7 @@ ap_uint<32> hash_fpga_func(
 
 int backet_serch(
     ap_uint<32> hash_value,
-    ap_uint<32>* hash_table[],
+    ap_uint<32> hash_table[],
     unsigned int hash_table_pointer[],
     ap_uint<32> query[],
     ap_uint<96> flame96,
@@ -50154,7 +50154,7 @@ int backet_serch(
 
             haming_add_loop : for (int bit=0; bit<32; bit++)
             {
-                haming_dis += flame96[(subfp_num*32)+bit] ^ *(hash_table[i] + subfp_num)[bit];
+                haming_dis += flame96[(subfp_num*32)+bit] ^ (*(hash_table[i] + subfp_num))[bit];
             }
         }
 
