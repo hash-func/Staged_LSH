@@ -135,7 +135,7 @@ int main()
 
 /****************************************************************************************************/
     /* 結果の表示 */
-    printf ("\n")
+    printf ("\n");
     printf ("正解率 : %ls %\n", ((double)seikai/QUERY_NUM)*100);
     printf ("不正解率 : %lf %\n", ((double)huseikai/QUERY_NUM)*100);
     printf ("未発見 : %lf %\n", ((double)not_find/QUERY_NUM)*100);

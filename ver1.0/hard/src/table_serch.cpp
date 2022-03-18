@@ -55,7 +55,7 @@ int table_serch(
     flame_serch : for (int flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
     {
         /* 新しいsubFP-Read */
-        tempC32 = query[i+2];
+        tempC32 = query[flame_index+2];
 
         /* 96bit_flameに結合 */
         flame96 = ((tempA32, tempB32), tempC32);
@@ -156,7 +156,7 @@ int backet_serch(
             // 32bitずつ計算
             haming_add_loop : for (int bit=0; bit<SUB_FP_SIZE; bit++)
             {
-                haming_dis += flame96[(subfp_num*SUB_FP_SIZE)+bit] ^ *(hash_table[i] + subfp_num)[bit]
+                haming_dis += flame96[(subfp_num*SUB_FP_SIZE)+bit] ^ *(hash_table[i] + subfp_num)[bit];
             }
         }
         /* スクリーニング閾値と比較 */

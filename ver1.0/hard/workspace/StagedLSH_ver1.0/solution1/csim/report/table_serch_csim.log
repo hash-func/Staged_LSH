@@ -1,0 +1,18 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../../src/main.cpp in debug mode
+csim.mk:72: recipe for target 'obj/main.o' failed
+../../../../../src/main.cpp: 関数 ‘int main()’ 内:
+../../../../../src/main.cpp:63:21: エラー: invalid conversion from ‘unsigned char*’ to ‘unsigned char’ [-fpermissive]
+                     );
+                     ^
+In file included from ../../../../../src/main.cpp:11:0:
+../../../../../src/ele_func.h:14:6: 備考:   initializing argument 1 of ‘void bit_element_get(unsigned char, short unsigned int, short unsigned int, short unsigned int, short unsigned int)’
+ void bit_element_get(
+      ^~~~~~~~~~~~~~~
+../../../../../src/main.cpp:139:5: エラー: expected ‘;’ before ‘printf’
+     printf ("正解率 : %ls %\n", ((double)seikai/QUERY_NUM)*100);
+     ^~~~~~
+make: *** [obj/main.o] Error 1
+ERR: [SIM 100] 'csim_design' failed: compilation error(s).
+INFO: [SIM 3] *************** CSIM finish ***************

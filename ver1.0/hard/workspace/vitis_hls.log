@@ -1,0 +1,64 @@
+INFO: Applying HLS Y2K22 patch v1.2 for IP revision
+INFO: [HLS 200-10] Running '/opt/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-104-generic) on Fri Mar 18 20:54:50 JST 2022
+INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
+INFO: [HLS 200-10] In directory '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace'
+Sourcing Tcl script '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/csynth.tcl'
+INFO: [HLS 200-1510] Running: open_project StagedLSH_ver1.0 
+INFO: [HLS 200-10] Opening project '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0'.
+INFO: [HLS 200-1510] Running: set_top table_serch 
+INFO: [HLS 200-1510] Running: add_files ../src/main_fpga.h 
+INFO: [HLS 200-10] Adding design file '../src/main_fpga.h' to the project
+INFO: [HLS 200-1510] Running: add_files ../src/table_serch.cpp 
+INFO: [HLS 200-10] Adding design file '../src/table_serch.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/ele_func.cpp 
+INFO: [HLS 200-10] Adding test bench file '../src/ele_func.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/ele_func.h 
+INFO: [HLS 200-10] Adding test bench file '../src/ele_func.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.cpp 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_func.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.h 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_func.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.cpp 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.h 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/main.cpp 
+INFO: [HLS 200-10] Adding test bench file '../src/main.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/main.h 
+INFO: [HLS 200-10] Adding test bench file '../src/main.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/table_serch.h 
+INFO: [HLS 200-10] Adding test bench file '../src/table_serch.h' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vitis 
+INFO: [HLS 200-10] Opening solution '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0 seconds; current allocated memory: 191.892 MB.
+INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
+ERROR: [HLS 207-3709] indirection requires pointer operand ('ap_uint<32>' invalid): ../src/table_serch.cpp:159:61
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 3.97 seconds. CPU system time: 0.22 seconds. Elapsed time: 3.93 seconds; current allocated memory: 193.096 MB.
+Compilation of the preprocessed source 'table_serch' failed
+    while executing
+"source /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/csynth.tcl"
+    invoked from within
+"hls::main /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/csynth.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel 1 hls::main {*}$newargs"
+    (procedure "hls_proc" line 16)
+    invoked from within
+"hls_proc [info nameofexecutable] $argv"
+INFO: [HLS 200-112] Total CPU user time: 6.36 seconds. Total CPU system time: 0.46 seconds. Total elapsed time: 5.58 seconds; peak allocated memory: 192.737 MB.
