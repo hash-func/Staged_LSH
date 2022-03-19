@@ -50,7 +50,9 @@ int main()
                     MUSIC_NUM,                  // 楽曲数
                     ONEMUSIC_SUBNUM             // 1曲あたりのsubFP数
                     );
-
+#ifdef DEBUG
+    printf("DB作成完了\n");
+#endif
     /* Hash関数bit取得位置決定配列生成(ele_func.cpp) */
     bit_element_get(bit_element,                // bit取得位置
                     K_HASHBIT,                  // ハッシュ関数gのbit数
@@ -58,7 +60,9 @@ int main()
                     SUB_FP_SIZE,                // subFPサイズ(bit)
                     SUBNUM_IN_FLAME             // 1フレームあたりのsubFP数
                     );
-    
+#ifdef DEBUG
+    printf("bit取得位置格納完了\n");
+#endif
     /* 各フレームへの番地を配列に格納(ele_func.cpp) */
     flame_addr_get( FP_DB,                      // FPデータベース
                     flame_addr,                 // 各フレームの先頭アドレス
@@ -66,7 +70,9 @@ int main()
                     ONEMUSIC_SUBNUM,            // 1曲あたりのsubFP数
                     FLAME_IN_MUSIC              // 1曲あたりのflame数
                     );
-
+#ifdef DEBUG
+    printf("フレーム位置格納完了\n");
+#endif
 /****************************************************************************************************/
     
     /* Hashテーブルへの要素の格納 */
@@ -82,7 +88,22 @@ int main()
                      K_HASHBIT,                 // ハッシュ関数のbit数
                      L_HASHNUM                  // ハッシュ関数の数
                     );
-    
+#ifdef DEBUG
+    printf("Hashテーブルへの要素格納完了\n");
+#endif
+#ifdef DEBUG
+    for (int i=0;i<division_num;i++)
+    {
+        printf("hashテーブルへのポインタ : %u\n", hash_table_pointer[i]);
+        if(hash_table_pointer[i] == 0) 
+        {
+            printf("hash_table_pointer異常値\n");
+            exit(0);
+        }
+    }
+    printf("hash_table_pointer異常なし\n");
+#endif
+
 /****************************************************************************************************/
 
     /* 検索処理 */

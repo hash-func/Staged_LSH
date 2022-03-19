@@ -54,6 +54,9 @@ int table_serch(
     /* flameごとに処理 */
     flame_serch : for (int flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
     {
+#ifdef DEBUG
+    printf("%d フレーム目検索\n", flame_index);
+#endif
         /* 新しいsubFP-Read */
         tempC32 = query[flame_index+2];
 
@@ -71,7 +74,6 @@ int table_serch(
                 L*K_HASHBIT,
                 flame_index
             );
-            
             /* Hash値に対応するバケット探索 */
             music_index = backet_serch(
                 hash_temp,          // ハッシュ値
@@ -138,10 +140,19 @@ int backet_serch(
     else                    top = hash_table_pointer[hash_value-1] + 1;
     unsigned int end                        // 末尾Hashテーブル位置（含む）
                 = hash_table_pointer[hash_value];
+    if (top>end) top = end;
     unsigned int haming_dis;                // Haming距離の一時格納
     unsigned int min_haming_dis = FPID_SIZE;// min_error数を一時格納
     int music_number;                       // music_indexの一時格納
     unsigned int db_point;                  // FP_DBの特定楽曲開始位置
+    
+    ap_uint<32> temp_A;
+    ap_uint<32> temp_B;
+    ap_uint<32> temp_C;
+    ap_uint<96> temp_flame96;
+
+    ap_uint<32> temp_seisa;
+    ap_uint<32> temp_seisa_query;
 
 
     /* スクリーニングと精査 */
@@ -149,15 +160,17 @@ int backet_serch(
     {
         /* 初期化 */
         haming_dis = 0;
+        
+        // 96bitフレーム読み込み
+        temp_A = (ap_uint<32>) FP_DB[hash_table[i]];
+        temp_B = (ap_uint<32>) FP_DB[hash_table[i] + 1];
+        temp_C = (ap_uint<32>) FP_DB[hash_table[i] + 2];
+        temp_flame96  = ((temp_A, temp_B), temp_C);
 
         /* 96ビットハミング距離計算 */
-        screening_loop : for (int subfp_num=0; subfp_num<SUBNUM_IN_FLAME; subfp_num++)
+        screening_loop : for (int bit=0; bit<SUBNUM_IN_FLAME*SUB_FP_SIZE; bit++)
         {
-            // 32bitずつ計算
-            screening32_loop : for (int bit=0; bit<SUB_FP_SIZE; bit++)
-            {
-                haming_dis += flame96[(subfp_num*SUB_FP_SIZE)+bit] ^ FP_DB[hash_table[i] + subfp_num][bit];
-            }
+            haming_dis += flame96[bit] ^ temp_flame96[bit];
         }
         /* スクリーニング閾値と比較 */
         if (haming_dis <= SCREENING)
@@ -170,9 +183,13 @@ int backet_serch(
             db_point = music_number * ONEMUSIC_SUBNUM;      // DB中楽曲開始位置特定
             seisa_loop : for (int m=0; m<ONEMUSIC_SUBNUM; m++)
             {
+                // 32bit取得
+                temp_seisa = (ap_uint<32>) FP_DB[db_point+m];
+                temp_seisa_query = (ap_uint<32>) query[m];
+                // 32bitハミング距離計算
                 seisa32_loop : for (int n=0; n<SUB_FP_SIZE; n++)
                 {
-                    haming_dis += query[m][n] ^ FP_DB[db_point+m][n];
+                    haming_dis += temp_seisa_query[n] ^ temp_seisa[n];
                 }
             }
             /* 精査閾値より小さく,最もエラーの小さいindex保存 */

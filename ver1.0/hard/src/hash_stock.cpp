@@ -24,20 +24,28 @@ void hash_table_stock(
     unsigned int l_hashnum      // ハッシュ関数の数
 )
 {
-    int hash_num = division_num - 1;                    // 格納目安ハッシュ値
+    unsigned int hash_num = division_num - 1;                    // 格納目安ハッシュ値
     unsigned int table_index = full_table_size - 1;     // テーブル内格納位置
     unsigned int hash_temp = 0;                         // 一時格納ハッシュ値
 
     /* 一時格納用フレーム */
     unsigned int temp_flame96[SUBNUM_IN_FLAME];
-    
-    // 前処理
-    // ハッシュテーブルの位置を示す配列最後にハッシュテーブルの末尾格納
-    hash_table_pointer[hash_num] = table_index;
 
     // 分割数分ループを回す
     for (unsigned int point=0; point<division_num; point++)
     {
+#ifdef DEBUG_sub
+    if (point%100 == 99) printf(".");
+    if (point%10000==9999) printf("\n");
+#endif
+        // ハッシュテーブルの位置を示す配列に次のバケット末尾格納
+        if (point < division_num-1)
+        {
+            hash_table_pointer[hash_num] = table_index;
+#ifdef DEBUG
+    printf ("hash_table_pointer : %u\n",hash_table_pointer[hash_num]);
+#endif
+        }
         // 全フレームから格納するフレーム探索
         for (unsigned int flame_index=0; flame_index<flame_in_music*music_num; flame_index++)
         {
@@ -64,13 +72,17 @@ void hash_table_stock(
                 {
                     // ハッシュテーブルに該当アドレス格納
                     hash_table[table_index] = flame_addr[flame_index];
+#ifdef DEBUG_sub
+    printf ("table_index : %u\n", table_index);
+#endif
                     table_index--;
                 }
             }
         }
         // 注目ハッシュ値更新
         hash_num--;
-        // ハッシュテーブルの位置を示す配列に次のバケット末尾格納
-        if (hash_num >= 0) hash_table_pointer[hash_num] = table_index;
     }
+#ifdef DEBUG
+    printf("\n");
+#endif
 }

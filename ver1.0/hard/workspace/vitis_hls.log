@@ -1,44 +1,44 @@
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-104-generic) on Sat Mar 19 15:58:37 JST 2022
+INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-104-generic) on Sat Mar 19 22:26:47 JST 2022
 INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
 INFO: [HLS 200-10] In directory '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace'
-Sourcing Tcl script '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/csynth.tcl'
+Sourcing Tcl script '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/csim.tcl'
 INFO: [HLS 200-1510] Running: open_project StagedLSH_ver1.0 
 INFO: [HLS 200-10] Opening project '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0'.
 INFO: [HLS 200-1510] Running: set_top table_serch 
-INFO: [HLS 200-1510] Running: add_files ../src/table_serch.cpp 
-INFO: [HLS 200-10] Adding design file '../src/table_serch.cpp' to the project
 INFO: [HLS 200-1510] Running: add_files ../src/main_fpga.h 
 INFO: [HLS 200-10] Adding design file '../src/main_fpga.h' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/table_serch.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
-INFO: [HLS 200-10] Adding test bench file '../src/table_serch.h' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/main.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
-INFO: [HLS 200-10] Adding test bench file '../src/main.h' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/main.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
-INFO: [HLS 200-10] Adding test bench file '../src/main.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
-INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.h' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
-INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
-INFO: [HLS 200-10] Adding test bench file '../src/hash_func.h' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
-INFO: [HLS 200-10] Adding test bench file '../src/hash_func.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/ele_func.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
-INFO: [HLS 200-10] Adding test bench file '../src/ele_func.h' to the project
+INFO: [HLS 200-1510] Running: add_files ../src/table_serch.cpp 
+INFO: [HLS 200-10] Adding design file '../src/table_serch.cpp' to the project
 INFO: [HLS 200-1510] Running: add_files -tb ../src/ele_func.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
 INFO: [HLS 200-10] Adding test bench file '../src/ele_func.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/ele_func.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/ele_func.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_func.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_func.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/main.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/main.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/main.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/main.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/table_serch.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/table_serch.h' to the project
 INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vitis 
 INFO: [HLS 200-10] Opening solution '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1'.
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
 INFO: [HLS 200-1505] Using flow_target 'vitis'
 Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
-INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
-INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
-INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
 INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
 INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
 INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
 INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
@@ -46,29 +46,15 @@ INFO: [HLS 200-1510] Running: create_clock -period 10 -name default
 INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
 INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
 INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 191.910 MB.
-INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 3.9 seconds. CPU system time: 0.27 seconds. Elapsed time: 3.94 seconds; current allocated memory: 193.107 MB.
-INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
-INFO: [HLS 214-178] Inlining function '__gnu_cxx::__promote_2<int, int, __gnu_cxx::__promote<int, std::__is_integer<int>::__value>::__type, __gnu_cxx::__promote<int, std::__is_integer<int>::__value>::__type>::__type std::pow<int, int>(int, int)' into 'hash_fpga_func(ap_uint<96>, unsigned char*, unsigned char, unsigned char, int)' (../src/table_serch.cpp:109:0)
-INFO: [HLS 214-178] Inlining function 'hash_fpga_func(ap_uint<96>, unsigned char*, unsigned char, unsigned char, int)' into 'table_serch(ap_uint<32>*, ap_uint<32>*, ap_uint<32>**, unsigned int*, unsigned char*)' (../src/table_serch.cpp:44:0)
-INFO: [HLS 214-178] Inlining function 'backet_serch(ap_uint<32>, ap_uint<32>**, unsigned int*, ap_uint<32>*, ap_uint<96>, ap_uint<32>*)' into 'table_serch(ap_uint<32>*, ap_uint<32>*, ap_uint<32>**, unsigned int*, unsigned char*)' (../src/table_serch.cpp:44:0)
-ERROR: [HLS 214-134] Pointer to pointer is not supported (../src/table_serch.cpp:44:0)
-ERROR: [HLS 214-134] in function 'table_serch(ap_uint<32>*, ap_uint<32>*, ap_uint<32>**, unsigned int*, unsigned char*)': Pointer to pointer is not supported
-ERROR: [HLS 214-134] in function 'table_serch(ap_uint<32>*, ap_uint<32>*, ap_uint<32>**, unsigned int*, unsigned char*)': Pointer to pointer is not supported (../src/table_serch.cpp:126:17)
-ERROR: [HLS 214-134] in function 'table_serch(ap_uint<32>*, ap_uint<32>*, ap_uint<32>**, unsigned int*, unsigned char*)': Pointer to pointer is not supported (../src/table_serch.cpp:78:27)
-ERROR: [HLS 214-135] Syn check fail!
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 10.62 seconds. CPU system time: 0.48 seconds. Elapsed time: 10.85 seconds; current allocated memory: 194.111 MB.
-Pre-synthesis failed.
-    while executing
-"source /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/csynth.tcl"
-    invoked from within
-"hls::main /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/csynth.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel 1 hls::main {*}$newargs"
-    (procedure "hls_proc" line 16)
-    invoked from within
-"hls_proc [info nameofexecutable] $argv"
-INFO: [HLS 200-112] Total CPU user time: 12.96 seconds. Total CPU system time: 0.78 seconds. Total elapsed time: 12.52 seconds; peak allocated memory: 193.734 MB.
+INFO: [HLS 200-1510] Running: csim_design -clean -setup -quiet 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../../src/main.cpp in debug mode
+   Compiling ../../../../../src/hash_stock.cpp in debug mode
+   Compiling ../../../../../src/hash_func.cpp in debug mode
+   Compiling ../../../../../src/ele_func.cpp in debug mode
+   Compiling ../../../../../src/table_serch.cpp in debug mode
+   Generating csim.exe
+INFO: [SIM 211-1] CSim file generation done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 1.98 seconds. CPU system time: 0.3 seconds. Elapsed time: 2.03 seconds; current allocated memory: 192.024 MB.
