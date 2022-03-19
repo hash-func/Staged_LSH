@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="kernel.cpp" path="/home/nomoto/src/StagedLSH/Test/hls_test/src/kernel.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="main.cpp" path="/home/nomoto/src/StagedLSH/Test/hls_test/src/main.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

@@ -1,0 +1,1 @@
+set ::AESL_AUTOSIM::gTopFileName /home/nomoto/src/StagedLSH/Test/workspace/test/solution1/./sim/autowrap/testbench/kernel.cpp_pre.cpp.tb.cpp

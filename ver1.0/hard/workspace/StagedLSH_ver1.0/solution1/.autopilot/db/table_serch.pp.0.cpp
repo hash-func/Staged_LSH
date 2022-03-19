@@ -50016,7 +50016,8 @@ ap_uint<32> hash_fpga_func(
 
 int backet_serch(
     ap_uint<32> hash_value,
-    ap_uint<32> hash_table[],
+    ap_uint<32>* hash_table[],
+
     unsigned int hash_table_pointer[],
     ap_uint<32> query[],
     ap_uint<96> flame96,
@@ -50030,13 +50031,14 @@ int backet_serch(
 __attribute__((sdx_kernel("table_serch", 0))) int table_serch(
     ap_uint<32> query[],
     ap_uint<32> FP_DB[],
-    ap_uint<32> hash_table[],
+    ap_uint<32>* hash_table[],
+
     unsigned int hash_table_pointer[],
     unsigned char bit_element[]
 )
 {
 #pragma HLS TOP name=table_serch
-# 42 "../src/table_serch.cpp"
+# 44 "../src/table_serch.cpp"
 
 
     int music_index = -1;
@@ -50120,7 +50122,7 @@ ap_uint<32> hash_fpga_func(
 
 int backet_serch(
     ap_uint<32> hash_value,
-    ap_uint<32> hash_table[],
+    ap_uint<32>* hash_table[],
     unsigned int hash_table_pointer[],
     ap_uint<32> query[],
     ap_uint<96> flame96,

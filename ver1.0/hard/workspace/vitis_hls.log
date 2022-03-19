@@ -1,34 +1,34 @@
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-104-generic) on Fri Mar 18 21:00:28 JST 2022
+INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-104-generic) on Sat Mar 19 15:58:37 JST 2022
 INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
 INFO: [HLS 200-10] In directory '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace'
 Sourcing Tcl script '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/csynth.tcl'
 INFO: [HLS 200-1510] Running: open_project StagedLSH_ver1.0 
 INFO: [HLS 200-10] Opening project '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0'.
 INFO: [HLS 200-1510] Running: set_top table_serch 
-INFO: [HLS 200-1510] Running: add_files ../src/main_fpga.h 
-INFO: [HLS 200-10] Adding design file '../src/main_fpga.h' to the project
 INFO: [HLS 200-1510] Running: add_files ../src/table_serch.cpp 
 INFO: [HLS 200-10] Adding design file '../src/table_serch.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/ele_func.cpp 
-INFO: [HLS 200-10] Adding test bench file '../src/ele_func.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/ele_func.h 
-INFO: [HLS 200-10] Adding test bench file '../src/ele_func.h' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.cpp 
-INFO: [HLS 200-10] Adding test bench file '../src/hash_func.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.h 
-INFO: [HLS 200-10] Adding test bench file '../src/hash_func.h' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.cpp 
-INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.h 
-INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.h' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/main.cpp 
-INFO: [HLS 200-10] Adding test bench file '../src/main.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/main.h 
-INFO: [HLS 200-10] Adding test bench file '../src/main.h' to the project
-INFO: [HLS 200-1510] Running: add_files -tb ../src/table_serch.h 
+INFO: [HLS 200-1510] Running: add_files ../src/main_fpga.h 
+INFO: [HLS 200-10] Adding design file '../src/main_fpga.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/table_serch.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
 INFO: [HLS 200-10] Adding test bench file '../src/table_serch.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/main.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/main.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/main.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/main.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_func.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_func.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/ele_func.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/ele_func.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/ele_func.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file '../src/ele_func.cpp' to the project
 INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vitis 
 INFO: [HLS 200-10] Opening solution '/home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1'.
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
@@ -45,15 +45,22 @@ INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e
 INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
 INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
 INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 191.892 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 191.910 MB.
 INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
-ERROR: [HLS 207-3709] indirection requires pointer operand ('typename ap_int_base<32, false>::RType<_AP_SIZE_int, true>::plus' (aka 'ap_int<34>') invalid): ../src/table_serch.cpp:159:62
-ERROR: [HLS 207-3712] invalid operands to binary expression ('ap_uint<32> *' and 'int'): ../src/table_serch.cpp:168:56
-ERROR: [HLS 207-3712] invalid operands to binary expression ('ap_slong' (aka 'long long') and 'ap_uint<32> *'): /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_base.h:1393:425
-INFO: [HLS 207-4230] in instantiation of function template specialization 'operator-<ap_uint<32>, 32, false>' requested here: ../src/table_serch.cpp:168:43
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 3.93 seconds. CPU system time: 0.25 seconds. Elapsed time: 3.94 seconds; current allocated memory: 193.071 MB.
-Compilation of the preprocessed source 'table_serch' failed
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 3.9 seconds. CPU system time: 0.27 seconds. Elapsed time: 3.94 seconds; current allocated memory: 193.107 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-178] Inlining function '__gnu_cxx::__promote_2<int, int, __gnu_cxx::__promote<int, std::__is_integer<int>::__value>::__type, __gnu_cxx::__promote<int, std::__is_integer<int>::__value>::__type>::__type std::pow<int, int>(int, int)' into 'hash_fpga_func(ap_uint<96>, unsigned char*, unsigned char, unsigned char, int)' (../src/table_serch.cpp:109:0)
+INFO: [HLS 214-178] Inlining function 'hash_fpga_func(ap_uint<96>, unsigned char*, unsigned char, unsigned char, int)' into 'table_serch(ap_uint<32>*, ap_uint<32>*, ap_uint<32>**, unsigned int*, unsigned char*)' (../src/table_serch.cpp:44:0)
+INFO: [HLS 214-178] Inlining function 'backet_serch(ap_uint<32>, ap_uint<32>**, unsigned int*, ap_uint<32>*, ap_uint<96>, ap_uint<32>*)' into 'table_serch(ap_uint<32>*, ap_uint<32>*, ap_uint<32>**, unsigned int*, unsigned char*)' (../src/table_serch.cpp:44:0)
+ERROR: [HLS 214-134] Pointer to pointer is not supported (../src/table_serch.cpp:44:0)
+ERROR: [HLS 214-134] in function 'table_serch(ap_uint<32>*, ap_uint<32>*, ap_uint<32>**, unsigned int*, unsigned char*)': Pointer to pointer is not supported
+ERROR: [HLS 214-134] in function 'table_serch(ap_uint<32>*, ap_uint<32>*, ap_uint<32>**, unsigned int*, unsigned char*)': Pointer to pointer is not supported (../src/table_serch.cpp:126:17)
+ERROR: [HLS 214-134] in function 'table_serch(ap_uint<32>*, ap_uint<32>*, ap_uint<32>**, unsigned int*, unsigned char*)': Pointer to pointer is not supported (../src/table_serch.cpp:78:27)
+ERROR: [HLS 214-135] Syn check fail!
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 10.62 seconds. CPU system time: 0.48 seconds. Elapsed time: 10.85 seconds; current allocated memory: 194.111 MB.
+Pre-synthesis failed.
     while executing
 "source /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1/csynth.tcl"
     invoked from within
@@ -64,4 +71,4 @@ Compilation of the preprocessed source 'table_serch' failed
     (procedure "hls_proc" line 16)
     invoked from within
 "hls_proc [info nameofexecutable] $argv"
-INFO: [HLS 200-112] Total CPU user time: 6.26 seconds. Total CPU system time: 0.55 seconds. Total elapsed time: 5.58 seconds; peak allocated memory: 192.711 MB.
+INFO: [HLS 200-112] Total CPU user time: 12.96 seconds. Total CPU system time: 0.78 seconds. Total elapsed time: 12.52 seconds; peak allocated memory: 193.734 MB.
