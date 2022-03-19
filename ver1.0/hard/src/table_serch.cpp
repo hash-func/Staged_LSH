@@ -21,12 +21,11 @@ ap_uint<32> hash_fpga_func(
 /* 段階バケット探索 */
 int backet_serch(
     ap_uint<32> hash_value,                 // Hash値
-    ap_uint<32>* hash_table[],
-                                            // Hashテーブル
+    unsigned int hash_table[],              // Hashテーブル
     unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
-    ap_uint<SUB_FP_SIZE> query[],           // クエリ
+    unsigned int query[],                   // クエリ
     ap_uint<96> flame96,                    // 対象フレーム
-    ap_uint<SUB_FP_SIZE> FP_DB[]            // FPデータベース
+    unsigned int FP_DB[]                    // FPデータベース
 );
 /* --関数のプロトタイプ宣言-- */
 
@@ -34,10 +33,9 @@ int backet_serch(
 
 /* mainからの呼び出し */
 int table_serch(
-    ap_uint<SUB_FP_SIZE> query[],           // クエリFP配列
-    ap_uint<SUB_FP_SIZE> FP_DB[],           // FPデータベース
-    ap_uint<32>* hash_table[],
-                                            // ハッシュテーブル
+    unsigned int query[],                   // クエリFP配列
+    unsigned int FP_DB[],                   // FPデータベース
+    unsigned int hash_table[],              // ハッシュテーブル
     unsigned int hash_table_pointer[],      // ハッシュテーブルへの位置指定
     unsigned char bit_element[]             // bit取得位置
 )
@@ -116,7 +114,7 @@ ap_uint<32> hash_fpga_func(
     }
 
     /* フレーム位置に応じた値域の変更 */
-    henkan = henkan + (flame_index * std::pow(2, K_HASHBIT));
+    henkan = henkan + (flame_index * FLAME_INDEX_OUT);
 
     return henkan;
 }
@@ -124,11 +122,11 @@ ap_uint<32> hash_fpga_func(
 /* 段階バケット探索 */
 int backet_serch(
     ap_uint<32> hash_value,                 // Hash値
-    ap_uint<32>* hash_table[],              // Hashテーブル
+    unsigned int hash_table[],              // Hashテーブル
     unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
-    ap_uint<SUB_FP_SIZE> query[],           // クエリ
+    unsigned int query[],                   // クエリ
     ap_uint<96> flame96,                    // 対象フレーム
-    ap_uint<SUB_FP_SIZE> FP_DB[]            // FPデータベース
+    unsigned int FP_DB[]                    // FPデータベース
 )
 {
     /* 戻り値 */
@@ -156,9 +154,9 @@ int backet_serch(
         screening_loop : for (int subfp_num=0; subfp_num<SUBNUM_IN_FLAME; subfp_num++)
         {
             // 32bitずつ計算
-            haming_add_loop : for (int bit=0; bit<SUB_FP_SIZE; bit++)
+            screening32_loop : for (int bit=0; bit<SUB_FP_SIZE; bit++)
             {
-                haming_dis += flame96[(subfp_num*SUB_FP_SIZE)+bit] ^ (*(hash_table[i] + subfp_num))[bit];
+                haming_dis += flame96[(subfp_num*SUB_FP_SIZE)+bit] ^ FP_DB[hash_table[i] + subfp_num][bit];
             }
         }
         /* スクリーニング閾値と比較 */
@@ -167,7 +165,7 @@ int backet_serch(
             /* 精査へ移行 */
             haming_dis = 0;
             /* 楽曲インデックス特定 */
-            music_number = (hash_table[i] - &FP_DB[0]) / ONEMUSIC_SUBNUM;
+            music_number = hash_table[i] / ONEMUSIC_SUBNUM;
                                                             // 注目する楽曲インデックス
             db_point = music_number * ONEMUSIC_SUBNUM;      // DB中楽曲開始位置特定
             seisa_loop : for (int m=0; m<ONEMUSIC_SUBNUM; m++)

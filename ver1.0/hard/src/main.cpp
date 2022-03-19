@@ -3,9 +3,6 @@
 #include <math.h>
 #include <random>
 #include <time.h>
-#include <ap_int.h>         // 任意精度型ライブラリ(ap_uint<1~1024>)
-//#include <hls_math.h>       // mathライブラリ(hls::poW())
-//#include <hls_stream.h>     // ストリームライブラリ(hls::stream<>)
 
 #include "main.h"
 #include "ele_func.h"
@@ -34,16 +31,16 @@ int main()
 
 
     /* 必要配列(ヒープ領域) */
-    ap_uint<SUB_FP_SIZE> FP_DB[MUSIC_NUM*ONEMUSIC_SUBNUM];
-                                                // FPデータベース
-    unsigned int hash_table_pointer[division_num];
-                                                // ハッシュテーブルへの位置指定
-    ap_uint<32>* hash_table[full_table_size];   // ハッシュテーブル
+    unsigned int* FP_DB;                        // FPデータベース
+    FP_DB = (unsigned int*) malloc(sizeof(unsigned int)*MUSIC_NUM*ONEMUSIC_SUBNUM);
+    unsigned int* hash_table_pointer;           // ハッシュテーブルへの位置指定
+    hash_table_pointer = (unsigned int*) malloc(sizeof(unsigned int)*division_num);
+    unsigned int* hash_table;                   // ハッシュテーブル
+    hash_table = (unsigned int*) malloc(sizeof(unsigned int)*full_table_size);
     unsigned char* bit_element;                 // Hash関数bit取得位置(96までなのでchar)
     bit_element = (unsigned char*) calloc(K_HASHBIT*L_HASHNUM, sizeof(unsigned char));
-    ap_uint<32>* flame_addr[FLAME_IN_MUSIC*MUSIC_NUM];
-                                                // 各フレームの先頭アドレス
-    
+    unsigned int* flame_addr;                   // 各フレームの先頭アドレス(一時処理使用)
+    flame_addr = (unsigned int*) malloc(sizeof(unsigned int)*MUSIC_NUM*FLAME_IN_MUSIC);
     /* --必要配列(ヒープ領域)-- */
 
 /****************************************************************************************************/
@@ -62,7 +59,7 @@ int main()
                     SUBNUM_IN_FLAME             // 1フレームあたりのsubFP数
                     );
     
-    /* 各フレームへの先頭アドレスを配列に格納(ele_func.cpp) */
+    /* 各フレームへの番地を配列に格納(ele_func.cpp) */
     flame_addr_get( FP_DB,                      // FPデータベース
                     flame_addr,                 // 各フレームの先頭アドレス
                     MUSIC_NUM,                  // 楽曲数
@@ -91,7 +88,7 @@ int main()
     /* 検索処理 */
 
     /* 検索クエリの一時格納配列 */
-    ap_uint<SUB_FP_SIZE> query[ONEMUSIC_SUBNUM];
+    unsigned int query[ONEMUSIC_SUBNUM];
 
     /* 結果格納変数宣言 */
     unsigned int music_index = 0;               // 検索楽曲識別子(0~)

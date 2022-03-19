@@ -3,9 +3,6 @@
 #include <math.h>
 #include <random>
 #include <time.h>
-#include <ap_int.h>         // 任意精度型ライブラリ(ap_uint<1~1024>)
-//#include <hls_math.h>       // mathライブラリ(hls::poW())
-//#include <hls_stream.h>     // ストリームライブラリ(hls::stream<>)
 
 #include "main.h"
 
@@ -14,7 +11,7 @@ std::random_device rnd2;
 
 /* 楽曲DBを生成する関数 */
 void fp_db_generator(
-    ap_uint<SUB_FP_SIZE> FP_DB[],            // 楽曲DB配列
+    unsigned int FP_DB[],           // 楽曲DB配列
     unsigned int music_num,         // 楽曲数
     unsigned int onemusic_subnum    // 1曲あたりのsubFP数
 )
@@ -28,10 +25,10 @@ void fp_db_generator(
 
 /* 取得bit位置格納関数 */
 void bit_element_get(
-    unsigned char bit_element,      // bit位置格納配列
+    unsigned char bit_element[],    // bit位置格納配列
     unsigned short k_hashbit,       // ハッシュ関数のbit数
     unsigned short l_hashnum,       // ハッシュ関数の数
-    unsigned short sub_fp_SIZE,     // subFPのサイズ
+    unsigned short sub_fp_size,     // subFPのサイズ
     unsigned short subnum_in_flame  // flame内のsubFP数
 )
 {
@@ -41,10 +38,10 @@ void bit_element_get(
     }
 }
 
-/* 各フレーム先頭アドレスを配列に格納する関数 */
+/* 各フレーム番地を配列に格納する関数 */
 void flame_addr_get(
-    ap_uint<SUB_FP_SIZE> FP_DB[],            // 楽曲DB
-    ap_uint<32>* flame_addr[],      // 各フレームへの先頭アドレス格納配列
+    unsigned int FP_DB[],           // 楽曲DB
+    unsigned int flame_addr[],      // 各フレームへの先頭アドレス格納配列
     unsigned int music_num,         // 楽曲数
     unsigned int onemusic_subnum,   // 1曲あたりのsubFP数
     unsigned int flamenum_in_music  // 1曲あたりのflame数
@@ -54,7 +51,7 @@ void flame_addr_get(
     unsigned int i = 0;
     while (i<(music_num*onemusic_subnum))
     {
-        flame_addr[count] = &FP_DB[i];
+        flame_addr[count] = i;
         count++;
         if (i % onemusic_subnum == (flamenum_in_music-1))
         {
@@ -67,8 +64,8 @@ void flame_addr_get(
 
 /* index楽曲格納 + 歪みのあるクエリの作成 */
 void distortion_query_create(
-    ap_uint<SUB_FP_SIZE> FP_DB[],            // FPデータベース
-    ap_uint<32> query[],            // クエリ格納配列
+    unsigned int FP_DB[],           // FPデータベース
+    unsigned int query[],           // クエリ格納配列
     unsigned int music_index,       // 楽曲識別子
     double distortion,              // 楽曲の歪み率
     unsigned int onemusic_subnum    // 1曲あたりのsubFP数
@@ -91,8 +88,7 @@ void distortion_query_create(
 
     unsigned int a = 0;
     unsigned int b = 0;
-    bloom flg;
-    ap_uint<1> reverse = 1;
+    bool flg;
 
     for (int j=0; j<bit_error_num; j++)
     {
@@ -111,7 +107,7 @@ void distortion_query_create(
         if (flg == true)
         {
             /* bit反転処理 */
-            query[a][b] ^= reverse;
+            query[a] ^= (1 << b);
             temp_banti[j] = a;
             temp_bit[j] = b;
         }

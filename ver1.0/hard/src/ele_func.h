@@ -6,7 +6,7 @@
 /* ele_func内 */
 /* 楽曲DBを生成する関数 */
 void fp_db_generator(
-    ap_uint<SUB_FP_SIZE> FP_DB[],   // 楽曲DB配列
+    unsigned int FP_DB[],   // 楽曲DB配列
     unsigned int music_num,         // 楽曲数
     unsigned int onemusic_subnum    // 1曲あたりのsubFP数
 );
@@ -20,16 +20,16 @@ void bit_element_get(
 );
 /* 各フレーム先頭アドレスを配列に格納する関数 */
 void flame_addr_get(
-    ap_uint<SUB_FP_SIZE> FP_DB[],   // 楽曲DB
-    ap_uint<32>* flame_addr[],      // 各フレームへの先頭アドレス格納配列
+    unsigned int FP_DB[],   // 楽曲DB
+    unsigned int flame_addr[],      // 各フレームへの先頭アドレス格納配列
     unsigned int music_num,         // 楽曲数
     unsigned int onemusic_subnum,   // 1曲あたりのsubFP数
     unsigned int flamenum_in_music  // 1曲あたりのflame数
 );
 /* index楽曲格納 + 歪みのあるクエリの作成 */
 void distortion_query_create(
-    ap_uint<SUB_FP_SIZE> FP_DB[],   // FPデータベース
-    ap_uint<32> query[],            // クエリ格納配列
+    unsigned int FP_DB[],           // FPデータベース
+    unsigned int query[],           // クエリ格納配列
     unsigned int music_index,       // 楽曲識別子
     double distortion,              // 楽曲の歪み率
     unsigned int onemusic_subnum    // 1曲あたりのsubFP数
