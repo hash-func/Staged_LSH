@@ -70,7 +70,7 @@ void hash_table_stock(
     {
         hash_table_pointer[j] = hash_table_pointer[j-1] + hash_table_pointer[j];
     }
-#ifdef DEBUG
+#ifdef DEBUG_sub
     printf ("hash_table_pointer末尾 : %u\n", hash_table_pointer[division_num-1]);
 #endif
 
@@ -83,7 +83,7 @@ void hash_table_stock(
         temp_flame96[2] = FP_DB[flame_addr[flame_index] + 2];
 #ifdef DEBUG
         if (flame_index%100 == 99) printf(".");
-        if (flame_index%1000 == 999) printf("\n");
+        if (flame_index%10000 == 9999) printf("\n");
 #endif
 
         // L_HASHNUM個のハッシュ値生成
@@ -150,8 +150,11 @@ void hash_table_stock(
         hash_table_pointer[j] = hash_table_pointer[j-1] + hash_table_pointer[j];
     }
 
-#ifdef DEBUG
-    printf("\n");
+#ifdef DEBUG_sub
     printf ("hash_table_pointer末尾 : %u\n", hash_table_pointer[division_num-1]);
 #endif
+#ifdef DEBUG
+    printf ("\n");
+#endif
+
 }

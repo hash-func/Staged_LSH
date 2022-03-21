@@ -19,7 +19,7 @@
 #define SCRUTINY 1024           // 精査の閾値
 
 /* 変更パラメータ */
-#define MUSIC_NUM 300           // 楽曲数
+#define MUSIC_NUM 3000           // 楽曲数
 #define QUERY_NUM 300          // 検索数（試行回数）
 #define DISTORTION 20.0          // 歪み率(%)
 

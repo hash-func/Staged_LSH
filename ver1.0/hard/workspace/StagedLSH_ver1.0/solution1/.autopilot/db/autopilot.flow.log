@@ -13133,3 +13133,537 @@ Command   csim_design done; 1.98 sec.
 INFO: [HLS 200-111] Finished Command csim_design CPU user time: 2 seconds. CPU system time: 0.22 seconds. Elapsed time: 1.98 seconds; current allocated memory: 192.009 MB.
 Command ap_source done; 3.39 sec.
 Execute cleanup_all 
+INFO-FLOW: Workspace /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1 opened at Mon Mar 21 16:46:50 JST 2022
+Execute     ap_set_clock -name default -period 10 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+Execute     import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute     source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus_fpv7 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute     source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     set_part xcu200-fsgd2104-2-e 
+INFO-FLOW: DBG:set_part: XILINX_VIVADO=/opt//Vivado/2020.2
+INFO-FLOW: DBG:set_part: RDI_DATADIR=/opt//Vivado/2020.2/data:/opt/Vitis_HLS/2020.2/data
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data single -quiet 
+DBG:HLSDevice: Trying to load device library: /opt/Vitis_HLS/2020.2/lib/lnx64.o/librdi_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /opt//Vivado/2020.2/data/parts/arch.xml
+Command       ap_part_info done; 0.91 sec.
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       add_library xilinx/virtexuplus/virtexuplus:xcu200:-fsgd2104:-2-e 
+Execute         get_default_platform 
+Execute         open_platform DefaultPlatform 
+Execute         ap_part_info -data single -name xcu200-fsgd2104-2-e 
+Execute         ap_part_info -name xcu200-fsgd2104-2-e -data resources 
+Execute         config_chip_info -resource {SLICE 147780} {LUT 1182240} {FF 2364480} {DSP 6840} {BRAM 4320} {URAM 960} {SLR 3} 
+Execute         ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute         config_chip_info -speed medium 
+Execute         ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute         config_library_info -library virtexuplus_medium 
+Execute         config_library_info -family virtexuplus 
+Execute         config_library_info -part xcu200:-fsgd2104:-2-e 
+Execute         import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/virtexuplus_dsp48e2.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command       add_library done; 0.13 sec.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 1.06 sec.
+Execute     ap_part_info -data single -name xcu200-fsgd2104-2-e 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data resources 
+Execute     config_chip_info -resource {SLICE 147780} {LUT 1182240} {FF 2364480} {DSP 6840} {BRAM 4320} {URAM 960} {SLR 3} 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute     config_chip_info -speed medium 
+Execute     send_msg_by_id INFO @200-1505@%s%s  vitis 
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Execute     get_config_interface -m_axi_latency 
+Execute     get_config_interface -m_axi_alignment_byte_size 
+Execute     get_config_interface -m_axi_max_widen_bitwidth 
+Execute     get_config_interface -default_interface 
+Execute     get_config_interface -m_axi_offset 
+Execute     get_config_rtl -register_reset_num 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -default_interface=kernel 
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+Execute     config_interface -default_interface=kernel 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute     config_interface -m_axi_alignment_byte_size=64 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute     config_interface -m_axi_latency=64 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_offset=slave 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+Execute     config_interface -m_axi_offset=slave 
+Execute     send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute     config_rtl -register_reset_num=3 
+Command   open_solution done; 1.26 sec.
+Execute   set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO-FLOW: DBG:set_part: XILINX_VIVADO=/opt//Vivado/2020.2
+INFO-FLOW: DBG:set_part: RDI_DATADIR=/opt//Vivado/2020.2/data:/opt/Vitis_HLS/2020.2/data
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data single -quiet 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute     add_library xilinx/virtexuplus/virtexuplus:xcu200:-fsgd2104:-2-e 
+Execute       get_default_platform 
+Execute       open_platform DefaultPlatform 
+Execute       ap_part_info -data single -name xcu200-fsgd2104-2-e 
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data resources 
+Execute       config_chip_info -resource {SLICE 147780} {LUT 1182240} {FF 2364480} {DSP 6840} {BRAM 4320} {URAM 960} {SLR 3} 
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       config_chip_info -speed medium 
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       config_library_info -library virtexuplus_medium 
+Execute       config_library_info -family virtexuplus 
+Execute       config_library_info -part xcu200:-fsgd2104:-2-e 
+Execute       import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/virtexuplus_dsp48e2.hlp 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command     add_library done; 0.12 sec.
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute     config_compile -quiet -complex-mul-dsp=0 
+Command   set_part done; 0.14 sec.
+Execute   create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+Execute   config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+Execute   config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+Execute   source ./StagedLSH_ver1.0/solution1/directives.tcl 
+Execute     set_directive_top -name table_serch table_serch 
+INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
+INFO-FLOW: Setting directive 'TOP' name=table_serch 
+Execute   csim_design -clean -setup -quiet 
+INFO: [HLS 200-1510] Running: csim_design -clean -setup -quiet 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute     source csim/.lst_opt.tcl 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+INFO: [SIM 211-1] CSim file generation done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command   csim_design done; 2 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 2 seconds. CPU system time: 0.22 seconds. Elapsed time: 2 seconds; current allocated memory: 192.009 MB.
+Command ap_source done; 3.42 sec.
+Execute cleanup_all 
+INFO-FLOW: Workspace /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1 opened at Mon Mar 21 16:47:39 JST 2022
+Execute     ap_set_clock -name default -period 10 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+Execute     import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute     source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus_fpv7 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute     source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     set_part xcu200-fsgd2104-2-e 
+INFO-FLOW: DBG:set_part: XILINX_VIVADO=/opt//Vivado/2020.2
+INFO-FLOW: DBG:set_part: RDI_DATADIR=/opt//Vivado/2020.2/data:/opt/Vitis_HLS/2020.2/data
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data single -quiet 
+DBG:HLSDevice: Trying to load device library: /opt/Vitis_HLS/2020.2/lib/lnx64.o/librdi_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /opt//Vivado/2020.2/data/parts/arch.xml
+Command       ap_part_info done; 0.94 sec.
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       add_library xilinx/virtexuplus/virtexuplus:xcu200:-fsgd2104:-2-e 
+Execute         get_default_platform 
+Execute         open_platform DefaultPlatform 
+Execute         ap_part_info -data single -name xcu200-fsgd2104-2-e 
+Execute         ap_part_info -name xcu200-fsgd2104-2-e -data resources 
+Execute         config_chip_info -resource {SLICE 147780} {LUT 1182240} {FF 2364480} {DSP 6840} {BRAM 4320} {URAM 960} {SLR 3} 
+Execute         ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute         config_chip_info -speed medium 
+Execute         ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute         config_library_info -library virtexuplus_medium 
+Execute         config_library_info -family virtexuplus 
+Execute         config_library_info -part xcu200:-fsgd2104:-2-e 
+Execute         import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/virtexuplus_dsp48e2.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command       add_library done; 0.13 sec.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 1.09 sec.
+Execute     ap_part_info -data single -name xcu200-fsgd2104-2-e 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data resources 
+Execute     config_chip_info -resource {SLICE 147780} {LUT 1182240} {FF 2364480} {DSP 6840} {BRAM 4320} {URAM 960} {SLR 3} 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute     config_chip_info -speed medium 
+Execute     send_msg_by_id INFO @200-1505@%s%s  vitis 
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Execute     get_config_interface -m_axi_latency 
+Execute     get_config_interface -m_axi_alignment_byte_size 
+Execute     get_config_interface -m_axi_max_widen_bitwidth 
+Execute     get_config_interface -default_interface 
+Execute     get_config_interface -m_axi_offset 
+Execute     get_config_rtl -register_reset_num 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -default_interface=kernel 
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+Execute     config_interface -default_interface=kernel 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute     config_interface -m_axi_alignment_byte_size=64 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute     config_interface -m_axi_latency=64 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_offset=slave 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+Execute     config_interface -m_axi_offset=slave 
+Execute     send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute     config_rtl -register_reset_num=3 
+Command   open_solution done; 1.29 sec.
+Execute   set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO-FLOW: DBG:set_part: XILINX_VIVADO=/opt//Vivado/2020.2
+INFO-FLOW: DBG:set_part: RDI_DATADIR=/opt//Vivado/2020.2/data:/opt/Vitis_HLS/2020.2/data
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data single -quiet 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute     add_library xilinx/virtexuplus/virtexuplus:xcu200:-fsgd2104:-2-e 
+Execute       get_default_platform 
+Execute       open_platform DefaultPlatform 
+Execute       ap_part_info -data single -name xcu200-fsgd2104-2-e 
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data resources 
+Execute       config_chip_info -resource {SLICE 147780} {LUT 1182240} {FF 2364480} {DSP 6840} {BRAM 4320} {URAM 960} {SLR 3} 
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       config_chip_info -speed medium 
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       config_library_info -library virtexuplus_medium 
+Execute       config_library_info -family virtexuplus 
+Execute       config_library_info -part xcu200:-fsgd2104:-2-e 
+Execute       import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/virtexuplus_dsp48e2.hlp 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command     add_library done; 0.12 sec.
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute     config_compile -quiet -complex-mul-dsp=0 
+Command   set_part done; 0.15 sec.
+Execute   create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+Execute   config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+Execute   config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+Execute   source ./StagedLSH_ver1.0/solution1/directives.tcl 
+Execute     set_directive_top -name table_serch table_serch 
+INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
+INFO-FLOW: Setting directive 'TOP' name=table_serch 
+Execute   csim_design -clean -setup -quiet 
+INFO: [HLS 200-1510] Running: csim_design -clean -setup -quiet 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute     source csim/.lst_opt.tcl 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+INFO: [SIM 211-1] CSim file generation done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command   csim_design done; 2 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 1.98 seconds. CPU system time: 0.2 seconds. Elapsed time: 2 seconds; current allocated memory: 192.009 MB.
+Command ap_source done; 3.46 sec.
+Execute cleanup_all 
+INFO-FLOW: Workspace /home/nomoto/src/StagedLSH/ver1.0/hard/workspace/StagedLSH_ver1.0/solution1 opened at Mon Mar 21 16:49:01 JST 2022
+Execute     ap_set_clock -name default -period 10 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+Execute     import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute     source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus_fpv7 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute     source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     set_part xcu200-fsgd2104-2-e 
+INFO-FLOW: DBG:set_part: XILINX_VIVADO=/opt//Vivado/2020.2
+INFO-FLOW: DBG:set_part: RDI_DATADIR=/opt//Vivado/2020.2/data:/opt/Vitis_HLS/2020.2/data
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data single -quiet 
+DBG:HLSDevice: Trying to load device library: /opt/Vitis_HLS/2020.2/lib/lnx64.o/librdi_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /opt//Vivado/2020.2/data/parts/arch.xml
+Command       ap_part_info done; 0.92 sec.
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       add_library xilinx/virtexuplus/virtexuplus:xcu200:-fsgd2104:-2-e 
+Execute         get_default_platform 
+Execute         open_platform DefaultPlatform 
+Execute         ap_part_info -data single -name xcu200-fsgd2104-2-e 
+Execute         ap_part_info -name xcu200-fsgd2104-2-e -data resources 
+Execute         config_chip_info -resource {SLICE 147780} {LUT 1182240} {FF 2364480} {DSP 6840} {BRAM 4320} {URAM 960} {SLR 3} 
+Execute         ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute         config_chip_info -speed medium 
+Execute         ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute         config_library_info -library virtexuplus_medium 
+Execute         config_library_info -family virtexuplus 
+Execute         config_library_info -part xcu200:-fsgd2104:-2-e 
+Execute         import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/virtexuplus_dsp48e2.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute             source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command       add_library done; 0.13 sec.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 1.07 sec.
+Execute     ap_part_info -data single -name xcu200-fsgd2104-2-e 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data resources 
+Execute     config_chip_info -resource {SLICE 147780} {LUT 1182240} {FF 2364480} {DSP 6840} {BRAM 4320} {URAM 960} {SLR 3} 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute     config_chip_info -speed medium 
+Execute     send_msg_by_id INFO @200-1505@%s%s  vitis 
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Execute     get_config_interface -m_axi_latency 
+Execute     get_config_interface -m_axi_alignment_byte_size 
+Execute     get_config_interface -m_axi_max_widen_bitwidth 
+Execute     get_config_interface -default_interface 
+Execute     get_config_interface -m_axi_offset 
+Execute     get_config_rtl -register_reset_num 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -default_interface=kernel 
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+Execute     config_interface -default_interface=kernel 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute     config_interface -m_axi_alignment_byte_size=64 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute     config_interface -m_axi_latency=64 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+Execute     send_msg_by_id INFO @200-1464@%s config_interface -m_axi_offset=slave 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+Execute     config_interface -m_axi_offset=slave 
+Execute     send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute     config_rtl -register_reset_num=3 
+Command   open_solution done; 1.28 sec.
+Execute   set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO-FLOW: DBG:set_part: XILINX_VIVADO=/opt//Vivado/2020.2
+INFO-FLOW: DBG:set_part: RDI_DATADIR=/opt//Vivado/2020.2/data:/opt/Vitis_HLS/2020.2/data
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data single -quiet 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute     add_library xilinx/virtexuplus/virtexuplus:xcu200:-fsgd2104:-2-e 
+Execute       get_default_platform 
+Execute       open_platform DefaultPlatform 
+Execute       ap_part_info -data single -name xcu200-fsgd2104-2-e 
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data resources 
+Execute       config_chip_info -resource {SLICE 147780} {LUT 1182240} {FF 2364480} {DSP 6840} {BRAM 4320} {URAM 960} {SLR 3} 
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       config_chip_info -speed medium 
+Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute       config_library_info -library virtexuplus_medium 
+Execute       config_library_info -family virtexuplus 
+Execute       config_library_info -part xcu200:-fsgd2104:-2-e 
+Execute       import_lib /opt/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/virtexuplus_dsp48e2.hlp 
+Execute       source /opt/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command     add_library done; 0.12 sec.
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+Execute     config_compile -quiet -complex-mul-dsp=0 
+Command   set_part done; 0.15 sec.
+Execute   create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+Execute   config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+Execute   config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+Execute   source ./StagedLSH_ver1.0/solution1/directives.tcl 
+Execute     set_directive_top -name table_serch table_serch 
+INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
+INFO-FLOW: Setting directive 'TOP' name=table_serch 
+Execute   csim_design -clean -setup -quiet 
+INFO: [HLS 200-1510] Running: csim_design -clean -setup -quiet 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute     source csim/.lst_opt.tcl 
+Execute     ap_part_info -name xcu200-fsgd2104-2-e -data info 
+INFO: [SIM 211-1] CSim file generation done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command   csim_design done; 2 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 2.04 seconds. CPU system time: 0.22 seconds. Elapsed time: 2 seconds; current allocated memory: 192.009 MB.
+Command ap_source done; 3.44 sec.
+Execute cleanup_all 
