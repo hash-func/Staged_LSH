@@ -1,0 +1,21 @@
+INFO: [COSIM-47] Using XSIM for RTL simulation.
+INFO: [COSIM-14] Instrumenting C test bench ...
+WARNING: [COSIM-369] AXI_master port 'query' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
+WARNING: [COSIM-369] AXI_master port 'FP_DB' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
+WARNING: [COSIM-369] AXI_master port 'hash_table' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
+WARNING: [COSIM-369] AXI_master port 'hash_table_pointer' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
+WARNING: [COSIM-369] AXI_master port 'bit_element' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
+   Build using "/opt/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/bin/g++"
+   Compiling hash_stock.cpp_pre.cpp.tb.cpp
+   Compiling ele_func.cpp_pre.cpp.tb.cpp
+   Compiling table_serch.cpp_pre.cpp.tb.cpp
+   Compiling apatb_table_serch.cpp
+   Compiling main.cpp_pre.cpp.tb.cpp
+   Compiling hash_func.cpp_pre.cpp.tb.cpp
+   Compiling apatb_table_serch_ir.ll
+   Generating cosim.tv.exe
+INFO: [COSIM-302] Starting C TB testing ... 
+ERROR: [COSIM-360] Aborting co-simulation: C TB simulation failed.
+ERROR: [COSIM-320] C TB testing failed, stop generating test vectors. Please check C TB or re-run cosim.
+ERROR: [COSIM-5] *** C/RTL co-simulation file generation failed. ***
+ERROR: [COSIM-4] *** C/RTL co-simulation finished: FAIL ***
