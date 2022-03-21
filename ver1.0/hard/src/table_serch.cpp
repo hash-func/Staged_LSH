@@ -20,7 +20,7 @@ ap_uint<32> hash_fpga_func(
 );
 /* 段階バケット探索 */
 int backet_serch(
-    ap_uint<32> hash_value,                 // Hash値
+    unsigned int hash_value,                 // Hash値
     unsigned int hash_table[],              // Hashテーブル
     unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
     unsigned int query[],                   // クエリ
@@ -44,7 +44,7 @@ int table_serch(
     int music_index = -1;                   // 楽曲の識別子
 
     /* 処理に用いる変数宣言 */
-    ap_uint<32> hash_temp = 0;
+    unsigned int hash_temp = 0;
 
     ap_uint<96> flame96;
     ap_uint<SUB_FP_SIZE> tempA32 = query[0];
@@ -54,9 +54,6 @@ int table_serch(
     /* flameごとに処理 */
     flame_serch : for (int flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
     {
-#ifdef DEBUG
-    printf("%d フレーム目検索\n", flame_index);
-#endif
         /* 新しいsubFP-Read */
         tempC32 = query[flame_index+2];
 
@@ -74,6 +71,9 @@ int table_serch(
                 L*K_HASHBIT,
                 flame_index
             );
+#ifdef DEBUG_sub
+            printf ("hash_serch : %u\n", hash_temp);
+#endif
             /* Hash値に対応するバケット探索 */
             music_index = backet_serch(
                 hash_temp,          // ハッシュ値
@@ -83,9 +83,14 @@ int table_serch(
                 flame96,            // 対象フレーム
                 FP_DB               // FPデータベース
             );
-
             /* 楽曲が特定できた時 */
-            if (music_index >= 0) break;
+            if (music_index >= 0)
+            {
+#ifdef DEBUG
+                printf ("発見フレーム : %d\n", flame_index);
+#endif
+                break;
+            }
         }
         /* 楽曲が特定できた時 */
         if (music_index >= 0) break;
@@ -107,14 +112,13 @@ ap_uint<32> hash_fpga_func(
     int flame_index                         // フレームインデックス
 )
 {
-    ap_uint<32> henkan;
+    ap_uint<32> henkan = 0;
 
     /* Hash値kビットの生成 */
     hash_gene : for (int i=0; i<k_hashbit; i++)
     {
         henkan[(k_hashbit-1) - i] = flame96[bit_element[get_start + i]];
     }
-
     /* フレーム位置に応じた値域の変更 */
     henkan = henkan + (flame_index * FLAME_INDEX_OUT);
 
@@ -123,7 +127,7 @@ ap_uint<32> hash_fpga_func(
 
 /* 段階バケット探索 */
 int backet_serch(
-    ap_uint<32> hash_value,                 // Hash値
+    unsigned int hash_value,                 // Hash値
     unsigned int hash_table[],              // Hashテーブル
     unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
     unsigned int query[],                   // クエリ

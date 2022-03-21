@@ -24,65 +24,134 @@ void hash_table_stock(
     unsigned int l_hashnum      // ハッシュ関数の数
 )
 {
-    unsigned int hash_num = division_num - 1;                    // 格納目安ハッシュ値
+    unsigned int hash_num = division_num - 1;           // 格納目安ハッシュ値
     unsigned int table_index = full_table_size - 1;     // テーブル内格納位置
     unsigned int hash_temp = 0;                         // 一時格納ハッシュ値
+    unsigned int non_zero = 0;
 
     /* 一時格納用フレーム */
     unsigned int temp_flame96[SUBNUM_IN_FLAME];
 
-    // 分割数分ループを回す
-    for (unsigned int point=0; point<division_num; point++)
+    /* 各ハッシュ値の個数カウント */
+    for (unsigned int i=0; i<flame_in_music*music_num; i++)
     {
-#ifdef DEBUG_sub
-    if (point%100 == 99) printf(".");
-    if (point%10000==9999) printf("\n");
-#endif
-        // ハッシュテーブルの位置を示す配列に次のバケット末尾格納
-        if (point < division_num-1)
-        {
-            hash_table_pointer[hash_num] = table_index;
-#ifdef DEBUG
-    printf ("hash_table_pointer : %u\n",hash_table_pointer[hash_num]);
-#endif
-        }
-        // 全フレームから格納するフレーム探索
-        for (unsigned int flame_index=0; flame_index<flame_in_music*music_num; flame_index++)
-        {
-            // 新しいsubFP-Read
-            temp_flame96[0] = FP_DB[flame_addr[flame_index]];
-            temp_flame96[1] = FP_DB[flame_addr[flame_index] + 1];
-            temp_flame96[2] = FP_DB[flame_addr[flame_index] + 2];
+        // フレーム格納
+        temp_flame96[0] = FP_DB[flame_addr[i]];
+        temp_flame96[1] = FP_DB[flame_addr[i] + 1];
+        temp_flame96[2] = FP_DB[flame_addr[i] + 2];
 
-
-            // L_HASHNUM個のハッシュ値生成
-            for (int L=0; L<l_hashnum; L++)
-            {
-                // ハッシュ値の生成
-                hash_temp = hash_function(
-                            temp_flame96,           // 対象フレーム(96bit)
-                            bit_element,            // bit取得位置
-                            k_hashbit,              // bit数
-                            flame_index % FLAME_IN_MUSIC,
-                                                    // フレーム位置
-                            L*k_hashbit             // bit_ele配列取得開始位置
-                            );
-                // 注目ハッシュ値だった場合
-                if (hash_temp == hash_num)
-                {
-                    // ハッシュテーブルに該当アドレス格納
-                    hash_table[table_index] = flame_addr[flame_index];
-#ifdef DEBUG_sub
-    printf ("table_index : %u\n", table_index);
-#endif
-                    table_index--;
-                }
-            }
+        // L_HASHNUM個のハッシュ値生成
+        for (int L=0; L<l_hashnum; L++)
+        {
+            hash_temp = hash_function(
+                temp_flame96,           // 対象フレーム
+                bit_element,            // bit取得位置
+                k_hashbit,              // bit数
+                i % FLAME_IN_MUSIC,     // フレーム位置
+                L*k_hashbit             // bit_ele取得開始位置
+            );
+            // 対象ハッシュ値個数カウント
+            hash_table_pointer[hash_temp]++;
         }
-        // 注目ハッシュ値更新
-        hash_num--;
+    }
+
+    /* 各バケット末尾位置に変換 */
+    for (unsigned int m=0; m<division_num; m++)
+    {
+        if (hash_table_pointer[m] != 0)
+        {
+            non_zero = m;
+            break;
+        }
+    }
+    hash_table_pointer[non_zero] = hash_table_pointer[non_zero] - 1;
+    non_zero = non_zero + 1;
+    for (unsigned int j=non_zero; j<division_num; j++)
+    {
+        hash_table_pointer[j] = hash_table_pointer[j-1] + hash_table_pointer[j];
     }
 #ifdef DEBUG
+    printf ("hash_table_pointer末尾 : %u\n", hash_table_pointer[division_num-1]);
+#endif
+
+    // 全フレーム分ループを回してテーブルに格納
+    for (unsigned int flame_index=0; flame_index<music_num*flame_in_music;flame_index++)
+    {
+        // フレーム格納
+        temp_flame96[0] = FP_DB[flame_addr[flame_index]];
+        temp_flame96[1] = FP_DB[flame_addr[flame_index] + 1];
+        temp_flame96[2] = FP_DB[flame_addr[flame_index] + 2];
+#ifdef DEBUG
+        if (flame_index%100 == 99) printf(".");
+        if (flame_index%1000 == 999) printf("\n");
+#endif
+
+        // L_HASHNUM個のハッシュ値生成
+        for (int L=0; L<l_hashnum; L++)
+        {
+            hash_temp = hash_function(
+                temp_flame96,               // 対象フレーム
+                bit_element,                // bit取得位置
+                k_hashbit,                  // bit数
+                flame_index % FLAME_IN_MUSIC,// フレーム位置
+                L*k_hashbit                 // bit_ele取得開始位置
+            );
+#ifdef DEBUG_sub
+            printf("hash_stock : %u\n", hash_temp);
+#endif
+            // ハッシュテーブル対象位置に要素格納
+            hash_table[hash_table_pointer[hash_temp]] = flame_addr[flame_index];
+            // pointer位置更新
+            hash_table_pointer[hash_temp]--;
+        }
+    }
+/*************************************************************************************/
+    /* 再び末尾位置格納 */
+    for (int n=0; n<division_num; n++)
+    {
+        hash_table_pointer[n] = 0;
+    }
+    /* 各ハッシュ値の個数カウント */
+    for (unsigned int i=0; i<flame_in_music*music_num; i++)
+    {
+        // フレーム格納
+        temp_flame96[0] = FP_DB[flame_addr[i]];
+        temp_flame96[1] = FP_DB[flame_addr[i] + 1];
+        temp_flame96[2] = FP_DB[flame_addr[i] + 2];
+
+        // L_HASHNUM個のハッシュ値生成
+        for (int L=0; L<l_hashnum; L++)
+        {
+            hash_temp = hash_function(
+                temp_flame96,           // 対象フレーム
+                bit_element,            // bit取得位置
+                k_hashbit,              // bit数
+                i % FLAME_IN_MUSIC,     // フレーム位置
+                L*k_hashbit             // bit_ele取得開始位置
+            );
+            // 対象ハッシュ値個数カウント
+            hash_table_pointer[hash_temp]++;
+        }
+    }
+
+    /* 各バケット末尾位置に変換 */
+    for (unsigned int m=0; m<division_num; m++)
+    {
+        if (hash_table_pointer[m] != 0)
+        {
+            non_zero = m;
+            break;
+        }
+    }
+    hash_table_pointer[non_zero] = hash_table_pointer[non_zero] - 1;
+    non_zero = non_zero + 1;
+    for (unsigned int j=non_zero; j<division_num; j++)
+    {
+        hash_table_pointer[j] = hash_table_pointer[j-1] + hash_table_pointer[j];
+    }
+
+#ifdef DEBUG
     printf("\n");
+    printf ("hash_table_pointer末尾 : %u\n", hash_table_pointer[division_num-1]);
 #endif
 }

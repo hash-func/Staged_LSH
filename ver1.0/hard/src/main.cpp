@@ -34,7 +34,7 @@ int main()
     unsigned int* FP_DB;                        // FPデータベース
     FP_DB = (unsigned int*) malloc(sizeof(unsigned int)*MUSIC_NUM*ONEMUSIC_SUBNUM);
     unsigned int* hash_table_pointer;           // ハッシュテーブルへの位置指定
-    hash_table_pointer = (unsigned int*) malloc(sizeof(unsigned int)*division_num);
+    hash_table_pointer = (unsigned int*) calloc(division_num, sizeof(unsigned int));
     unsigned int* hash_table;                   // ハッシュテーブル
     hash_table = (unsigned int*) malloc(sizeof(unsigned int)*full_table_size);
     unsigned char* bit_element;                 // Hash関数bit取得位置(96までなのでchar)
@@ -71,7 +71,7 @@ int main()
                     FLAME_IN_MUSIC              // 1曲あたりのflame数
                     );
 #ifdef DEBUG
-    printf("フレーム位置格納完了\n");
+    printf("フレーム先頭位置格納完了\n");
 #endif
 /****************************************************************************************************/
     
@@ -92,18 +92,19 @@ int main()
     printf("Hashテーブルへの要素格納完了\n");
 #endif
 #ifdef DEBUG
-    for (int i=0;i<division_num;i++)
+    if (hash_table_pointer[division_num-1] == full_table_size-1)
     {
-        printf("hashテーブルへのポインタ : %u\n", hash_table_pointer[i]);
-        if(hash_table_pointer[i] == 0) 
-        {
-            printf("hash_table_pointer異常値\n");
-            exit(0);
-        }
+        printf ("hash_table_pointer異常なし\n");
     }
-    printf("hash_table_pointer異常なし\n");
+    else
+    {
+        printf ("hash_table_pointer : %u\n", hash_table_pointer[division_num-1]);
+        printf ("full_table_size : %u\n", full_table_size-1);
+        printf ("hash_table_pointer異常\n");
+        exit(1);
+    }
 #endif
-
+    free(flame_addr);
 /****************************************************************************************************/
 
     /* 検索処理 */
@@ -150,17 +151,20 @@ int main()
             else                            huseikai++;
         }
     }
-
 /****************************************************************************************************/
     /* 結果の表示 */
     printf ("\n");
-    printf ("正解率 : %ls %\n", ((double)seikai/QUERY_NUM)*100);
+    printf ("正解率 : %lf %\n", ((double)seikai/QUERY_NUM)*100);
     printf ("不正解率 : %lf %\n", ((double)huseikai/QUERY_NUM)*100);
     printf ("未発見 : %lf %\n", ((double)not_find/QUERY_NUM)*100);
 
 /****************************************************************************************************/
     /* 後処理後終了 */
     free (bit_element);
+    free(FP_DB);
+    free(hash_table_pointer);
+    free(hash_table);
+    
 #ifdef DEBUG
     printf ("処理終了\n");
 #endif

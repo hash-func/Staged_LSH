@@ -60,6 +60,8 @@
                                     <listOptionValue builtIn="false" value="/opt/Vitis_HLS/2020.2/lnx64/tools/auto_cc/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="/opt/Vitis_HLS/2020.2/lnx64/tools/systemc/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="/home/nomoto/src/StagedLSH/ver1.0/hard/workspace"/>
                                     								
                                 </option>
                                 								
@@ -94,6 +96,8 @@
                                     <listOptionValue builtIn="false" value="/opt/Vitis_HLS/2020.2/lnx64/tools/auto_cc/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="/opt/Vitis_HLS/2020.2/lnx64/tools/systemc/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="/home/nomoto/src/StagedLSH/ver1.0/hard/workspace"/>
                                     								
                                 </option>
                                 								
@@ -358,6 +362,8 @@
                                     <listOptionValue builtIn="false" value="/opt/Vitis_HLS/2020.2/lnx64/tools/auto_cc/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="/opt/Vitis_HLS/2020.2/lnx64/tools/systemc/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="/home/nomoto/src/StagedLSH/ver1.0/hard/workspace"/>
                                     								
                                 </option>
                                 								
@@ -382,6 +388,8 @@
                                     <listOptionValue builtIn="false" value="/opt/Vitis_HLS/2020.2/lnx64/tools/auto_cc/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="/opt/Vitis_HLS/2020.2/lnx64/tools/systemc/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="/home/nomoto/src/StagedLSH/ver1.0/hard/workspace"/>
                                     								
                                 </option>
                                 								

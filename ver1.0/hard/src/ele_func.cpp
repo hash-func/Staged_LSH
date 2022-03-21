@@ -38,7 +38,7 @@ void bit_element_get(
     }
 }
 
-/* 各フレーム番地を配列に格納する関数 */
+/* 各フレーム先頭番地を配列に格納する関数 */
 void flame_addr_get(
     unsigned int FP_DB[],           // 楽曲DB
     unsigned int flame_addr[],      // 各フレームへの先頭アドレス格納配列

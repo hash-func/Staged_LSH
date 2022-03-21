@@ -17,8 +17,8 @@ unsigned int hash_function_ele(
 
     // flame内何subFP目か
     int a;
-    a = bit_ele / INT_SIZE;
-    henkan = temp_flame96[a] >> ((INT_SIZE-1) - (bit_ele%INT_SIZE));
+    a = (SUBNUM_IN_FLAME-1) - (bit_ele / INT_SIZE);
+    henkan = temp_flame96[a] >> (bit_ele%INT_SIZE);
     henkan = henkan & judge;
     return henkan;
 }
@@ -41,6 +41,5 @@ unsigned int hash_function(
     }
     // フレーム位置ごとの値に変換
     henkan = henkan + (flame_index * std::pow(2, k_hashbit));
-
     return henkan;
 }
