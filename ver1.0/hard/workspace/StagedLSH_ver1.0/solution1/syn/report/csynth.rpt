@@ -1,0 +1,29 @@
+
+
+================================================================
+== Synthesis Summary Report of 'table_serch'
+================================================================
++ General Information: 
+    * Date:           Mon Mar 21 16:50:16 2022
+    * Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)
+    * Project:        StagedLSH_ver1.0
+    * Solution:       solution1 (Vitis Kernel Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcu200-fsgd2104-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +---------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+----+------------+------------+-----+
+    |          Modules          |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |          |    |            |            |     |
+    |          & Loops          |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|   BRAM   | DSP|     FF     |     LUT    | URAM|
+    +---------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+----+------------+------------+-----+
+    |+ table_serch              |  Timing|   0.00|        -|          -|         -|        -|     -|        no|  30 (~0%)|   -|  48747 (2%)|  27409 (2%)|    -|
+    | o flame_serch_hash_serch  |       -|  -7.30|        -|          -|         -|        -|     -|        no|         -|   -|           -|           -|    -|
+    |  o hash_gene              |       -|  -7.30|       78|    780.000|        73|        1|     7|       yes|         -|   -|           -|           -|    -|
+    |  o bucket_loop            |       -|  -7.30|        -|          -|       575|        -|     -|        no|         -|   -|           -|           -|    -|
+    |   o screening_loop        |       -|  -7.30|       96|    960.000|         1|        1|    96|       yes|         -|   -|           -|           -|    -|
+    |   o seisa_loop            |      II|  -7.30|      327|  3.270e+03|        74|        2|   128|       yes|         -|   -|           -|           -|    -|
+    +---------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+----+------------+------------+-----+
+

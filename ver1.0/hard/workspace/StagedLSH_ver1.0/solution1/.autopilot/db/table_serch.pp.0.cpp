@@ -50015,13 +50015,12 @@ ap_uint<32> hash_fpga_func(
 );
 
 int backet_serch(
-    ap_uint<32> hash_value,
-    ap_uint<32>* hash_table[],
-
+    unsigned int hash_value,
+    unsigned int hash_table[],
     unsigned int hash_table_pointer[],
-    ap_uint<32> query[],
+    unsigned int query[],
     ap_uint<96> flame96,
-    ap_uint<32> FP_DB[]
+    unsigned int FP_DB[]
 );
 
 
@@ -50029,22 +50028,21 @@ int backet_serch(
 
 
 __attribute__((sdx_kernel("table_serch", 0))) int table_serch(
-    ap_uint<32> query[],
-    ap_uint<32> FP_DB[],
-    ap_uint<32>* hash_table[],
-
+    unsigned int query[],
+    unsigned int FP_DB[],
+    unsigned int hash_table[],
     unsigned int hash_table_pointer[],
     unsigned char bit_element[]
 )
 {
 #pragma HLS TOP name=table_serch
-# 44 "../src/table_serch.cpp"
+# 42 "../src/table_serch.cpp"
 
 
     int music_index = -1;
 
 
-    ap_uint<32> hash_temp = 0;
+    unsigned int hash_temp = 0;
 
     ap_uint<96> flame96;
     ap_uint<32> tempA32 = query[0];
@@ -50073,6 +50071,8 @@ __attribute__((sdx_kernel("table_serch", 0))) int table_serch(
             );
 
 
+
+
             music_index = backet_serch(
                 hash_temp,
                 hash_table,
@@ -50082,8 +50082,13 @@ __attribute__((sdx_kernel("table_serch", 0))) int table_serch(
                 FP_DB
             );
 
+            if (music_index >= 0)
+            {
 
-            if (music_index >= 0) break;
+
+
+                break;
+            }
         }
 
         if (music_index >= 0) break;
@@ -50105,7 +50110,7 @@ ap_uint<32> hash_fpga_func(
     int flame_index
 )
 {
-    ap_uint<32> henkan;
+    ap_uint<32> henkan = 0;
 
 
     hash_gene : for (int i=0; i<k_hashbit; i++)
@@ -50113,20 +50118,19 @@ ap_uint<32> hash_fpga_func(
         henkan[(k_hashbit-1) - i] = flame96[bit_element[get_start + i]];
     }
 
-
-    henkan = henkan + (flame_index * std::pow(2, 7));
+    henkan = henkan + (flame_index * 128);
 
     return henkan;
 }
 
 
 int backet_serch(
-    ap_uint<32> hash_value,
-    ap_uint<32>* hash_table[],
+    unsigned int hash_value,
+    unsigned int hash_table[],
     unsigned int hash_table_pointer[],
-    ap_uint<32> query[],
+    unsigned int query[],
     ap_uint<96> flame96,
-    ap_uint<32> FP_DB[]
+    unsigned int FP_DB[]
 )
 {
 
@@ -50138,10 +50142,19 @@ int backet_serch(
     else top = hash_table_pointer[hash_value-1] + 1;
     unsigned int end
                 = hash_table_pointer[hash_value];
+    if (top>end) top = end;
     unsigned int haming_dis;
     unsigned int min_haming_dis = 4096;
     int music_number;
     unsigned int db_point;
+
+    ap_uint<32> temp_A;
+    ap_uint<32> temp_B;
+    ap_uint<32> temp_C;
+    ap_uint<96> temp_flame96;
+
+    ap_uint<32> temp_seisa;
+    ap_uint<32> temp_seisa_query;
 
 
 
@@ -50151,13 +50164,15 @@ int backet_serch(
         haming_dis = 0;
 
 
-        screening_loop : for (int subfp_num=0; subfp_num<3; subfp_num++)
-        {
+        temp_A = (ap_uint<32>) FP_DB[hash_table[i]];
+        temp_B = (ap_uint<32>) FP_DB[hash_table[i] + 1];
+        temp_C = (ap_uint<32>) FP_DB[hash_table[i] + 2];
+        temp_flame96 = ((temp_A, temp_B), temp_C);
 
-            haming_add_loop : for (int bit=0; bit<32; bit++)
-            {
-                haming_dis += flame96[(subfp_num*32)+bit] ^ (*(hash_table[i] + subfp_num))[bit];
-            }
+
+        screening_loop : for (int bit=0; bit<3*32; bit++)
+        {
+            haming_dis += flame96[bit] ^ temp_flame96[bit];
         }
 
         if (haming_dis <= 24)
@@ -50165,14 +50180,18 @@ int backet_serch(
 
             haming_dis = 0;
 
-            music_number = (hash_table[i] - &FP_DB[0]) / (4096/32);
+            music_number = hash_table[i] / (4096/32);
 
             db_point = music_number * (4096/32);
             seisa_loop : for (int m=0; m<(4096/32); m++)
             {
+
+                temp_seisa = (ap_uint<32>) FP_DB[db_point+m];
+                temp_seisa_query = (ap_uint<32>) query[m];
+
                 seisa32_loop : for (int n=0; n<32; n++)
                 {
-                    haming_dis += query[m][n] ^ FP_DB[db_point+m][n];
+                    haming_dis += temp_seisa_query[n] ^ temp_seisa[n];
                 }
             }
 
