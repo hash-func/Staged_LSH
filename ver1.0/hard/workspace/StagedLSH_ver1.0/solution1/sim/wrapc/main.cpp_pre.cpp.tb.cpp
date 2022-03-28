@@ -45400,7 +45400,8 @@ int main()
 
     printf ("処理開始\n");
 
-    printf ("楽曲数 : %u\n", 3000);
+    printf ("楽曲数 : %u\n", 300);
+    printf ("BER : %lf %\n", 20.0);
 
 
     const unsigned int flame_table_size
@@ -45408,14 +45409,14 @@ int main()
     const unsigned int division_num
                         = flame_table_size * ((4096/32)-(3 -1));
     const unsigned int full_table_size
-                        = (3000*((4096/32)-(3 -1)))*2;
+                        = (300*((4096/32)-(3 -1)))*2;
 
 
 
 
 
     unsigned int* FP_DB;
-    FP_DB = (unsigned int*) malloc(sizeof(unsigned int)*3000*(4096/32));
+    FP_DB = (unsigned int*) malloc(sizeof(unsigned int)*300*(4096/32));
     unsigned int* hash_table_pointer;
     hash_table_pointer = (unsigned int*) calloc(division_num, sizeof(unsigned int));
     unsigned int* hash_table;
@@ -45423,14 +45424,14 @@ int main()
     unsigned char* bit_element;
     bit_element = (unsigned char*) calloc(7*2, sizeof(unsigned char));
     unsigned int* flame_addr;
-    flame_addr = (unsigned int*) malloc(sizeof(unsigned int)*3000*((4096/32)-(3 -1)));
+    flame_addr = (unsigned int*) malloc(sizeof(unsigned int)*300*((4096/32)-(3 -1)));
 
 
 
 
 
     fp_db_generator(FP_DB,
-                    3000,
+                    300,
                     (4096/32)
                     );
 
@@ -45449,7 +45450,7 @@ int main()
 
     flame_addr_get( FP_DB,
                     flame_addr,
-                    3000,
+                    300,
                     (4096/32),
                     ((4096/32)-(3 -1))
                     );
@@ -45466,7 +45467,7 @@ int main()
                      bit_element,
                      division_num,
                      full_table_size,
-                     3000,
+                     300,
                      ((4096/32)-(3 -1)),
                      7,
                      2
@@ -45506,7 +45507,7 @@ int main()
     for (int i=0; i<300; i++)
     {
 
-        music_index = rnd1() % 3000;
+        music_index = rnd1() % 300;
 
 
         distortion_query_create(
@@ -45522,7 +45523,7 @@ int main()
 #ifndef HLS_FASTSIM
 #define table_serch apatb_table_serch_sw
 #endif
-# 138 "/home/nomoto/src/StagedLSH/ver1.0/hard/src/main.cpp"
+# 139 "/home/nomoto/src/StagedLSH/ver1.0/hard/src/main.cpp"
 table_serch(
             query,
             FP_DB,
@@ -45531,7 +45532,7 @@ table_serch(
             bit_element
         );
 #undef table_serch
-# 138 "/home/nomoto/src/StagedLSH/ver1.0/hard/src/main.cpp"
+# 139 "/home/nomoto/src/StagedLSH/ver1.0/hard/src/main.cpp"
 
 
 
@@ -45562,5 +45563,5 @@ table_serch(
     return 0;
 }
 #endif
-# 172 "/home/nomoto/src/StagedLSH/ver1.0/hard/src/main.cpp"
+# 173 "/home/nomoto/src/StagedLSH/ver1.0/hard/src/main.cpp"
 

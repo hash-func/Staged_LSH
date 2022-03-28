@@ -2101,7 +2101,7 @@
                 <table>
                     <keys size="5">HW Interface, Variable, Problem, Resolution, Location</keys>
                     <column name="m_axi_gmem">bit_element, Could not widen since Type i8 size is greater than or equal to alignment 1(bytes), , ../src/table_serch.cpp:118:17</column>
-                    <column name="m_axi_gmem">, Inferred burst reverted due to conflict with call, 214-224, ../src/table_serch.cpp:188:26</column>
+                    <column name="m_axi_gmem">, Inferred burst reverted due to conflict with call, 214-224, ../src/table_serch.cpp:185:26</column>
                 </table>
             </item>
         </section>

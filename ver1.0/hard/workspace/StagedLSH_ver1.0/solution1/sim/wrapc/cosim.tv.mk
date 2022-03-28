@@ -57,20 +57,20 @@ include ./Makefile.rules
 
 all : $(TARGET)
 
-$(ObjDir)/ele_func.cpp_pre.cpp.tb.o : ele_func.cpp_pre.cpp.tb.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling ele_func.cpp_pre.cpp.tb.cpp" $(AVE_DIR_DLOG)
-	$(Verb) $(CC) ${CCFLAG} ${TOOLCHAIN}  -fno-builtin-isinf -fno-builtin-isnan -c $(IFLAG) $(DFLAG) $< -o $@; \
-
-$(ObjDir)/hash_func.cpp_pre.cpp.tb.o : hash_func.cpp_pre.cpp.tb.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling hash_func.cpp_pre.cpp.tb.cpp" $(AVE_DIR_DLOG)
+$(ObjDir)/main.cpp_pre.cpp.tb.o : main.cpp_pre.cpp.tb.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling main.cpp_pre.cpp.tb.cpp" $(AVE_DIR_DLOG)
 	$(Verb) $(CC) ${CCFLAG} ${TOOLCHAIN}  -fno-builtin-isinf -fno-builtin-isnan -c $(IFLAG) $(DFLAG) $< -o $@; \
 
 $(ObjDir)/hash_stock.cpp_pre.cpp.tb.o : hash_stock.cpp_pre.cpp.tb.cpp $(ObjDir)/.dir
 	$(Echo) "   Compiling hash_stock.cpp_pre.cpp.tb.cpp" $(AVE_DIR_DLOG)
 	$(Verb) $(CC) ${CCFLAG} ${TOOLCHAIN}  -fno-builtin-isinf -fno-builtin-isnan -c $(IFLAG) $(DFLAG) $< -o $@; \
 
-$(ObjDir)/main.cpp_pre.cpp.tb.o : main.cpp_pre.cpp.tb.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling main.cpp_pre.cpp.tb.cpp" $(AVE_DIR_DLOG)
+$(ObjDir)/hash_func.cpp_pre.cpp.tb.o : hash_func.cpp_pre.cpp.tb.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling hash_func.cpp_pre.cpp.tb.cpp" $(AVE_DIR_DLOG)
+	$(Verb) $(CC) ${CCFLAG} ${TOOLCHAIN}  -fno-builtin-isinf -fno-builtin-isnan -c $(IFLAG) $(DFLAG) $< -o $@; \
+
+$(ObjDir)/ele_func.cpp_pre.cpp.tb.o : ele_func.cpp_pre.cpp.tb.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ele_func.cpp_pre.cpp.tb.cpp" $(AVE_DIR_DLOG)
 	$(Verb) $(CC) ${CCFLAG} ${TOOLCHAIN}  -fno-builtin-isinf -fno-builtin-isnan -c $(IFLAG) $(DFLAG) $< -o $@; \
 
 $(ObjDir)/table_serch.cpp_pre.cpp.tb.o : table_serch.cpp_pre.cpp.tb.cpp $(ObjDir)/.dir

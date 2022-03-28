@@ -16,7 +16,7 @@ __SIM_DDS__ = 1
 
 ObjDir = obj
 
-HLS_SOURCES = ../../../../../src/ele_func.cpp ../../../../../src/hash_func.cpp ../../../../../src/hash_stock.cpp ../../../../../src/main.cpp ../../../../../src/table_serch.cpp
+HLS_SOURCES = ../../../../../src/main.cpp ../../../../../src/hash_stock.cpp ../../../../../src/hash_func.cpp ../../../../../src/ele_func.cpp ../../../../../src/table_serch.cpp
 
 override TARGET := csim.exe
 
@@ -68,17 +68,11 @@ all: $(TARGET)
 
 
 
-$(ObjDir)/ele_func.o: ../../../../../src/ele_func.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling ../../../../../src/ele_func.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+$(ObjDir)/main.o: ../../../../../src/main.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../../../src/main.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
 	$(Verb)  $(CC) ${CCFLAG} -c -MMD -Wno-unknown-pragmas -Wno-unknown-pragmas  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
--include $(ObjDir)/ele_func.d
-
-$(ObjDir)/hash_func.o: ../../../../../src/hash_func.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling ../../../../../src/hash_func.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(CC) ${CCFLAG} -c -MMD -Wno-unknown-pragmas -Wno-unknown-pragmas  $(IFLAG) $(DFLAG) $< -o $@ ; \
-
--include $(ObjDir)/hash_func.d
+-include $(ObjDir)/main.d
 
 $(ObjDir)/hash_stock.o: ../../../../../src/hash_stock.cpp $(ObjDir)/.dir
 	$(Echo) "   Compiling ../../../../../src/hash_stock.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
@@ -86,11 +80,17 @@ $(ObjDir)/hash_stock.o: ../../../../../src/hash_stock.cpp $(ObjDir)/.dir
 
 -include $(ObjDir)/hash_stock.d
 
-$(ObjDir)/main.o: ../../../../../src/main.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling ../../../../../src/main.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+$(ObjDir)/hash_func.o: ../../../../../src/hash_func.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../../../src/hash_func.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
 	$(Verb)  $(CC) ${CCFLAG} -c -MMD -Wno-unknown-pragmas -Wno-unknown-pragmas  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
--include $(ObjDir)/main.d
+-include $(ObjDir)/hash_func.d
+
+$(ObjDir)/ele_func.o: ../../../../../src/ele_func.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../../../src/ele_func.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+	$(Verb)  $(CC) ${CCFLAG} -c -MMD -Wno-unknown-pragmas -Wno-unknown-pragmas  $(IFLAG) $(DFLAG) $< -o $@ ; \
+
+-include $(ObjDir)/ele_func.d
 
 $(ObjDir)/table_serch.o: ../../../../../src/table_serch.cpp $(ObjDir)/.dir
 	$(Echo) "   Compiling ../../../../../src/table_serch.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)

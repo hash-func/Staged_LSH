@@ -71906,9 +71906,6 @@ int backet_serch(
     ap_uint<32> temp_C;
     ap_uint<96> temp_flame96;
 
-    ap_uint<32> temp_seisa;
-    ap_uint<32> temp_seisa_query;
-
 
 
     bucket_loop : for (int i=top; i<=end; i++)
@@ -71939,12 +71936,9 @@ int backet_serch(
             seisa_loop : for (int m=0; m<(4096/32); m++)
             {
 
-                temp_seisa = (ap_uint<32>) FP_DB[db_point+m];
-                temp_seisa_query = (ap_uint<32>) query[m];
-
                 seisa32_loop : for (int n=0; n<32; n++)
                 {
-                    haming_dis += temp_seisa_query[n] ^ temp_seisa[n];
+                    haming_dis += ((ap_uint<32>) query[m])[n] ^ ((ap_uint<32>) FP_DB[db_point+m])[n];
                 }
             }
 

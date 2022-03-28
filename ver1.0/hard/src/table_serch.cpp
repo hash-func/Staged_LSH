@@ -155,9 +155,6 @@ int backet_serch(
     ap_uint<32> temp_C;
     ap_uint<96> temp_flame96;
 
-    ap_uint<32> temp_seisa;
-    ap_uint<32> temp_seisa_query;
-
 
     /* スクリーニングと精査 */
     bucket_loop : for (int i=top; i<=end; i++)
@@ -187,13 +184,10 @@ int backet_serch(
             db_point = music_number * ONEMUSIC_SUBNUM;      // DB中楽曲開始位置特定
             seisa_loop : for (int m=0; m<ONEMUSIC_SUBNUM; m++)
             {
-                // 32bit取得
-                temp_seisa = (ap_uint<32>) FP_DB[db_point+m];
-                temp_seisa_query = (ap_uint<32>) query[m];
                 // 32bitハミング距離計算
                 seisa32_loop : for (int n=0; n<SUB_FP_SIZE; n++)
                 {
-                    haming_dis += temp_seisa_query[n] ^ temp_seisa[n];
+                    haming_dis += ((ap_uint<32>) query[m])[n] ^ ((ap_uint<32>) FP_DB[db_point+m])[n];
                 }
             }
             /* 精査閾値より小さく,最もエラーの小さいindex保存 */

@@ -18,6 +18,7 @@ int main()
     printf ("処理開始\n");
 #endif
     printf ("楽曲数 : %u\n", MUSIC_NUM);
+    printf ("BER : %lf %\n", DISTORTION);
 
     /* 定数宣言 */
     const unsigned int flame_table_size         // 各フレームHashテーブルサイズ
