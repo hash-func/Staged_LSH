@@ -9,7 +9,7 @@
 /* 与えられた96bitの指定bitを返す関数 */
 unsigned int hash_function_ele(
     unsigned int temp_flame96[],        // 対象フレーム
-    unsigned char bit_ele               // bit取得位置
+    unsigned int bit_ele               // bit取得位置
 )
 {
     unsigned int judge = 1;
@@ -26,7 +26,7 @@ unsigned int hash_function_ele(
 /* ハッシュ値を生成する関数 */
 unsigned int hash_function(
     unsigned int temp_flame96[],        // 対象フレーム(96bit)
-    unsigned char bit_element[],        // bit取得位置
+    unsigned int bit_element[],        // bit取得位置
     unsigned int k_hashbit,             // ハッシュ関数bit数
     unsigned int flame_index,           // フレーム位置
     unsigned int get_start              // bit_ele取得開始位置

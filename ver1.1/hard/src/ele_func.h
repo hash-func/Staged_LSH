@@ -12,7 +12,7 @@ void fp_db_generator(
 );
 /* 取得bit位置格納関数 */
 void bit_element_get(
-    unsigned char bit_element[],      // bit位置格納配列
+    unsigned int bit_element[],      // bit位置格納配列
     unsigned short k_hashbit,       // ハッシュ関数のbit数
     unsigned short l_hashnum,       // ハッシュ関数の数
     unsigned short sub_fp_SIZE,     // subFPのサイズ

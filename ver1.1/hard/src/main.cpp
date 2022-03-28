@@ -38,8 +38,9 @@ int main()
     hash_table_pointer = (unsigned int*) calloc(division_num, sizeof(unsigned int));
     unsigned int* hash_table;                   // ハッシュテーブル
     hash_table = (unsigned int*) malloc(sizeof(unsigned int)*full_table_size);
-    unsigned char* bit_element;                 // Hash関数bit取得位置(96までなのでchar)
-    bit_element = (unsigned char*) calloc(K_HASHBIT*L_HASHNUM, sizeof(unsigned char));
+    //unsigned char* bit_element;                 // Hash関数bit取得位置(96までなのでchar)
+    //bit_element = (unsigned char*) calloc(K_HASHBIT*L_HASHNUM, sizeof(unsigned char));
+    unsigned int bit_element[] = {41, 1, 32, 12, 74, 90, 81, 9, 64, 43, 46, 75, 90, 35};
     unsigned int* flame_addr;                   // 各フレームの先頭アドレス(一時処理使用)
     flame_addr = (unsigned int*) malloc(sizeof(unsigned int)*MUSIC_NUM*FLAME_IN_MUSIC);
     /* --必要配列(ヒープ領域)-- */
@@ -140,8 +141,7 @@ int main()
             query,                              // クエリ格納配列
             FP_DB,                              // FPデータベース
             hash_table,                         // ハッシュテーブル
-            hash_table_pointer,                 // ハッシュテーブル末尾位置指定
-            bit_element                         // bit取得位置
+            hash_table_pointer                  // ハッシュテーブル末尾位置指定
         );
 
         /* 結果の集計 */

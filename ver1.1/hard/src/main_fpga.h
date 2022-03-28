@@ -26,4 +26,20 @@
 /* 手動計算 */
 #define FLAME_INDEX_OUT 128     // 2^K_HASHBIT
 
+/* ハッシュビット取得位置 */
+#define get1 41
+#define get2 1
+#define get3 32
+#define get4 12
+#define get5 74
+#define get6 90
+#define get7 81
+#define get8 9
+#define get9 64
+#define get10 43
+#define get11 46
+#define get12 75
+#define get13 90
+#define get14 35
+
 #endif

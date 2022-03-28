@@ -13,9 +13,7 @@
 /* Hash値の計算 */
 ap_uint<32> hash_fpga_func(
     ap_uint<96> flame96,                    // 対象フレーム
-    unsigned char bit_element[],            // bit取得位置
-    unsigned char k_hashbit,                // bit数
-    unsigned char get_start,                // 取得開始位置
+    int L,                                  // 取得開始位置
     int flame_index                         // フレームインデックス
 );
 /* 段階バケット探索 */
@@ -36,8 +34,7 @@ int table_serch(
     unsigned int query[],                   // クエリFP配列
     unsigned int FP_DB[],                   // FPデータベース
     unsigned int hash_table[],              // ハッシュテーブル
-    unsigned int hash_table_pointer[],      // ハッシュテーブルへの位置指定
-    unsigned char bit_element[]             // bit取得位置
+    unsigned int hash_table_pointer[]       // ハッシュテーブルへの位置指定
 )
 {
     /* 戻り値 */
@@ -66,9 +63,7 @@ int table_serch(
             /* Hash値の計算 */
             hash_temp = hash_fpga_func(
                 flame96,
-                bit_element,
-                K_HASHBIT,
-                L*K_HASHBIT,
+                L,
                 flame_index
             );
 #ifdef DEBUG_sub
@@ -86,7 +81,7 @@ int table_serch(
             /* 楽曲が特定できた時 */
             if (music_index >= 0)
             {
-#ifdef DEBUG_sub
+#ifdef DEBUG
                 printf ("発見フレーム : %d\n", flame_index);
 #endif
                 break;
@@ -106,18 +101,32 @@ int table_serch(
 /* Hash値の計算 */
 ap_uint<32> hash_fpga_func(
     ap_uint<96> flame96,                    // 対象フレーム
-    unsigned char bit_element[],            // bit取得位置
-    unsigned char k_hashbit,                // bit数
-    unsigned char get_start,                // 取得開始位置
+    int L,                                  // 取得開始位置
     int flame_index                         // フレームインデックス
 )
 {
     ap_uint<32> henkan = 0;
-
     /* Hash値kビットの生成 */
-    hash_gene : for (int i=0; i<k_hashbit; i++)
+    /* 2個7bit生成の場合 */
+    if (L == 0)
     {
-        henkan[(k_hashbit-1) - i] = flame96[bit_element[get_start + i]];
+        henkan[K_HASHBIT-1] = flame96[get1];
+        henkan[K_HASHBIT-2] = flame96[get2];
+        henkan[K_HASHBIT-3] = flame96[get3];
+        henkan[K_HASHBIT-4] = flame96[get4];
+        henkan[K_HASHBIT-5] = flame96[get5];
+        henkan[K_HASHBIT-6] = flame96[get6];
+        henkan[K_HASHBIT-7] = flame96[get7];
+    }
+    else if (L == 1)
+    {
+        henkan[K_HASHBIT-1] = flame96[get8];
+        henkan[K_HASHBIT-2] = flame96[get9];
+        henkan[K_HASHBIT-3] = flame96[get10];
+        henkan[K_HASHBIT-4] = flame96[get11];
+        henkan[K_HASHBIT-5] = flame96[get12];
+        henkan[K_HASHBIT-6] = flame96[get13];
+        henkan[K_HASHBIT-7] = flame96[get14];
     }
     /* フレーム位置に応じた値域の変更 */
     henkan = henkan + (flame_index * FLAME_INDEX_OUT);

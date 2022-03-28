@@ -20,8 +20,8 @@
 
 /* 変更パラメータ */
 #define MUSIC_NUM 300           // 楽曲数
-#define QUERY_NUM 300          // 検索数（試行回数）
-#define DISTORTION 20.0          // 歪み率(%)
+#define QUERY_NUM 30          // 検索数（試行回数）
+#define DISTORTION 0.0          // 歪み率(%)
 
 /* 考察するパラメータ */
 #define K_HASHBIT 7            // ハッシュ関数gのbit数：K
