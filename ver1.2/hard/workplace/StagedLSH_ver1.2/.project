@@ -42,6 +42,11 @@
 			<location>/home/nomoto/src/StagedLSH/ver1.2/hard/workplace/StagedLSH_ver1.2/solution1/.tcls</location>
 		</link>
 		<link>
+			<name>solution2/constraints</name>
+			<type>2</type>
+			<location>/home/nomoto/src/StagedLSH/ver1.2/hard/workplace/StagedLSH_ver1.2/solution2/.tcls</location>
+		</link>
+		<link>
 			<name>source/main_fpga.h</name>
 			<type>1</type>
 			<location>/home/nomoto/src/StagedLSH/ver1.2/hard/src/main_fpga.h</location>
@@ -110,6 +115,21 @@
 			<name>solution1/constraints/script.tcl</name>
 			<type>1</type>
 			<location>/home/nomoto/src/StagedLSH/ver1.2/hard/workplace/StagedLSH_ver1.2/solution1/script.tcl</location>
+		</link>
+		<link>
+			<name>solution2/constraints/.xml.directive</name>
+			<type>1</type>
+			<location>/home/nomoto/src/StagedLSH/ver1.2/hard/workplace/StagedLSH_ver1.2/solution2/solution2.directive</location>
+		</link>
+		<link>
+			<name>solution2/constraints/directives.tcl</name>
+			<type>1</type>
+			<location>/home/nomoto/src/StagedLSH/ver1.2/hard/workplace/StagedLSH_ver1.2/solution2/directives.tcl</location>
+		</link>
+		<link>
+			<name>solution2/constraints/script.tcl</name>
+			<type>1</type>
+			<location>/home/nomoto/src/StagedLSH/ver1.2/hard/workplace/StagedLSH_ver1.2/solution2/script.tcl</location>
 		</link>
 	</linkedResources>
 </projectDescription>

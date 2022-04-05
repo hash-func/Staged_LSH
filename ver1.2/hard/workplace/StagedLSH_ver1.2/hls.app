@@ -14,11 +14,12 @@
     <file name="../../../src/table_serch.h" sc="0" tb="1" cflags="" csimflags=""/>
   </files>
   <solutions>
-    <solution name="solution1" status="active"/>
+    <solution name="solution1" status="inactive"/>
+    <solution name="solution2" status="active"/>
   </solutions>
   <includePaths/>
   <libraryPaths/>
   <Simulation>
-    <SimFlow name="csim"/>
+    <SimFlow name="csim" csimMode="0" lastCsimMode="0"/>
   </Simulation>
 </project>

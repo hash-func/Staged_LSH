@@ -1,0 +1,115 @@
+INFO: Applying HLS Y2K22 patch v1.2 for IP revision
+INFO: [HLS 200-10] Running '/opt/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-105-generic) on Tue Apr 05 17:19:51 JST 2022
+INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
+INFO: [HLS 200-10] In directory '/home/nomoto/src/StagedLSH/ver1.2/hard/workplace'
+Sourcing Tcl script '/home/nomoto/src/StagedLSH/ver1.2/hard/workplace/StagedLSH_ver1.2/solution1/csynth.tcl'
+INFO: [HLS 200-1510] Running: open_project StagedLSH_ver1.2 
+INFO: [HLS 200-10] Opening project '/home/nomoto/src/StagedLSH/ver1.2/hard/workplace/StagedLSH_ver1.2'.
+INFO: [HLS 200-1510] Running: set_top table_serch 
+INFO: [HLS 200-1510] Running: add_files ../src/main_fpga.h 
+INFO: [HLS 200-10] Adding design file '../src/main_fpga.h' to the project
+INFO: [HLS 200-1510] Running: add_files ../src/table_serch.cpp 
+INFO: [HLS 200-10] Adding design file '../src/table_serch.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/ele_func.cpp 
+INFO: [HLS 200-10] Adding test bench file '../src/ele_func.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/ele_func.h 
+INFO: [HLS 200-10] Adding test bench file '../src/ele_func.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.cpp 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_func.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_func.h 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_func.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.cpp 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/hash_stock.h 
+INFO: [HLS 200-10] Adding test bench file '../src/hash_stock.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/main.cpp 
+INFO: [HLS 200-10] Adding test bench file '../src/main.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/main.h 
+INFO: [HLS 200-10] Adding test bench file '../src/main.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb ../src/table_serch.h 
+INFO: [HLS 200-10] Adding test bench file '../src/table_serch.h' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vitis 
+INFO: [HLS 200-10] Opening solution '/home/nomoto/src/StagedLSH/ver1.2/hard/workplace/StagedLSH_ver1.2/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 191.876 MB.
+INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 3.93 seconds. CPU system time: 0.24 seconds. Elapsed time: 3.9 seconds; current allocated memory: 193.106 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-178] Inlining function 'hash_fpga_func(ap_uint<96>, int, int)' into 'table_serch(unsigned int*, unsigned int*, unsigned int*, unsigned int*)' (../src/table_serch.cpp:39:0)
+INFO: [HLS 214-178] Inlining function 'backet_serch(unsigned int, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' into 'table_serch(unsigned int*, unsigned int*, unsigned int*, unsigned int*)' (../src/table_serch.cpp:39:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.55 seconds. CPU system time: 0.11 seconds. Elapsed time: 2.66 seconds; current allocated memory: 194.759 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 194.761 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 199.684 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+WARNING: [SYNCHK 200-23] /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_ref.h:819: variable-indexed range selection may cause suboptimal QoR.
+INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 203.529 MB.
+INFO: [XFORM 203-510] Pipelining loop 'screening_loop' in function 'table_serch' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:163) in function 'table_serch' automatically.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'seisa_loop' (../src/table_serch.cpp:163) in function 'table_serch' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'seisa32_loop' (../src/table_serch.cpp:163) in function 'table_serch' completely with a factor of 32.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (../src/table_serch.cpp:68:31) to (../src/table_serch.cpp:158:9) in function 'table_serch'... converting 4 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'table_serch' (../src/table_serch.cpp:34)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.29 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.31 seconds; current allocated memory: 230.519 MB.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:154:9) in function 'table_serch' more than one sub loop.
+Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
+WARNING: [HLS 200-960] Cannot flatten loop 'hash_serch' (../src/table_serch.cpp:68:31) in function 'table_serch' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
+INFO: [XFORM 203-541] Flattening a loop nest 'flame_serch' (../src/table_serch.cpp:48:17) in function 'table_serch'.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.49 seconds. CPU system time: 0 seconds. Elapsed time: 0.48 seconds; current allocated memory: 228.330 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'table_serch' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'screening_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'screening_loop'
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+WARNING: [HLS 200-885] Unable to schedule bus request on port 'gmem' (../src/table_serch.cpp:200) due to limited memory ports. Please consider using a memory core with more ports or partitioning the array.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-885.html
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 2, Depth = 74, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.93 seconds. CPU system time: 0 seconds. Elapsed time: 0.94 seconds; current allocated memory: 231.415 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.22 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.25 seconds; current allocated memory: 236.638 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/gmem' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/query' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/FP_DB' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/hash_table' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/hash_table_pointer' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'table_serch' to 's_axilite & ap_ctrl_chain'.
+INFO: [RTGEN 206-100] Bundling port 'return', 'query', 'FP_DB', 'hash_table' and 'hash_table_pointer' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'table_serch'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.98 seconds. CPU system time: 0.03 seconds. Elapsed time: 1 seconds; current allocated memory: 244.807 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2.9 seconds. CPU system time: 0.05 seconds. Elapsed time: 2.94 seconds; current allocated memory: 263.036 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for table_serch.
+INFO: [VLOG 209-307] Generating Verilog RTL for table_serch.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 136.99 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 14.55 seconds. CPU system time: 0.47 seconds. Elapsed time: 14.77 seconds; current allocated memory: 263.538 MB.
+INFO: [HLS 200-112] Total CPU user time: 16.92 seconds. Total CPU system time: 0.76 seconds. Total elapsed time: 16.44 seconds; peak allocated memory: 263.036 MB.

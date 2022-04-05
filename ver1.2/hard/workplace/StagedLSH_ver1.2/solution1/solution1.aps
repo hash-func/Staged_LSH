@@ -23,7 +23,10 @@
   <clockList>
     <clock name="default" period="10"/>
   </clockList>
-  <config/>
+  <config>
+        
+        
+    </config>
   <UIConfigurations>
     <UIAutosynConf boardInfo="Alveo U200 Data Center Accelerator Card (xcu200-fsgd2104-2-e) " hideTrivialOp="true" isBasedOnBoard="true" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">
       <Platform>xilinx/virtexuplus/virtexuplus</Platform>

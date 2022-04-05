@@ -1,0 +1,10 @@
+<VitisHLS:BurstInfo>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstInferredPassed" src_info="../src/table_serch.cpp:47:27" msg_id="214-116" msg_severity="INFO" msg_body="Sequential read of length 2 has been inferred" OldID="bb0.load.10" ID="query.seq" BundleName="gmem" VarName="query"/>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstInferredPassed" src_info="../src/table_serch.cpp:200:26" msg_id="214-116" msg_severity="INFO" msg_body="Sequential read of length 128 has been inferred over loop 'seisa_loop'" OldID="bb12.load.12" ID="query.seq94" BundleName="gmem" VarName="query"/>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstInferredPassed" src_info="../src/table_serch.cpp:200:26" msg_id="214-116" msg_severity="INFO" msg_body="Sequential read of length 128 has been inferred over loop 'seisa_loop'" OldID="bb12.load.13" ID="scevgep.seq" BundleName="gmem" VarName="FP_DB"/>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstWidenedPassed" src_info="../src/table_serch.cpp:200:26" msg_id="214-119" msg_severity="INFO" msg_body="Burst read of 128 x 32bit words has been widened by 16: 8 x 512bit words over loop 'seisa_loop'" OldID="query.seq94" ID="wseq" BundleName="gmem" VarName="query"/>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstWidenedPassed" src_info="../src/table_serch.cpp:200:26" msg_id="214-119" msg_severity="INFO" msg_body="Burst read of 128 x 32bit words has been widened by 16: 8 x 512bit words over loop 'seisa_loop'" OldID="scevgep.seq" ID="wseq95" BundleName="gmem" VarName="FP_DB"/>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstWidenedPassed" src_info="../src/table_serch.cpp:47:27" msg_id="214-119" msg_severity="INFO" msg_body="Burst read of 2 x 32bit words has been widened by 2: 1 x 64bit words" OldID="query.seq" ID="wseq97" BundleName="gmem" VarName="query"/>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="BurstConflictMissed" src_info="../src/table_serch.cpp:200:26" msg_id="214-224" msg_severity="INFO" msg_body="Inferred burst reverted due to conflict with call" resolution="214-224" BundleName="gmem"/>
+</VitisHLS:BurstInfo>
+
