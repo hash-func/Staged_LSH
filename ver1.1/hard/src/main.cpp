@@ -52,7 +52,7 @@ int main()
                     MUSIC_NUM,                  // 楽曲数
                     ONEMUSIC_SUBNUM             // 1曲あたりのsubFP数
                     );
-#ifdef DEBUG
+#ifdef DEBUG_sub
     printf("DB作成完了\n");
 #endif
 #ifdef ELEBITGET
@@ -64,7 +64,7 @@ int main()
                     SUBNUM_IN_FLAME             // 1フレームあたりのsubFP数
                     );
 #endif
-#ifdef DEBUG
+#ifdef DEBUG_sub
     printf("bit取得位置格納完了\n");
 #endif
     /* 各フレームへの番地を配列に格納(ele_func.cpp) */
@@ -74,7 +74,7 @@ int main()
                     ONEMUSIC_SUBNUM,            // 1曲あたりのsubFP数
                     FLAME_IN_MUSIC              // 1曲あたりのflame数
                     );
-#ifdef DEBUG
+#ifdef DEBUG_sub
     printf("フレーム先頭位置格納完了\n");
 #endif
 /****************************************************************************************************/
@@ -92,10 +92,10 @@ int main()
                      K_HASHBIT,                 // ハッシュ関数のbit数
                      L_HASHNUM                  // ハッシュ関数の数
                     );
-#ifdef DEBUG
+#ifdef DEBUG_sub
     printf("Hashテーブルへの要素格納完了\n");
 #endif
-#ifdef DEBUG
+#ifdef DEBUG_sub
     if (hash_table_pointer[division_num-1] == full_table_size-1)
     {
         printf ("hash_table_pointer異常なし\n");

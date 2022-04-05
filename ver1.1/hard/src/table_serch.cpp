@@ -88,7 +88,7 @@ int table_serch(
             /* 楽曲が特定できた時 */
             if (music_index >= 0)
             {
-#ifdef DEBUG
+#ifdef DEBUG_sub
                 printf ("発見フレーム : %d\n", flame_index);
 #endif
                 break;
