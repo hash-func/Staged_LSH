@@ -146,10 +146,10 @@
   "HlsSolution": {
     "FlowTarget": "vitis",
     "ConfigTcl": [
-      "config_interface -m_axi_latency=64",
-      "config_interface -m_axi_alignment_byte_size=64",
-      "config_interface -m_axi_max_widen_bitwidth=512",
       "config_interface -default_interface=kernel",
+      "config_interface -m_axi_alignment_byte_size=64",
+      "config_interface -m_axi_latency=64",
+      "config_interface -m_axi_max_widen_bitwidth=512",
       "config_interface -m_axi_offset=slave",
       "config_rtl -register_reset_num=3"
     ],
@@ -1033,7 +1033,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2022-03-28 16:10:08 JST",
+    "Time": "2022-04-04 13:45:35 JST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }

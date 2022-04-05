@@ -18,7 +18,6 @@
 #define SCREENING 24            // スクリーニングの閾値
 #define SCRUTINY 1024           // 精査の閾値
 
-
 /* 考察するパラメータ */
 #define K_HASHBIT 7            // ハッシュ関数gのbit数：K
 #define L_HASHNUM 2             // ハッシュ関数gの数：L

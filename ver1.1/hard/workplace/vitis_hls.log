@@ -1,6 +1,6 @@
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-105-generic) on Mon Mar 28 16:13:29 JST 2022
+INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-105-generic) on Tue Apr 05 14:01:30 JST 2022
 INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
 INFO: [HLS 200-10] In directory '/home/nomoto/src/StagedLSH/ver1.1/hard/workplace'
 Sourcing Tcl script '/home/nomoto/src/StagedLSH/ver1.1/hard/workplace/StagedLSH_ver1.1/solution1/csim.tcl'
@@ -35,14 +35,16 @@ INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
 INFO: [HLS 200-1505] Using flow_target 'vitis'
 Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_offset=slave
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
 INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
 INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
 INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
 INFO: [HLS 200-1510] Running: csim_design -clean -setup -quiet 
 INFO: [SIM 211-2] *************** CSIM start ***************
@@ -53,10 +55,6 @@ INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
    Compiling ../../../../../src/main.cpp in debug mode
    Compiling ../../../../../src/table_serch.cpp in debug mode
    Generating csim.exe
-../../../../../src/main.cpp: 関数 ‘int main()’ 内:
-../../../../../src/main.cpp:164:23: 警告:  ヒープではないオブジェクト ‘bit_element’ を free する試みです [-Wfree-nonheap-object]
-     free (bit_element);
-                       ^
 INFO: [SIM 211-1] CSim file generation done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
-INFO: [HLS 200-111] Finished Command csim_design CPU user time: 2 seconds. CPU system time: 0.24 seconds. Elapsed time: 2.02 seconds; current allocated memory: 191.932 MB.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 1.99 seconds. CPU system time: 0.23 seconds. Elapsed time: 1.98 seconds; current allocated memory: 192.009 MB.

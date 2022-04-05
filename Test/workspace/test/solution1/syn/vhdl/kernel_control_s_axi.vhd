@@ -8,7 +8,7 @@ use IEEE.NUMERIC_STD.all;
 
 entity kernel_control_s_axi is
 generic (
-    C_S_AXI_ADDR_WIDTH    : INTEGER := 6;
+    C_S_AXI_ADDR_WIDTH    : INTEGER := 5;
     C_S_AXI_DATA_WIDTH    : INTEGER := 32);
 port (
     ACLK                  :in   STD_LOGIC;
@@ -32,15 +32,12 @@ port (
     RVALID                :out  STD_LOGIC;
     RREADY                :in   STD_LOGIC;
     interrupt             :out  STD_LOGIC;
+    flame                 :out  STD_LOGIC_VECTOR(63 downto 0);
     ap_start              :out  STD_LOGIC;
     ap_done               :in   STD_LOGIC;
     ap_ready              :in   STD_LOGIC;
     ap_continue           :out  STD_LOGIC;
-    ap_idle               :in   STD_LOGIC;
-    ap_return             :in   STD_LOGIC_VECTOR(31 downto 0);
-    a                     :out  STD_LOGIC_VECTOR(31 downto 0);
-    b                     :out  STD_LOGIC_VECTOR(31 downto 0);
-    pointer_a             :out  STD_LOGIC_VECTOR(63 downto 0)
+    ap_idle               :in   STD_LOGIC
 );
 end entity kernel_control_s_axi;
 
@@ -64,19 +61,11 @@ end entity kernel_control_s_axi;
 --        bit 0  - ap_done (COR/TOW)
 --        bit 1  - ap_ready (COR/TOW)
 --        others - reserved
--- 0x10 : Data signal of ap_return
---        bit 31~0 - ap_return[31:0] (Read)
--- 0x18 : Data signal of a
---        bit 31~0 - a[31:0] (Read/Write)
--- 0x1c : reserved
--- 0x20 : Data signal of b
---        bit 31~0 - b[31:0] (Read/Write)
--- 0x24 : reserved
--- 0x28 : Data signal of pointer_a
---        bit 31~0 - pointer_a[31:0] (Read/Write)
--- 0x2c : Data signal of pointer_a
---        bit 31~0 - pointer_a[63:32] (Read/Write)
--- 0x30 : reserved
+-- 0x10 : Data signal of flame
+--        bit 31~0 - flame[31:0] (Read/Write)
+-- 0x14 : Data signal of flame
+--        bit 31~0 - flame[63:32] (Read/Write)
+-- 0x18 : reserved
 -- (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 architecture behave of kernel_control_s_axi is
@@ -84,19 +73,14 @@ architecture behave of kernel_control_s_axi is
     signal wstate  : states := wrreset;
     signal rstate  : states := rdreset;
     signal wnext, rnext: states;
-    constant ADDR_AP_CTRL          : INTEGER := 16#00#;
-    constant ADDR_GIE              : INTEGER := 16#04#;
-    constant ADDR_IER              : INTEGER := 16#08#;
-    constant ADDR_ISR              : INTEGER := 16#0c#;
-    constant ADDR_AP_RETURN_0      : INTEGER := 16#10#;
-    constant ADDR_A_DATA_0         : INTEGER := 16#18#;
-    constant ADDR_A_CTRL           : INTEGER := 16#1c#;
-    constant ADDR_B_DATA_0         : INTEGER := 16#20#;
-    constant ADDR_B_CTRL           : INTEGER := 16#24#;
-    constant ADDR_POINTER_A_DATA_0 : INTEGER := 16#28#;
-    constant ADDR_POINTER_A_DATA_1 : INTEGER := 16#2c#;
-    constant ADDR_POINTER_A_CTRL   : INTEGER := 16#30#;
-    constant ADDR_BITS         : INTEGER := 6;
+    constant ADDR_AP_CTRL      : INTEGER := 16#00#;
+    constant ADDR_GIE          : INTEGER := 16#04#;
+    constant ADDR_IER          : INTEGER := 16#08#;
+    constant ADDR_ISR          : INTEGER := 16#0c#;
+    constant ADDR_FLAME_DATA_0 : INTEGER := 16#10#;
+    constant ADDR_FLAME_DATA_1 : INTEGER := 16#14#;
+    constant ADDR_FLAME_CTRL   : INTEGER := 16#18#;
+    constant ADDR_BITS         : INTEGER := 5;
 
     signal waddr               : UNSIGNED(ADDR_BITS-1 downto 0);
     signal wmask               : UNSIGNED(C_S_AXI_DATA_WIDTH-1 downto 0);
@@ -119,10 +103,7 @@ architecture behave of kernel_control_s_axi is
     signal int_gie             : STD_LOGIC := '0';
     signal int_ier             : UNSIGNED(1 downto 0) := (others => '0');
     signal int_isr             : UNSIGNED(1 downto 0) := (others => '0');
-    signal int_ap_return       : UNSIGNED(31 downto 0);
-    signal int_a               : UNSIGNED(31 downto 0) := (others => '0');
-    signal int_b               : UNSIGNED(31 downto 0) := (others => '0');
-    signal int_pointer_a       : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_flame           : UNSIGNED(63 downto 0) := (others => '0');
 
 
 begin
@@ -251,16 +232,10 @@ begin
                         rdata_data(1 downto 0) <= int_ier;
                     when ADDR_ISR =>
                         rdata_data(1 downto 0) <= int_isr;
-                    when ADDR_AP_RETURN_0 =>
-                        rdata_data <= RESIZE(int_ap_return(31 downto 0), 32);
-                    when ADDR_A_DATA_0 =>
-                        rdata_data <= RESIZE(int_a(31 downto 0), 32);
-                    when ADDR_B_DATA_0 =>
-                        rdata_data <= RESIZE(int_b(31 downto 0), 32);
-                    when ADDR_POINTER_A_DATA_0 =>
-                        rdata_data <= RESIZE(int_pointer_a(31 downto 0), 32);
-                    when ADDR_POINTER_A_DATA_1 =>
-                        rdata_data <= RESIZE(int_pointer_a(63 downto 32), 32);
+                    when ADDR_FLAME_DATA_0 =>
+                        rdata_data <= RESIZE(int_flame(31 downto 0), 32);
+                    when ADDR_FLAME_DATA_1 =>
+                        rdata_data <= RESIZE(int_flame(63 downto 32), 32);
                     when others =>
                         NULL;
                     end case;
@@ -274,9 +249,7 @@ begin
     ap_start             <= int_ap_start;
     int_ap_done          <= ap_done;
     ap_continue          <= int_ap_continue;
-    a                    <= STD_LOGIC_VECTOR(int_a);
-    b                    <= STD_LOGIC_VECTOR(int_b);
-    pointer_a            <= STD_LOGIC_VECTOR(int_pointer_a);
+    flame                <= STD_LOGIC_VECTOR(int_flame);
 
     process (ACLK)
     begin
@@ -408,11 +381,9 @@ begin
     process (ACLK)
     begin
         if (ACLK'event and ACLK = '1') then
-            if (ARESET = '1') then
-                int_ap_return <= (others => '0');
-            elsif (ACLK_EN = '1') then
-                if (ap_done = '1') then
-                    int_ap_return <= UNSIGNED(ap_return);
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FLAME_DATA_0) then
+                    int_flame(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_flame(31 downto 0));
                 end if;
             end if;
         end if;
@@ -422,41 +393,8 @@ begin
     begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_A_DATA_0) then
-                    int_a(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_a(31 downto 0));
-                end if;
-            end if;
-        end if;
-    end process;
-
-    process (ACLK)
-    begin
-        if (ACLK'event and ACLK = '1') then
-            if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_B_DATA_0) then
-                    int_b(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_b(31 downto 0));
-                end if;
-            end if;
-        end if;
-    end process;
-
-    process (ACLK)
-    begin
-        if (ACLK'event and ACLK = '1') then
-            if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_POINTER_A_DATA_0) then
-                    int_pointer_a(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_pointer_a(31 downto 0));
-                end if;
-            end if;
-        end if;
-    end process;
-
-    process (ACLK)
-    begin
-        if (ACLK'event and ACLK = '1') then
-            if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_POINTER_A_DATA_1) then
-                    int_pointer_a(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_pointer_a(63 downto 32));
+                if (w_hs = '1' and waddr = ADDR_FLAME_DATA_1) then
+                    int_flame(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_flame(63 downto 32));
                 end if;
             end if;
         end if;

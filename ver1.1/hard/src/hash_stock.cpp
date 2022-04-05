@@ -50,6 +50,9 @@ void hash_table_stock(
                 i % FLAME_IN_MUSIC,     // フレーム位置
                 L*k_hashbit             // bit_ele取得開始位置
             );
+#ifdef DEBUG_sub
+            printf("hash_count : %u\n", hash_temp);
+#endif
             // 対象ハッシュ値個数カウント
             hash_table_pointer[hash_temp]++;
         }
@@ -118,6 +121,15 @@ void hash_table_stock(
         temp_flame96[0] = FP_DB[flame_addr[i]];
         temp_flame96[1] = FP_DB[flame_addr[i] + 1];
         temp_flame96[2] = FP_DB[flame_addr[i] + 2];
+#ifdef DEBUG_sub
+        if (i == 0)
+        {
+            printf("格納側１フレーム目\n");
+            printf("%u\n", temp_flame96[0]);
+            printf("%u\n", temp_flame96[1]);
+            printf("%u\n", temp_flame96[2]);
+        }
+#endif
 
         // L_HASHNUM個のハッシュ値生成
         for (int L=0; L<l_hashnum; L++)
@@ -129,6 +141,9 @@ void hash_table_stock(
                 i % FLAME_IN_MUSIC,     // フレーム位置
                 L*k_hashbit             // bit_ele取得開始位置
             );
+#ifdef DEBUG_sub
+            printf("hash_count2 : %u\n", hash_temp);
+#endif
             // 対象ハッシュ値個数カウント
             hash_table_pointer[hash_temp]++;
         }

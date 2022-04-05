@@ -48,6 +48,13 @@ int table_serch(
     ap_uint<SUB_FP_SIZE> tempB32 = query[1];
     ap_uint<SUB_FP_SIZE> tempC32;
 
+#ifdef DEBUG_sub
+    printf("検索側1フレーム目\n");
+    printf("%u\n", query[0]);
+    printf("%u\n", query[1]);
+    printf("%u\n", query[2]);
+#endif
+
     /* flameごとに処理 */
     flame_serch : for (int flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
     {
@@ -130,7 +137,6 @@ ap_uint<32> hash_fpga_func(
     }
     /* フレーム位置に応じた値域の変更 */
     henkan = henkan + (flame_index * FLAME_INDEX_OUT);
-
     return henkan;
 }
 

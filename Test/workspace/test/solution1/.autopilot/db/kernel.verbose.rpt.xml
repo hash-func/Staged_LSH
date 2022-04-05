@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'kernel'" level="0">
-<item name = "Date">Sat Mar 19 16:34:18 2022
+<item name = "Date">Mon Apr  4 13:11:58 2022
 </item>
 <item name = "Version">2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)</item>
 <item name = "Project">test</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00 ns, 7.300 ns, 2.70 ns</column>
+<column name="ap_clk">10.00 ns, 0 ns, 2.70 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">72, 72, 0.720 us, 0.720 us, 73, 73, none</column>
+<column name="">0, 0, 0 ns, 0 ns, 1, 1, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -47,24 +47,23 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, -, 0, 41, -</column>
+<column name="Expression">-, -, 0, 2, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">2, -, 726, 940, -</column>
+<column name="Instance">0, -, 106, 168, -</column>
 <column name="Memory">-, -, -, -, -</column>
-<column name="Multiplexer">-, -, -, 374, -</column>
-<column name="Register">-, -, 205, -, -</column>
+<column name="Multiplexer">-, -, -, 9, -</column>
+<column name="Register">-, -, 5, -, -</column>
 <specialColumn name="Available SLR">1440, 2280, 788160, 394080, 320</specialColumn>
-<specialColumn name="Utilization SLR (%)">~0, 0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, 0, ~0, ~0, 0</specialColumn>
 <specialColumn name="Available">4320, 6840, 2364480, 1182240, 960</specialColumn>
-<specialColumn name="Utilization (%)">~0, 0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="control_s_axi_U">control_s_axi, 0, 0, 214, 360, 0</column>
-<column name="gmem_m_axi_U">gmem_m_axi, 2, 0, 512, 580, 0</column>
+<column name="control_s_axi_U">control_s_axi, 0, 0, 106, 168, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -81,29 +80,21 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="henkan_fu_108_p2">+, 0, 0, 39, 32, 32</column>
 <column name="ap_block_state1">or, 0, 0, 2, 1, 1</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
-<column name="ap_NS_fsm">338, 74, 1, 74</column>
 <column name="ap_done">9, 2, 1, 2</column>
-<column name="ap_return">9, 2, 32, 64</column>
-<column name="gmem_blk_n_AR">9, 2, 1, 2</column>
-<column name="gmem_blk_n_R">9, 2, 1, 2</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="ap_CS_fsm">73, 0, 73, 0</column>
+<column name="ap_CS_fsm">1, 0, 1, 0</column>
 <column name="ap_done_reg">1, 0, 1, 0</column>
-<column name="ap_return_preg">32, 0, 32, 0</column>
 <column name="ap_rst_n_inv">1, 0, 1, 0</column>
 <column name="ap_rst_reg_1">1, 0, 1, 0</column>
 <column name="ap_rst_reg_2">1, 0, 1, 0</column>
-<column name="gmem_addr_read_reg_119">32, 0, 32, 0</column>
-<column name="gmem_addr_reg_113">64, 0, 64, 0</column>
 </table>
 </item>
 </section>
@@ -115,14 +106,14 @@
 <keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
 <column name="s_axi_control_AWVALID">in, 1, s_axi, control, scalar</column>
 <column name="s_axi_control_AWREADY">out, 1, s_axi, control, scalar</column>
-<column name="s_axi_control_AWADDR">in, 6, s_axi, control, scalar</column>
+<column name="s_axi_control_AWADDR">in, 5, s_axi, control, scalar</column>
 <column name="s_axi_control_WVALID">in, 1, s_axi, control, scalar</column>
 <column name="s_axi_control_WREADY">out, 1, s_axi, control, scalar</column>
 <column name="s_axi_control_WDATA">in, 32, s_axi, control, scalar</column>
 <column name="s_axi_control_WSTRB">in, 4, s_axi, control, scalar</column>
 <column name="s_axi_control_ARVALID">in, 1, s_axi, control, scalar</column>
 <column name="s_axi_control_ARREADY">out, 1, s_axi, control, scalar</column>
-<column name="s_axi_control_ARADDR">in, 6, s_axi, control, scalar</column>
+<column name="s_axi_control_ARADDR">in, 5, s_axi, control, scalar</column>
 <column name="s_axi_control_RVALID">out, 1, s_axi, control, scalar</column>
 <column name="s_axi_control_RREADY">in, 1, s_axi, control, scalar</column>
 <column name="s_axi_control_RDATA">out, 32, s_axi, control, scalar</column>

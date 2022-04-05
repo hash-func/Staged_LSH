@@ -15,25 +15,25 @@
         <PipelineType>none</PipelineType>
         <SummaryOfTimingAnalysis>
             <unit>ns</unit>
-            <EstimatedClockPeriod>7.300</EstimatedClockPeriod>
+            <EstimatedClockPeriod>0.000</EstimatedClockPeriod>
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
-            <Best-caseLatency>72</Best-caseLatency>
-            <Average-caseLatency>72</Average-caseLatency>
-            <Worst-caseLatency>72</Worst-caseLatency>
-            <Best-caseRealTimeLatency>0.720 us</Best-caseRealTimeLatency>
-            <Average-caseRealTimeLatency>0.720 us</Average-caseRealTimeLatency>
-            <Worst-caseRealTimeLatency>0.720 us</Worst-caseRealTimeLatency>
-            <Interval-min>73</Interval-min>
-            <Interval-max>73</Interval-max>
+            <Best-caseLatency>0</Best-caseLatency>
+            <Average-caseLatency>0</Average-caseLatency>
+            <Worst-caseLatency>0</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
+            <Interval-min>1</Interval-min>
+            <Interval-max>1</Interval-max>
         </SummaryOfOverallLatency>
     </PerformanceEstimates>
     <AreaEstimates>
         <Resources>
-            <BRAM_18K>2</BRAM_18K>
-            <FF>931</FF>
-            <LUT>1355</LUT>
+            <BRAM_18K>0</BRAM_18K>
+            <FF>111</FF>
+            <LUT>179</LUT>
             <DSP>0</DSP>
             <URAM>0</URAM>
         </Resources>
@@ -80,7 +80,7 @@
             <IOProtocol>s_axi</IOProtocol>
             <IOConfig/>
             <Dir>in</Dir>
-            <Bits>6</Bits>
+            <Bits>5</Bits>
             <Attribute>unknown</Attribute>
             <CType>int</CType>
             <HasCtrl>1</HasCtrl>
@@ -171,7 +171,7 @@
             <IOProtocol>s_axi</IOProtocol>
             <IOConfig/>
             <Dir>in</Dir>
-            <Bits>6</Bits>
+            <Bits>5</Bits>
             <Attribute>unknown</Attribute>
             <CType>int</CType>
             <HasCtrl>1</HasCtrl>
@@ -853,28 +853,28 @@
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>10.00</TargetClockPeriod>
                     <ClockUncertainty>2.70</ClockUncertainty>
-                    <EstimatedClockPeriod>7.300</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>0.000</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>72</Best-caseLatency>
-                    <Average-caseLatency>72</Average-caseLatency>
-                    <Worst-caseLatency>72</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0.720 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0.720 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0.720 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>73</PipelineInitiationInterval>
+                    <Best-caseLatency>0</Best-caseLatency>
+                    <Average-caseLatency>0</Average-caseLatency>
+                    <Worst-caseLatency>0</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1</PipelineInitiationInterval>
                     <PipelineType>none</PipelineType>
                 </SummaryOfOverallLatency>
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <BRAM_18K>2</BRAM_18K>
+                    <BRAM_18K>0</BRAM_18K>
                     <AVAIL_BRAM>4320</AVAIL_BRAM>
-                    <UTIL_BRAM>~0</UTIL_BRAM>
-                    <FF>931</FF>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <FF>111</FF>
                     <AVAIL_FF>2364480</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>1355</LUT>
+                    <LUT>179</LUT>
                     <AVAIL_LUT>1182240</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <DSP>0</DSP>
@@ -920,7 +920,7 @@
                     <IOProtocol>s_axi</IOProtocol>
                     <IOConfig/>
                     <Dir>in</Dir>
-                    <Bits>6</Bits>
+                    <Bits>5</Bits>
                     <Attribute>unknown</Attribute>
                     <CType>int</CType>
                     <HasCtrl>1</HasCtrl>
@@ -1011,7 +1011,7 @@
                     <IOProtocol>s_axi</IOProtocol>
                     <IOConfig/>
                     <Dir>in</Dir>
-                    <Bits>6</Bits>
+                    <Bits>5</Bits>
                     <Attribute>unknown</Attribute>
                     <CType>int</CType>
                     <HasCtrl>1</HasCtrl>
@@ -1685,27 +1685,14 @@
     </ModuleInformation>
     <FIFOInformation/>
     <Args>
-        <Arg ArgName="a" index="0" direction="in" srcType="int" srcSize="32">
-            <hwRefs>
-                <hwRef type="register" interface="s_axi_control" name="a" usage="data" direction="in"/>
-            </hwRefs>
-        </Arg>
-        <Arg ArgName="b" index="1" direction="in" srcType="int" srcSize="32">
-            <hwRefs>
-                <hwRef type="register" interface="s_axi_control" name="b" usage="data" direction="in"/>
-            </hwRefs>
-        </Arg>
-        <Arg ArgName="pointer_a" index="2" direction="in" srcType="int*" srcSize="32">
+        <Arg ArgName="flame" index="0" direction="unused" srcType="unsigned int*" srcSize="32">
             <hwRefs>
                 <hwRef type="interface" interface="m_axi_gmem" name="" usage="data" direction="out"/>
-                <hwRef type="register" interface="s_axi_control" name="pointer_a_1" usage="address" direction="in"/>
-                <hwRef type="register" interface="s_axi_control" name="pointer_a_2" usage="address" direction="in"/>
+                <hwRef type="register" interface="s_axi_control" name="flame_1" usage="address" direction="in"/>
+                <hwRef type="register" interface="s_axi_control" name="flame_2" usage="address" direction="in"/>
             </hwRefs>
         </Arg>
     </Args>
-    <ReturnValue ReturnValueName="srcType">int</ReturnValue>
-    <ReturnValue ReturnValueName="srcSize">32</ReturnValue>
-    <ReturnValue ReturnValueName="hwRefs" type="register" interface="s_axi_control" name="ap_return" usage="data" direction="out"/>
     <Interfaces>
         <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
             <busParams>
@@ -1801,11 +1788,11 @@
                 <port>m_axi_gmem_WVALID</port>
             </ports>
             <constraints>
-                <constraint constraint_type="pragma interface" mode="m_axi" register_option="0" offset="slave" latency="64" num_read_outstanding="16" num_write_outstanding="16" max_read_burst_length="16" max_write_burst_length="16" max_widen_bitwidth="512" argName="pointer_a"/>
-                <constraint constraint_type="bitwidth" orig_bitwidth="32" final_bitwidth="32" argName="pointer_a"/>
+                <constraint constraint_type="pragma interface" mode="m_axi" register_option="0" offset="slave" latency="64" num_read_outstanding="16" num_write_outstanding="16" max_read_burst_length="16" max_write_burst_length="16" max_widen_bitwidth="512" argName="flame"/>
+                <constraint constraint_type="bitwidth" orig_bitwidth="32" final_bitwidth="32" argName="flame"/>
             </constraints>
         </Interface>
-        <Interface InterfaceName="s_axi_control" type="axi4lite" busTypeName="aximm" mode="slave" dataWidth="32" addrWidth="6" portPrefix="s_axi_control_" paramPrefix="C_S_AXI_CONTROL_" offsetMasterName="m_axi_gmem">
+        <Interface InterfaceName="s_axi_control" type="axi4lite" busTypeName="aximm" mode="slave" dataWidth="32" addrWidth="5" portPrefix="s_axi_control_" paramPrefix="C_S_AXI_CONTROL_" offsetMasterName="m_axi_gmem">
             <ports>
                 <port>s_axi_control_ARADDR</port>
                 <port>s_axi_control_ARREADY</port>
@@ -1858,34 +1845,19 @@
                         <field offset="2" width="30" name="RESERVED" access="R" resetValue="0" description="Reserved.  0s on read."/>
                     </fields>
                 </register>
-                <register offset="0x10" name="ap_return" access="R" resetValue="0x0" description="Data signal of ap_return" range="32">
+                <register offset="0x10" name="flame_1" access="W" resetValue="0x0" description="Data signal of flame" range="32">
                     <fields>
-                        <field offset="0" width="32" name="ap_return" access="R" resetValue="0" description="Bit 31 to 0 of ap_return"/>
+                        <field offset="0" width="32" name="flame" access="W" resetValue="0" description="Bit 31 to 0 of flame"/>
                     </fields>
                 </register>
-                <register offset="0x18" name="a" access="W" resetValue="0x0" description="Data signal of a" range="32">
+                <register offset="0x14" name="flame_2" access="W" resetValue="0x0" description="Data signal of flame" range="32">
                     <fields>
-                        <field offset="0" width="32" name="a" access="W" resetValue="0" description="Bit 31 to 0 of a"/>
-                    </fields>
-                </register>
-                <register offset="0x20" name="b" access="W" resetValue="0x0" description="Data signal of b" range="32">
-                    <fields>
-                        <field offset="0" width="32" name="b" access="W" resetValue="0" description="Bit 31 to 0 of b"/>
-                    </fields>
-                </register>
-                <register offset="0x28" name="pointer_a_1" access="W" resetValue="0x0" description="Data signal of pointer_a" range="32">
-                    <fields>
-                        <field offset="0" width="32" name="pointer_a" access="W" resetValue="0" description="Bit 31 to 0 of pointer_a"/>
-                    </fields>
-                </register>
-                <register offset="0x2c" name="pointer_a_2" access="W" resetValue="0x0" description="Data signal of pointer_a" range="32">
-                    <fields>
-                        <field offset="0" width="32" name="pointer_a" access="W" resetValue="0" description="Bit 63 to 32 of pointer_a"/>
+                        <field offset="0" width="32" name="flame" access="W" resetValue="0" description="Bit 63 to 32 of flame"/>
                     </fields>
                 </register>
             </registers>
             <constraints>
-                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="24" argName="a"/>
+                <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="16" argName="flame"/>
             </constraints>
         </Interface>
     </Interfaces>
@@ -1900,7 +1872,7 @@
             <item name="S_AXILITE">
                 <table>
                     <keys size="6">Interface, Data Width, Address Width, Offset, Register, Data Interface</keys>
-                    <column name="s_axi_control">32, 6, 24, 0, m_axi_gmem</column>
+                    <column name="s_axi_control">32, 5, 16, 0, m_axi_gmem</column>
                 </table>
             </item>
             <item name="TOP LEVEL CONTROL">
@@ -1919,21 +1891,15 @@
             <item name="Top Function Arguments">
                 <table isCollapsed="1">
                     <keys size="3">Argument, Direction, Datatype</keys>
-                    <column name="a">in, int</column>
-                    <column name="b">in, int</column>
-                    <column name="pointer_a">in, int*</column>
-                    <column name="return">out, int</column>
+                    <column name="flame">unused, unsigned int*</column>
                 </table>
             </item>
             <item name="SW-to-HW Mapping">
                 <table isCollapsed="1">
                     <keys size="5">Argument, HW Name, HW Type, HW Usage, HW Info</keys>
-                    <column name="a">s_axi_control a, register, , offset=0x18 range=32</column>
-                    <column name="b">s_axi_control b, register, , offset=0x20 range=32</column>
-                    <column name="pointer_a">m_axi_gmem, interface, , </column>
-                    <column name="pointer_a">s_axi_control pointer_a_1, register, offset, offset=0x28 range=32</column>
-                    <column name="pointer_a">s_axi_control pointer_a_2, register, offset, offset=0x2c range=32</column>
-                    <column name="return">s_axi_control ap_return, register, , offset=0x10 range=32</column>
+                    <column name="flame">m_axi_gmem, interface, , </column>
+                    <column name="flame">s_axi_control flame_1, register, offset, offset=0x10 range=32</column>
+                    <column name="flame">s_axi_control flame_2, register, offset, offset=0x14 range=32</column>
                 </table>
             </item>
         </section>

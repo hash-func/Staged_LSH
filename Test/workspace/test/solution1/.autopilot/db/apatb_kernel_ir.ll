@@ -3,14 +3,14 @@ source_filename = "llvm-link"
 target datalayout = "e-m:e-i64:64-i128:128-i256:256-i512:512-i1024:1024-i2048:2048-i4096:4096-n8:16:32:64-S128-v16:16-v24:32-v32:32-v48:64-v96:128-v192:256-v256:256-v512:512-v1024:1024"
 target triple = "fpga64-xilinx-none"
 
-; Function Attrs: argmemonly noinline
-define i32 @apatb_kernel_ir(i32 %a, i32 %b, i32* %pointer_a) local_unnamed_addr #0 {
+; Function Attrs: noinline
+define void @apatb_kernel_ir(i32* %flame) local_unnamed_addr #0 {
 entry:
-  %pointer_a_copy = alloca i32, align 512
-  call fastcc void @copy_in(i32* %pointer_a, i32* nonnull align 512 %pointer_a_copy)
-  %0 = call i32 @apatb_kernel_hw(i32 %a, i32 %b, i32* %pointer_a_copy)
-  call fastcc void @copy_out(i32* %pointer_a, i32* nonnull align 512 %pointer_a_copy)
-  ret i32 %0
+  %flame_copy = alloca i32, align 512
+  call fastcc void @copy_in(i32* %flame, i32* nonnull align 512 %flame_copy)
+  call void @apatb_kernel_hw(i32* %flame_copy)
+  call fastcc void @copy_out(i32* %flame, i32* nonnull align 512 %flame_copy)
+  ret void
 }
 
 ; Function Attrs: argmemonly noinline
@@ -48,19 +48,19 @@ entry:
   ret void
 }
 
-declare i32 @apatb_kernel_hw(i32, i32, i32*)
+declare void @apatb_kernel_hw(i32*)
 
-define i32 @kernel_hw_stub_wrapper(i32, i32, i32*) #5 {
+define void @kernel_hw_stub_wrapper(i32*) #5 {
 entry:
-  call void @copy_out(i32* null, i32* %2)
-  %3 = call i32 @kernel_hw_stub(i32 %0, i32 %1, i32* %2)
-  call void @copy_in(i32* null, i32* %2)
-  ret i32 %3
+  call void @copy_out(i32* null, i32* %0)
+  call void @kernel_hw_stub(i32* %0)
+  call void @copy_in(i32* null, i32* %0)
+  ret void
 }
 
-declare i32 @kernel_hw_stub(i32, i32, i32*)
+declare void @kernel_hw_stub(i32*)
 
-attributes #0 = { argmemonly noinline "fpga.wrapper.func"="wrapper" }
+attributes #0 = { noinline "fpga.wrapper.func"="wrapper" }
 attributes #1 = { argmemonly noinline "fpga.wrapper.func"="copyin" }
 attributes #2 = { argmemonly noinline "fpga.wrapper.func"="onebyonecpy_hls" }
 attributes #3 = { argmemonly nounwind }

@@ -45675,7 +45675,7 @@ struct ap_int_base : public ssdm_int<_AP_W, _AP_S> {
       int NZeros = 0;
       int i = 0;
       bool hitNonZero = false;
-      VITIS_LOOP_1062_1: for (i = 0; i < __N - 1; ++i) {
+      for (i = 0; i < __N - 1; ++i) {
         ap_int_base<64, false> t;
         t.V = ({ typename _ap_type::remove_const<typeof(this->V)>::type __Result__ = 0; typeof(this->V) __Val2__ = this->V; __builtin_bit_part_select((void*)(&__Result__), (void*)(&__Val2__), _AP_W - i * 64 - 64, _AP_W - i * 64 - 1); __Result__; });
         NZeros += hitNonZero ? 0 : __builtin_clzll(t.V);
@@ -46642,7 +46642,7 @@ struct ap_range_ref {
     bool reverse = l_index > h_index;
     unsigned low = reverse ? h_index : l_index;
     unsigned high = reverse ? l_index : h_index;
-    VITIS_LOOP_716_1: for (unsigned i = low; i != high; ++i) {
+    for (unsigned i = low; i != high; ++i) {
 
 #pragma HLS unroll
 
@@ -46656,7 +46656,7 @@ struct ap_range_ref {
     bool reverse = l_index > h_index;
     unsigned low = reverse ? h_index : l_index;
     unsigned high = reverse ? l_index : h_index;
-    VITIS_LOOP_730_1: for (unsigned i = low; i != high; ++i) {
+    for (unsigned i = low; i != high; ++i) {
 
 #pragma HLS unroll
 
@@ -46670,7 +46670,7 @@ struct ap_range_ref {
     bool reverse = l_index > h_index;
     unsigned low = reverse ? h_index : l_index;
     unsigned high = reverse ? l_index : h_index;
-    VITIS_LOOP_744_1: for (unsigned i = low; i != high; ++i) {
+    for (unsigned i = low; i != high; ++i) {
 
 #pragma HLS unroll
 
@@ -48227,7 +48227,7 @@ struct ap_fixed_base : ssdm_int<_AP_W, _AP_S> {
       int NZeros = 0;
       int i = 0;
       bool hitNonZero = false;
-      VITIS_LOOP_1090_1: for (i = 0; i < __N - 1; ++i) {
+      for (i = 0; i < __N - 1; ++i) {
         ap_int_base<64, false> t;
         t.range(0, 63) = this->range(_AP_W - i * 64 - 64, _AP_W - i * 64 - 1);
         NZeros += hitNonZero ? 0 : __builtin_clzll(t.V);
@@ -50045,8 +50045,7 @@ __attribute__((sdx_kernel("table_serch", 0))) int table_serch(
     ap_uint<32> tempA32 = query[0];
     ap_uint<32> tempB32 = query[1];
     ap_uint<32> tempC32;
-
-
+# 59 "../src/table_serch.cpp"
     flame_serch : for (int flame_index=0; flame_index<((4096/32)-(3 -1)); flame_index++)
     {
 
@@ -50065,7 +50064,7 @@ __attribute__((sdx_kernel("table_serch", 0))) int table_serch(
                 flame_index
             );
 
-
+            printf ("hash_serch : %u\n", hash_temp);
 
 
             music_index = backet_serch(
@@ -50080,7 +50079,7 @@ __attribute__((sdx_kernel("table_serch", 0))) int table_serch(
             if (music_index >= 0)
             {
 
-                printf ("発見フレーム : %d\n", flame_index);
+
 
                 break;
             }
@@ -50128,7 +50127,6 @@ ap_uint<32> hash_fpga_func(
     }
 
     henkan = henkan + (flame_index * 128);
-
     return henkan;
 }
 

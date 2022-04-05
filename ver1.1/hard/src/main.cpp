@@ -40,7 +40,7 @@ int main()
     hash_table = (unsigned int*) malloc(sizeof(unsigned int)*full_table_size);
     //unsigned char* bit_element;                 // Hash関数bit取得位置(96までなのでchar)
     //bit_element = (unsigned char*) calloc(K_HASHBIT*L_HASHNUM, sizeof(unsigned char));
-    unsigned int bit_element[] = {41, 1, 32, 12, 74, 90, 81, 9, 64, 43, 46, 75, 90, 35};
+    unsigned int bit_element[K_HASHBIT*L_HASHNUM] = {41, 1, 32, 12, 74, 90, 81, 9, 64, 43, 46, 75, 90, 35};
     unsigned int* flame_addr;                   // 各フレームの先頭アドレス(一時処理使用)
     flame_addr = (unsigned int*) malloc(sizeof(unsigned int)*MUSIC_NUM*FLAME_IN_MUSIC);
     /* --必要配列(ヒープ領域)-- */
@@ -55,6 +55,7 @@ int main()
 #ifdef DEBUG
     printf("DB作成完了\n");
 #endif
+#ifdef ELEBITGET
     /* Hash関数bit取得位置決定配列生成(ele_func.cpp) */
     bit_element_get(bit_element,                // bit取得位置
                     K_HASHBIT,                  // ハッシュ関数gのbit数
@@ -62,6 +63,7 @@ int main()
                     SUB_FP_SIZE,                // subFPサイズ(bit)
                     SUBNUM_IN_FLAME             // 1フレームあたりのsubFP数
                     );
+#endif
 #ifdef DEBUG
     printf("bit取得位置格納完了\n");
 #endif
@@ -161,7 +163,9 @@ int main()
 
 /****************************************************************************************************/
     /* 後処理後終了 */
-    free (bit_element);
+#ifdef ELEBITGET
+    free(bit_element);
+#endif
     free(FP_DB);
     free(hash_table_pointer);
     free(hash_table);

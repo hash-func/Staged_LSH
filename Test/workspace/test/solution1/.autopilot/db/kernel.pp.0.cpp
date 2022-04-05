@@ -49998,20 +49998,45 @@ inline bool operator!=(
 # 396 "/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_fixed.h" 2
 # 365 "/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int.h" 2
 # 7 "../hls_test/src/kernel.cpp" 2
-
-
-
-__attribute__((sdx_kernel("kernel", 0))) int kernel(
-    int a,
-    int b,
-    int* pointer_a
+# 26 "../hls_test/src/kernel.cpp"
+__attribute__((sdx_kernel("kernel", 0))) void kernel(
+    unsigned int flame[]
 )
 {
 #pragma HLS TOP name=kernel
-# 15 "../hls_test/src/kernel.cpp"
+# 29 "../hls_test/src/kernel.cpp"
 
-    int henkan = 0;
-    henkan = b + *pointer_a;
+    ap_uint<96> flame96;
+    ap_uint<32> tempA32 = flame[0];
+    ap_uint<32> tempB32 = flame[1];
+    ap_uint<32> tempC32 = flame[2];
 
-    return henkan;
+    flame96 = ((tempA32, tempB32), tempC32);
+
+    ap_uint<32> hash = 0;
+
+    VITIS_LOOP_39_1: for (int i=0; i<2; i++)
+    {
+        if (i == 0)
+        {
+            hash[7-1] = flame96[41];
+            hash[7-2] = flame96[1];
+            hash[7-3] = flame96[32];
+            hash[7-4] = flame96[12];
+            hash[7-5] = flame96[74];
+            hash[7-6] = flame96[90];
+            hash[7-7] = flame96[81];
+        }
+        else if (i == 1)
+        {
+            hash[7-1] = flame96[9];
+            hash[7-1] = flame96[64];
+            hash[7-1] = flame96[43];
+            hash[7-1] = flame96[46];
+            hash[7-1] = flame96[75];
+            hash[7-1] = flame96[90];
+            hash[7-1] = flame96[35];
+        }
+        printf("ハード%u番目のHash値 : %u\n", i, (unsigned int)hash);
+    }
 }

@@ -8,7 +8,7 @@
 
 /* 与えられた96bitの指定bitを返す関数 */
 unsigned int hash_function_ele(
-    unsigned int temp_flame96[],        // 対象フレーム
+    unsigned int temp_flame96[],       // 対象フレーム
     unsigned int bit_ele               // bit取得位置
 )
 {
@@ -40,6 +40,6 @@ unsigned int hash_function(
         if (i%k_hashbit != (k_hashbit-1)) henkan = henkan << 1;
     }
     // フレーム位置ごとの値に変換
-    henkan = henkan + (flame_index * std::pow(2, k_hashbit));
+    henkan = henkan + (flame_index * FLAME_INDEX_OUT);
     return henkan;
 }
