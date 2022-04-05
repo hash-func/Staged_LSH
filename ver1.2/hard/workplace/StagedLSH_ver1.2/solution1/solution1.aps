@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <solution AutoPilot="com.autoesl.autopilot.solution">
   <name>
-    <value string="solution1"/>
+    <value/>
   </name>
   <project>
-    <value string="StagedLSH_ver1.1"/>
+    <value/>
   </project>
   <checksum>
     <value string="false"/>
@@ -21,17 +21,11 @@
   </libraryList>
   <flowTarget value="vitis"/>
   <clockList>
-    <clock default="false" name="default" period="10"/>
+    <clock name="default" period="10"/>
   </clockList>
-  <config>
-            
-    <config_interface default_interface="kernel" m_axi_alignment_byte_size="64" m_axi_latency="64" m_axi_max_widen_bitwidth="512" m_axi_offset="slave"/>
-            
-    <config_rtl register_reset_num="3"/>
-        
-  </config>
+  <config/>
   <UIConfigurations>
-    <UIAutosynConf boardInfo="Alveo U200 Data Center Accelerator Card (xcu200-fsgd2104-2-e) " hideTrivialOp="true" isBasedOnBoard="true" isSolutionDirty="true" isStopAskAgain="false" showDetailDesignViewer="false">
+    <UIAutosynConf boardInfo="Alveo U200 Data Center Accelerator Card (xcu200-fsgd2104-2-e) " hideTrivialOp="true" isBasedOnBoard="true" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">
       <Platform>xilinx/virtexuplus/virtexuplus</Platform>
       <Platform>xilinx/virtexuplus/virtexuplus_fpv7</Platform>
       <customLibs/>
@@ -68,7 +62,6 @@
     <Format formatName="sysgen_ise"/>
     <Format formatName="syn_dcp"/>
     <Format formatName="pcore" use_netlist="none"/>
-    <Format formatName="xo"/>
   </ExportDesign>
   <Simulation>
     <SimFlow askAgain="true" clangSanitizer="false" compile="false" compileChoice="gcc" disableDeadlockDetect="false" dumpTrace="none" enableDataflowProfiling="false" enableFifoSizing="false" name="cosim" optimizeCompile="false" random_stall="false" reduce_diskspace="false" setup="false" toolName="Auto" waveDebug="false">
