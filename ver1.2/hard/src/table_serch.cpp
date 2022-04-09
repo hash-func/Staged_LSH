@@ -3,7 +3,7 @@
 #include <math.h>
 #include <random>
 #include <time.h>
-#include <ap_int.h>         // 任意精度型ライブラリ(ap_uint<1~1024>)
+#include <ap_int.h>           // 任意精度型ライブラリ(ap_uint<1~1024>)
 //#include <hls_math.h>       // mathライブラリ(hls::poW())
 //#include <hls_stream.h>     // ストリームライブラリ(hls::stream<>)
 
@@ -18,7 +18,7 @@ ap_uint<32> hash_fpga_func(
 );
 /* 段階バケット探索 */
 int backet_serch(
-    unsigned int hash_value,                 // Hash値
+    unsigned int hash_value,                // Hash値
     unsigned int hash_table[],              // Hashテーブル
     unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
     unsigned int query[],                   // クエリ
@@ -160,7 +160,8 @@ int backet_serch(
     unsigned int end                        // 末尾Hashテーブル位置（含む）
                 = hash_table_pointer[hash_value];
     if (top>end) top = end;
-    unsigned int haming_dis;                // Haming距離の一時格納
+    unsigned int haming_dis_screen;                // Haming距離の一時格納
+    unsigned int haming_dis_seisa;
     unsigned int min_haming_dis = FPID_SIZE;// min_error数を一時格納
     int music_number;                       // music_indexの一時格納
     unsigned int db_point;                  // FP_DBの特定楽曲開始位置
@@ -175,7 +176,7 @@ int backet_serch(
     bucket_loop : for (int i=top; i<=end; i++)
     {
         /* 初期化 */
-        haming_dis = 0;
+        haming_dis_screen = 0;
         
         // 96bitフレーム読み込み
         temp_A = (ap_uint<32>) FP_DB[hash_table[i]];
@@ -186,13 +187,13 @@ int backet_serch(
         /* 96ビットハミング距離計算 */
         screening_loop : for (int bit=0; bit<SUBNUM_IN_FLAME*SUB_FP_SIZE; bit++)
         {
-            haming_dis += flame96[bit] ^ temp_flame96[bit];
+            haming_dis_screen += flame96[bit] ^ temp_flame96[bit];
         }
         /* スクリーニング閾値と比較 */
-        if (haming_dis <= SCREENING)
+        if (haming_dis_screen <= SCREENING)
         {
             /* 精査へ移行 */
-            haming_dis = 0;
+            haming_dis_seisa = 0;
             /* 楽曲インデックス特定 */
             music_number = hash_table[i] / ONEMUSIC_SUBNUM;
                                                             // 注目する楽曲インデックス
@@ -202,16 +203,16 @@ int backet_serch(
                 // 32bitハミング距離計算
                 seisa32_loop : for (int n=0; n<SUB_FP_SIZE; n++)
                 {
-                    haming_dis += ((ap_uint<32>) query[m])[n] ^ ((ap_uint<32>) FP_DB[db_point+m])[n];
+                    haming_dis_seisa += ((ap_uint<32>) query[m])[n] ^ ((ap_uint<32>) FP_DB[db_point+m])[n];
                 }
             }
             /* 精査閾値より小さく,最もエラーの小さいindex保存 */
-            if (haming_dis <= SCRUTINY)
+            if (haming_dis_seisa <= SCRUTINY)
             {
-                if (haming_dis < min_haming_dis)
+                if (haming_dis_seisa < min_haming_dis)
                 {
                     // bitエラー値最小保存
-                    min_haming_dis = haming_dis;
+                    min_haming_dis = haming_dis_seisa;
                     // index保存
                     music_index = music_number;
                 }

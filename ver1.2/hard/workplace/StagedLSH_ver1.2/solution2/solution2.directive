@@ -1,3 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+    <sourceFile name="">
+        <directive functionName="table_serch" label="" functionLabel="">
+            <pragma name="TOP">
+                <option name="name" value="table_serch"/>
+            </pragma>
+        </directive>
+        <directive functionName="backet_serch" label="seisa_loop" functionLabel="">
+            <pragma name="UNROLL"/>
+        </directive>
+        <directive functionName="table_serch" label="" functionLabel="">
+            <pragma name="INTERFACE">
+                <option name="m_axi" value="" positionalBoolean="mode"/>
+                <option name="depth" value="512"/>
+                <option name="port" value="query" positionalBoolean="4"/>
+                <option name="bundle" value="query1"/>
+            </pragma>
+        </directive>
+        <directive functionName="table_serch" label="" functionLabel="">
+            <pragma name="INTERFACE">
+                <option name="m_axi" value="" positionalBoolean="mode"/>
+                <option name="depth" value="153600"/>
+                <option name="port" value="FP_DB" positionalBoolean="4"/>
+                <option name="bundle" value="FP_DB1"/>
+            </pragma>
+        </directive>
+        <directive functionName="table_serch" label="" functionLabel="">
+            <pragma name="INTERFACE">
+                <option name="m_axi" value="" positionalBoolean="mode"/>
+                <option name="depth" value="302400"/>
+                <option name="port" value="hash_table" positionalBoolean="4"/>
+                <option name="bundle" value="hash_table1"/>
+            </pragma>
+        </directive>
+        <directive functionName="table_serch" label="" functionLabel="">
+            <pragma name="INTERFACE">
+                <option name="m_axi" value="" positionalBoolean="mode"/>
+                <option name="depth" value="64512"/>
+                <option name="port" value="hash_table_pointer" positionalBoolean="4"/>
+                <option name="bundle" value="hash_table_pointer1"/>
+            </pragma>
+        </directive>
+    </sourceFile>
 </AutoPilot:ProjectResources>
+

@@ -23,12 +23,9 @@
   <clockList>
     <clock name="default" period="10"/>
   </clockList>
-  <config>
-        
-        
-    </config>
+  <config/>
   <UIConfigurations>
-    <UIAutosynConf boardInfo="Alveo U200 Data Center Accelerator Card (xcu200-fsgd2104-2-e) " hideTrivialOp="true" isBasedOnBoard="true" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">
+    <UIAutosynConf boardInfo="Alveo U200 Data Center Accelerator Card (xcu200-fsgd2104-2-e) " hideTrivialOp="true" isBasedOnBoard="true" isSolutionDirty="true" isStopAskAgain="false" showDetailDesignViewer="false">
       <Platform>xilinx/virtexuplus/virtexuplus</Platform>
       <Platform>xilinx/virtexuplus/virtexuplus_fpv7</Platform>
       <customLibs/>
@@ -65,6 +62,7 @@
     <Format formatName="sysgen_ise"/>
     <Format formatName="syn_dcp"/>
     <Format formatName="pcore" use_netlist="none"/>
+    <Format formatName="xo"/>
   </ExportDesign>
   <Simulation>
     <SimFlow askAgain="true" clangSanitizer="false" compile="false" compileChoice="gcc" disableDeadlockDetect="false" dumpTrace="none" enableDataflowProfiling="false" enableFifoSizing="false" name="cosim" optimizeCompile="false" random_stall="false" reduce_diskspace="false" setup="false" toolName="Auto" waveDebug="false">
