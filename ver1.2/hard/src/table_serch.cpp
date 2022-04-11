@@ -9,102 +9,6 @@
 
 #include "main_fpga.h"
 
-/* 関数のプロトタイプ宣言 */
-/* Hash値の計算 */
-ap_uint<32> hash_fpga_func(
-    ap_uint<96> flame96,                    // 対象フレーム
-    int L,                                  // 取得開始位置
-    int flame_index                         // フレームインデックス
-);
-/* 段階バケット探索 */
-int backet_serch(
-    unsigned int hash_value,                // Hash値
-    unsigned int hash_table[],              // Hashテーブル
-    unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
-    unsigned int query[],                   // クエリ
-    ap_uint<96> flame96,                    // 対象フレーム
-    unsigned int FP_DB[]                    // FPデータベース
-);
-/* --関数のプロトタイプ宣言-- */
-
-
-
-/* mainからの呼び出し */
-int table_serch(
-    unsigned int query[],                   // クエリFP配列
-    unsigned int FP_DB[],                   // FPデータベース
-    unsigned int hash_table[],              // ハッシュテーブル
-    unsigned int hash_table_pointer[]       // ハッシュテーブルへの位置指定
-)
-{
-    /* 戻り値 */
-    int music_index = -1;                   // 楽曲の識別子
-
-    /* 処理に用いる変数宣言 */
-    unsigned int hash_temp = 0;
-
-    ap_uint<96> flame96;
-    ap_uint<SUB_FP_SIZE> tempA32 = query[0];
-    ap_uint<SUB_FP_SIZE> tempB32 = query[1];
-    ap_uint<SUB_FP_SIZE> tempC32;
-
-#ifdef DEBUG_sub
-    printf("検索側1フレーム目\n");
-    printf("%u\n", query[0]);
-    printf("%u\n", query[1]);
-    printf("%u\n", query[2]);
-#endif
-
-    /* flameごとに処理 */
-    flame_serch : for (int flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
-    {
-        /* 新しいsubFP-Read */
-        tempC32 = query[flame_index+2];
-
-        /* 96bit_flameに結合 */
-        flame96 = ((tempA32, tempB32), tempC32);
-
-        /* Hash値を計算して探索 */
-        hash_serch : for (int L=0; L<L_HASHNUM; L++)
-        {
-            /* Hash値の計算 */
-            hash_temp = hash_fpga_func(
-                flame96,
-                L,
-                flame_index
-            );
-#ifdef DEBUG_sub
-            printf ("hash_serch : %u\n", hash_temp);
-#endif
-            /* Hash値に対応するバケット探索 */
-            music_index = backet_serch(
-                hash_temp,          // ハッシュ値
-                hash_table,         // ハッシュテーブル
-                hash_table_pointer, // ハッシュテーブルへの位置指定
-                query,              // クエリFP配列
-                flame96,            // 対象フレーム
-                FP_DB               // FPデータベース
-            );
-            /* 楽曲が特定できた時 */
-            if (music_index >= 0)
-            {
-#ifdef DEBUG_sub
-                printf ("発見フレーム : %d\n", flame_index);
-#endif
-                break;
-            }
-        }
-        /* 楽曲が特定できた時 */
-        if (music_index >= 0) break;
-
-        tempA32 = tempB32;
-        tempB32 = tempC32;
-    }
-    return music_index;
-}
-/* --mainからの呼び出し-- */
-
-
 /* Hash値の計算 */
 ap_uint<32> hash_fpga_func(
     ap_uint<96> flame96,                    // 対象フレーム
@@ -221,3 +125,79 @@ int backet_serch(
     }
     return music_index;
 }
+
+
+/* mainからの呼び出し */
+int table_serch(
+    unsigned int query[],                   // クエリFP配列
+    unsigned int FP_DB[],                   // FPデータベース
+    unsigned int hash_table[],              // ハッシュテーブル
+    unsigned int hash_table_pointer[]       // ハッシュテーブルへの位置指定
+)
+{
+    /* 戻り値 */
+    int music_index = -1;                   // 楽曲の識別子
+
+    /* 処理に用いる変数宣言 */
+    unsigned int hash_temp = 0;
+
+    ap_uint<96> flame96;
+    ap_uint<SUB_FP_SIZE> tempA32 = query[0];
+    ap_uint<SUB_FP_SIZE> tempB32 = query[1];
+    ap_uint<SUB_FP_SIZE> tempC32;
+
+#ifdef DEBUG_sub
+    printf("検索側1フレーム目\n");
+    printf("%u\n", query[0]);
+    printf("%u\n", query[1]);
+    printf("%u\n", query[2]);
+#endif
+
+    /* flameごとに処理 */
+    flame_serch : for (int flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
+    {
+        /* 新しいsubFP-Read */
+        tempC32 = query[flame_index+2];
+
+        /* 96bit_flameに結合 */
+        flame96 = ((tempA32, tempB32), tempC32);
+
+        /* Hash値を計算して探索 */
+        hash_serch : for (int L=0; L<L_HASHNUM; L++)
+        {
+            /* Hash値の計算 */
+            hash_temp = hash_fpga_func(
+                flame96,
+                L,
+                flame_index
+            );
+#ifdef DEBUG_sub
+            printf ("hash_serch : %u\n", hash_temp);
+#endif
+            /* Hash値に対応するバケット探索 */
+            music_index = backet_serch(
+                hash_temp,          // ハッシュ値
+                hash_table,         // ハッシュテーブル
+                hash_table_pointer, // ハッシュテーブルへの位置指定
+                query,              // クエリFP配列
+                flame96,            // 対象フレーム
+                FP_DB               // FPデータベース
+            );
+            /* 楽曲が特定できた時 */
+            if (music_index >= 0)
+            {
+#ifdef DEBUG_sub
+                printf ("発見フレーム : %d\n", flame_index);
+#endif
+                break;
+            }
+        }
+        /* 楽曲が特定できた時 */
+        if (music_index >= 0) break;
+
+        tempA32 = tempB32;
+        tempB32 = tempC32;
+    }
+    return music_index;
+}
+/* --mainからの呼び出し-- */

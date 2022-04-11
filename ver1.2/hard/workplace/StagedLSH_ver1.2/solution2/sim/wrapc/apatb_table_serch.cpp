@@ -27,8 +27,8 @@ using namespace sc_dt;
 #define AUTOTB_TVIN_hash_table1 "../tv/cdatafile/c.table_serch.autotvin_hash_table1.dat"
 #define AUTOTB_TVOUT_hash_table1 "../tv/cdatafile/c.table_serch.autotvout_hash_table1.dat"
 // wrapc file define:
-#define AUTOTB_TVIN_hash_table_pointer1 "../tv/cdatafile/c.table_serch.autotvin_hash_table_pointer1.dat"
-#define AUTOTB_TVOUT_hash_table_pointer1 "../tv/cdatafile/c.table_serch.autotvout_hash_table_pointer1.dat"
+#define AUTOTB_TVIN_pointer1 "../tv/cdatafile/c.table_serch.autotvin_pointer1.dat"
+#define AUTOTB_TVOUT_pointer1 "../tv/cdatafile/c.table_serch.autotvout_pointer1.dat"
 // wrapc file define:
 #define AUTOTB_TVIN_query "../tv/cdatafile/c.table_serch.autotvin_query.dat"
 #define AUTOTB_TVOUT_query "../tv/cdatafile/c.table_serch.autotvout_query.dat"
@@ -53,7 +53,7 @@ using namespace sc_dt;
 // tvout file define:
 #define AUTOTB_TVOUT_PC_hash_table1 "../tv/rtldatafile/rtl.table_serch.autotvout_hash_table1.dat"
 // tvout file define:
-#define AUTOTB_TVOUT_PC_hash_table_pointer1 "../tv/rtldatafile/rtl.table_serch.autotvout_hash_table_pointer1.dat"
+#define AUTOTB_TVOUT_PC_pointer1 "../tv/rtldatafile/rtl.table_serch.autotvout_pointer1.dat"
 // tvout file define:
 #define AUTOTB_TVOUT_PC_query "../tv/rtldatafile/rtl.table_serch.autotvout_query.dat"
 // tvout file define:
@@ -71,7 +71,7 @@ INTER_TCL_FILE(const char* name) {
   query1_depth = 0;
   FP_DB1_depth = 0;
   hash_table1_depth = 0;
-  hash_table_pointer1_depth = 0;
+  pointer1_depth = 0;
   query_depth = 0;
   FP_DB_depth = 0;
   hash_table_depth = 0;
@@ -97,7 +97,7 @@ string get_depth_list () {
   total_list << "{query1 " << query1_depth << "}\n";
   total_list << "{FP_DB1 " << FP_DB1_depth << "}\n";
   total_list << "{hash_table1 " << hash_table1_depth << "}\n";
-  total_list << "{hash_table_pointer1 " << hash_table_pointer1_depth << "}\n";
+  total_list << "{pointer1 " << pointer1_depth << "}\n";
   total_list << "{query " << query_depth << "}\n";
   total_list << "{FP_DB " << FP_DB_depth << "}\n";
   total_list << "{hash_table " << hash_table_depth << "}\n";
@@ -115,7 +115,7 @@ void set_string(std::string list, std::string* class_list) {
     int query1_depth;
     int FP_DB1_depth;
     int hash_table1_depth;
-    int hash_table_pointer1_depth;
+    int pointer1_depth;
     int query_depth;
     int FP_DB_depth;
     int hash_table_depth;
@@ -238,9 +238,9 @@ aesl_fh.touch(AUTOTB_TVOUT_FP_DB1);
 //hash_table1
 aesl_fh.touch(AUTOTB_TVIN_hash_table1);
 aesl_fh.touch(AUTOTB_TVOUT_hash_table1);
-//hash_table_pointer1
-aesl_fh.touch(AUTOTB_TVIN_hash_table_pointer1);
-aesl_fh.touch(AUTOTB_TVOUT_hash_table_pointer1);
+//pointer1
+aesl_fh.touch(AUTOTB_TVIN_pointer1);
+aesl_fh.touch(AUTOTB_TVOUT_pointer1);
 //query
 aesl_fh.touch(AUTOTB_TVIN_query);
 aesl_fh.touch(AUTOTB_TVOUT_query);
@@ -312,23 +312,23 @@ sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_hash_table)[j];
   aesl_fh.write(AUTOTB_TVIN_hash_table1, __xlx_sprintf_buffer.data());
 }
 unsigned __xlx_offset_byte_param_hash_table_pointer = 0;
-// print hash_table_pointer1 Transactions
+// print pointer1 Transactions
 {
   sprintf(__xlx_sprintf_buffer.data(), "[[transaction]] %d\n", AESL_transaction);
-  aesl_fh.write(AUTOTB_TVIN_hash_table_pointer1, __xlx_sprintf_buffer.data());
+  aesl_fh.write(AUTOTB_TVIN_pointer1, __xlx_sprintf_buffer.data());
   {  __xlx_offset_byte_param_hash_table_pointer = 0*4;
   if (__xlx_apatb_param_hash_table_pointer) {
     for (int j = 0  - 0, e = 64512 - 0; j != e; ++j) {
 sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_hash_table_pointer)[j];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
-    aesl_fh.write(AUTOTB_TVIN_hash_table_pointer1, __xlx_sprintf_buffer.data()); 
+    aesl_fh.write(AUTOTB_TVIN_pointer1, __xlx_sprintf_buffer.data()); 
       }
   }
 }
-  tcl_file.set_num(64512, &tcl_file.hash_table_pointer1_depth);
+  tcl_file.set_num(64512, &tcl_file.pointer1_depth);
   sprintf(__xlx_sprintf_buffer.data(), "[[/transaction]] \n");
-  aesl_fh.write(AUTOTB_TVIN_hash_table_pointer1, __xlx_sprintf_buffer.data());
+  aesl_fh.write(AUTOTB_TVIN_pointer1, __xlx_sprintf_buffer.data());
 }
 // print query Transactions
 {

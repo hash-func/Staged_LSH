@@ -1,7 +1,42 @@
 INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
    Compiling ../../../../../hls_test/src/main.cpp in debug mode
-   Compiling ../../../../../hls_test/src/kernel.cpp in debug mode
    Generating csim.exe
-INFO: [SIM 1] CSim file generation done with 0 errors.
+前array_1 : 10
+前array_1 : 4
+前array_1 : 6
+前array_1 : 3
+前array_1 : 8
+前array_1 : 4
+前array_1 : 8
+前array_1 : 7
+前array_1 : 8
+前array_1 : 7
+
+array_1 : 75
+array_1 : 69
+array_1 : 71
+array_1 : 68
+array_1 : 73
+array_1 : 69
+array_1 : 73
+array_1 : 72
+array_1 : 73
+array_1 : 72
+
+
+array_2 : 75
+array_2 : 69
+array_2 : 71
+array_2 : 68
+array_2 : 73
+array_2 : 69
+array_2 : 73
+array_2 : 72
+array_2 : 73
+array_2 : 72
+処理成功1
+処理成功2
+処理成功3
+INFO: [SIM 1] CSim done with 0 errors.
 INFO: [SIM 3] *************** CSIM finish ***************

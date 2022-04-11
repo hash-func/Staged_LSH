@@ -29,23 +29,19 @@ module kernel_control_s_axi
     output wire                          RVALID,
     input  wire                          RREADY,
     output wire                          interrupt,
+    output wire [63:0]                   array_1,
+    output wire [31:0]                   sum,
     output wire                          ap_start,
     input  wire                          ap_done,
     input  wire                          ap_ready,
-    output wire                          ap_continue,
-    input  wire                          ap_idle,
-    input  wire [31:0]                   ap_return,
-    output wire [31:0]                   a,
-    output wire [31:0]                   b,
-    output wire [63:0]                   pointer_a
+    input  wire                          ap_idle
 );
 //------------------------Address Info-------------------
 // 0x00 : Control signals
 //        bit 0  - ap_start (Read/Write/COH)
-//        bit 1  - ap_done (Read)
+//        bit 1  - ap_done (Read/COR)
 //        bit 2  - ap_idle (Read)
 //        bit 3  - ap_ready (Read)
-//        bit 4  - ap_continue (Read/Write/SC)
 //        bit 7  - auto_restart (Read/Write)
 //        others - reserved
 // 0x04 : Global Interrupt Enable Register
@@ -59,42 +55,34 @@ module kernel_control_s_axi
 //        bit 0  - ap_done (COR/TOW)
 //        bit 1  - ap_ready (COR/TOW)
 //        others - reserved
-// 0x10 : Data signal of ap_return
-//        bit 31~0 - ap_return[31:0] (Read)
-// 0x18 : Data signal of a
-//        bit 31~0 - a[31:0] (Read/Write)
-// 0x1c : reserved
-// 0x20 : Data signal of b
-//        bit 31~0 - b[31:0] (Read/Write)
-// 0x24 : reserved
-// 0x28 : Data signal of pointer_a
-//        bit 31~0 - pointer_a[31:0] (Read/Write)
-// 0x2c : Data signal of pointer_a
-//        bit 31~0 - pointer_a[63:32] (Read/Write)
-// 0x30 : reserved
+// 0x10 : Data signal of array_1
+//        bit 31~0 - array_1[31:0] (Read/Write)
+// 0x14 : Data signal of array_1
+//        bit 31~0 - array_1[63:32] (Read/Write)
+// 0x18 : reserved
+// 0x1c : Data signal of sum
+//        bit 31~0 - sum[31:0] (Read/Write)
+// 0x20 : reserved
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 //------------------------Parameter----------------------
 localparam
-    ADDR_AP_CTRL          = 6'h00,
-    ADDR_GIE              = 6'h04,
-    ADDR_IER              = 6'h08,
-    ADDR_ISR              = 6'h0c,
-    ADDR_AP_RETURN_0      = 6'h10,
-    ADDR_A_DATA_0         = 6'h18,
-    ADDR_A_CTRL           = 6'h1c,
-    ADDR_B_DATA_0         = 6'h20,
-    ADDR_B_CTRL           = 6'h24,
-    ADDR_POINTER_A_DATA_0 = 6'h28,
-    ADDR_POINTER_A_DATA_1 = 6'h2c,
-    ADDR_POINTER_A_CTRL   = 6'h30,
-    WRIDLE                = 2'd0,
-    WRDATA                = 2'd1,
-    WRRESP                = 2'd2,
-    WRRESET               = 2'd3,
-    RDIDLE                = 2'd0,
-    RDDATA                = 2'd1,
-    RDRESET               = 2'd2,
+    ADDR_AP_CTRL        = 6'h00,
+    ADDR_GIE            = 6'h04,
+    ADDR_IER            = 6'h08,
+    ADDR_ISR            = 6'h0c,
+    ADDR_ARRAY_1_DATA_0 = 6'h10,
+    ADDR_ARRAY_1_DATA_1 = 6'h14,
+    ADDR_ARRAY_1_CTRL   = 6'h18,
+    ADDR_SUM_DATA_0     = 6'h1c,
+    ADDR_SUM_CTRL       = 6'h20,
+    WRIDLE              = 2'd0,
+    WRDATA              = 2'd1,
+    WRRESP              = 2'd2,
+    WRRESET             = 2'd3,
+    RDIDLE              = 2'd0,
+    RDDATA              = 2'd1,
+    RDRESET             = 2'd2,
     ADDR_BITS                = 6;
 
 //------------------------Local signal-------------------
@@ -111,18 +99,15 @@ localparam
     wire [ADDR_BITS-1:0]          raddr;
     // internal registers
     reg                           int_ap_idle;
-    reg                           int_ap_continue;
     reg                           int_ap_ready;
-    wire                          int_ap_done;
+    reg                           int_ap_done = 1'b0;
     reg                           int_ap_start = 1'b0;
     reg                           int_auto_restart = 1'b0;
     reg                           int_gie = 1'b0;
     reg  [1:0]                    int_ier = 2'b0;
     reg  [1:0]                    int_isr = 2'b0;
-    reg  [31:0]                   int_ap_return;
-    reg  [31:0]                   int_a = 'b0;
-    reg  [31:0]                   int_b = 'b0;
-    reg  [63:0]                   int_pointer_a = 'b0;
+    reg  [63:0]                   int_array_1 = 'b0;
+    reg  [31:0]                   int_sum = 'b0;
 
 //------------------------Instantiation------------------
 
@@ -220,7 +205,6 @@ always @(posedge ACLK) begin
                     rdata[1] <= int_ap_done;
                     rdata[2] <= int_ap_idle;
                     rdata[3] <= int_ap_ready;
-                    rdata[4] <= int_ap_continue;
                     rdata[7] <= int_auto_restart;
                 end
                 ADDR_GIE: begin
@@ -232,20 +216,14 @@ always @(posedge ACLK) begin
                 ADDR_ISR: begin
                     rdata <= int_isr;
                 end
-                ADDR_AP_RETURN_0: begin
-                    rdata <= int_ap_return[31:0];
+                ADDR_ARRAY_1_DATA_0: begin
+                    rdata <= int_array_1[31:0];
                 end
-                ADDR_A_DATA_0: begin
-                    rdata <= int_a[31:0];
+                ADDR_ARRAY_1_DATA_1: begin
+                    rdata <= int_array_1[63:32];
                 end
-                ADDR_B_DATA_0: begin
-                    rdata <= int_b[31:0];
-                end
-                ADDR_POINTER_A_DATA_0: begin
-                    rdata <= int_pointer_a[31:0];
-                end
-                ADDR_POINTER_A_DATA_1: begin
-                    rdata <= int_pointer_a[63:32];
+                ADDR_SUM_DATA_0: begin
+                    rdata <= int_sum[31:0];
                 end
             endcase
         end
@@ -254,13 +232,10 @@ end
 
 
 //------------------------Register logic-----------------
-assign interrupt   = int_gie & (|int_isr);
-assign ap_start    = int_ap_start;
-assign int_ap_done = ap_done;
-assign ap_continue = int_ap_continue;
-assign a           = int_a;
-assign b           = int_b;
-assign pointer_a   = int_pointer_a;
+assign interrupt = int_gie & (|int_isr);
+assign ap_start  = int_ap_start;
+assign array_1   = int_array_1;
+assign sum       = int_sum;
 // int_ap_start
 always @(posedge ACLK) begin
     if (ARESET)
@@ -270,6 +245,18 @@ always @(posedge ACLK) begin
             int_ap_start <= 1'b1;
         else if (ap_ready)
             int_ap_start <= int_auto_restart; // clear on handshake/auto restart
+    end
+end
+
+// int_ap_done
+always @(posedge ACLK) begin
+    if (ARESET)
+        int_ap_done <= 1'b0;
+    else if (ACLK_EN) begin
+        if (ap_done)
+            int_ap_done <= 1'b1;
+        else if (ar_hs && raddr == ADDR_AP_CTRL)
+            int_ap_done <= 1'b0; // clear on read
     end
 end
 
@@ -288,20 +275,6 @@ always @(posedge ACLK) begin
         int_ap_ready <= 1'b0;
     else if (ACLK_EN) begin
             int_ap_ready <= ap_ready;
-    end
-end
-
-// int_ap_continue
-always @(posedge ACLK) begin
-    if (ARESET)
-        int_ap_continue <= 1'b0;
-    else if (ACLK_EN) begin
-        if (w_hs && waddr == ADDR_AP_CTRL && WSTRB[0] && WDATA[4])
-            int_ap_continue <= 1'b1;
-        else if (ap_done & ~int_ap_continue & int_auto_restart)
-            int_ap_continue <= 1'b1; // auto restart
-        else
-            int_ap_continue <= 1'b0; // self clear
     end
 end
 
@@ -359,53 +332,33 @@ always @(posedge ACLK) begin
     end
 end
 
-// int_ap_return
+// int_array_1[31:0]
 always @(posedge ACLK) begin
     if (ARESET)
-        int_ap_return <= 0;
+        int_array_1[31:0] <= 0;
     else if (ACLK_EN) begin
-        if (ap_done)
-            int_ap_return <= ap_return;
+        if (w_hs && waddr == ADDR_ARRAY_1_DATA_0)
+            int_array_1[31:0] <= (WDATA[31:0] & wmask) | (int_array_1[31:0] & ~wmask);
     end
 end
 
-// int_a[31:0]
+// int_array_1[63:32]
 always @(posedge ACLK) begin
     if (ARESET)
-        int_a[31:0] <= 0;
+        int_array_1[63:32] <= 0;
     else if (ACLK_EN) begin
-        if (w_hs && waddr == ADDR_A_DATA_0)
-            int_a[31:0] <= (WDATA[31:0] & wmask) | (int_a[31:0] & ~wmask);
+        if (w_hs && waddr == ADDR_ARRAY_1_DATA_1)
+            int_array_1[63:32] <= (WDATA[31:0] & wmask) | (int_array_1[63:32] & ~wmask);
     end
 end
 
-// int_b[31:0]
+// int_sum[31:0]
 always @(posedge ACLK) begin
     if (ARESET)
-        int_b[31:0] <= 0;
+        int_sum[31:0] <= 0;
     else if (ACLK_EN) begin
-        if (w_hs && waddr == ADDR_B_DATA_0)
-            int_b[31:0] <= (WDATA[31:0] & wmask) | (int_b[31:0] & ~wmask);
-    end
-end
-
-// int_pointer_a[31:0]
-always @(posedge ACLK) begin
-    if (ARESET)
-        int_pointer_a[31:0] <= 0;
-    else if (ACLK_EN) begin
-        if (w_hs && waddr == ADDR_POINTER_A_DATA_0)
-            int_pointer_a[31:0] <= (WDATA[31:0] & wmask) | (int_pointer_a[31:0] & ~wmask);
-    end
-end
-
-// int_pointer_a[63:32]
-always @(posedge ACLK) begin
-    if (ARESET)
-        int_pointer_a[63:32] <= 0;
-    else if (ACLK_EN) begin
-        if (w_hs && waddr == ADDR_POINTER_A_DATA_1)
-            int_pointer_a[63:32] <= (WDATA[31:0] & wmask) | (int_pointer_a[63:32] & ~wmask);
+        if (w_hs && waddr == ADDR_SUM_DATA_0)
+            int_sum[31:0] <= (WDATA[31:0] & wmask) | (int_sum[31:0] & ~wmask);
     end
 end
 

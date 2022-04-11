@@ -1,6 +1,6 @@
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-105-generic) on Fri Apr 08 12:48:14 JST 2022
+INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-105-generic) on Sun Apr 10 16:19:32 JST 2022
 INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
 INFO: [HLS 200-10] In directory '/home/nomoto/src/StagedLSH/ver1.2/hard/workplace'
 Sourcing Tcl script '/home/nomoto/src/StagedLSH/ver1.2/hard/workplace/StagedLSH_ver1.2/solution2/cosim.tcl'
@@ -35,20 +35,22 @@ INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
 INFO: [HLS 200-1505] Using flow_target 'vitis'
 Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_offset=slave
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
 INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
 INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
 INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
 INFO: [HLS 200-1510] Running: set_directive_unroll backet_serch/seisa_loop 
 INFO: [HLS 200-1510] Running: set_directive_interface -mode m_axi -depth 512 -bundle query1 table_serch query 
 INFO: [HLS 200-1510] Running: set_directive_interface -mode m_axi -depth 153600 -bundle FP_DB1 table_serch FP_DB 
 INFO: [HLS 200-1510] Running: set_directive_interface -mode m_axi -depth 302400 -bundle hash_table1 table_serch hash_table 
-INFO: [HLS 200-1510] Running: set_directive_interface -mode m_axi -depth 64512 -bundle hash_table_pointer1 table_serch hash_table_pointer 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode m_axi -depth 64512 -bundle pointer1 table_serch hash_table_pointer 
 INFO: [HLS 200-1510] Running: cosim_design -trace_level port 
 INFO: [COSIM 212-47] Using XSIM for RTL simulation.
 INFO: [COSIM 212-14] Instrumenting C test bench ...
@@ -66,7 +68,7 @@ ERROR: [COSIM 212-360] Aborting co-simulation: C TB simulation failed.
 ERROR: [COSIM 212-320] C TB testing failed, stop generating test vectors. Please check C TB or re-run cosim.
 ERROR: [COSIM 212-5] *** C/RTL co-simulation file generation failed. ***
 ERROR: [COSIM 212-4] *** C/RTL co-simulation finished: FAIL ***
-INFO: [HLS 200-111] Finished Command cosim_design CPU user time: 7.51 seconds. CPU system time: 0.61 seconds. Elapsed time: 7.98 seconds; current allocated memory: 196.198 MB.
+INFO: [HLS 200-111] Finished Command cosim_design CPU user time: 7.51 seconds. CPU system time: 0.58 seconds. Elapsed time: 7.92 seconds; current allocated memory: 196.334 MB.
 command 'ap_source' returned error code
     while executing
 "source /home/nomoto/src/StagedLSH/ver1.2/hard/workplace/StagedLSH_ver1.2/solution2/cosim.tcl"

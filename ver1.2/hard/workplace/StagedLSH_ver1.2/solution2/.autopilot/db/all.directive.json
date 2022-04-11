@@ -118,7 +118,7 @@
               },
               {
                 "name": "bundle",
-                "value": "hash_table_pointer1"
+                "value": "pointer1"
               }
             ]
           }

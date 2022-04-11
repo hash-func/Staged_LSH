@@ -50005,109 +50005,6 @@ inline bool operator!=(
 # 11 "../src/table_serch.cpp" 2
 
 
-
-ap_uint<32> hash_fpga_func(
-    ap_uint<96> flame96,
-    int L,
-    int flame_index
-);
-
-int backet_serch(
-    unsigned int hash_value,
-    unsigned int hash_table[],
-    unsigned int hash_table_pointer[],
-    unsigned int query[],
-    ap_uint<96> flame96,
-    unsigned int FP_DB[]
-);
-
-
-
-
-
-__attribute__((sdx_kernel("table_serch", 0))) int table_serch(
-    unsigned int query[],
-    unsigned int FP_DB[],
-    unsigned int hash_table[],
-    unsigned int hash_table_pointer[]
-)
-{
-#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=FP_DB1
-# 39 "../src/table_serch.cpp"
-
-#pragma HLS INTERFACE m_axi depth=302400 port=hash_table bundle=hash_table1
-# 39 "../src/table_serch.cpp"
-
-#pragma HLS INTERFACE m_axi depth=512 port=query bundle=query1
-# 39 "../src/table_serch.cpp"
-
-#pragma HLS INTERFACE m_axi depth=64512 port=hash_table_pointer bundle=hash_table_pointer1
-# 39 "../src/table_serch.cpp"
-
-#pragma HLS TOP name=table_serch
-# 39 "../src/table_serch.cpp"
-
-
-    int music_index = -1;
-
-
-    unsigned int hash_temp = 0;
-
-    ap_uint<96> flame96;
-    ap_uint<32> tempA32 = query[0];
-    ap_uint<32> tempB32 = query[1];
-    ap_uint<32> tempC32;
-# 59 "../src/table_serch.cpp"
-    flame_serch : for (int flame_index=0; flame_index<((4096/32)-(3 -1)); flame_index++)
-    {
-
-        tempC32 = query[flame_index+2];
-
-
-        flame96 = ((tempA32, tempB32), tempC32);
-
-
-        hash_serch : for (int L=0; L<2; L++)
-        {
-
-            hash_temp = hash_fpga_func(
-                flame96,
-                L,
-                flame_index
-            );
-
-
-
-
-            music_index = backet_serch(
-                hash_temp,
-                hash_table,
-                hash_table_pointer,
-                query,
-                flame96,
-                FP_DB
-            );
-
-            if (music_index >= 0)
-            {
-
-
-
-                break;
-            }
-        }
-
-        if (music_index >= 0) break;
-
-        tempA32 = tempB32;
-        tempB32 = tempC32;
-    }
-    return music_index;
-}
-
-
-
-
 ap_uint<32> hash_fpga_func(
     ap_uint<96> flame96,
     int L,
@@ -50203,7 +50100,7 @@ int backet_serch(
             seisa_loop : for (int m=0; m<(4096/32); m++)
             {
 #pragma HLS UNROLL
-# 202 "../src/table_serch.cpp"
+# 106 "../src/table_serch.cpp"
 
 
                 seisa32_loop : for (int n=0; n<32; n++)
@@ -50223,6 +50120,88 @@ int backet_serch(
                 }
             }
         }
+    }
+    return music_index;
+}
+
+
+
+__attribute__((sdx_kernel("table_serch", 0))) int table_serch(
+    unsigned int query[],
+    unsigned int FP_DB[],
+    unsigned int hash_table[],
+    unsigned int hash_table_pointer[]
+)
+{
+#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=FP_DB1
+# 137 "../src/table_serch.cpp"
+
+#pragma HLS INTERFACE m_axi depth=302400 port=hash_table bundle=hash_table1
+# 137 "../src/table_serch.cpp"
+
+#pragma HLS INTERFACE m_axi depth=512 port=query bundle=query1
+# 137 "../src/table_serch.cpp"
+
+#pragma HLS INTERFACE m_axi depth=64512 port=hash_table_pointer bundle=pointer1
+# 137 "../src/table_serch.cpp"
+
+#pragma HLS TOP name=table_serch
+# 137 "../src/table_serch.cpp"
+
+
+    int music_index = -1;
+
+
+    unsigned int hash_temp = 0;
+
+    ap_uint<96> flame96;
+    ap_uint<32> tempA32 = query[0];
+    ap_uint<32> tempB32 = query[1];
+    ap_uint<32> tempC32;
+# 157 "../src/table_serch.cpp"
+    flame_serch : for (int flame_index=0; flame_index<((4096/32)-(3 -1)); flame_index++)
+    {
+
+        tempC32 = query[flame_index+2];
+
+
+        flame96 = ((tempA32, tempB32), tempC32);
+
+
+        hash_serch : for (int L=0; L<2; L++)
+        {
+
+            hash_temp = hash_fpga_func(
+                flame96,
+                L,
+                flame_index
+            );
+
+
+
+
+            music_index = backet_serch(
+                hash_temp,
+                hash_table,
+                hash_table_pointer,
+                query,
+                flame96,
+                FP_DB
+            );
+
+            if (music_index >= 0)
+            {
+
+
+
+                break;
+            }
+        }
+
+        if (music_index >= 0) break;
+
+        tempA32 = tempB32;
+        tempB32 = tempC32;
     }
     return music_index;
 }

@@ -59,16 +59,6 @@ u32 XKernel_IsReady(XKernel *InstancePtr) {
     return !(Data & 0x1);
 }
 
-void XKernel_Continue(XKernel *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XKernel_ReadReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_AP_CTRL) & 0x80;
-    XKernel_WriteReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_AP_CTRL, Data | 0x10);
-}
-
 void XKernel_EnableAutoRestart(XKernel *InstancePtr) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
@@ -83,22 +73,39 @@ void XKernel_DisableAutoRestart(XKernel *InstancePtr) {
     XKernel_WriteReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_AP_CTRL, 0);
 }
 
-void XKernel_Set_flame(XKernel *InstancePtr, u64 Data) {
+void XKernel_Set_array_1(XKernel *InstancePtr, u64 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XKernel_WriteReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_FLAME_DATA, (u32)(Data));
-    XKernel_WriteReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_FLAME_DATA + 4, (u32)(Data >> 32));
+    XKernel_WriteReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_ARRAY_1_DATA, (u32)(Data));
+    XKernel_WriteReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_ARRAY_1_DATA + 4, (u32)(Data >> 32));
 }
 
-u64 XKernel_Get_flame(XKernel *InstancePtr) {
+u64 XKernel_Get_array_1(XKernel *InstancePtr) {
     u64 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XKernel_ReadReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_FLAME_DATA);
-    Data += (u64)XKernel_ReadReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_FLAME_DATA + 4) << 32;
+    Data = XKernel_ReadReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_ARRAY_1_DATA);
+    Data += (u64)XKernel_ReadReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_ARRAY_1_DATA + 4) << 32;
+    return Data;
+}
+
+void XKernel_Set_sum(XKernel *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XKernel_WriteReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_SUM_DATA, Data);
+}
+
+u32 XKernel_Get_sum(XKernel *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XKernel_ReadReg(InstancePtr->Control_BaseAddress, XKERNEL_CONTROL_ADDR_SUM_DATA);
     return Data;
 }
 

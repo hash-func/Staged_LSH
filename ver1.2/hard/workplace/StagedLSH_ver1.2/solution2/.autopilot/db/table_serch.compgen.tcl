@@ -152,15 +152,15 @@ eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
     max_latency -1 \ 
     delay_budget 7.3 \ 
     is_flushable 0 \ 
-    name {table_serch_hash_table_pointer1_m_axi} \
+    name {table_serch_pointer1_m_axi} \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find AXI interface model in the library. Ignored generation of AXI interface for 'hash_table_pointer1'"
+puts "@W \[IMPL-110\] Cannot find AXI interface model in the library. Ignored generation of AXI interface for 'pointer1'"
 }
 }
 
 if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler table_serch_hash_table_pointer1_m_axi
+	::AP::rtl_comp_handler table_serch_pointer1_m_axi
 }
 
 # Direct connection:

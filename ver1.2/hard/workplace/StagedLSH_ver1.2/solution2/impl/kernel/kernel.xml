@@ -4,14 +4,14 @@
             <port name="M_AXI_QUERY1" portType="addressable" mode="master" base="0x0" range="0xFFFFFFFF" dataWidth="64"/>
             <port name="M_AXI_FP_DB1" portType="addressable" mode="master" base="0x0" range="0xFFFFFFFF" dataWidth="32"/>
             <port name="M_AXI_HASH_TABLE1" portType="addressable" mode="master" base="0x0" range="0xFFFFFFFF" dataWidth="32"/>
-            <port name="M_AXI_HASH_TABLE_POINTER1" portType="addressable" mode="master" base="0x0" range="0xFFFFFFFF" dataWidth="32"/>
+            <port name="M_AXI_POINTER1" portType="addressable" mode="master" base="0x0" range="0xFFFFFFFF" dataWidth="32"/>
             <port name="S_AXI_CONTROL" portType="addressable" mode="slave" base="0x0" range="0x1000" dataWidth="32"/>
         </ports>
         <args>
             <arg id="0" name="query" addressQualifier="1" port="M_AXI_QUERY1" hostOffset="0x0" hostSize="0x8" offset="0x18" size="0x8" type="void*"/>
             <arg id="1" name="FP_DB" addressQualifier="1" port="M_AXI_FP_DB1" hostOffset="0x0" hostSize="0x8" offset="0x24" size="0x8" type="void*"/>
             <arg id="2" name="hash_table" addressQualifier="1" port="M_AXI_HASH_TABLE1" hostOffset="0x0" hostSize="0x8" offset="0x30" size="0x8" type="void*"/>
-            <arg id="3" name="hash_table_pointer" addressQualifier="1" port="M_AXI_HASH_TABLE_POINTER1" hostOffset="0x0" hostSize="0x8" offset="0x3C" size="0x8" type="void*"/>
+            <arg id="3" name="hash_table_pointer" addressQualifier="1" port="M_AXI_POINTER1" hostOffset="0x0" hostSize="0x8" offset="0x3C" size="0x8" type="void*"/>
         </args>
         <compileWorkGroupSize x="1" y="1" z="1"/>
         <maxWorkGroupSize x="1" y="1" z="1"/>

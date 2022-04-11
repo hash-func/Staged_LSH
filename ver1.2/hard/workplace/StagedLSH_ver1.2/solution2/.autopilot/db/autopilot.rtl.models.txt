@@ -2,6 +2,6 @@ table_serch_control_s_axi
 table_serch_query1_m_axi
 table_serch_FP_DB1_m_axi
 table_serch_hash_table1_m_axi
-table_serch_hash_table_pointer1_m_axi
+table_serch_pointer1_m_axi
 backet_serch
 table_serch

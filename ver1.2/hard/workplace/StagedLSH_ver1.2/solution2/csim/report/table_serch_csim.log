@@ -1,6 +1,9 @@
 INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
-   Compiling ../../../../../src/table_serch.cpp in debug mode
+   Compiling ../../../../../src/main.cpp in debug mode
+   Compiling ../../../../../src/hash_stock.cpp in debug mode
+   Compiling ../../../../../src/hash_func.cpp in debug mode
+   Compiling ../../../../../src/ele_func.cpp in debug mode
    Generating csim.exe
 処理開始
 楽曲数 : 300
@@ -9,6 +12,7 @@ BER : 25.000000 %
 ....................................................................................................
 ....................................................................................................
 ..............................................................................
+1 回目
 
 正解率 : 100.000000 %
 不正解率 : 0.000000 %

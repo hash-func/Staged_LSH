@@ -9,7 +9,7 @@ if {${::AESL::PGuard_autoexp_gen}} {
 
 set axilite_register_dict [dict create]
 set port_control {
-flame { 
+array_1 { 
 	dir I
 	width 64
 	depth 1
@@ -17,10 +17,17 @@ flame {
 	offset 16
 	offset_end 27
 }
+sum { 
+	dir I
+	width 32
+	depth 1
+	mode ap_none
+	offset 28
+	offset_end 35
+}
 ap_start { }
 ap_done { }
 ap_ready { }
-ap_continue { }
 ap_idle { }
 }
 dict set axilite_register_dict control $port_control
@@ -45,6 +52,27 @@ if {${::AESL::PGuard_simmodel_gen}} {
 
 if {${::AESL::PGuard_rtl_comp_handler}} {
 	::AP::rtl_comp_handler kernel_control_s_axi
+}
+
+# Native M_AXI:
+if {${::AESL::PGuard_simmodel_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::m_axi_gen] == "::AESL_LIB_XILADAPTER::m_axi_gen"} {
+eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
+    id 2 \
+    corename {m_axi} \
+    op interface \
+    max_latency -1 \ 
+    delay_budget 7.3 \ 
+    is_flushable 0 \ 
+    name {kernel_array11_m_axi} \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find AXI interface model in the library. Ignored generation of AXI interface for 'array11'"
+}
+}
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler kernel_array11_m_axi
 }
 
 

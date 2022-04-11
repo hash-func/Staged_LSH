@@ -14,32 +14,29 @@
 `define AUTOTB_MAX_ALLOW_LATENCY  15000000
 `define AUTOTB_CLOCK_PERIOD_DIV2 5.00
 
-`define AESL_DEPTH_gmem 1
-`define AESL_DEPTH_a 1
-`define AESL_DEPTH_b 1
-`define AESL_DEPTH_pointer_a 1
-`define AUTOTB_TVIN_gmem  "../tv/cdatafile/c.kernel.autotvin_gmem.dat"
-`define AUTOTB_TVIN_b  "../tv/cdatafile/c.kernel.autotvin_b.dat"
-`define AUTOTB_TVIN_pointer_a  "../tv/cdatafile/c.kernel.autotvin_pointer_a.dat"
-`define AUTOTB_TVIN_gmem_out_wrapc  "../tv/rtldatafile/rtl.kernel.autotvin_gmem.dat"
-`define AUTOTB_TVIN_b_out_wrapc  "../tv/rtldatafile/rtl.kernel.autotvin_b.dat"
-`define AUTOTB_TVIN_pointer_a_out_wrapc  "../tv/rtldatafile/rtl.kernel.autotvin_pointer_a.dat"
-`define AUTOTB_TVOUT_ap_return  "../tv/cdatafile/c.kernel.autotvout_ap_return.dat"
-`define AUTOTB_TVOUT_ap_return_out_wrapc  "../tv/rtldatafile/rtl.kernel.autotvout_ap_return.dat"
+`define AESL_DEPTH_array11 1
+`define AESL_DEPTH_array_1 1
+`define AESL_DEPTH_sum 1
+`define AUTOTB_TVIN_array11  "../tv/cdatafile/c.kernel.autotvin_array11.dat"
+`define AUTOTB_TVIN_array_1  "../tv/cdatafile/c.kernel.autotvin_array_1.dat"
+`define AUTOTB_TVIN_sum  "../tv/cdatafile/c.kernel.autotvin_sum.dat"
+`define AUTOTB_TVIN_array11_out_wrapc  "../tv/rtldatafile/rtl.kernel.autotvin_array11.dat"
+`define AUTOTB_TVIN_array_1_out_wrapc  "../tv/rtldatafile/rtl.kernel.autotvin_array_1.dat"
+`define AUTOTB_TVIN_sum_out_wrapc  "../tv/rtldatafile/rtl.kernel.autotvin_sum.dat"
+`define AUTOTB_TVOUT_array11  "../tv/cdatafile/c.kernel.autotvout_array11.dat"
+`define AUTOTB_TVOUT_array11_out_wrapc  "../tv/rtldatafile/rtl.kernel.autotvout_array11.dat"
 module `AUTOTB_TOP;
 
 parameter AUTOTB_TRANSACTION_NUM = 1;
 parameter PROGRESS_TIMEOUT = 10000000;
-parameter LATENCY_ESTIMATION = 72;
-parameter LENGTH_gmem = 1;
-parameter LENGTH_a = 1;
-parameter LENGTH_b = 1;
-parameter LENGTH_pointer_a = 1;
-parameter LENGTH_ap_return = 1;
+parameter LATENCY_ESTIMATION = 141;
+parameter LENGTH_array11 = 3;
+parameter LENGTH_array_1 = 1;
+parameter LENGTH_sum = 1;
 
 task read_token;
     input integer fp;
-    output reg [191 : 0] token;
+    output reg [1047 : 0] token;
     integer ret;
     begin
         token = "";
@@ -84,51 +81,51 @@ wire  control_BVALID;
 wire  control_BREADY;
 wire [1 : 0] control_BRESP;
 wire  control_INTERRUPT;
-wire  gmem_AWVALID;
-wire  gmem_AWREADY;
-wire [63 : 0] gmem_AWADDR;
-wire [0 : 0] gmem_AWID;
-wire [7 : 0] gmem_AWLEN;
-wire [2 : 0] gmem_AWSIZE;
-wire [1 : 0] gmem_AWBURST;
-wire [1 : 0] gmem_AWLOCK;
-wire [3 : 0] gmem_AWCACHE;
-wire [2 : 0] gmem_AWPROT;
-wire [3 : 0] gmem_AWQOS;
-wire [3 : 0] gmem_AWREGION;
-wire [0 : 0] gmem_AWUSER;
-wire  gmem_WVALID;
-wire  gmem_WREADY;
-wire [31 : 0] gmem_WDATA;
-wire [3 : 0] gmem_WSTRB;
-wire  gmem_WLAST;
-wire [0 : 0] gmem_WID;
-wire [0 : 0] gmem_WUSER;
-wire  gmem_ARVALID;
-wire  gmem_ARREADY;
-wire [63 : 0] gmem_ARADDR;
-wire [0 : 0] gmem_ARID;
-wire [7 : 0] gmem_ARLEN;
-wire [2 : 0] gmem_ARSIZE;
-wire [1 : 0] gmem_ARBURST;
-wire [1 : 0] gmem_ARLOCK;
-wire [3 : 0] gmem_ARCACHE;
-wire [2 : 0] gmem_ARPROT;
-wire [3 : 0] gmem_ARQOS;
-wire [3 : 0] gmem_ARREGION;
-wire [0 : 0] gmem_ARUSER;
-wire  gmem_RVALID;
-wire  gmem_RREADY;
-wire [31 : 0] gmem_RDATA;
-wire  gmem_RLAST;
-wire [0 : 0] gmem_RID;
-wire [0 : 0] gmem_RUSER;
-wire [1 : 0] gmem_RRESP;
-wire  gmem_BVALID;
-wire  gmem_BREADY;
-wire [1 : 0] gmem_BRESP;
-wire [0 : 0] gmem_BID;
-wire [0 : 0] gmem_BUSER;
+wire  array11_AWVALID;
+wire  array11_AWREADY;
+wire [63 : 0] array11_AWADDR;
+wire [0 : 0] array11_AWID;
+wire [7 : 0] array11_AWLEN;
+wire [2 : 0] array11_AWSIZE;
+wire [1 : 0] array11_AWBURST;
+wire [1 : 0] array11_AWLOCK;
+wire [3 : 0] array11_AWCACHE;
+wire [2 : 0] array11_AWPROT;
+wire [3 : 0] array11_AWQOS;
+wire [3 : 0] array11_AWREGION;
+wire [0 : 0] array11_AWUSER;
+wire  array11_WVALID;
+wire  array11_WREADY;
+wire [511 : 0] array11_WDATA;
+wire [63 : 0] array11_WSTRB;
+wire  array11_WLAST;
+wire [0 : 0] array11_WID;
+wire [0 : 0] array11_WUSER;
+wire  array11_ARVALID;
+wire  array11_ARREADY;
+wire [63 : 0] array11_ARADDR;
+wire [0 : 0] array11_ARID;
+wire [7 : 0] array11_ARLEN;
+wire [2 : 0] array11_ARSIZE;
+wire [1 : 0] array11_ARBURST;
+wire [1 : 0] array11_ARLOCK;
+wire [3 : 0] array11_ARCACHE;
+wire [2 : 0] array11_ARPROT;
+wire [3 : 0] array11_ARQOS;
+wire [3 : 0] array11_ARREGION;
+wire [0 : 0] array11_ARUSER;
+wire  array11_RVALID;
+wire  array11_RREADY;
+wire [511 : 0] array11_RDATA;
+wire  array11_RLAST;
+wire [0 : 0] array11_RID;
+wire [0 : 0] array11_RUSER;
+wire [1 : 0] array11_RRESP;
+wire  array11_BVALID;
+wire  array11_BREADY;
+wire [1 : 0] array11_BRESP;
+wire [0 : 0] array11_BID;
+wire [0 : 0] array11_BUSER;
 integer done_cnt = 0;
 integer AESL_ready_cnt = 0;
 integer ready_cnt = 0;
@@ -138,7 +135,6 @@ reg ready_last_n;
 reg ready_delay_last_n;
 reg done_delay_last_n;
 reg interface_done = 0;
-wire control_read_data_finish;
 wire control_write_data_finish;
 wire AESL_slave_start;
 reg AESL_slave_start_lock = 0;
@@ -178,51 +174,51 @@ wire ap_rst_n_n;
     .interrupt(control_INTERRUPT),
     .ap_clk(ap_clk),
     .ap_rst_n(ap_rst_n),
-    .m_axi_gmem_AWVALID(gmem_AWVALID),
-    .m_axi_gmem_AWREADY(gmem_AWREADY),
-    .m_axi_gmem_AWADDR(gmem_AWADDR),
-    .m_axi_gmem_AWID(gmem_AWID),
-    .m_axi_gmem_AWLEN(gmem_AWLEN),
-    .m_axi_gmem_AWSIZE(gmem_AWSIZE),
-    .m_axi_gmem_AWBURST(gmem_AWBURST),
-    .m_axi_gmem_AWLOCK(gmem_AWLOCK),
-    .m_axi_gmem_AWCACHE(gmem_AWCACHE),
-    .m_axi_gmem_AWPROT(gmem_AWPROT),
-    .m_axi_gmem_AWQOS(gmem_AWQOS),
-    .m_axi_gmem_AWREGION(gmem_AWREGION),
-    .m_axi_gmem_AWUSER(gmem_AWUSER),
-    .m_axi_gmem_WVALID(gmem_WVALID),
-    .m_axi_gmem_WREADY(gmem_WREADY),
-    .m_axi_gmem_WDATA(gmem_WDATA),
-    .m_axi_gmem_WSTRB(gmem_WSTRB),
-    .m_axi_gmem_WLAST(gmem_WLAST),
-    .m_axi_gmem_WID(gmem_WID),
-    .m_axi_gmem_WUSER(gmem_WUSER),
-    .m_axi_gmem_ARVALID(gmem_ARVALID),
-    .m_axi_gmem_ARREADY(gmem_ARREADY),
-    .m_axi_gmem_ARADDR(gmem_ARADDR),
-    .m_axi_gmem_ARID(gmem_ARID),
-    .m_axi_gmem_ARLEN(gmem_ARLEN),
-    .m_axi_gmem_ARSIZE(gmem_ARSIZE),
-    .m_axi_gmem_ARBURST(gmem_ARBURST),
-    .m_axi_gmem_ARLOCK(gmem_ARLOCK),
-    .m_axi_gmem_ARCACHE(gmem_ARCACHE),
-    .m_axi_gmem_ARPROT(gmem_ARPROT),
-    .m_axi_gmem_ARQOS(gmem_ARQOS),
-    .m_axi_gmem_ARREGION(gmem_ARREGION),
-    .m_axi_gmem_ARUSER(gmem_ARUSER),
-    .m_axi_gmem_RVALID(gmem_RVALID),
-    .m_axi_gmem_RREADY(gmem_RREADY),
-    .m_axi_gmem_RDATA(gmem_RDATA),
-    .m_axi_gmem_RLAST(gmem_RLAST),
-    .m_axi_gmem_RID(gmem_RID),
-    .m_axi_gmem_RUSER(gmem_RUSER),
-    .m_axi_gmem_RRESP(gmem_RRESP),
-    .m_axi_gmem_BVALID(gmem_BVALID),
-    .m_axi_gmem_BREADY(gmem_BREADY),
-    .m_axi_gmem_BRESP(gmem_BRESP),
-    .m_axi_gmem_BID(gmem_BID),
-    .m_axi_gmem_BUSER(gmem_BUSER));
+    .m_axi_array11_AWVALID(array11_AWVALID),
+    .m_axi_array11_AWREADY(array11_AWREADY),
+    .m_axi_array11_AWADDR(array11_AWADDR),
+    .m_axi_array11_AWID(array11_AWID),
+    .m_axi_array11_AWLEN(array11_AWLEN),
+    .m_axi_array11_AWSIZE(array11_AWSIZE),
+    .m_axi_array11_AWBURST(array11_AWBURST),
+    .m_axi_array11_AWLOCK(array11_AWLOCK),
+    .m_axi_array11_AWCACHE(array11_AWCACHE),
+    .m_axi_array11_AWPROT(array11_AWPROT),
+    .m_axi_array11_AWQOS(array11_AWQOS),
+    .m_axi_array11_AWREGION(array11_AWREGION),
+    .m_axi_array11_AWUSER(array11_AWUSER),
+    .m_axi_array11_WVALID(array11_WVALID),
+    .m_axi_array11_WREADY(array11_WREADY),
+    .m_axi_array11_WDATA(array11_WDATA),
+    .m_axi_array11_WSTRB(array11_WSTRB),
+    .m_axi_array11_WLAST(array11_WLAST),
+    .m_axi_array11_WID(array11_WID),
+    .m_axi_array11_WUSER(array11_WUSER),
+    .m_axi_array11_ARVALID(array11_ARVALID),
+    .m_axi_array11_ARREADY(array11_ARREADY),
+    .m_axi_array11_ARADDR(array11_ARADDR),
+    .m_axi_array11_ARID(array11_ARID),
+    .m_axi_array11_ARLEN(array11_ARLEN),
+    .m_axi_array11_ARSIZE(array11_ARSIZE),
+    .m_axi_array11_ARBURST(array11_ARBURST),
+    .m_axi_array11_ARLOCK(array11_ARLOCK),
+    .m_axi_array11_ARCACHE(array11_ARCACHE),
+    .m_axi_array11_ARPROT(array11_ARPROT),
+    .m_axi_array11_ARQOS(array11_ARQOS),
+    .m_axi_array11_ARREGION(array11_ARREGION),
+    .m_axi_array11_ARUSER(array11_ARUSER),
+    .m_axi_array11_RVALID(array11_RVALID),
+    .m_axi_array11_RREADY(array11_RREADY),
+    .m_axi_array11_RDATA(array11_RDATA),
+    .m_axi_array11_RLAST(array11_RLAST),
+    .m_axi_array11_RID(array11_RID),
+    .m_axi_array11_RUSER(array11_RUSER),
+    .m_axi_array11_RRESP(array11_RRESP),
+    .m_axi_array11_BVALID(array11_BVALID),
+    .m_axi_array11_BREADY(array11_BREADY),
+    .m_axi_array11_BRESP(array11_BRESP),
+    .m_axi_array11_BID(array11_BID),
+    .m_axi_array11_BUSER(array11_BUSER));
 
 // Assignment for control signal
 assign ap_clk = AESL_clock;
@@ -234,7 +230,7 @@ assign AESL_ce = ce;
 assign AESL_continue = tb_continue;
   assign AESL_slave_write_start_in = slave_start_status  & control_write_data_finish;
   assign AESL_slave_start = AESL_slave_write_start_finish;
-  assign AESL_done = slave_done_status  & control_read_data_finish;
+  assign AESL_done = slave_done_status ;
 
 always @(posedge AESL_clock)
 begin
@@ -289,62 +285,61 @@ end
 
 
 
-
-wire    AESL_axi_master_gmem_ready;
-wire    AESL_axi_master_gmem_done;
-AESL_axi_master_gmem AESL_AXI_MASTER_gmem(
+wire    AESL_axi_master_array11_ready;
+wire    AESL_axi_master_array11_done;
+AESL_axi_master_array11 AESL_AXI_MASTER_array11(
     .clk   (AESL_clock),
     .reset (AESL_reset),
-    .TRAN_gmem_AWVALID (gmem_AWVALID),
-    .TRAN_gmem_AWREADY (gmem_AWREADY),
-    .TRAN_gmem_AWADDR (gmem_AWADDR),
-    .TRAN_gmem_AWID (gmem_AWID),
-    .TRAN_gmem_AWLEN (gmem_AWLEN),
-    .TRAN_gmem_AWSIZE (gmem_AWSIZE),
-    .TRAN_gmem_AWBURST (gmem_AWBURST),
-    .TRAN_gmem_AWLOCK (gmem_AWLOCK),
-    .TRAN_gmem_AWCACHE (gmem_AWCACHE),
-    .TRAN_gmem_AWPROT (gmem_AWPROT),
-    .TRAN_gmem_AWQOS (gmem_AWQOS),
-    .TRAN_gmem_AWREGION (gmem_AWREGION),
-    .TRAN_gmem_AWUSER (gmem_AWUSER),
-    .TRAN_gmem_WVALID (gmem_WVALID),
-    .TRAN_gmem_WREADY (gmem_WREADY),
-    .TRAN_gmem_WDATA (gmem_WDATA),
-    .TRAN_gmem_WSTRB (gmem_WSTRB),
-    .TRAN_gmem_WLAST (gmem_WLAST),
-    .TRAN_gmem_WID (gmem_WID),
-    .TRAN_gmem_WUSER (gmem_WUSER),
-    .TRAN_gmem_ARVALID (gmem_ARVALID),
-    .TRAN_gmem_ARREADY (gmem_ARREADY),
-    .TRAN_gmem_ARADDR (gmem_ARADDR),
-    .TRAN_gmem_ARID (gmem_ARID),
-    .TRAN_gmem_ARLEN (gmem_ARLEN),
-    .TRAN_gmem_ARSIZE (gmem_ARSIZE),
-    .TRAN_gmem_ARBURST (gmem_ARBURST),
-    .TRAN_gmem_ARLOCK (gmem_ARLOCK),
-    .TRAN_gmem_ARCACHE (gmem_ARCACHE),
-    .TRAN_gmem_ARPROT (gmem_ARPROT),
-    .TRAN_gmem_ARQOS (gmem_ARQOS),
-    .TRAN_gmem_ARREGION (gmem_ARREGION),
-    .TRAN_gmem_ARUSER (gmem_ARUSER),
-    .TRAN_gmem_RVALID (gmem_RVALID),
-    .TRAN_gmem_RREADY (gmem_RREADY),
-    .TRAN_gmem_RDATA (gmem_RDATA),
-    .TRAN_gmem_RLAST (gmem_RLAST),
-    .TRAN_gmem_RID (gmem_RID),
-    .TRAN_gmem_RUSER (gmem_RUSER),
-    .TRAN_gmem_RRESP (gmem_RRESP),
-    .TRAN_gmem_BVALID (gmem_BVALID),
-    .TRAN_gmem_BREADY (gmem_BREADY),
-    .TRAN_gmem_BRESP (gmem_BRESP),
-    .TRAN_gmem_BID (gmem_BID),
-    .TRAN_gmem_BUSER (gmem_BUSER),
-    .ready (AESL_axi_master_gmem_ready),
-    .done  (AESL_axi_master_gmem_done)
+    .TRAN_array11_AWVALID (array11_AWVALID),
+    .TRAN_array11_AWREADY (array11_AWREADY),
+    .TRAN_array11_AWADDR (array11_AWADDR),
+    .TRAN_array11_AWID (array11_AWID),
+    .TRAN_array11_AWLEN (array11_AWLEN),
+    .TRAN_array11_AWSIZE (array11_AWSIZE),
+    .TRAN_array11_AWBURST (array11_AWBURST),
+    .TRAN_array11_AWLOCK (array11_AWLOCK),
+    .TRAN_array11_AWCACHE (array11_AWCACHE),
+    .TRAN_array11_AWPROT (array11_AWPROT),
+    .TRAN_array11_AWQOS (array11_AWQOS),
+    .TRAN_array11_AWREGION (array11_AWREGION),
+    .TRAN_array11_AWUSER (array11_AWUSER),
+    .TRAN_array11_WVALID (array11_WVALID),
+    .TRAN_array11_WREADY (array11_WREADY),
+    .TRAN_array11_WDATA (array11_WDATA),
+    .TRAN_array11_WSTRB (array11_WSTRB),
+    .TRAN_array11_WLAST (array11_WLAST),
+    .TRAN_array11_WID (array11_WID),
+    .TRAN_array11_WUSER (array11_WUSER),
+    .TRAN_array11_ARVALID (array11_ARVALID),
+    .TRAN_array11_ARREADY (array11_ARREADY),
+    .TRAN_array11_ARADDR (array11_ARADDR),
+    .TRAN_array11_ARID (array11_ARID),
+    .TRAN_array11_ARLEN (array11_ARLEN),
+    .TRAN_array11_ARSIZE (array11_ARSIZE),
+    .TRAN_array11_ARBURST (array11_ARBURST),
+    .TRAN_array11_ARLOCK (array11_ARLOCK),
+    .TRAN_array11_ARCACHE (array11_ARCACHE),
+    .TRAN_array11_ARPROT (array11_ARPROT),
+    .TRAN_array11_ARQOS (array11_ARQOS),
+    .TRAN_array11_ARREGION (array11_ARREGION),
+    .TRAN_array11_ARUSER (array11_ARUSER),
+    .TRAN_array11_RVALID (array11_RVALID),
+    .TRAN_array11_RREADY (array11_RREADY),
+    .TRAN_array11_RDATA (array11_RDATA),
+    .TRAN_array11_RLAST (array11_RLAST),
+    .TRAN_array11_RID (array11_RID),
+    .TRAN_array11_RUSER (array11_RUSER),
+    .TRAN_array11_RRESP (array11_RRESP),
+    .TRAN_array11_BVALID (array11_BVALID),
+    .TRAN_array11_BREADY (array11_BREADY),
+    .TRAN_array11_BRESP (array11_BRESP),
+    .TRAN_array11_BID (array11_BID),
+    .TRAN_array11_BUSER (array11_BUSER),
+    .ready (AESL_axi_master_array11_ready),
+    .done  (AESL_axi_master_array11_done)
 );
-assign    AESL_axi_master_gmem_ready    =   ready;
-assign    AESL_axi_master_gmem_done    =   AESL_done_delay;
+assign    AESL_axi_master_array11_ready    =   ready;
+assign    AESL_axi_master_array11_done    =   AESL_done_delay;
 
 AESL_axi_slave_control AESL_AXI_SLAVE_control(
     .clk   (AESL_clock),
@@ -367,7 +362,6 @@ AESL_axi_slave_control AESL_AXI_SLAVE_control(
     .TRAN_s_axi_control_BREADY (control_BREADY),
     .TRAN_s_axi_control_BRESP (control_BRESP),
     .TRAN_control_interrupt (control_INTERRUPT),
-    .TRAN_control_read_data_finish(control_read_data_finish),
     .TRAN_control_write_data_finish(control_write_data_finish),
     .TRAN_control_ready_out (AESL_ready),
     .TRAN_control_ready_in (AESL_slave_ready),
@@ -378,36 +372,6 @@ AESL_axi_slave_control AESL_AXI_SLAVE_control(
     .TRAN_control_transaction_done_in (AESL_done_delay),
     .TRAN_control_start_in  (AESL_slave_start)
 );
-
-
-reg dump_tvout_finish_ap_return;
-
-initial begin : dump_tvout_runtime_sign_ap_return
-    integer fp;
-    dump_tvout_finish_ap_return = 0;
-    fp = $fopen(`AUTOTB_TVOUT_ap_return_out_wrapc, "w");
-    if (fp == 0) begin
-        $display("Failed to open file \"%s\"!", `AUTOTB_TVOUT_ap_return_out_wrapc);
-        $display("ERROR: Simulation using HLS TB failed.");
-        $finish;
-    end
-    $fdisplay(fp,"[[[runtime]]]");
-    $fclose(fp);
-    wait (done_cnt == AUTOTB_TRANSACTION_NUM);
-    // last transaction is saved at negedge right after last done
-    @ (posedge AESL_clock);
-    @ (posedge AESL_clock);
-    @ (posedge AESL_clock);
-    fp = $fopen(`AUTOTB_TVOUT_ap_return_out_wrapc, "a");
-    if (fp == 0) begin
-        $display("Failed to open file \"%s\"!", `AUTOTB_TVOUT_ap_return_out_wrapc);
-        $display("ERROR: Simulation using HLS TB failed.");
-        $finish;
-    end
-    $fdisplay(fp,"[[[/runtime]]]");
-    $fclose(fp);
-    dump_tvout_finish_ap_return = 1;
-end
 
 initial begin : generate_AESL_ready_cnt_proc
     AESL_ready_cnt = 0;
@@ -471,18 +435,15 @@ initial begin
 end
 
 
-reg end_gmem;
-reg [31:0] size_gmem;
-reg [31:0] size_gmem_backup;
-reg end_b;
-reg [31:0] size_b;
-reg [31:0] size_b_backup;
-reg end_pointer_a;
-reg [31:0] size_pointer_a;
-reg [31:0] size_pointer_a_backup;
-reg end_ap_return;
-reg [31:0] size_ap_return;
-reg [31:0] size_ap_return_backup;
+reg end_array11;
+reg [31:0] size_array11;
+reg [31:0] size_array11_backup;
+reg end_array_1;
+reg [31:0] size_array_1;
+reg [31:0] size_array_1_backup;
+reg end_sum;
+reg [31:0] size_sum;
+reg [31:0] size_sum_backup;
 
 initial begin : initial_process
     integer proc_rand;
@@ -589,6 +550,36 @@ begin
           interface_done = 0;
   end
 end
+
+reg dump_tvout_finish_array11;
+
+initial begin : dump_tvout_runtime_sign_array11
+    integer fp;
+    dump_tvout_finish_array11 = 0;
+    fp = $fopen(`AUTOTB_TVOUT_array11_out_wrapc, "w");
+    if (fp == 0) begin
+        $display("Failed to open file \"%s\"!", `AUTOTB_TVOUT_array11_out_wrapc);
+        $display("ERROR: Simulation using HLS TB failed.");
+        $finish;
+    end
+    $fdisplay(fp,"[[[runtime]]]");
+    $fclose(fp);
+    wait (done_cnt == AUTOTB_TRANSACTION_NUM);
+    // last transaction is saved at negedge right after last done
+    @ (posedge AESL_clock);
+    @ (posedge AESL_clock);
+    @ (posedge AESL_clock);
+    fp = $fopen(`AUTOTB_TVOUT_array11_out_wrapc, "a");
+    if (fp == 0) begin
+        $display("Failed to open file \"%s\"!", `AUTOTB_TVOUT_array11_out_wrapc);
+        $display("ERROR: Simulation using HLS TB failed.");
+        $finish;
+    end
+    $fdisplay(fp,"[[[/runtime]]]");
+    $fclose(fp);
+    dump_tvout_finish_array11 = 1;
+end
+
 
 ////////////////////////////////////////////
 // progress and performance

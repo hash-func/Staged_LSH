@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="main_fpga.h" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/main_fpga.h"/>
     <originFiles name="table_serch.cpp" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/table_serch.cpp"/>
+    <originFiles name="main_fpga.h" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/main_fpga.h"/>
   </source>
   <testbench>
-    <originFiles name="ele_func.cpp" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/ele_func.cpp"/>
-    <originFiles name="ele_func.h" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/ele_func.h"/>
-    <originFiles name="hash_func.cpp" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/hash_func.cpp"/>
-    <originFiles name="hash_func.h" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/hash_func.h"/>
-    <originFiles name="hash_stock.cpp" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/hash_stock.cpp"/>
-    <originFiles name="hash_stock.h" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/hash_stock.h"/>
-    <originFiles name="main.cpp" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/main.cpp"/>
-    <originFiles name="main.h" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/main.h"/>
     <originFiles name="table_serch.h" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/table_serch.h"/>
+    <originFiles name="main.h" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/main.h"/>
+    <originFiles name="main.cpp" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/main.cpp"/>
+    <originFiles name="hash_stock.h" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/hash_stock.h"/>
+    <originFiles name="hash_stock.cpp" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/hash_stock.cpp"/>
+    <originFiles name="hash_func.h" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/hash_func.h"/>
+    <originFiles name="hash_func.cpp" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/hash_func.cpp"/>
+    <originFiles name="ele_func.h" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/ele_func.h"/>
+    <originFiles name="ele_func.cpp" path="/home/nomoto/src/StagedLSH/ver1.2/hard/src/ele_func.cpp"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

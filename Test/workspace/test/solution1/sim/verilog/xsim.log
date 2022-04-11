@@ -2,18 +2,97 @@
 # xsim v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Sat Mar 19 16:35:40 2022
-# Process ID: 29851
+# Start of session at: Sun Apr 10 01:19:12 2022
+# Process ID: 15029
 # Current directory: /home/nomoto/src/StagedLSH/Test/workspace/test/solution1/sim/verilog
 # Command line: xsim -mode tcl -source {xsim.dir/kernel/xsim_script.tcl}
 # Log file: /home/nomoto/src/StagedLSH/Test/workspace/test/solution1/sim/verilog/xsim.log
 # Journal file: /home/nomoto/src/StagedLSH/Test/workspace/test/solution1/sim/verilog/xsim.jou
 #-----------------------------------------------------------
 source xsim.dir/kernel/xsim_script.tcl
-# xsim {kernel} -autoloadwcfg -tclbatch {kernel.tcl}
+# xsim {kernel} -view {{kernel_dataflow_ana.wcfg}} -tclbatch {kernel.tcl} -protoinst {kernel.protoinst}
 Vivado Simulator 2020.2
+INFO: [Wavedata 42-565] Reading protoinst file kernel.protoinst
+INFO: [Wavedata 42-564]   Found protocol instance at /apatb_kernel_top/AESL_inst_kernel//AESL_inst_kernel_activity
 Time resolution is 1 ps
+open_wave_config kernel_dataflow_ana.wcfg
 source kernel.tcl
+## log_wave [get_objects -filter {type == in_port || type == out_port || type == inout_port || type == port} /apatb_kernel_top/AESL_inst_kernel/*]
+## set designtopgroup [add_wave_group "Design Top Signals"]
+## set cinoutgroup [add_wave_group "C InOuts" -into $designtopgroup]
+## set array_1_group [add_wave_group array_1(axi_master) -into $cinoutgroup]
+## set rdata_group [add_wave_group "Read Channel" -into $array_1_group]
+## set wdata_group [add_wave_group "Write Channel" -into $array_1_group]
+## set ctrl_group [add_wave_group "Handshakes" -into $array_1_group]
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_BUSER -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_BID -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_BRESP -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_BREADY -into $ctrl_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_BVALID -into $ctrl_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_RRESP -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_RUSER -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_RID -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_RLAST -into $ctrl_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_RDATA -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_RREADY -into $ctrl_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_RVALID -into $ctrl_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARUSER -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARREGION -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARQOS -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARPROT -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARCACHE -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARLOCK -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARBURST -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARSIZE -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARLEN -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARID -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARADDR -into $rdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARREADY -into $ctrl_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_ARVALID -into $ctrl_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_WUSER -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_WID -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_WLAST -into $ctrl_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_WSTRB -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_WDATA -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_WREADY -into $ctrl_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_WVALID -into $ctrl_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWUSER -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWREGION -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWQOS -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWPROT -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWCACHE -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWLOCK -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWBURST -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWSIZE -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWLEN -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWID -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWADDR -into $wdata_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWREADY -into $ctrl_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/m_axi_array11_AWVALID -into $ctrl_group -color #ffff00 -radix hex
+## set array_1__sum__return_group [add_wave_group array_1__sum__return(axi_slave) -into $cinoutgroup]
+## add_wave /apatb_kernel_top/AESL_inst_kernel/interrupt -into $array_1__sum__return_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_BRESP -into $array_1__sum__return_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_BREADY -into $array_1__sum__return_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_BVALID -into $array_1__sum__return_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_RRESP -into $array_1__sum__return_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_RDATA -into $array_1__sum__return_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_RREADY -into $array_1__sum__return_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_RVALID -into $array_1__sum__return_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_ARREADY -into $array_1__sum__return_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_ARVALID -into $array_1__sum__return_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_ARADDR -into $array_1__sum__return_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_WSTRB -into $array_1__sum__return_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_WDATA -into $array_1__sum__return_group -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_WREADY -into $array_1__sum__return_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_WVALID -into $array_1__sum__return_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_AWREADY -into $array_1__sum__return_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_AWVALID -into $array_1__sum__return_group -color #ffff00 -radix hex
+## add_wave /apatb_kernel_top/AESL_inst_kernel/s_axi_control_AWADDR -into $array_1__sum__return_group -radix hex
+## set resetgroup [add_wave_group "Reset" -into $designtopgroup]
+## add_wave /apatb_kernel_top/AESL_inst_kernel/ap_rst_n -into $resetgroup
+## set clockgroup [add_wave_group "Clock" -into $designtopgroup]
+## add_wave /apatb_kernel_top/AESL_inst_kernel/ap_clk -into $clockgroup
+## save_wave_config kernel.wcfg
 ## run all
 ////////////////////////////////////////////////////////////////////////////////////
 // Inter-Transaction Progress: Completed Transaction / Total Transaction
@@ -22,8 +101,8 @@ source kernel.tcl
 // RTL Simulation : "Inter-Transaction Progress" ["Intra-Transaction Progress"] @ "Simulation Time"
 ////////////////////////////////////////////////////////////////////////////////////
 // RTL Simulation : 0 / 1 [0.00%] @ "155000"
-// RTL Simulation : 1 / 1 [100.00%] @ "1545000"
+// RTL Simulation : 1 / 1 [100.00%] @ "2095000"
 ////////////////////////////////////////////////////////////////////////////////////
-$finish called at time : 1585 ns : File "/home/nomoto/src/StagedLSH/Test/workspace/test/solution1/sim/verilog/kernel.autotb.v" Line 465
+$finish called at time : 2135 ns : File "/home/nomoto/src/StagedLSH/Test/workspace/test/solution1/sim/verilog/kernel.autotb.v" Line 429
 ## quit
-INFO: [Common 17-206] Exiting xsim at Sat Mar 19 16:35:46 2022...
+INFO: [Common 17-206] Exiting xsim at Sun Apr 10 01:19:18 2022...

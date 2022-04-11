@@ -45466,8 +45466,11 @@ int main()
     unsigned int not_find = 0;
 
 
-    for (int i=0; i<300; i++)
+    for (int i=0; i<1; i++)
     {
+
+        printf("%d 回目\n",i+1);
+
 
         music_index = rnd1() % 300;
 
@@ -45499,9 +45502,9 @@ int main()
 
 
     printf ("\n");
-    printf ("正解率 : %lf %\n", ((double)seikai/300)*100);
-    printf ("不正解率 : %lf %\n", ((double)huseikai/300)*100);
-    printf ("未発見 : %lf %\n", ((double)not_find/300)*100);
+    printf ("正解率 : %lf %\n", ((double)seikai/1)*100);
+    printf ("不正解率 : %lf %\n", ((double)huseikai/1)*100);
+    printf ("未発見 : %lf %\n", ((double)not_find/1)*100);
 
 
 

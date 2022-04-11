@@ -1,2 +1,3 @@
 kernel_control_s_axi
+kernel_array11_m_axi
 kernel

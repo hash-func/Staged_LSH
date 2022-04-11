@@ -45476,8 +45476,11 @@ int main()
     unsigned int not_find = 0;
 
 
-    for (int i=0; i<300; i++)
+    for (int i=0; i<1; i++)
     {
+
+        printf("%d 回目\n",i+1);
+
 
         music_index = rnd1() % 300;
 
@@ -45495,7 +45498,7 @@ int main()
 #ifndef HLS_FASTSIM
 #define table_serch apatb_table_serch_sw
 #endif
-# 142 "/home/nomoto/src/StagedLSH/ver1.2/hard/src/main.cpp"
+# 145 "/home/nomoto/src/StagedLSH/ver1.2/hard/src/main.cpp"
 table_serch(
             query,
             FP_DB,
@@ -45503,7 +45506,7 @@ table_serch(
             hash_table_pointer
         );
 #undef table_serch
-# 142 "/home/nomoto/src/StagedLSH/ver1.2/hard/src/main.cpp"
+# 145 "/home/nomoto/src/StagedLSH/ver1.2/hard/src/main.cpp"
 
 
 
@@ -45517,9 +45520,9 @@ table_serch(
 
 
     printf ("\n");
-    printf ("正解率 : %lf %\n", ((double)seikai/300)*100);
-    printf ("不正解率 : %lf %\n", ((double)huseikai/300)*100);
-    printf ("未発見 : %lf %\n", ((double)not_find/300)*100);
+    printf ("正解率 : %lf %\n", ((double)seikai/1)*100);
+    printf ("不正解率 : %lf %\n", ((double)huseikai/1)*100);
+    printf ("未発見 : %lf %\n", ((double)not_find/1)*100);
 
 
 
@@ -45536,5 +45539,5 @@ table_serch(
     return 0;
 }
 #endif
-# 177 "/home/nomoto/src/StagedLSH/ver1.2/hard/src/main.cpp"
+# 180 "/home/nomoto/src/StagedLSH/ver1.2/hard/src/main.cpp"
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <solution AutoPilot="com.autoesl.autopilot.solution">
   <name>
-    <value/>
+    <value string="solution2"/>
   </name>
   <project>
-    <value/>
+    <value string="StagedLSH_ver1.2"/>
   </project>
   <checksum>
     <value string="false"/>
@@ -21,12 +21,15 @@
   </libraryList>
   <flowTarget value="vitis"/>
   <clockList>
-    <clock name="default" period="10"/>
+    <clock default="false" name="default" period="10"/>
   </clockList>
   <config>
+            
+    <config_interface default_interface="kernel" m_axi_alignment_byte_size="64" m_axi_latency="64" m_axi_max_widen_bitwidth="512" m_axi_offset="slave"/>
+            
+    <config_rtl register_reset_num="3"/>
         
-        
-    </config>
+  </config>
   <UIConfigurations>
     <UIAutosynConf hideTrivialOp="true" isBasedOnBoard="false" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">
       <Platform>xilinx/virtexuplus/virtexuplus</Platform>

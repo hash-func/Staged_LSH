@@ -126,6 +126,9 @@ int main()
     /* 指定回数検索処理実行 */
     for (int i=0; i<QUERY_NUM; i++)
     {
+#ifdef DEBUG_sub
+        printf("%d 回目\n",i+1);
+#endif
         /* 楽曲識別子生成 */
         music_index = rnd1() % MUSIC_NUM;
 

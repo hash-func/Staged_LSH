@@ -26,7 +26,6 @@ module AESL_axi_slave_control (
     TRAN_s_axi_control_BREADY,
     TRAN_s_axi_control_BRESP,
     TRAN_control_write_data_finish,
-    TRAN_control_read_data_finish,
     TRAN_control_start_in,
     TRAN_control_idle_out,
     TRAN_control_ready_out,
@@ -39,27 +38,21 @@ module AESL_axi_slave_control (
     );
 
 //------------------------Parameter----------------------
-`define TV_IN_b "../tv/cdatafile/c.kernel.autotvin_b.dat"
-`define TV_IN_pointer_a "../tv/cdatafile/c.kernel.autotvin_pointer_a.dat"
-`define TV_OUT_ap_return "../tv/rtldatafile/rtl.kernel.autotvout_ap_return.dat"
+`define TV_IN_array_1 "../tv/cdatafile/c.kernel.autotvin_array_1.dat"
+`define TV_IN_sum "../tv/cdatafile/c.kernel.autotvin_sum.dat"
 parameter ADDR_WIDTH = 6;
 parameter DATA_WIDTH = 32;
-parameter b_DEPTH = 1;
-reg [31 : 0] b_OPERATE_DEPTH = 0;
-parameter b_c_bitwidth = 32;
-parameter pointer_a_DEPTH = 1;
-reg [31 : 0] pointer_a_OPERATE_DEPTH = 0;
-parameter pointer_a_c_bitwidth = 64;
-parameter ap_return_DEPTH = 1;
-reg [31 : 0] ap_return_OPERATE_DEPTH = 0;
-parameter ap_return_c_bitwidth = 32;
+parameter array_1_DEPTH = 1;
+reg [31 : 0] array_1_OPERATE_DEPTH = 0;
+parameter array_1_c_bitwidth = 64;
+parameter sum_DEPTH = 1;
+reg [31 : 0] sum_OPERATE_DEPTH = 0;
+parameter sum_c_bitwidth = 32;
 parameter START_ADDR = 0;
 parameter kernel_continue_addr = 0;
 parameter kernel_auto_start_addr = 0;
-parameter a_data_in_addr = 24;
-parameter b_data_in_addr = 32;
-parameter pointer_a_data_in_addr = 40;
-parameter ap_return_data_out_addr = 16;
+parameter array_1_data_in_addr = 16;
+parameter sum_data_in_addr = 28;
 parameter STATUS_ADDR = 0;
 
 output [ADDR_WIDTH - 1 : 0] TRAN_s_axi_control_AWADDR;
@@ -80,7 +73,6 @@ input  TRAN_s_axi_control_BVALID;
 output  TRAN_s_axi_control_BREADY;
 input [2 - 1 : 0] TRAN_s_axi_control_BRESP;
 output TRAN_control_write_data_finish;
-output TRAN_control_read_data_finish;
 input     clk;
 input     reset;
 input     TRAN_control_start_in;
@@ -103,12 +95,10 @@ reg  ARVALID_reg = 0;
 reg  RREADY_reg = 0;
 reg [DATA_WIDTH - 1 : 0] RDATA_reg = 0;
 reg  BREADY_reg = 0;
-reg [DATA_WIDTH - 1 : 0] mem_b [b_DEPTH - 1 : 0];
-reg b_write_data_finish;
-reg [pointer_a_c_bitwidth - 1 : 0] mem_pointer_a [pointer_a_DEPTH - 1 : 0];
-reg pointer_a_write_data_finish;
-reg [DATA_WIDTH - 1 : 0] mem_ap_return [ap_return_DEPTH - 1 : 0];
-reg ap_return_read_data_finish;
+reg [array_1_c_bitwidth - 1 : 0] mem_array_1 [array_1_DEPTH - 1 : 0];
+reg array_1_write_data_finish;
+reg [DATA_WIDTH - 1 : 0] mem_sum [sum_DEPTH - 1 : 0];
+reg sum_write_data_finish;
 reg AESL_ready_out_index_reg = 0;
 reg AESL_write_start_finish = 0;
 reg AESL_ready_reg;
@@ -120,19 +110,14 @@ reg process_0_finish = 0;
 reg process_1_finish = 0;
 reg process_2_finish = 0;
 reg process_3_finish = 0;
-reg process_4_finish = 0;
-//write b reg
-reg [31 : 0] write_b_count = 0;
-reg write_b_run_flag = 0;
-reg write_one_b_data_done = 0;
-//write pointer_a reg
-reg [31 : 0] write_pointer_a_count = 0;
-reg write_pointer_a_run_flag = 0;
-reg write_one_pointer_a_data_done = 0;
-//read ap_return reg
-reg [31 : 0] read_ap_return_count = 0;
-reg read_ap_return_run_flag = 0;
-reg read_one_ap_return_data_done = 0;
+//write array_1 reg
+reg [31 : 0] write_array_1_count = 0;
+reg write_array_1_run_flag = 0;
+reg write_one_array_1_data_done = 0;
+//write sum reg
+reg [31 : 0] write_sum_count = 0;
+reg write_sum_run_flag = 0;
+reg write_one_sum_data_done = 0;
 reg [31 : 0] write_start_count = 0;
 reg write_start_run_flag = 0;
 
@@ -155,14 +140,13 @@ assign TRAN_control_write_start_finish = AESL_write_start_finish;
 assign TRAN_control_done_out = AESL_done_index_reg;
 assign TRAN_control_ready_out = AESL_ready_out_index_reg;
 assign TRAN_control_idle_out = AESL_idle_index_reg;
-assign TRAN_control_read_data_finish = 1 & ap_return_read_data_finish;
-assign TRAN_control_write_data_finish = 1 & b_write_data_finish & pointer_a_write_data_finish;
+assign TRAN_control_write_data_finish = 1 & array_1_write_data_finish & sum_write_data_finish;
 always @(TRAN_control_ready_in or ready_initial) 
 begin
     AESL_ready_reg <= TRAN_control_ready_in | ready_initial;
 end
 
-always @(reset or process_0_finish or process_1_finish or process_2_finish or process_3_finish or process_4_finish ) begin
+always @(reset or process_0_finish or process_1_finish or process_2_finish or process_3_finish ) begin
     if (reset == 0) begin
         ongoing_process_number <= 0;
     end
@@ -176,9 +160,6 @@ always @(reset or process_0_finish or process_1_finish or process_2_finish or pr
             ongoing_process_number <= ongoing_process_number + 1;
     end
     else if (ongoing_process_number == 3 && process_3_finish == 1) begin
-            ongoing_process_number <= ongoing_process_number + 1;
-    end
-    else if (ongoing_process_number == 4 && process_4_finish == 1) begin
             ongoing_process_number <= 0;
     end
 end
@@ -327,11 +308,9 @@ end
 initial begin : update_status
     integer process_num ;
     integer read_status_resp;
-    integer write_continue_tmp;
     wait(reset === 1);
     @(posedge clk);
     process_num = 0;
-    write_continue_tmp = 0;
     while (1) begin
         process_0_finish = 0;
         AESL_done_index_reg         <= 0;
@@ -339,18 +318,9 @@ initial begin : update_status
         if (ongoing_process_number === process_num && process_busy === 0) begin
             process_busy = 1;
             read (STATUS_ADDR, RDATA_reg, read_status_resp);
+                AESL_done_index_reg         <= RDATA_reg[1 : 1];
                 AESL_ready_out_index_reg    <= RDATA_reg[1 : 1];
                 AESL_idle_index_reg         <= RDATA_reg[2 : 2];
-                if (RDATA_reg[1 : 1] == 1) begin
-                    @(posedge clk);
-                    AESL_ready_out_index_reg    <= 0;
-                    write_continue_tmp=0;
-                    write_continue_tmp[4 : 4] = 1;
-                    write (STATUS_ADDR, write_continue_tmp, read_status_resp);
-                    AESL_done_index_reg         <= 1;
-                    @(posedge clk);
-                    AESL_done_index_reg         <= 0;
-                end 
             process_0_finish = 1;
             process_busy = 0;
         end 
@@ -360,41 +330,41 @@ end
 
 always @(reset or posedge clk) begin
     if (reset == 0) begin
-        b_write_data_finish <= 0;
-        write_b_run_flag <= 0; 
-        write_b_count = 0;
-        count_operate_depth_by_bitwidth_and_depth (b_c_bitwidth, b_DEPTH, b_OPERATE_DEPTH);
+        array_1_write_data_finish <= 0;
+        write_array_1_run_flag <= 0; 
+        write_array_1_count = 0;
+        count_operate_depth_by_bitwidth_and_depth (array_1_c_bitwidth, array_1_DEPTH, array_1_OPERATE_DEPTH);
     end
     else begin
         if (TRAN_control_start_in === 1) begin
-            b_write_data_finish <= 0;
+            array_1_write_data_finish <= 0;
         end
         if (AESL_ready_reg === 1) begin
-            write_b_run_flag <= 1; 
-            write_b_count = 0;
+            write_array_1_run_flag <= 1; 
+            write_array_1_count = 0;
         end
-        if (write_one_b_data_done === 1) begin
-            write_b_count = write_b_count + 1;
-            if (write_b_count == b_OPERATE_DEPTH) begin
-                write_b_run_flag <= 0; 
-                b_write_data_finish <= 1;
+        if (write_one_array_1_data_done === 1) begin
+            write_array_1_count = write_array_1_count + 1;
+            if (write_array_1_count == array_1_OPERATE_DEPTH) begin
+                write_array_1_run_flag <= 0; 
+                array_1_write_data_finish <= 1;
             end
         end
     end
 end
 
-initial begin : write_b
-    integer write_b_resp;
+initial begin : write_array_1
+    integer write_array_1_resp;
     integer process_num ;
     integer get_ack;
     integer four_byte_num;
     integer c_bitwidth;
     integer i;
     integer j;
-    reg [31 : 0] b_data_tmp_reg;
+    reg [31 : 0] array_1_data_tmp_reg;
     wait(reset === 1);
     @(posedge clk);
-    c_bitwidth = b_c_bitwidth;
+    c_bitwidth = array_1_c_bitwidth;
     process_num = 1;
     count_c_data_four_byte_num_by_bitwidth (c_bitwidth , four_byte_num) ;
     while (1) begin
@@ -402,29 +372,29 @@ initial begin : write_b
 
         if (ongoing_process_number === process_num && process_busy === 0 ) begin
             get_ack = 1;
-            if (write_b_run_flag === 1 && get_ack === 1) begin
+            if (write_array_1_run_flag === 1 && get_ack === 1) begin
                 process_busy = 1;
-                //write b data 
+                //write array_1 data 
                 for (i = 0 ; i < four_byte_num ; i = i+1) begin
-                    if (b_c_bitwidth < 32) begin
-                        b_data_tmp_reg = mem_b[write_b_count];
+                    if (array_1_c_bitwidth < 32) begin
+                        array_1_data_tmp_reg = mem_array_1[write_array_1_count];
                     end
                     else begin
                         for (j=0 ; j<32 ; j = j + 1) begin
-                            if (i*32 + j < b_c_bitwidth) begin
-                                b_data_tmp_reg[j] = mem_b[write_b_count][i*32 + j];
+                            if (i*32 + j < array_1_c_bitwidth) begin
+                                array_1_data_tmp_reg[j] = mem_array_1[write_array_1_count][i*32 + j];
                             end
                             else begin
-                                b_data_tmp_reg[j] = 0;
+                                array_1_data_tmp_reg[j] = 0;
                             end
                         end
                     end
-                    write (b_data_in_addr + write_b_count * four_byte_num * 4 + i * 4, b_data_tmp_reg, write_b_resp);
+                    write (array_1_data_in_addr + write_array_1_count * four_byte_num * 4 + i * 4, array_1_data_tmp_reg, write_array_1_resp);
                 end
                 process_busy = 0;
-                write_one_b_data_done <= 1;
+                write_one_array_1_data_done <= 1;
                 @(posedge clk);
-                write_one_b_data_done <= 0;
+                write_one_array_1_data_done <= 0;
             end   
             process_1_finish <= 1;
         end
@@ -433,41 +403,41 @@ initial begin : write_b
 end
 always @(reset or posedge clk) begin
     if (reset == 0) begin
-        pointer_a_write_data_finish <= 0;
-        write_pointer_a_run_flag <= 0; 
-        write_pointer_a_count = 0;
-        count_operate_depth_by_bitwidth_and_depth (pointer_a_c_bitwidth, pointer_a_DEPTH, pointer_a_OPERATE_DEPTH);
+        sum_write_data_finish <= 0;
+        write_sum_run_flag <= 0; 
+        write_sum_count = 0;
+        count_operate_depth_by_bitwidth_and_depth (sum_c_bitwidth, sum_DEPTH, sum_OPERATE_DEPTH);
     end
     else begin
         if (TRAN_control_start_in === 1) begin
-            pointer_a_write_data_finish <= 0;
+            sum_write_data_finish <= 0;
         end
         if (AESL_ready_reg === 1) begin
-            write_pointer_a_run_flag <= 1; 
-            write_pointer_a_count = 0;
+            write_sum_run_flag <= 1; 
+            write_sum_count = 0;
         end
-        if (write_one_pointer_a_data_done === 1) begin
-            write_pointer_a_count = write_pointer_a_count + 1;
-            if (write_pointer_a_count == pointer_a_OPERATE_DEPTH) begin
-                write_pointer_a_run_flag <= 0; 
-                pointer_a_write_data_finish <= 1;
+        if (write_one_sum_data_done === 1) begin
+            write_sum_count = write_sum_count + 1;
+            if (write_sum_count == sum_OPERATE_DEPTH) begin
+                write_sum_run_flag <= 0; 
+                sum_write_data_finish <= 1;
             end
         end
     end
 end
 
-initial begin : write_pointer_a
-    integer write_pointer_a_resp;
+initial begin : write_sum
+    integer write_sum_resp;
     integer process_num ;
     integer get_ack;
     integer four_byte_num;
     integer c_bitwidth;
     integer i;
     integer j;
-    reg [31 : 0] pointer_a_data_tmp_reg;
+    reg [31 : 0] sum_data_tmp_reg;
     wait(reset === 1);
     @(posedge clk);
-    c_bitwidth = pointer_a_c_bitwidth;
+    c_bitwidth = sum_c_bitwidth;
     process_num = 2;
     count_c_data_four_byte_num_by_bitwidth (c_bitwidth , four_byte_num) ;
     while (1) begin
@@ -475,29 +445,29 @@ initial begin : write_pointer_a
 
         if (ongoing_process_number === process_num && process_busy === 0 ) begin
             get_ack = 1;
-            if (write_pointer_a_run_flag === 1 && get_ack === 1) begin
+            if (write_sum_run_flag === 1 && get_ack === 1) begin
                 process_busy = 1;
-                //write pointer_a data 
+                //write sum data 
                 for (i = 0 ; i < four_byte_num ; i = i+1) begin
-                    if (pointer_a_c_bitwidth < 32) begin
-                        pointer_a_data_tmp_reg = mem_pointer_a[write_pointer_a_count];
+                    if (sum_c_bitwidth < 32) begin
+                        sum_data_tmp_reg = mem_sum[write_sum_count];
                     end
                     else begin
                         for (j=0 ; j<32 ; j = j + 1) begin
-                            if (i*32 + j < pointer_a_c_bitwidth) begin
-                                pointer_a_data_tmp_reg[j] = mem_pointer_a[write_pointer_a_count][i*32 + j];
+                            if (i*32 + j < sum_c_bitwidth) begin
+                                sum_data_tmp_reg[j] = mem_sum[write_sum_count][i*32 + j];
                             end
                             else begin
-                                pointer_a_data_tmp_reg[j] = 0;
+                                sum_data_tmp_reg[j] = 0;
                             end
                         end
                     end
-                    write (pointer_a_data_in_addr + write_pointer_a_count * four_byte_num * 4 + i * 4, pointer_a_data_tmp_reg, write_pointer_a_resp);
+                    write (sum_data_in_addr + write_sum_count * four_byte_num * 4 + i * 4, sum_data_tmp_reg, write_sum_resp);
                 end
                 process_busy = 0;
-                write_one_pointer_a_data_done <= 1;
+                write_one_sum_data_done <= 1;
                 @(posedge clk);
-                write_one_pointer_a_data_done <= 0;
+                write_one_sum_data_done <= 0;
             end   
             process_2_finish <= 1;
         end
@@ -550,78 +520,6 @@ initial begin : write_start
     end
 end
 
-always @(reset or posedge clk) begin
-    if (reset == 0) begin
-        ap_return_read_data_finish <= 0;
-        read_ap_return_run_flag <= 0; 
-        read_ap_return_count = 0;
-        count_operate_depth_by_bitwidth_and_depth (ap_return_c_bitwidth, ap_return_DEPTH, ap_return_OPERATE_DEPTH);
-    end
-    else begin
-        if (AESL_done_index_reg === 1) begin
-            read_ap_return_run_flag = 1; 
-        end
-        if (TRAN_control_transaction_done_in === 1) begin
-            ap_return_read_data_finish <= 0;
-            read_ap_return_count = 0; 
-        end
-        if (read_one_ap_return_data_done === 1) begin
-            read_ap_return_count = read_ap_return_count + 1;
-            if (read_ap_return_count == ap_return_OPERATE_DEPTH) begin
-                read_ap_return_run_flag <= 0; 
-                ap_return_read_data_finish <= 1;
-            end
-        end
-    end
-end
-
-initial begin : read_ap_return
-    integer read_ap_return_resp;
-    integer process_num;
-    integer get_vld;
-    integer four_byte_num;
-    integer c_bitwidth;
-    integer i;
-    integer j;
-
-    wait(reset === 1);
-    @(posedge clk);
-    c_bitwidth = ap_return_c_bitwidth;
-    process_num = 4;
-    count_c_data_four_byte_num_by_bitwidth (c_bitwidth , four_byte_num) ;
-    while (1) begin
-        process_4_finish <= 0;
-        if (ongoing_process_number === process_num && process_busy === 0 ) begin
-            if (read_ap_return_run_flag === 1) begin
-                process_busy = 1;
-                get_vld = 1;
-                if (get_vld == 1) begin
-                    //read ap_return data 
-                    for (i = 0 ; i < four_byte_num ; i = i+1) begin
-                        read (ap_return_data_out_addr + read_ap_return_count * four_byte_num * 4 + i * 4, RDATA_reg, read_ap_return_resp);
-                        if (ap_return_c_bitwidth < 32) begin
-                            mem_ap_return[read_ap_return_count] <= RDATA_reg;
-                        end
-                        else begin
-                            for (j=0 ; j < 32 ; j = j + 1) begin
-                                if (i*32 + j < ap_return_c_bitwidth) begin
-                                    mem_ap_return[read_ap_return_count][i*32 + j] <= RDATA_reg[j];
-                                end
-                            end
-                        end
-                    end
-                    
-                    read_one_ap_return_data_done <= 1;
-                    @(posedge clk);
-                    read_one_ap_return_data_done <= 0;
-                end    
-                process_busy = 0;
-            end    
-            process_4_finish <= 1;
-        end
-        @(posedge clk);
-    end    
-end
 //------------------------Task and function-------------- 
 task read_token; 
     input integer fp; 
@@ -637,23 +535,23 @@ endtask
 //------------------------Read file------------------------ 
  
 // Read data from file 
-initial begin : read_b_file_process 
+initial begin : read_array_1_file_process 
   integer fp; 
   integer ret; 
   integer factor; 
-  reg [127 : 0] token; 
-  reg [127 : 0] token_tmp; 
-  //reg [b_c_bitwidth - 1 : 0] token_tmp; 
+  reg [151 : 0] token; 
+  reg [151 : 0] token_tmp; 
+  //reg [array_1_c_bitwidth - 1 : 0] token_tmp; 
   reg [DATA_WIDTH - 1 : 0] mem_tmp; 
   reg [ 8*5 : 1] str;
   integer transaction_idx; 
   integer i; 
   transaction_idx = 0; 
   mem_tmp [DATA_WIDTH - 1 : 0] = 0;
-  count_seperate_factor_by_bitwidth (b_c_bitwidth , factor);
-  fp = $fopen(`TV_IN_b ,"r"); 
+  count_seperate_factor_by_bitwidth (array_1_c_bitwidth , factor);
+  fp = $fopen(`TV_IN_array_1 ,"r"); 
   if(fp == 0) begin                               // Failed to open file 
-      $display("Failed to open file \"%s\"!", `TV_IN_b); 
+      $display("Failed to open file \"%s\"!", `TV_IN_array_1); 
       $finish; 
   end 
   read_token(fp, token); 
@@ -674,7 +572,7 @@ initial begin : read_b_file_process
           @(posedge clk); 
           # 0.2;
       end
-      for(i = 0; i < b_DEPTH; i = i + 1) begin 
+      for(i = 0; i < array_1_DEPTH; i = i + 1) begin 
           read_token(fp, token); 
           ret = $sscanf(token, "0x%x", token_tmp); 
           if (factor == 4) begin
@@ -689,7 +587,7 @@ initial begin : read_b_file_process
               end
               if (i%factor == 3) begin
                   mem_tmp [31 : 24] = token_tmp;
-                  mem_b [i/factor] = mem_tmp;
+                  mem_array_1 [i/factor] = mem_tmp;
                   mem_tmp [DATA_WIDTH - 1 : 0] = 0;
               end
           end
@@ -699,22 +597,22 @@ initial begin : read_b_file_process
               end
               if (i%factor == 1) begin
                   mem_tmp [31 : 16] = token_tmp;
-                  mem_b [i/factor] = mem_tmp;
+                  mem_array_1 [i/factor] = mem_tmp;
                   mem_tmp [DATA_WIDTH - 1: 0] = 0;
               end
           end
           if (factor == 1) begin
-              mem_b [i] = token_tmp;
+              mem_array_1 [i] = token_tmp;
           end
       end 
       if (factor == 4) begin
           if (i%factor != 0) begin
-              mem_b [i/factor] = mem_tmp;
+              mem_array_1 [i/factor] = mem_tmp;
           end
       end
       if (factor == 2) begin
           if (i%factor != 0) begin
-              mem_b [i/factor] = mem_tmp;
+              mem_array_1 [i/factor] = mem_tmp;
           end
       end 
       read_token(fp, token); 
@@ -731,23 +629,23 @@ end
 //------------------------Read file------------------------ 
  
 // Read data from file 
-initial begin : read_pointer_a_file_process 
+initial begin : read_sum_file_process 
   integer fp; 
   integer ret; 
   integer factor; 
-  reg [151 : 0] token; 
-  reg [151 : 0] token_tmp; 
-  //reg [pointer_a_c_bitwidth - 1 : 0] token_tmp; 
+  reg [127 : 0] token; 
+  reg [127 : 0] token_tmp; 
+  //reg [sum_c_bitwidth - 1 : 0] token_tmp; 
   reg [DATA_WIDTH - 1 : 0] mem_tmp; 
   reg [ 8*5 : 1] str;
   integer transaction_idx; 
   integer i; 
   transaction_idx = 0; 
   mem_tmp [DATA_WIDTH - 1 : 0] = 0;
-  count_seperate_factor_by_bitwidth (pointer_a_c_bitwidth , factor);
-  fp = $fopen(`TV_IN_pointer_a ,"r"); 
+  count_seperate_factor_by_bitwidth (sum_c_bitwidth , factor);
+  fp = $fopen(`TV_IN_sum ,"r"); 
   if(fp == 0) begin                               // Failed to open file 
-      $display("Failed to open file \"%s\"!", `TV_IN_pointer_a); 
+      $display("Failed to open file \"%s\"!", `TV_IN_sum); 
       $finish; 
   end 
   read_token(fp, token); 
@@ -768,7 +666,7 @@ initial begin : read_pointer_a_file_process
           @(posedge clk); 
           # 0.2;
       end
-      for(i = 0; i < pointer_a_DEPTH; i = i + 1) begin 
+      for(i = 0; i < sum_DEPTH; i = i + 1) begin 
           read_token(fp, token); 
           ret = $sscanf(token, "0x%x", token_tmp); 
           if (factor == 4) begin
@@ -783,7 +681,7 @@ initial begin : read_pointer_a_file_process
               end
               if (i%factor == 3) begin
                   mem_tmp [31 : 24] = token_tmp;
-                  mem_pointer_a [i/factor] = mem_tmp;
+                  mem_sum [i/factor] = mem_tmp;
                   mem_tmp [DATA_WIDTH - 1 : 0] = 0;
               end
           end
@@ -793,22 +691,22 @@ initial begin : read_pointer_a_file_process
               end
               if (i%factor == 1) begin
                   mem_tmp [31 : 16] = token_tmp;
-                  mem_pointer_a [i/factor] = mem_tmp;
+                  mem_sum [i/factor] = mem_tmp;
                   mem_tmp [DATA_WIDTH - 1: 0] = 0;
               end
           end
           if (factor == 1) begin
-              mem_pointer_a [i] = token_tmp;
+              mem_sum [i] = token_tmp;
           end
       end 
       if (factor == 4) begin
           if (i%factor != 0) begin
-              mem_pointer_a [i/factor] = mem_tmp;
+              mem_sum [i/factor] = mem_tmp;
           end
       end
       if (factor == 2) begin
           if (i%factor != 0) begin
-              mem_pointer_a [i/factor] = mem_tmp;
+              mem_sum [i/factor] = mem_tmp;
           end
       end 
       read_token(fp, token); 
@@ -820,85 +718,6 @@ initial begin : read_pointer_a_file_process
       transaction_idx = transaction_idx + 1; 
   end 
   $fclose(fp); 
-end 
- 
-//------------------------Write file----------------------- 
- 
-// Write data to file 
- 
-initial begin : write_ap_return_file_proc 
-  integer fp; 
-  integer factor; 
-  integer transaction_idx; 
-  reg [ap_return_c_bitwidth - 1 : 0] mem_tmp; 
-  reg [ 100*8 : 1] str;
-  integer i; 
-  transaction_idx = 0; 
-  count_seperate_factor_by_bitwidth (ap_return_c_bitwidth , factor);
-  while(1) begin 
-      @(posedge clk);
-      while (TRAN_control_transaction_done_in !== 1) begin
-          @(posedge clk);
-      end
-      # 0.1;
-      fp = $fopen(`TV_OUT_ap_return, "a"); 
-      if(fp == 0) begin       // Failed to open file 
-          $display("Failed to open file \"%s\"!", `TV_OUT_ap_return); 
-          $finish; 
-      end 
-      $fdisplay(fp, "[[transaction]] %d", transaction_idx);
-      for (i = 0; i < (ap_return_DEPTH - ap_return_DEPTH % factor); i = i + 1) begin
-          if (factor == 4) begin
-              if (i%factor == 0) begin
-                  mem_tmp = mem_ap_return[i/factor][7:0];
-              end
-              if (i%factor == 1) begin
-                  mem_tmp = mem_ap_return[i/factor][15:8];
-              end
-              if (i%factor == 2) begin
-                  mem_tmp = mem_ap_return[i/factor][23:16];
-              end
-              if (i%factor == 3) begin
-                  mem_tmp = mem_ap_return[i/factor][31:24];
-              end
-              $fdisplay(fp,"0x%x",mem_tmp);
-          end
-          if (factor == 2) begin
-              if (i%factor == 0) begin
-                  mem_tmp = mem_ap_return[i/factor][15:0];
-              end
-              if (i%factor == 1) begin
-                  mem_tmp = mem_ap_return[i/factor][31:16];
-              end
-              $fdisplay(fp,"0x%x",mem_tmp);
-          end
-          if (factor == 1) begin
-              $fdisplay(fp,"0x%x",mem_ap_return[i]);
-          end
-      end 
-      if (factor == 4) begin
-          if ((ap_return_DEPTH - 1) % factor == 2) begin
-              $fdisplay(fp,"0x%x",mem_ap_return[ap_return_DEPTH / factor][7:0]);
-              $fdisplay(fp,"0x%x",mem_ap_return[ap_return_DEPTH / factor][15:8]);
-              $fdisplay(fp,"0x%x",mem_ap_return[ap_return_DEPTH / factor][23:16]);
-          end
-          if ((ap_return_DEPTH - 1) % factor == 1) begin
-              $fdisplay(fp,"0x%x",mem_ap_return[ap_return_DEPTH / factor][7:0]);
-              $fdisplay(fp,"0x%x",mem_ap_return[ap_return_DEPTH / factor][15:8]);
-          end
-          if ((ap_return_DEPTH - 1) % factor == 0) begin
-              $fdisplay(fp,"0x%x",mem_ap_return[ap_return_DEPTH / factor][7:0]);
-          end
-      end
-      if (factor == 2) begin
-          if ((ap_return_DEPTH - 1) % factor == 0) begin
-              $fdisplay(fp,"0x%x",mem_ap_return[ap_return_DEPTH / factor][15:0]);
-          end
-      end
-      $fdisplay(fp, "[[/transaction]]");
-      transaction_idx = transaction_idx + 1;
-      $fclose(fp); 
-  end 
 end 
  
 endmodule

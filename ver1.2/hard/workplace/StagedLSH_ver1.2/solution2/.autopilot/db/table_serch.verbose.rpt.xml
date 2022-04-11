@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'table_serch'" level="0">
-<item name = "Date">Fri Apr  8 12:47:03 2022
+<item name = "Date">Sun Apr 10 16:17:44 2022
 </item>
 <item name = "Version">2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)</item>
 <item name = "Project">StagedLSH_ver1.2</item>
@@ -70,7 +70,7 @@
 <column name="grp_backet_serch_fu_275">backet_serch, 0, 0, 41253, 65323, 0</column>
 <column name="control_s_axi_U">control_s_axi, 0, 0, 348, 616, 0</column>
 <column name="hash_table1_m_axi_U">hash_table1_m_axi, 2, 0, 512, 580, 0</column>
-<column name="hash_table_pointer1_m_axi_U">hash_table_pointer1_m_axi, 2, 0, 512, 580, 0</column>
+<column name="pointer1_m_axi_U">pointer1_m_axi, 2, 0, 512, 580, 0</column>
 <column name="query1_m_axi_U">query1_m_axi, 4, 0, 566, 766, 0</column>
 </table>
 </item>
@@ -89,15 +89,15 @@
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
 <column name="L_1_fu_552_p2">+, 0, 0, 9, 2, 1</column>
-<column name="add_ln59_fu_341_p2">+, 0, 0, 14, 7, 1</column>
-<column name="add_ln62_1_fu_365_p2">+, 0, 0, 71, 64, 64</column>
-<column name="add_ln62_2_fu_402_p2">+, 0, 0, 10, 3, 3</column>
-<column name="add_ln62_fu_355_p2">+, 0, 0, 16, 9, 4</column>
+<column name="add_ln157_fu_341_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln160_1_fu_365_p2">+, 0, 0, 71, 64, 64</column>
+<column name="add_ln160_2_fu_402_p2">+, 0, 0, 10, 3, 3</column>
+<column name="add_ln160_fu_355_p2">+, 0, 0, 16, 9, 4</column>
 <column name="henkan_V_fu_586_p2">+, 0, 0, 39, 32, 32</column>
 <column name="ap_block_state148_on_subcall_done">and, 0, 0, 2, 1, 1</column>
-<column name="icmp_ln59_fu_335_p2">icmp, 0, 0, 10, 7, 3</column>
-<column name="icmp_ln68_fu_546_p2">icmp, 0, 0, 8, 2, 3</column>
-<column name="lshr_ln62_fu_419_p2">lshr, 0, 0, 182, 64, 64</column>
+<column name="icmp_ln157_fu_335_p2">icmp, 0, 0, 10, 7, 3</column>
+<column name="icmp_ln166_fu_546_p2">icmp, 0, 0, 8, 2, 3</column>
+<column name="lshr_ln160_fu_419_p2">lshr, 0, 0, 182, 64, 64</column>
 <column name="ap_block_state1">or, 0, 0, 2, 1, 1</column>
 </table>
 </item>
@@ -114,8 +114,8 @@
 <column name="flame_index_reg_210">9, 2, 7, 14</column>
 <column name="hash_table1_ARVALID">9, 2, 1, 2</column>
 <column name="hash_table1_RREADY">9, 2, 1, 2</column>
-<column name="hash_table_pointer1_ARVALID">9, 2, 1, 2</column>
-<column name="hash_table_pointer1_RREADY">9, 2, 1, 2</column>
+<column name="pointer1_ARVALID">9, 2, 1, 2</column>
+<column name="pointer1_RREADY">9, 2, 1, 2</column>
 <column name="query1_ARADDR">20, 4, 64, 256</column>
 <column name="query1_ARBURST">9, 2, 2, 4</column>
 <column name="query1_ARCACHE">9, 2, 4, 8</column>
@@ -140,7 +140,7 @@
 <column name="FP_DB_read_reg_621">64, 0, 64, 0</column>
 <column name="L_1_reg_770">2, 0, 2, 0</column>
 <column name="L_reg_243">2, 0, 2, 0</column>
-<column name="add_ln59_reg_665">7, 0, 7, 0</column>
+<column name="add_ln157_reg_665">7, 0, 7, 0</column>
 <column name="ap_CS_fsm">148, 0, 148, 0</column>
 <column name="ap_done_reg">1, 0, 1, 0</column>
 <column name="ap_rst_n_inv">1, 0, 1, 0</column>
@@ -153,7 +153,7 @@
 <column name="hash_table_pointer_read_reg_611">64, 0, 64, 0</column>
 <column name="hash_table_read_reg_616">64, 0, 64, 0</column>
 <column name="henkan_V_reg_775">32, 0, 32, 0</column>
-<column name="icmp_ln59_reg_661">1, 0, 1, 0</column>
+<column name="icmp_ln157_reg_661">1, 0, 1, 0</column>
 <column name="music_index_1_fu_158">32, 0, 32, 0</column>
 <column name="p_Result_s_reg_696">96, 0, 96, 0</column>
 <column name="query1_addr_1_read_reg_681">64, 0, 64, 0</column>
@@ -175,9 +175,9 @@
 <column name="tmp_7_reg_742">1, 0, 1, 0</column>
 <column name="tmp_8_reg_747">1, 0, 1, 0</column>
 <column name="tmp_9_reg_752">1, 0, 1, 0</column>
+<column name="trunc_ln160_2_reg_670">61, 0, 61, 0</column>
+<column name="trunc_ln160_reg_637">3, 0, 3, 0</column>
 <column name="trunc_ln312_reg_691">1, 0, 1, 0</column>
-<column name="trunc_ln62_2_reg_670">61, 0, 61, 0</column>
-<column name="trunc_ln62_reg_637">3, 0, 3, 0</column>
 <column name="trunc_ln_reg_632">61, 0, 61, 0</column>
 </table>
 </item>
@@ -343,51 +343,51 @@
 <column name="m_axi_hash_table1_BRESP">in, 2, m_axi, hash_table1, pointer</column>
 <column name="m_axi_hash_table1_BID">in, 1, m_axi, hash_table1, pointer</column>
 <column name="m_axi_hash_table1_BUSER">in, 1, m_axi, hash_table1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWVALID">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWREADY">in, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWADDR">out, 64, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWID">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWLEN">out, 8, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWSIZE">out, 3, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWBURST">out, 2, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWLOCK">out, 2, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWCACHE">out, 4, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWPROT">out, 3, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWQOS">out, 4, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWREGION">out, 4, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_AWUSER">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_WVALID">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_WREADY">in, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_WDATA">out, 32, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_WSTRB">out, 4, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_WLAST">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_WID">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_WUSER">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARVALID">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARREADY">in, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARADDR">out, 64, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARID">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARLEN">out, 8, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARSIZE">out, 3, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARBURST">out, 2, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARLOCK">out, 2, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARCACHE">out, 4, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARPROT">out, 3, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARQOS">out, 4, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARREGION">out, 4, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_ARUSER">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_RVALID">in, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_RREADY">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_RDATA">in, 32, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_RLAST">in, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_RID">in, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_RUSER">in, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_RRESP">in, 2, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_BVALID">in, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_BREADY">out, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_BRESP">in, 2, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_BID">in, 1, m_axi, hash_table_pointer1, pointer</column>
-<column name="m_axi_hash_table_pointer1_BUSER">in, 1, m_axi, hash_table_pointer1, pointer</column>
+<column name="m_axi_pointer1_AWVALID">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWREADY">in, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWADDR">out, 64, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWID">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWLEN">out, 8, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWSIZE">out, 3, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWBURST">out, 2, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWLOCK">out, 2, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWCACHE">out, 4, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWPROT">out, 3, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWQOS">out, 4, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWREGION">out, 4, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_AWUSER">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_WVALID">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_WREADY">in, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_WDATA">out, 32, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_WSTRB">out, 4, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_WLAST">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_WID">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_WUSER">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARVALID">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARREADY">in, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARADDR">out, 64, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARID">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARLEN">out, 8, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARSIZE">out, 3, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARBURST">out, 2, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARLOCK">out, 2, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARCACHE">out, 4, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARPROT">out, 3, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARQOS">out, 4, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARREGION">out, 4, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_ARUSER">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_RVALID">in, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_RREADY">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_RDATA">in, 32, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_RLAST">in, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_RID">in, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_RUSER">in, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_RRESP">in, 2, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_BVALID">in, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_BREADY">out, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_BRESP">in, 2, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_BID">in, 1, m_axi, pointer1, pointer</column>
+<column name="m_axi_pointer1_BUSER">in, 1, m_axi, pointer1, pointer</column>
 </table>
 </item>
 </section>

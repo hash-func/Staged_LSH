@@ -4,37 +4,47 @@ target datalayout = "e-m:e-i64:64-i128:128-i256:256-i512:512-i1024:1024-i2048:20
 target triple = "fpga64-xilinx-none"
 
 ; Function Attrs: argmemonly noinline
-define i32 @apatb_kernel_ir(i32 %a, i32 %b, i32* %pointer_a) local_unnamed_addr #0 {
+define void @apatb_kernel_ir(i32* %array_1, i32 %sum) local_unnamed_addr #0 {
 entry:
-  %pointer_a_copy = alloca i32, align 512
-  call fastcc void @copy_in(i32* %pointer_a, i32* nonnull align 512 %pointer_a_copy)
-  %0 = call i32 @apatb_kernel_hw(i32 %a, i32 %b, i32* %pointer_a_copy)
-  call fastcc void @copy_out(i32* %pointer_a, i32* nonnull align 512 %pointer_a_copy)
-  ret i32 %0
-}
-
-; Function Attrs: argmemonly noinline
-define internal fastcc void @copy_in(i32* noalias readonly, i32* noalias align 512) unnamed_addr #1 {
-entry:
-  call fastcc void @onebyonecpy_hls.p0i32(i32* align 512 %1, i32* %0)
+  %array_1_copy = alloca [40 x i32], align 512
+  %0 = bitcast i32* %array_1 to [40 x i32]*
+  call fastcc void @copy_in([40 x i32]* %0, [40 x i32]* nonnull align 512 %array_1_copy)
+  %1 = getelementptr inbounds [40 x i32], [40 x i32]* %array_1_copy, i32 0, i32 0
+  call void @apatb_kernel_hw(i32* %1, i32 %sum)
+  call fastcc void @copy_out([40 x i32]* %0, [40 x i32]* nonnull align 512 %array_1_copy)
   ret void
 }
 
 ; Function Attrs: argmemonly noinline
-define internal fastcc void @onebyonecpy_hls.p0i32(i32* noalias align 512, i32* noalias readonly) unnamed_addr #2 {
+define internal fastcc void @copy_in([40 x i32]* noalias readonly, [40 x i32]* noalias align 512) unnamed_addr #1 {
 entry:
-  %2 = icmp eq i32* %0, null
-  %3 = icmp eq i32* %1, null
+  call fastcc void @onebyonecpy_hls.p0a40i32([40 x i32]* align 512 %1, [40 x i32]* %0)
+  ret void
+}
+
+; Function Attrs: argmemonly noinline
+define internal fastcc void @onebyonecpy_hls.p0a40i32([40 x i32]* noalias align 512, [40 x i32]* noalias readonly) unnamed_addr #2 {
+entry:
+  %2 = icmp eq [40 x i32]* %0, null
+  %3 = icmp eq [40 x i32]* %1, null
   %4 = or i1 %2, %3
   br i1 %4, label %ret, label %copy
 
 copy:                                             ; preds = %entry
-  %5 = bitcast i32* %0 to i8*
-  %6 = bitcast i32* %1 to i8*
-  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 1 %5, i8* align 1 %6, i64 4, i1 false)
-  br label %ret
+  br label %for.loop
 
-ret:                                              ; preds = %copy, %entry
+for.loop:                                         ; preds = %for.loop, %copy
+  %for.loop.idx3 = phi i64 [ 0, %copy ], [ %for.loop.idx.next, %for.loop ]
+  %dst.addr.gep1 = getelementptr [40 x i32], [40 x i32]* %0, i64 0, i64 %for.loop.idx3
+  %5 = bitcast i32* %dst.addr.gep1 to i8*
+  %src.addr.gep2 = getelementptr [40 x i32], [40 x i32]* %1, i64 0, i64 %for.loop.idx3
+  %6 = bitcast i32* %src.addr.gep2 to i8*
+  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 1 %5, i8* align 1 %6, i64 4, i1 false)
+  %for.loop.idx.next = add nuw nsw i64 %for.loop.idx3, 1
+  %exitcond = icmp ne i64 %for.loop.idx.next, 40
+  br i1 %exitcond, label %for.loop, label %ret
+
+ret:                                              ; preds = %for.loop, %entry
   ret void
 }
 
@@ -42,23 +52,25 @@ ret:                                              ; preds = %copy, %entry
 declare void @llvm.memcpy.p0i8.p0i8.i64(i8* nocapture writeonly, i8* nocapture readonly, i64, i1) #3
 
 ; Function Attrs: argmemonly noinline
-define internal fastcc void @copy_out(i32* noalias, i32* noalias readonly align 512) unnamed_addr #4 {
+define internal fastcc void @copy_out([40 x i32]* noalias, [40 x i32]* noalias readonly align 512) unnamed_addr #4 {
 entry:
-  call fastcc void @onebyonecpy_hls.p0i32(i32* %0, i32* align 512 %1)
+  call fastcc void @onebyonecpy_hls.p0a40i32([40 x i32]* %0, [40 x i32]* align 512 %1)
   ret void
 }
 
-declare i32 @apatb_kernel_hw(i32, i32, i32*)
+declare void @apatb_kernel_hw(i32*, i32)
 
-define i32 @kernel_hw_stub_wrapper(i32, i32, i32*) #5 {
+define void @kernel_hw_stub_wrapper(i32*, i32) #5 {
 entry:
-  call void @copy_out(i32* null, i32* %2)
-  %3 = call i32 @kernel_hw_stub(i32 %0, i32 %1, i32* %2)
-  call void @copy_in(i32* null, i32* %2)
-  ret i32 %3
+  %2 = bitcast i32* %0 to [40 x i32]*
+  call void @copy_out([40 x i32]* null, [40 x i32]* %2)
+  %3 = bitcast [40 x i32]* %2 to i32*
+  call void @kernel_hw_stub(i32* %3, i32 %1)
+  call void @copy_in([40 x i32]* null, [40 x i32]* %2)
+  ret void
 }
 
-declare i32 @kernel_hw_stub(i32, i32, i32*)
+declare void @kernel_hw_stub(i32*, i32)
 
 attributes #0 = { argmemonly noinline "fpga.wrapper.func"="wrapper" }
 attributes #1 = { argmemonly noinline "fpga.wrapper.func"="copyin" }

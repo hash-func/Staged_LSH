@@ -1,0 +1,11 @@
+<VitisHLS:BurstInfo>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstInferredPassed" src_info="../hls_test/src/kernel.cpp:17:20" msg_id="214-116" msg_severity="INFO" msg_body="Sequential read of length 10 has been inferred" OldID="bb0.load.17" ID="array_1.seq" BundleName="array11" VarName="array_1"/>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstInferredPassed" src_info="../hls_test/src/kernel.cpp:16:27" msg_id="214-116" msg_severity="INFO" msg_body="Sequential write of length 10 has been inferred" OldID="bb0.store.18" ID="array_1.seq2" BundleName="array11" VarName="array_1"/>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstWidenedPassed" src_info="../hls_test/src/kernel.cpp:17:20" msg_id="214-119" msg_severity="INFO" msg_body="Burst read of 10 x 32bit words has been widened by 2: 5 x 64bit words" OldID="array_1.seq" ID="wseq" BundleName="array11" VarName="array_1"/>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstWidenedPassed" src_info="../hls_test/src/kernel.cpp:16:27" msg_id="214-119" msg_severity="INFO" msg_body="Burst write of 10 x 32bit words has been widened by 2: 5 x 64bit words" OldID="array_1.seq2" ID="wseq3" BundleName="array11" VarName="array_1"/>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="BadAccessLenMissed" src_info="../hls_test/src/kernel.cpp:17:20" msg_id="214-234" msg_severity="INFO" msg_body="Sequential access length is not divisible by 2" resolution="214-234" ID="wseq" BundleName="array11" VarName="array_1"/>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="BadAccessLenMissed" src_info="../hls_test/src/kernel.cpp:16:27" msg_id="214-234" msg_severity="INFO" msg_body="Sequential access length is not divisible by 2" resolution="214-234" ID="wseq3" BundleName="array11" VarName="array_1"/>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="BadAccessLenMissed" src_info="../hls_test/src/kernel.cpp:17:20" msg_id="214-234" msg_severity="INFO" msg_body="Sequential access length is not divisible by 2" resolution="214-234" ID="wseq" BundleName="array11" VarName="array_1"/>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="BadAccessLenMissed" src_info="../hls_test/src/kernel.cpp:16:27" msg_id="214-234" msg_severity="INFO" msg_body="Sequential access length is not divisible by 2" resolution="214-234" ID="wseq3" BundleName="array11" VarName="array_1"/>
+</VitisHLS:BurstInfo>
+

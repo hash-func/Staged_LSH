@@ -61,10 +61,6 @@
             <obj_property name="ElementShortName">ap_done</obj_property>
             <obj_property name="ObjectShortName">ap_done</obj_property>
          </wvobject>
-         <wvobject type="logic" fp_name="/apatb_kernel_top/AESL_inst_kernel/ap_continue">
-            <obj_property name="ElementShortName">ap_continue</obj_property>
-            <obj_property name="ObjectShortName">ap_continue</obj_property>
-         </wvobject>
       </wvobject>
    </wvobject>
 </wave_config>

@@ -1,7 +1,7 @@
 <VitisHLS:BurstInfo>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="UnknownUnderlyingObjectMissed" src_info="../src/table_serch.cpp:85:17" msg_id="214-117" msg_severity="INFO" msg_body="Cannot find or modify the underlying object pointed by alloca" ID="_Z14hash_fpga_func7ap_uintILi96EEii.exit.store.9" VarName="agg.tmp7"/>
-    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstInferredPassed" src_info="../src/table_serch.cpp:47:27" msg_id="214-116" msg_severity="INFO" msg_body="Sequential read of length 2 has been inferred" OldID="bb0.load.11" ID="query.seq" BundleName="query1" VarName="query"/>
     <burst group="BURST_VERBOSE_MISSED" fe_name="UnknownUnderlyingObjectMissed" src_info="" msg_id="214-117" msg_severity="INFO" msg_body="Cannot find or modify the underlying object pointed by flame96.V" ID=".lr.ph.load.10" VarName="flame96"/>
-    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstWidenedPassed" src_info="../src/table_serch.cpp:47:27" msg_id="214-119" msg_severity="INFO" msg_body="Burst read of 2 x 32bit words has been widened by 2: 1 x 64bit words" OldID="query.seq" ID="wseq" BundleName="query1" VarName="query"/>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="UnknownUnderlyingObjectMissed" src_info="../src/table_serch.cpp:183:17" msg_id="214-117" msg_severity="INFO" msg_body="Cannot find or modify the underlying object pointed by alloca" ID="_Z14hash_fpga_func7ap_uintILi96EEii.exit.store.9" VarName="agg.tmp7"/>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstInferredPassed" src_info="../src/table_serch.cpp:145:27" msg_id="214-116" msg_severity="INFO" msg_body="Sequential read of length 2 has been inferred" OldID="bb0.load.11" ID="query.seq" BundleName="query1" VarName="query"/>
+    <burst group="BURST_VERBOSE_PASSED" fe_name="BurstWidenedPassed" src_info="../src/table_serch.cpp:145:27" msg_id="214-119" msg_severity="INFO" msg_body="Burst read of 2 x 32bit words has been widened by 2: 1 x 64bit words" OldID="query.seq" ID="wseq" BundleName="query1" VarName="query"/>
 </VitisHLS:BurstInfo>
 

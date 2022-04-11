@@ -30,7 +30,7 @@
 <InvalidType>0</InvalidType>
 </RtlPorts>
 <RtlPorts>
-<name>hash_table_pointer1</name>
+<name>pointer1</name>
 <CType>
 <TypeName>void</TypeName>
 <TypeWidth>8</TypeWidth>

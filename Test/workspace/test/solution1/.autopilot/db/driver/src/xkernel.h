@@ -84,12 +84,13 @@ void XKernel_Start(XKernel *InstancePtr);
 u32 XKernel_IsDone(XKernel *InstancePtr);
 u32 XKernel_IsIdle(XKernel *InstancePtr);
 u32 XKernel_IsReady(XKernel *InstancePtr);
-void XKernel_Continue(XKernel *InstancePtr);
 void XKernel_EnableAutoRestart(XKernel *InstancePtr);
 void XKernel_DisableAutoRestart(XKernel *InstancePtr);
 
-void XKernel_Set_flame(XKernel *InstancePtr, u64 Data);
-u64 XKernel_Get_flame(XKernel *InstancePtr);
+void XKernel_Set_array_1(XKernel *InstancePtr, u64 Data);
+u64 XKernel_Get_array_1(XKernel *InstancePtr);
+void XKernel_Set_sum(XKernel *InstancePtr, u32 Data);
+u32 XKernel_Get_sum(XKernel *InstancePtr);
 
 void XKernel_InterruptGlobalEnable(XKernel *InstancePtr);
 void XKernel_InterruptGlobalDisable(XKernel *InstancePtr);

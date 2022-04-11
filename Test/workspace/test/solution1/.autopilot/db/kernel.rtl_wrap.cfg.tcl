@@ -4,7 +4,7 @@ set moduleIsExternC "1"
 set rawDecl ""
 set globalVariable ""
 set PortList ""
-set PortName "flame"
+set PortName "array_1"
 set BitWidth "64"
 set ArrayOpt ""
 set Const "0"
@@ -14,6 +14,18 @@ set Reference "0"
 set Dims [list 0]
 set Interface "wire"
 set DataType "void"
+set Port [list $PortName $Interface $DataType $Pointer $Dims $Const    $Volatile $ArrayOpt]
+lappend PortList $Port
+set PortName "sum"
+set BitWidth "32"
+set ArrayOpt ""
+set Const "0"
+set Volatile "0"
+set Pointer "0"
+set Reference "0"
+set Dims [list 0]
+set Interface "wire"
+set DataType "int"
 set Port [list $PortName $Interface $DataType $Pointer $Dims $Const    $Volatile $ArrayOpt]
 lappend PortList $Port
 set globalAPint "" 

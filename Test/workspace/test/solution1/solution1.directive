@@ -5,6 +5,26 @@
                 <option name="name" value="kernel"/>
             </pragma>
         </directive>
+        <directive functionName="kernel" label="hairetu_loop" functionLabel="">
+            <pragma name="UNROLL"/>
+        </directive>
+        <directive functionName="kernel" label="" functionLabel="">
+            <pragma name="INTERFACE">
+                <option name="ap_ctrl_hs" value="" positionalBoolean="mode"/>
+                <option name="port" value="return" positionalBoolean="4"/>
+            </pragma>
+        </directive>
+        <directive functionName="kernel" label="henkan_loop" functionLabel="">
+            <pragma name="UNROLL"/>
+        </directive>
+        <directive functionName="kernel" label="" functionLabel="">
+            <pragma name="INTERFACE">
+                <option name="m_axi" value="" positionalBoolean="mode"/>
+                <option name="depth" value="40"/>
+                <option name="port" value="array_1" positionalBoolean="4"/>
+                <option name="bundle" value="array11"/>
+            </pragma>
+        </directive>
     </sourceFile>
 </AutoPilot:ProjectResources>
 

@@ -71735,94 +71735,6 @@ inline bool operator!=(
 # 11 "/home/nomoto/src/StagedLSH/ver1.2/hard/src/table_serch.cpp" 2
 
 
-
-ap_uint<32> hash_fpga_func(
-    ap_uint<96> flame96,
-    int L,
-    int flame_index
-);
-
-int backet_serch(
-    unsigned int hash_value,
-    unsigned int hash_table[],
-    unsigned int hash_table_pointer[],
-    unsigned int query[],
-    ap_uint<96> flame96,
-    unsigned int FP_DB[]
-);
-
-
-
-
-
-int table_serch(
-    unsigned int query[],
-    unsigned int FP_DB[],
-    unsigned int hash_table[],
-    unsigned int hash_table_pointer[]
-)
-{
-
-    int music_index = -1;
-
-
-    unsigned int hash_temp = 0;
-
-    ap_uint<96> flame96;
-    ap_uint<32> tempA32 = query[0];
-    ap_uint<32> tempB32 = query[1];
-    ap_uint<32> tempC32;
-# 59 "/home/nomoto/src/StagedLSH/ver1.2/hard/src/table_serch.cpp"
-    flame_serch : for (int flame_index=0; flame_index<((4096/32)-(3 -1)); flame_index++)
-    {
-
-        tempC32 = query[flame_index+2];
-
-
-        flame96 = ((tempA32, tempB32), tempC32);
-
-
-        hash_serch : for (int L=0; L<2; L++)
-        {
-
-            hash_temp = hash_fpga_func(
-                flame96,
-                L,
-                flame_index
-            );
-
-
-
-
-            music_index = backet_serch(
-                hash_temp,
-                hash_table,
-                hash_table_pointer,
-                query,
-                flame96,
-                FP_DB
-            );
-
-            if (music_index >= 0)
-            {
-
-
-
-                break;
-            }
-        }
-
-        if (music_index >= 0) break;
-
-        tempA32 = tempB32;
-        tempB32 = tempC32;
-    }
-    return music_index;
-}
-
-
-
-
 ap_uint<32> hash_fpga_func(
     ap_uint<96> flame96,
     int L,
@@ -71935,6 +71847,73 @@ int backet_serch(
                 }
             }
         }
+    }
+    return music_index;
+}
+
+
+
+int table_serch(
+    unsigned int query[],
+    unsigned int FP_DB[],
+    unsigned int hash_table[],
+    unsigned int hash_table_pointer[]
+)
+{
+
+    int music_index = -1;
+
+
+    unsigned int hash_temp = 0;
+
+    ap_uint<96> flame96;
+    ap_uint<32> tempA32 = query[0];
+    ap_uint<32> tempB32 = query[1];
+    ap_uint<32> tempC32;
+# 157 "/home/nomoto/src/StagedLSH/ver1.2/hard/src/table_serch.cpp"
+    flame_serch : for (int flame_index=0; flame_index<((4096/32)-(3 -1)); flame_index++)
+    {
+
+        tempC32 = query[flame_index+2];
+
+
+        flame96 = ((tempA32, tempB32), tempC32);
+
+
+        hash_serch : for (int L=0; L<2; L++)
+        {
+
+            hash_temp = hash_fpga_func(
+                flame96,
+                L,
+                flame_index
+            );
+
+
+
+
+            music_index = backet_serch(
+                hash_temp,
+                hash_table,
+                hash_table_pointer,
+                query,
+                flame96,
+                FP_DB
+            );
+
+            if (music_index >= 0)
+            {
+
+
+
+                break;
+            }
+        }
+
+        if (music_index >= 0) break;
+
+        tempA32 = tempB32;
+        tempB32 = tempC32;
     }
     return music_index;
 }

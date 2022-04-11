@@ -11,7 +11,7 @@ open_solution "solution1" -flow_target vitis
 set_part {xcu200-fsgd2104-2-e}
 create_clock -period 10 -name default
 source "./test/solution1/directives.tcl"
-csim_design -clean
+csim_design
 csynth_design
-cosim_design
+cosim_design -trace_level port
 export_design -format ip_catalog

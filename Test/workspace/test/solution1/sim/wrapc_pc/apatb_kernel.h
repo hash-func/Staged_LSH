@@ -3,7 +3,6 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // ==============================================================
 
-extern "C" int AESL_WRAP_kernel (
-int a,
-int b,
-volatile void* pointer_a);
+extern "C" void AESL_WRAP_kernel (
+volatile void* array_1,
+int sum);

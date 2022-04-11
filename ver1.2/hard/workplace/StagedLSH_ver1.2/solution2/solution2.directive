@@ -37,7 +37,7 @@
                 <option name="m_axi" value="" positionalBoolean="mode"/>
                 <option name="depth" value="64512"/>
                 <option name="port" value="hash_table_pointer" positionalBoolean="4"/>
-                <option name="bundle" value="hash_table_pointer1"/>
+                <option name="bundle" value="pointer1"/>
             </pragma>
         </directive>
     </sourceFile>
