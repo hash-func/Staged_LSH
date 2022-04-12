@@ -8,9 +8,15 @@
 #include <fstream>
 #include <math.h>
 #include <stdlib.h>
+#include <random>
 #include <CL/cl2.hpp>
 
 #include "main.h"
+#include "ele_func.h"
+#include "hash_stock.h"
+#include "table_serch.h"
+
+std::random_device rnd1;
 
 /* 関数のプロトタイプ宣言 */
 std::vector<cl::Device> get_xilinx_devices();
@@ -40,11 +46,11 @@ int main(int argc, char** argv)
 
     /* 必要配列(ヒープ領域) */
     unsigned int* FP_DB;                        // FPデータベース
-    FP_DB = (unsigned int*) malloc(sizeof(unsigned int)*MUSIC_NUM*ONEMUSIC_SUBNUM);
+    FP_DB = (unsigned int*) aligned_alloc(MUSIC_NUM*ONEMUSIC_SUBNUM ,sizeof(unsigned int)*MUSIC_NUM*ONEMUSIC_SUBNUM);
     unsigned int* hash_table_pointer;           // ハッシュテーブルへの位置指定
-    hash_table_pointer = (unsigned int*) calloc(division_num, sizeof(unsigned int));
+    hash_table_pointer = (unsigned int*) aligned_alloc(division_num, sizeof(unsigned int)*division_num);
     unsigned int* hash_table;                   // ハッシュテーブル
-    hash_table = (unsigned int*) malloc(sizeof(unsigned int)*full_table_size);
+    hash_table = (unsigned int*) aligned_alloc(full_table_size ,sizeof(unsigned int)*full_table_size);
     unsigned int query[ONEMUSIC_SUBNUM];        // 検索クエリの一時格納配列 
     //unsigned char* bit_element;                 // Hash関数bit取得位置(96までなのでchar)
     //bit_element = (unsigned char*) calloc(K_HASHBIT*L_HASHNUM, sizeof(unsigned char));
@@ -107,6 +113,8 @@ int main(int argc, char** argv)
     sizeof(unsigned int)*full_table_size, hash_table, &err);
     cl::Buffer hash_table_pointer_buf(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, 
     sizeof(int)*division_num, hash_table_pointer, &err);
+    cl::Buffer jadge_temp_buf(context, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, sizeof(int),
+    judge_temp, &err);
 
     //--------------------------------------------------------------
     // Step:3 カーネルの実行
@@ -117,9 +125,10 @@ int main(int argc, char** argv)
     krnl_table_serch.setArg(1, FP_DB_buf);
     krnl_table_serch.setArg(2, hash_table_buf);
     krnl_table_serch.setArg(3, hash_table_pointer_buf);
+    krnl_table_serch.setArg(4, judge_temp_buf);
 
     // 入力のデバイスメモリへの転送
-    // ホストからデバイスのグローバルメモリに転送
+    // ホストからデバイスのグローバルメモリに転送 読み込みだけ
     q.enqueueMigrateMemObjects({
         query_buf,
         FP_DB_buf,
@@ -132,12 +141,38 @@ int main(int argc, char** argv)
 
     // 出力のホストメモリへの転送をスケジュール
     // 結果の取得
-/*****ここから*****/
-    q.enqueueMigrateMemObjects({judge_temp},)
+    q.enqueueMigrateMemObjects({judge_temp_buf}, CL_MIGRATE_MEM_OBJECT_HOST);
 
+    // スケジュールされた全ての動作終了まで待ち
+    q.finish();
+
+    //--------------------------------------------------------------
+    // Step:4 結果の確認と割り当てられたリソースの解放
+    //--------------------------------------------------------------
+
+
+
+/****************************************************************************************************/
+    /* 結果の表示 */
+    printf("\n");
+/****************************************************************************************************/
+
+    /* 後処理後終了 */
+    delete[] fileBuf;
+    free(FP_DB);
+    free(hash_table_pointer);
+    free(hash_table);
+    free(flame_addr);
+
+#ifdef DEBUG
+    printf("処理終了\n");
+#endif
+    return 0;
 
 }
 /*-- main --*/
+
+
 
 std::vector<cl::Device> get_xilinx_devices()
 {
