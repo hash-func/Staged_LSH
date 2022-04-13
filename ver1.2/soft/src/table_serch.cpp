@@ -207,7 +207,7 @@ void table_serch(
         tempB32 = tempC32;
     }
     // 返却値設定
-    judge_temp = music_index;
+    *judge_temp = music_index;
 }
 }
 /* --mainからの呼び出し-- */

@@ -1,0 +1,429 @@
+統合開発環境 vitis
+vitis_hls
+
+
+
+
+
+【コマンド群】
+
+$ xbutil：
+	Xilinxボードユーティリティー
+	CPU、ボード等の転送速度とか調べられる
+
+	XRTを入れなおさないと使えない
+	<解決法>
+	https://support.xilinx.com/s/article/73055?language=en_US
+
+$ vitis_analyzer：
+	サマリー（summary）ファイルを指定して開く
+	HLS合成レポートをVitisアナライザーで表示する
+
+
+
+
+
+
+【プラグマ】
+INTERFACEプラグマ
+	m_axi		：AXIマスターポートの指定
+	port		：AXIインターフェースにマップする引数の名前を指定
+	offset=slave	：カーネルのAXI4-Liteスレーブインターフェースを介して
+			　ポインターのベースアドレスを使用できることを示す
+	bundle		：m_axiインターフェースの名前を指定
+
+	例）#pragma HLS INTERFACE m_axi         port=output_flags      bundle=maxiport0   offset=slave
+
+#pragma HLS DATAFLOW
+	タスクレベルのパイプライン処理を有効にする
+	DATAFLOWが有効になる：すべての関数を同時実行
+	同時実行するタスクのパイプライン化作成
+	Vitis行為合成（HLS）に指示する
+
+#pragma HLS PIPELINE II=1
+	各サイクルでバーストDDRアクセスを開始
+	本流をパイプライン化するイテレーション(ii=1：Initiation Interval＝１)
+	目的：本流のデータパスを土管にするため
+
+#pragma HLS UNROLL
+	内部ループが展開され、機能のコピーが作成される
+	本流から分かれる支流の処理を並列化することで全体が１つのパイプライン演算となるようにする
+	本流を土管にするために支流を並列化してパイプライン演算器にするため
+
+	Vitis HLSでは外部ループをパイプライン処理
+	内部ループを展開すると、外部ループを各クロックサイクルで開始できる
+
+
+
+
+
+
+
+
+
+
+
+
+【カーネルのビルド方法】
+
+Vitisコンパイラ
+	カーネルのビルドを行う
+	Vitis HLSツールを呼び出し、C++カーネルコードをRTLカーネルに合成する
+
+
+１．エミュレーション
+	ある装置やソフトウェア、システムの挙動を別のソフトウェアなどによって模倣し、代替え動作させること
+２．コンパイル
+	プログラミング言語で書かれたソースコードを解析し、コンピュータが実行可能な形（オブジェクトコード）
+	に変換すること
+３．ビルド
+	プログラミング言語で書かれたソースコードなどをもとに実行ファイルを作成すること
+
+=======================================================================================================================================================
+ホストソースコード：
+g++ -Wall -g -std=c++11 <コンパイル対象ホストコード.cpp> -c -I${XILINX_XRT}/include/ -L${XILINX_XRT}/lib/ -lOpenCL -lpthread -lrt -lstdc++(やらなくてもいい)
+g++ -Wall -g -std=c++11 <コンパイル対象ホストコード.cpp> -o <実行ファイル名.exe> -I${XILINX_XRT}/include/ -L${XILINX_XRT}/lib/ -lOpenCL -lpthread -lrt -lstdc++
+
+エミュレーション用：
+
+	export XCL_EMULATION_MODE=[sw_emu | hw_emu]
+
+	emconfigutil --platform xilinx_u200_xdma_201830_2
+
+
+	xrt.iniファイル：
+		ランタイム初期化ファイル
+		必要なランタイムの設定
+		XRTで記録されるメッセージを制御する
+		アプリケーション実行中にランタイムでデバック、プロファイルデータを取得
+		
+
+カーネルソースコード：
+	＜コンパイル：.xo＞
+	OpenCL, C/C++：
+		v++ -c -t <ビルドターゲット指定> <ソースファイル指定.cpp> -f xilinx_u200_xdma_201830_2 -k <関連付けカーネル名> -o <オブジェクトファイル名.xo>
+			-I../../src：ヘッダーファイル検索の場所
+			--config <configファイル.cfg>
+	RTL：
+		＜Vitis_HLSを用いる方法＞
+			vitis_hlsを開いてファイルを取り込み、.xoを出力する
+
+		＜package_xoを用いる方法(vivado design suite内のTclコマンド)＞
+			package_xo --kernel_name <RTLカーネル名> -xo_path <コンパイル出力.xoファイル名、場所>
+			xmlファイルが自動生成、もしくは既存のものに書き込み
+
+
+	＜リンク：.xclbin＞
+		v++ -l -t <ビルドターゲット指定> <入力.xoファイル複数可> -f xilinx_u200_xdma_201830_2 -o <出力ファイル名.xclbin>
+			--config <configファイル.cfg>
+
+configファイルについて：--config
+	コンパイラオプションの指定→コマンドラインの簡潔化
+	・カーネルのコンパイルを設定するHLSオプション
+	・インスタンシエートするカーネルの数、カーネルポートのグローバルメモリへの割り当て、システムのリンクに使用する接続指示子
+	・vivado Design SuiteでHW合成およびインプリメンテーションを制御する指示子	
+
+<注意点>
+.iniおよび.jsonファイルは実行ファイル.exeと同じディレクトリに含める
+
+<実行例>
+./host.exe kernel.xclbin
+
+
+<参考>
+https://japan.xilinx.com/html_docs/xilinx2020_2/vitis_doc/buildingdevicebinary.html#tvy1528754367816
+
+=========================================================================================================================================================
+
+《ソフトウェアエミュレーション》1～２分
+～ソフトウェアエミュレーション用にビルドをする方法～
+g++：
+	標準GNU Cコンパイラ
+	ホストアプリケーションをコンパイル
+	
+	例）g++ -Wall -g -std=c++11 ../../src/host.cpp -o app.exe -I${XILINX_XRT}/include/ -L${XILINX_XRT}/lib/ -lOpenCL -lpthread -lrt -lstdc++
+
+	-Wall				：警告オプションすべて有効（推奨）
+	-g				：デバック用にコンパイルする
+	-std=c++11			：コンパイルに必要　C++言語標準を定義
+	-o 実行ファイル名		：実行ファイルの生成
+	-I${XILINX_XRT}/include/	：コンパイルに必要　XRTインクルードディレクトリ
+	-L${XILINX_XRT}/lib/		：実行ファイルのリンクに必要　XRTライブラリ
+	-lOpencl			：リンク時に指定ライブラリを検索
+	-lpthread			：リンク時に指定ライブラリを検索
+	-lrt				：リンク時に指定ライブラリを検索
+	-lstdc++			：リンク時に指定ライブラリを検索
+
+emconfigutil：
+	エミュレーションコンフィギュレーション
+	指定したプラットフォーム（ここではAlveo_U200）用に
+	エミュレーションするデバイスのタイプと数を定義する「エミュレーション」コンフィギュレーションファイルを生成
+	エミュレーションモデルをコンパイル
+	emconfigutil.jsonファイルを作成、エミュレーションに必須
+
+	例）emconfigutil --platform xilinx_u200_xdma_201830_2 --nd 1
+
+	--platform			:ターゲットデバイス
+	--nd				:デバイス数（正の整数）デフォルトは1
+	--od				:出力ディレクトリ
+		https://japan.xilinx.com/htmldocs/xilinx2019_1/sdaccel_doc/pnb1504034327301.html
+
+v++ -c：
+	アクセラレーションターゲットのソースコードをコンパイルされたカーネルオブジェクト（.xoファイル）	
+	にコンパイル
+	C言語で言うところのオブジェクトファイル
+	複数カーネルは別々のXOファイルにコンパイルされる
+
+	例）v++ -c -t sw_emu --config ../../src/u200.cfg -k vadd -I../../src ../../src/vadd.cpp -o vadd.xo
+
+	-c			：カーネルをコンパイルする。（必須）
+	--platform<arg><-f>	：ビルドアクセラレータのプラットフォーム指定（xilinx_u200_xdma_201830_2）
+				　ランタイム機能とターゲットプラットフォームがFPGAバイナリとリンクされるため（必須）
+	--config		：追加オプションを含む設定ファイル
+	-t<arg>			：ビルドターゲットを指定　(sw_emu:ソフトウェアエミュレーション）デフォルトは(hw)
+	-k<arg>			：ソースファイルに関連付けるカーネルの名前を指定
+	-o			：コンパイラで出力する共有オブジェクトファイルを指定
+	<source_file>		：カーネルのソースファイル指定、複数指定可能（必須）
+	--config		：指定する設定ファイルにコンパイラオプションを設定できる
+	-I<--include>		：ヘッダーファイルを検索するディレクトリのリストに指定ディレクトリを追加する
+	
+
+v++ -l：
+	コンパイルされたカーネルをターゲットプラットフォームにリンクして、FPGAバイナリ（.xclbinファイル）
+	を生成
+	1つまたは、複数のカーネルオブジェクト（XO)がハードウェアプラットフォームとリンクされ、
+	デバイスバイナリ（XCLBIN）ファイルを生成
+
+	例）v++ -l -t sw_emu --config ../../src/u200.cfg ./vadd.xo -o vadd.xclbin
+	
+	-t （ターゲット）	：ビルドターゲットを指定（ここではソフトウェアエミュレーション用にビルドしており（sw_emu）
+	--config （設定）	：追加オプションを含むConfigレーションファイルの名前を指定できる
+				　Configレーションファイル：ターゲットプラットフォームの名前、DDRバンクのカーネル引数のマッピングを指定する
+	--platform<-f>		：プラットフォーム引数(xilinx_u200_xdma_201830_2)
+	--link<-l>		：カーネルとプラットフォームをFPGAバイナリファイルにリンクする
+	<input>.xo		：入力オブジェクトファイル、複数のオブジェクトファイルを.xclbinにビルド可能
+	-o <output.xclbin>	：出力ファイルの名前を指定、デフォルト(a.xclbin)
+	-g			：コンパイルおよびリンクに適用、カーネルをデバックするコードを生成、波形とか
+	
+
+
+ソフトウェアエミュレーションの実施
+	例）export XCL_EMULATION_MODE=sw_emu 
+	　　./app.exe
+
+
+《ハードウェアエミュレーション》5～6分
+
+～ハードウェアエミュレーション用にビルドする方法～
+
+まとめたもの
+例）	g++ -Wall -g -std=c++11 ../../src/host.cpp -o app.exe -I${XILINX_XRT}/include/ -L${XILINX_XRT}/lib/ -lOpenCL -lpthread -lrt -lstdc++
+	emconfigutil --platform xilinx_u200_xdma_201830_2 --nd 1
+	v++ -c -t hw_emu --config ../../src/u200.cfg -k vadd -I../../src ../../src/vadd.cpp -o vadd.xo 
+	v++ -l -t hw_emu --config ../../src/u200.cfg ./vadd.xo -o vadd.xclbin
+
+	-t (ターゲット)オプションのみ違う
+
+ハードウェアエミュレーションの実施
+	例）export XCL_EMULATION_MODE=hw_emu 
+	　　./app.exe
+
+
+《ハードウェア用にビルド》1.5～2時間
+
+まとめたもの
+例）	g++ -Wall -g -std=c++11 ../../src/host.cpp -o app.exe -I${XILINX_XRT}/include/ -L${XILINX_XRT}/lib/ -lOpenCL -lpthread -lrt -lstdc++
+	v++ -c -t hw --config ../../src/u200.cfg -k vadd -I../../src ../../src/vadd.cpp -o vadd.xo 
+	v++ -l -t hw --config ../../src/u200.cfg ./vadd.xo -o vadd.xclbin
+
+	-t （ターゲット）オプションの変更
+	emconfigutilステップはエミュレーションに必要なだけなのでなし
+
+アプリケーションの実行
+	例）./app.exe
+
+
+
+
+
+～Vitisビルドプロセス～
+・ホストプログラム
+・カーネルコード
+	両方に標準のコンパイル　＋　リンクプロセス
+
+ホストプログラム：
+	GNU C++コンパイラ（g++）（.exe）
+FPGAバイナリ：
+	Vitisコンパイラ（v++）
+	カーネル　　　 →　ザイリンクスオブジェクト（.xo）
+	.xoファイル　　→　ハードウェアプラットフォームにリンク（FPGAバイナリ：.xclbin）
+
+
+
+【アナライザー】
+
+１．各種エミュレーション
+２．ハードウェアビルド実行
+
+いづれの場合でも実行サマリを生成する
+
+
+vitis_analyzer：
+	run_summaryファイルが読み込まれ、実行サマリが表示される
+
+
+Pipelined
+	dataflow：イネーブルになっているため、タスクレベルの並列実行される
+		　関数のサブ関数がオーバーラップして実行される
+
+
+
+
+
+
+
+
+
+
+【逐一実行する環境変数とか一覧】
+
+source /opt/Vitis/2020.2/settings64.sh
+source /opt/xilinx/xrt/setup.sh
+export XILINX_XRT=/opt/xilinx/xrt/
+export LD_LIBRARY_PATH=/opt/xilinx/xrt/lib
+export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
+export PLATFORM_REPO_PATHS=/opt/xilinx/platforms/xilinx_u200_xdma_201830_2
+
+
+
+<alveo>
+source /home/xilinx/Vitis/2020.2/settings64.sh
+source /opt/xilinx/xrt/setup.sh
+export XILINX_XRT=/opt/xilinx/xrt/
+export LD_LIBRARY_PATH=/opt/xilinx/xrt/lib
+export PLATFORM_REPO_PATHS=/opt/xilinx/platforms/xilinx_u200_xdma_201830_2
+
+
+
+
+
+【OpenCLの話】
+
+OpenCLを使うための流れ
+1. プラットフォーム&デバイスの取得
+2. コンテキスト&コマンドキューの取得
+3. プログラムのコンパイルとカーネル関数オブジェクトの取得
+4. メモリ確保&メモリ転送
+5. カーネル引数の設定&カーネルの実行
+
+
+メモリ操作
+１．デバイス側にメモリ領域を確保
+２．CPU側からデバイス側にデータ転送
+３．カーネル関数でいろいろ計算
+４．デバイス側からCPU側にデータ転送
+５．デバイス側のメモリ領域を解放
+
+
+
+
+【メモリの話】
+DRAMへのアクセス	：AXI（Advanced eXtensible Interface）マスター
+ホストからの制御	：AXI Liteスレーブ
+
+QDRAM			：ホスト側のDRAMに直接アクセス
+				・レイテンシ的にコピーがなく有利
+				・後者より多くの回路リソース
+				・PCIeも超えて物理的に遠く頻繁なアクセスを避けたい
+XDRAM			：ホスト側からAlveo側のDRAMあるいはHBMにコピーしたうえでアクセス
+				・一時データ転送のオーバーヘッドが加算される
+				・データ転送とカーネル実行をRuntimeプログラム（スレッド）側でパイプライン化すれば良い
+
+ラインバッファ		：主にBRAM
+ウィンドウ		：主にレジスタ
+
+
+==========================================================================================================================================
+
+＜　RTLカーネル　＋　C++　＋　OpenCL　＞
+
+
+RTLカーネルのホストアプリケーションでの扱い　＝　関数
+
+	void カーネル名（引数, 引数）
+		戻り値	：void
+		引数	：スカラー、ポインタ
+	
+	・呼び出されたときに開始
+	・データを処理して必要な結果を生成
+	・処理が終了したら、通知を送信
+
+
+＜Vitisコア開発キット実行モデル＞
+（ap_ctrl_hs, ap_ctrl_chain）は次のメカニズム、前提に依存する
+・スカラ引数	：AXI4-Liteスレーブインターフェースを介してカーネルに渡される
+・ポインタ引数	：グローバルメモリを介して転送される
+・ポインタ引数ベースアドレス	：AXI4-Liteスレーブインターフェースを介してカーネルに渡される
+・カーネル	：１つまたは複数のAXI4-Liteマスターインターフェースを介してグローバルメモリ内ポインタ引数にアクセスする
+・カーネル	：AXI4-Liteインターフェースを介してホストアプリケーションにより開始される
+・カーネル	：演算が終了したら、AXI4-Liteインターフェースまたは、特別な割り込み信号を介してホストアプリに通知しなければいけない
+・ただし、ap_ctrl_none実行モデルはこれらの機能に依存せず、自動起動で、継続的に実行されるストリーミングカーネルを確率できる
+
+
+
+
+＜IP/XOパッケージフロー：Vivadoの方法＞
+
+１．IPパッケージ化する
+２．カーネルの作成
+
+package_xo  -force -xo_path <tutorial_path>/rtl_kernel/rtl_kernel.srcs/sources_1/imports/Vadd_A_B.xo -kernel_name Vadd_A_B -ip_directory 　<tutorial_path>/rtl_kernel/rtl_kernel.srcs/sources_1/imports/IP  -ctrl_protocol ap_ctrl_hs
+
+			package_xo	：Vivado IPからコンパイル済みオブジェクトファイル（.xo）を生成
+			-force		：同じ名前のカーネルファイルが存在する場合に上書き
+			-xo_path	：XOファイルのパスと名前を指定
+			-kernel_name	：作成するカーネルの名前を指定、RTLモジュール名と一致させる
+			-ip_directory	：パッケージ済みVivado IPを検索するパスを指定
+			-ctrl_protocol	：カーネルがインプリメントする制御プロトコルを指定
+		
+＜RTL Kernelウィザーフロー：Vitis＞
+
+https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/docs-jp/Hardware_Accelerators/Feature_Tutorials/01-rtl_kernel_workflow/vitis_ide.md
+https://japan.xilinx.com/html_docs/xilinx2020_2/vitis_doc/rtl_kernel_wizard.html#ouz1504034324041
+
+
+
+
+
+
+==============================================================================================================
+
+
+
+RTLカーネルのホストアプリケーションでの扱い　＝　関数
+
+	void カーネル名（引数, 引数）
+		戻り値	：void
+		引数	：スカラー、ポインタ
+	
+	・呼び出されたときに開始
+	・データを処理して必要な結果を生成
+	・処理が終了したら、通知を送信
+
+
+結局FPGAにすべてのデータが揃ってから時間測定をスタートする
+	→　カーネルへの送信データに遅れがあってもそこは実験的に関係ない
+	→　本来は、すでに回路として実装されている前提の値のため
+
+何を入力引数として与えるか？
+
+Staged LSH
+・FPID(4096ビット)
+・ハッシュテーブル
+・ハッシュテーブルを構成したときのビット取得位置リスト
+
+
+Stage BloomFilter
+・FPID
+・ブルームフィルタ
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="link" dir="">
+  <FileSets>
+    <FileSet Name="kernel_table_serch" Type="DesignSrcs">
+      <File Path="/home/nomoto/src/StagedLSH/ver1.2/soft/u200/sw_emu/_x/link/int/xo/table_serch/table_serch/cpu_sources/table_serch.cpp"/>
+      <Config/>
+    </FileSet>
+  </FileSets>
+  <Runs/>
+</project>

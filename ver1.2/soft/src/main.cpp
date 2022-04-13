@@ -1,6 +1,12 @@
 /*******************************************************************
  * vitisチュートリアルコード参考
 ********************************************************************/
+#define CL_HPP_CL_1_2_DEFAULT_BUILD
+#define CL_HPP_TARGET_OPENCL_VERSION 120
+#define CL_HPP_MINIMUM_OPENCL_VERSION 120
+#define CL_HPP_ENABLE_PROGRAM_CONSTRUCTION_FROM_ARRAY_COMPATIBILITY 1
+#define CL_USE_DEPRECATED_OPENCL_1_2_APIS
+
 #include <vector>
 #include <unistd.h>
 #include <stdio.h>
@@ -32,7 +38,7 @@ int main(int argc, char** argv)
     printf("処理開始\n");
 #endif
     printf("楽曲数 : %u\n", MUSIC_NUM);
-    printf("BER : %lf %\n", DISTORTION);
+    printf("BER : %lf %%\n", DISTORTION);
 
     /* 定数宣言 */
     const unsigned int flame_table_size         // 各フレームHashテーブルサイズ
@@ -129,8 +135,9 @@ int main(int argc, char** argv)
     free(flame_addr);
 
     /* 結果格納変数 */
-    unsigned int music_index = 0;       // 検索楽曲識別子(0~)
-    int judge_temp = -1;                // 結果判定用(一時格納)
+    int music_index = 0;                // 検索楽曲識別子(0~)
+    int* judge_temp;                    // 結果判定用(一時格納)
+    *judge_temp = -1;
     unsigned int seikai = 0;            // 正解数
     unsigned int huseikai = 0;          // 偽陽性数（結果は出たが誤り）
     unsigned int not_find = 0;          // 未発見(負数)
@@ -158,7 +165,7 @@ int main(int argc, char** argv)
     cl::Program::Binaries bins{{fileBuf, fileBufSize}};
     // プログラムを作成
     // FPGAにバイナリを送信
-    cl::Program program(context, device, bins, NULL, &err);
+    cl::Program program(context, devices, bins, NULL, &err);
     // コマンドキュー作成
     cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
     // カーネルの作成
@@ -184,7 +191,7 @@ int main(int argc, char** argv)
     sizeof(unsigned int)*full_table_size, hash_table, &err);
     cl::Buffer hash_table_pointer_buf(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, 
     sizeof(int)*division_num, hash_table_pointer, &err);
-    cl::Buffer jadge_temp_buf(context, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, sizeof(int),
+    cl::Buffer judge_temp_buf(context, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, sizeof(int),
     judge_temp, &err);
 
     krnl_table_serch.setArg(0, query_buf);
@@ -242,10 +249,10 @@ int main(int argc, char** argv)
         q.finish();
 
         /* 結果の集計 */
-        if (judge_temp < 0) not_find++;
+        if (*judge_temp < 0) not_find++;
         else
         {
-            if (music_index == judge_temp)  seikai++;
+            if (music_index == *judge_temp)  seikai++;
             else                            huseikai++;
         }
     }
@@ -253,9 +260,9 @@ int main(int argc, char** argv)
 /****************************************************************************************************/
     /* 結果の表示 */
     printf ("\n");
-    printf ("正解率 : %lf %\n", ((double)seikai/QUERY_NUM)*100);
-    printf ("不正解率 : %lf %\n", ((double)huseikai/QUERY_NUM)*100);
-    printf ("未発見 : %lf %\n", ((double)not_find/QUERY_NUM)*100);
+    printf ("正解率 : %lf %%\n", ((double)seikai/QUERY_NUM)*100);
+    printf ("不正解率 : %lf %%\n", ((double)huseikai/QUERY_NUM)*100);
+    printf ("未発見 : %lf %%\n", ((double)not_find/QUERY_NUM)*100);
 /****************************************************************************************************/
 
     /* 後処理後終了 */
