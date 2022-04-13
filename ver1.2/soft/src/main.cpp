@@ -206,7 +206,7 @@ int main(int argc, char** argv)
     /* 指定回数検索実行 */
     for (int i=0; i<QUERY_NUM; i++)
     {
-#ifdef DEBUG_sub
+#ifdef DEBUG
         printf("%d 回目\n",i+1);
 #endif
         /* 楽曲識別子生成 */
@@ -247,6 +247,10 @@ int main(int argc, char** argv)
 
         // スケジュールされた全ての動作終了まで待ち
         q.finish();
+
+#ifdef DEBUG
+        printf("カーネル実行終了\n");
+#endif
 
         /* 結果の集計 */
         if (*judge_temp < 0) not_find++;

@@ -1,0 +1,21 @@
+{
+    "kernelContainerValues": [
+        "table_serch:xo"
+    ],
+    "profileDataTransferValues": [
+        "all:all:all"
+    ],
+    "compile": "false",
+    "debug": "false",
+    "exportScript": "false",
+    "gccHostCompile": "false",
+    "generateEstimateRpt": "false",
+    "keepSolution": "false",
+    "link": "false",
+    "logDir": "\/home\/nomoto\/src\/StagedLSH\/ver1.2\/soft\/u200\/hw_emu\/_x\/logs\/link",
+    "package": "false",
+    "reportDir": "\/home\/nomoto\/src\/StagedLSH\/ver1.2\/soft\/u200\/hw_emu\/_x\/reports\/link",
+    "saveTemps": "false",
+    "verbose": "false",
+    "vplNoIpCache": "false"
+}

@@ -1,0 +1,7 @@
+Running: xsim.dir/emu_wrapper_behav/xsimk -wdb xilinx_u200_xdma_201830_2-0-table_serch.wdb -simmode gui -simrunnum 0 -socket 49201
+Design successfully loaded
+Design Loading Memory Usage: 108744 KB (Peak: 108876 KB)
+Design Loading CPU Usage: 50 ms
+Simulation completed
+Simulation Memory Usage: 345288 KB (Peak: 345288 KB)
+Simulation CPU Usage: 46650 ms

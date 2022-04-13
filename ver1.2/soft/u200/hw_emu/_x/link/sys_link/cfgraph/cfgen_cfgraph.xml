@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<cf:model cf:cpu="x86" cf:partition="0" cf:prefix="p_0_" cf:name="dr" xd:type="design" xmlns:xd="http://www.xilinx.com/xd" xmlns:cf="http://www.xilinx.com/connections">
+  <cf:block cf:name="hwblk_table_serch">
+    <cf:port cf:name="s_axi_control" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="query" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="FP_DB" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="hash_table" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="hash_table_pointer" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="judge_temp" cf:portType="stream" cf:direction="in"/>
+  </cf:block>
+  <cf:block cf:name="swblk_table_serch">
+    <cf:port cf:name="s_axi_control" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="query" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="FP_DB" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="hash_table" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="hash_table_pointer" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="judge_temp" cf:portType="stream" cf:direction="out"/>
+  </cf:block>
+  <cf:comp cf:name="xdma" xd:componentRef="xdma" xd:clockId="0"/>
+  <cf:comp cf:name="table_serch_1" xd:componentRef="table_serch" xd:clockId="0"/>
+  <cf:instance cf:name="hwinst_table_serch_1" cf:blockName="hwblk_table_serch" cf:compName="table_serch_1">
+    <cf:portMap cf:blockPort="s_axi_control" cf:compPort="s_axi_control" xd:register="0x0"/>
+    <cf:portMap cf:blockPort="query" cf:compPort="m_axi_plram0" cf:ctrlPort="s_axi_control" xd:register="0x10"/>
+    <cf:portMap cf:blockPort="FP_DB" cf:compPort="m_axi_aximm0" cf:ctrlPort="s_axi_control" xd:register="0x1C"/>
+    <cf:portMap cf:blockPort="hash_table" cf:compPort="m_axi_aximm1" cf:ctrlPort="s_axi_control" xd:register="0x28"/>
+    <cf:portMap cf:blockPort="hash_table_pointer" cf:compPort="m_axi_aximm2" cf:ctrlPort="s_axi_control" xd:register="0x34"/>
+    <cf:portMap cf:blockPort="judge_temp" cf:compPort="m_axi_gmem" cf:ctrlPort="s_axi_control" xd:register="0x40"/>
+  </cf:instance>
+  <cf:instance cf:name="swinst_table_serch_1" cf:blockName="swblk_table_serch" cf:compName="xdma">
+    <cf:portMap cf:blockPort="s_axi_control" cf:compPort="slr0/interconnect_axilite_user_0_M01_AXI"/>
+    <cf:portMap cf:blockPort="query" cf:compPort="memory_subsystem" cf:ctrlPort="slr0/interconnect_axilite_user_0_M01_AXI" cf:sptag="PLRAM[0]"/>
+    <cf:portMap cf:blockPort="FP_DB" cf:compPort="memory_subsystem" cf:ctrlPort="slr0/interconnect_axilite_user_0_M01_AXI" cf:sptag="DDR[0]"/>
+    <cf:portMap cf:blockPort="hash_table" cf:compPort="memory_subsystem" cf:ctrlPort="slr0/interconnect_axilite_user_0_M01_AXI" cf:sptag="DDR[1]"/>
+    <cf:portMap cf:blockPort="hash_table_pointer" cf:compPort="memory_subsystem" cf:ctrlPort="slr0/interconnect_axilite_user_0_M01_AXI" cf:sptag="DDR[2]"/>
+    <cf:portMap cf:blockPort="judge_temp" cf:compPort="memory_subsystem" cf:ctrlPort="slr0/interconnect_axilite_user_0_M01_AXI" cf:sptag="PLRAM[1]"/>
+  </cf:instance>
+  <cf:connection cf:srcInst="swinst_table_serch_1" cf:srcPort="s_axi_control" cf:dstInst="hwinst_table_serch_1" cf:dstPort="s_axi_control">
+    <cf:dataMover cf:compName="xdma" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_table_serch_1" cf:srcPort="query" cf:dstInst="hwinst_table_serch_1" cf:dstPort="query">
+    <cf:dataMover cf:compName="table_serch_1" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_table_serch_1" cf:srcPort="FP_DB" cf:dstInst="hwinst_table_serch_1" cf:dstPort="FP_DB">
+    <cf:dataMover cf:compName="table_serch_1" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_table_serch_1" cf:srcPort="hash_table" cf:dstInst="hwinst_table_serch_1" cf:dstPort="hash_table">
+    <cf:dataMover cf:compName="table_serch_1" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_table_serch_1" cf:srcPort="hash_table_pointer" cf:dstInst="hwinst_table_serch_1" cf:dstPort="hash_table_pointer">
+    <cf:dataMover cf:compName="table_serch_1" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_table_serch_1" cf:srcPort="judge_temp" cf:dstInst="hwinst_table_serch_1" cf:dstPort="judge_temp">
+    <cf:dataMover cf:compName="table_serch_1" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+</cf:model>

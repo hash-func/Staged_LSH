@@ -1,0 +1,57 @@
+{
+    "schemaVersion": {
+        "major": "1",
+        "minor": "0",
+        "patch": "0"
+    },
+    "DdrBanks": [
+        {
+            "Name": "ddr4_mem00",
+            "Type": "ddr4",
+            "Size": "16GB",
+            "LowestAddress": "0x0000000000000000",
+            "HighestAddress": "0x0000000000000000"
+        },
+        {
+            "Name": "ddrmem_1",
+            "Type": "ddr4",
+            "Size": "16GB",
+            "LowestAddress": "0x0000000000000000",
+            "HighestAddress": "0x0000000000000000"
+        },
+        {
+            "Name": "ddr4_mem01",
+            "Type": "ddr4",
+            "Size": "16GB",
+            "LowestAddress": "0x0000000000000000",
+            "HighestAddress": "0x0000000000000000"
+        },
+        {
+            "Name": "ddr4_mem02",
+            "Type": "ddr4",
+            "Size": "16GB",
+            "LowestAddress": "0x0000000000000000",
+            "HighestAddress": "0x0000000000000000"
+        }
+    ],
+    "SystemClocks": {
+        "CPU": "1",
+        "PL 1": "500.000000",
+        "PL 0": "300.000000"
+    },
+    "DesignIpInstances": [
+        {
+            "VLNV": "xilinx.com:ip:sdx_memory_subsystem:1.0",
+            "Instance": "dynamic_region_memory_subsystem",
+            "Configuration": {
+                "ADVANCED_PROPERTIES": "resource_access_constraints { S00_AXI {DDR4_MEM00 PLRAM_MEM00} S01_AXI {M00_AXI_MEM00} S02_AXI {DDR4_MEM01 PLRAM_MEM01} S03_AXI {DDR4_MEM02 PLRAM_MEM02} } resource_map_replication { S00_AXI {} S01_AXI {} S02_AXI {} S03_AXI {} } plram_specifications {{ SIZE 128K AXI_DATA_WIDTH 512 SLR_ASSIGNMENT SLR0 } { SIZE 128K AXI_DATA_WIDTH 512 SLR_ASSIGNMENT SLR1 } { SIZE 128K AXI_DATA_WIDTH 512 SLR_ASSIGNMENT SLR2 }} __temp_dsa_info { excluded_board_components { xilinx.com:au200:ddr4_sdram_c1:1.0 } axi_passthrough { xilinx.com:au200:ddr4_sdram_c1:1.0 { offset 0x5000000000 range 16G slr SLR1 } } }",
+                "C_BASEADDR": "0x01000000",
+                "C_HIGHADDR": "0x017FFFFF",
+                "Component_Name": "pfm_dynamic_memory_subsystem_0",
+                "EDK_IPTYPE": "PERIPHERAL",
+                "NUM_CLKS": "3",
+                "NUM_SI": "4"
+            }
+        }
+    ]
+}

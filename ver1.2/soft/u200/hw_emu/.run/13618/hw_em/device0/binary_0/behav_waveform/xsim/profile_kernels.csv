@@ -1,0 +1,15 @@
+Compute Units: Running Time and Stalls
+Compute Unit, Running Time (us), Intra-Kernel Dataflow Stalls (%), External Memory Stalls (%), External Stream Stalls (%)
+table_serch_1,8.635,0.000,1.815,0.000
+
+Functions: Running Time and Stalls
+Compute Unit, Function, Running Time (us), Intra-Kernel Dataflow Stalls (%), External Memory Stalls (%), External Stream Stalls (%)
+
+Compute Units: Port Data Transfer
+Compute Unit, Port, Write Time (us), Outstanding Write (%), Read Time (us), Outstanding Read (%)
+table_serch_1,m_axi_plram0,0.000,0.000,0.063,0.734
+table_serch_1,m_axi_aximm0,0.000,0.000,0.180,2.085
+table_serch_1,m_axi_aximm1,0.000,0.000,0.077,0.888
+table_serch_1,m_axi_aximm2,0.000,0.000,0.047,0.541
+table_serch_1,m_axi_gmem,0.010,0.116,0.000,0.000
+
