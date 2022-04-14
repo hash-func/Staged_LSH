@@ -1,0 +1,29 @@
+INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
+	Reports: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/reports/table_serch
+	Log files: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/logs/table_serch
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/table_serch.xo.compile_summary, at Wed Apr 13 19:35:33 2022
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Wed Apr 13 19:35:33 2022
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/reports/table_serch/v++_compile_table_serch_guidance.html', at Wed Apr 13 19:35:34 2022
+INFO: [v++ 60-895]   Target platform: /opt/xilinx/platforms/xilinx_u200_xdma_201830_2/xilinx_u200_xdma_201830_2.xpfm
+INFO: [v++ 60-1578]   This platform contains Device Support Archive '/opt/xilinx/platforms/xilinx_u200_xdma_201830_2/hw/xilinx_u200_xdma_201830_2.dsa'
+INFO: [v++ 74-74] Compiler Version string: 2020.2
+INFO: [v++ 60-1302] Platform 'xilinx_u200_xdma_201830_2.xpfm' has been explicitly enabled for this release.
+INFO: [v++ 60-585] Compiling for hardware target
+INFO: [v++ 60-423]   Target device: xilinx_u200_xdma_201830_2
+INFO: [v++ 60-242] Creating kernel: 'table_serch'
+
+===>The following messages were generated while  performing high-level synthesis for kernel: table_serch Log file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/table_serch/table_serch/vitis_hls.log :
+INFO: [v++ 204-61] Pipelining loop 'screening_loop'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'screening_loop'
+INFO: [v++ 204-61] Pipelining loop 'seisa_loop'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 13, Depth = 15, loop 'seisa_loop'
+INFO: [v++ 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [v++ 200-789] **** Estimated Fmax: 411.00 MHz
+INFO: [v++ 60-594] Finished kernel compilation
+INFO: [v++ 60-244] Generating system estimate report...
+INFO: [v++ 60-1092] Generated system estimate report: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/reports/table_serch/system_estimate_table_serch.xtxt
+INFO: [v++ 60-586] Created table_serch.xo
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command. 
+    vitis_analyzer /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/table_serch.xo.compile_summary 
+INFO: [v++ 60-791] Total elapsed time: 0h 0m 53s
+INFO: [v++ 60-1653] Closing dispatch client.

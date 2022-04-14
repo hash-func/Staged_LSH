@@ -1,0 +1,18 @@
+{
+    "schema_version": {
+        "major": "1",
+        "minor": "1",
+        "patch": "0"
+    },
+    "generation": {
+        "source": "vp",
+        "PID": "3515",
+        "timestamp": "1649911444306"
+    },
+    "files": [
+        {
+            "name": "device_trace_0.csv",
+            "type": "VP_TRACE"
+        }
+    ]
+}

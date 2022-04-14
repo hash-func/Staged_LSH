@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Apr 13 19:47:51 2022
+# Process ID: 28362
+# Current directory: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_d216_interconnect_DDR4_MEM01_0_synth_1
+# Command line: vivado -log bd_d216_interconnect_DDR4_MEM01_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_d216_interconnect_DDR4_MEM01_0.tcl
+# Log file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_d216_interconnect_DDR4_MEM01_0_synth_1/bd_d216_interconnect_DDR4_MEM01_0.vds
+# Journal file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_d216_interconnect_DDR4_MEM01_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source bd_d216_interconnect_DDR4_MEM01_0.tcl -notrace

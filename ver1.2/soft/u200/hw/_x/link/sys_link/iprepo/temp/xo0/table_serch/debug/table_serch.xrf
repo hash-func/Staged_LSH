@@ -1,0 +1,606 @@
+Begin Function 'table_serch'
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage0)
+# ST_586
+local m_0 <phi_124> <integer> <Phi> 'phi' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124>
+add_ln124_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124
+reg: m_0_reg_628[63:0] lv
+
+local empty_33 <trunc_124> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124>
+empty_33 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124
+reg: empty_33_reg_4147[3:0] lv
+
+local icmp_ln128 <icmp_128> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+icmp_ln128 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: icmp_ln128_reg_4158[0:0] lv
+
+# ST_599
+local p_in_22 <phi_128> <integer> <Phi> 'phi' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+p_in_22 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: p_in_22_reg_860[511:0] lv
+
+local empty_46 <phi_128> <integer> <Phi> 'phi' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+empty_46 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: empty_46_reg_870[511:0] lv
+
+local plram0_addr_read_12 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_12 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: plram0_addr_read_12_reg_4319[511:0] lv
+
+local aximm0_addr_3_read_12 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_12 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: aximm0_addr_3_read_12_reg_4324[511:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage1)
+# ST_587
+local plram0_addr_read <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_934[511:0] lv
+
+local aximm0_addr_3_read <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_944[511:0] lv
+
+local icmp_ln128_1 <icmp_128> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+icmp_ln128_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: icmp_ln128_1_reg_4162[0:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage10)
+# ST_596
+local plram0_addr_read_9 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_9 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_954[511:0] lv
+
+local aximm0_addr_3_read_9 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_9 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_964[511:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage11)
+# ST_597
+local plram0_addr_read_10 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_10 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_934[511:0] lv
+
+local aximm0_addr_3_read_10 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_10 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_944[511:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage12)
+# ST_598
+local plram0_addr_read_11 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_11 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_954[511:0] lv
+
+local aximm0_addr_3_read_11 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_11 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_964[511:0] lv
+
+local add_ln124_1 <add_124> <integer> <Arithmetic> 'add' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124>
+add_ln124_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124
+reg: add_ln124_1_reg_4304[63:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage2)
+# ST_588
+local shiftreg_0 <phi_128> <integer> <Phi> 'phi' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+trunc_ln128_s /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: shiftreg_0_reg_640[447:0] lv
+
+local shiftreg98_0 <phi_124> <integer> <Phi> 'phi' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124>
+trunc_ln124_2 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124
+reg: shiftreg98_0_reg_651[447:0] lv
+
+local plram0_addr_read_1 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_954[511:0] lv
+
+local aximm0_addr_3_read_1 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_964[511:0] lv
+
+local icmp_ln128_2 <icmp_128> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+icmp_ln128_2 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: icmp_ln128_2_reg_4176[0:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage3)
+# ST_589
+local plram0_addr_read_2 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_2 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_934[511:0] lv
+
+local aximm0_addr_3_read_2 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_2 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_944[511:0] lv
+
+local icmp_ln128_3 <icmp_128> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+icmp_ln128_3 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: icmp_ln128_3_reg_4190[0:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage4)
+# ST_590
+local plram0_addr_read_3 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_3 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_954[511:0] lv
+
+local aximm0_addr_3_read_3 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_3 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_964[511:0] lv
+
+local icmp_ln128_4 <icmp_128> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+icmp_ln128_4 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: icmp_ln128_4_reg_4204[0:0] lv
+
+local icmp_ln128_5 <icmp_128> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+icmp_ln128_5 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: icmp_ln128_5_reg_4208[0:0] lv
+
+local icmp_ln128_6 <icmp_128> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+icmp_ln128_6 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: icmp_ln128_6_reg_4212[0:0] lv
+
+local icmp_ln128_7 <icmp_128> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+icmp_ln128_7 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: icmp_ln128_7_reg_4216[0:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage5)
+# ST_591
+local plram0_addr_read_4 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_4 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_934[511:0] lv
+
+local aximm0_addr_3_read_4 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_4 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_944[511:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage6)
+# ST_592
+local plram0_addr_read_5 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_5 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_954[511:0] lv
+
+local aximm0_addr_3_read_5 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_5 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_964[511:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage7)
+# ST_593
+local plram0_addr_read_6 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_6 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_934[511:0] lv
+
+local aximm0_addr_3_read_6 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_6 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_944[511:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage8)
+# ST_594
+local plram0_addr_read_7 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_7 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_954[511:0] lv
+
+local aximm0_addr_3_read_7 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_7 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_964[511:0] lv
+
+local icmp_ln124 <icmp_124> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124>
+icmp_ln124 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124
+reg: icmp_ln124_reg_4260[0:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage9)
+# ST_595
+local plram0_addr_read_8 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+plram0_addr_read_8 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_934[511:0] lv
+
+local aximm0_addr_3_read_8 <read_128> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128>
+aximm0_addr_3_read_8 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:128
+reg: reg_944[511:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state1)
+# ST_1
+local hash_table_pointer_read <read_149> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:149>
+hash_table_pointer /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:149
+reg: hash_table_pointer_read_reg_3729[63:0] lv
+
+local hash_table_read <read_149> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:149>
+hash_table /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:149
+reg: hash_table_read_reg_3735[63:0] lv
+
+local FP_DB_read <read_149> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:149>
+FP_DB /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:149
+reg: FP_DB_read_reg_3740[63:0] lv
+
+local query_read <read_149> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:149>
+query /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:149
+reg: query_read_reg_3748[63:0] lv
+
+local trunc_ln169_1 <partselect_169> <integer> <> 'partselect' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:169>
+trunc_ln169_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:169
+reg: trunc_ln169_1_reg_3754[57:0] lv
+
+local trunc_ln184 <trunc_184> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184>
+trunc_ln184 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184
+reg: trunc_ln184_reg_3759[5:0] lv
+
+local trunc_ln104 <trunc_104> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104>
+trunc_ln104 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104
+reg: trunc_ln104_reg_3765[5:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state145)
+# ST_145
+local plram0_addr_1_read <read_184> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184>
+plram0_addr_1_read /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184
+reg: plram0_addr_1_read_reg_3809[511:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state146)
+# ST_146
+local indvar_flatten <phi_181> <integer> <Phi> 'phi' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181>
+add_ln181 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: indvar_flatten_reg_505[7:0] lv
+
+local tempA32_V_4 <> <integer> <Phi> 'phi' <>
+select_ln181_14 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: tempA32_V_4_reg_516[31:0] lv
+
+local tempB32_V_4 <> <integer> <Phi> 'phi' <>
+select_ln181_15 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: tempB32_V_4_reg_526[31:0] lv
+
+local L <> <integer> <Phi> 'phi' <>
+L /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:190
+reg: L_reg_536[1:0] lv
+
+local music_index_3_i_lcssa_phi <> <integer> <Phi> 'phi' <>
+reg: music_index_3_i_lcssa_phi_reg_548[31:0] lv
+
+local lshr_ln184 <lshr_184> <integer> <Shift> 'lshr' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184>
+lshr_ln184 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184
+reg: lshr_ln184_reg_3814[511:0] lv
+
+local tempC32_V <trunc_184> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184>
+tempC32.V /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184
+reg: tempC32_V_reg_3827[31:0] lv
+
+local icmp_ln181 <icmp_181> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181>
+icmp_ln181 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: icmp_ln181_reg_3835[0:0] lv
+
+local add_ln181 <add_181> <integer> <Arithmetic> 'add' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181>
+add_ln181 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: add_ln181_reg_3839[7:0] lv
+
+local add_ln181_1 <add_181> <integer> <Arithmetic> 'add' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181>
+add_ln181_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: add_ln181_1_reg_3844[6:0] lv
+
+local add_ln184_7 <add_184> <integer> <Arithmetic> 'add' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184>
+add_ln184_7 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184
+reg: add_ln184_7_reg_3850[5:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state147)
+# ST_147
+local tmp <bitselect_190> <integer> <> 'bitselect' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:190>
+tmp /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:190
+reg: tmp_reg_3855[0:0] lv
+
+local trunc_ln184_2_mid1 <partselect_184> <integer> <> 'partselect' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184>
+trunc_ln184_2_mid1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184
+reg: trunc_ln184_2_mid1_reg_3872[57:0] lv
+
+local select_ln181_2 <select_181> <integer> <> 'select' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181>
+select_ln181_2 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: select_ln181_2_reg_3877[6:0] lv
+
+local select_ln181_14 <select_181> <integer> <> 'select' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181>
+select_ln181_14 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: select_ln181_14_reg_3883[31:0] lv
+
+local select_ln181_15 <select_181> <integer> <> 'select' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181>
+select_ln181_15 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: select_ln181_15_reg_3888[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state2)
+# ST_2
+local plram0_addr <getelementptr_169> <integer> <> 'getelementptr' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:169>
+plram0_addr /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:169
+reg: plram0_addr_reg_3772[63:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state218)
+# ST_218
+local plram0_addr_2_read <read_184> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184>
+plram0_addr_2_read /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184
+reg: plram0_addr_2_read_reg_3899[511:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state219)
+# ST_219
+local lshr_ln184_1 <lshr_184> <integer> <Shift> 'lshr' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184>
+lshr_ln184_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184
+reg: lshr_ln184_1_reg_3904[511:0] lv
+
+local trunc_ln184_6 <trunc_184> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184>
+trunc_ln184_6 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184
+reg: trunc_ln184_6_reg_3909[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state220)
+# ST_220
+local select_ln181 <select_181> <integer> <> 'select' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181>
+select_ln181 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: select_ln181_reg_3914[1:0] lv
+
+local select_ln181_1 <select_181> <integer> <> 'select' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181>
+select_ln181_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: select_ln181_1_reg_3919[95:0] lv
+
+local henkan_V <> <integer> <Arithmetic> 'add' <>
+henkan_V /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int.h:213
+reg: henkan_V_reg_3924[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state221)
+# ST_221
+local icmp_ln78 <icmp_78> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:78>
+icmp_ln78 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:78
+reg: icmp_ln78_reg_3931[0:0] lv
+
+local aximm2_addr <getelementptr_79> <integer> <> 'getelementptr' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:79>
+aximm2_addr /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:79
+reg: aximm2_addr_reg_3935[63:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state292)
+# ST_292
+local aximm2_addr_read <read_79> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:79>
+aximm2_addr_read /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:79
+reg: aximm2_addr_read_reg_3941[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state293)
+# ST_293
+local aximm2_addr_1 <getelementptr_81> <integer> <> 'getelementptr' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:81>
+aximm2_addr_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:81
+reg: aximm2_addr_1_reg_3951[63:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state364)
+# ST_364
+local end <read_81> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:81>
+end /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:81
+reg: end_reg_3957[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state365)
+# ST_365
+local top_1 <> <integer> <Phi> 'phi' <>
+reg: top_1_reg_560[31:0] lv
+
+local top_3 <select_82> <integer> <> 'select' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:82>
+top /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:82
+reg: top_3_reg_3964[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state366)
+# ST_366
+local select_ln97 <select_97> <integer> <> 'select' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:97>
+select_ln97 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:97
+reg: select_ln97_reg_3975[32:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state367)
+# ST_367
+local i_1 <phi_97> <integer> <Phi> 'phi' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:97>
+add_ln97_2 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:97
+reg: i_1_reg_571[63:0] lv
+
+local min_haming_dis <> <integer> <Phi> 'phi' <>
+reg: min_haming_dis_reg_580[31:0] lv
+
+local music_index_1 <> <integer> <Phi> 'phi' <>
+reg: music_index_1_reg_592[31:0] lv
+
+local add_ln97_2 <add_97> <integer> <Arithmetic> 'add' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:97>
+add_ln97_2 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:97
+reg: add_ln97_2_reg_3983[63:0] lv
+
+local aximm1_addr <getelementptr_104> <integer> <> 'getelementptr' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104>
+aximm1_addr /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104
+reg: aximm1_addr_reg_3988[63:0] lv
+
+local gmem_addr <getelementptr_226> <integer> <> 'getelementptr' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:226>
+gmem_addr /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:226
+reg: gmem_addr_reg_4002[63:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state438)
+# ST_438
+local aximm1_addr_read <read_104> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104>
+aximm1_addr_read /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104
+reg: aximm1_addr_read_reg_4008[31:0] lv
+
+local trunc_ln104_4 <trunc_104> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104>
+trunc_ln104_4 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104
+reg: trunc_ln104_4_reg_4016[3:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state439)
+# ST_439
+local trunc_ln104_3 <partselect_104> <integer> <> 'partselect' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104>
+trunc_ln104_3 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104
+reg: trunc_ln104_3_reg_4021[57:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state440)
+# ST_440
+local trunc_ln105 <trunc_105> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:105>
+trunc_ln105 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:105
+reg: trunc_ln105_reg_4032[3:0] lv
+
+local trunc_ln105_1 <partselect_105> <integer> <> 'partselect' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:105>
+trunc_ln105_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:105
+reg: trunc_ln105_1_reg_4037[57:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state441)
+# ST_441
+local trunc_ln106 <trunc_106> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:106>
+trunc_ln106 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:106
+reg: trunc_ln106_reg_4048[3:0] lv
+
+local trunc_ln106_1 <partselect_106> <integer> <> 'partselect' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:106>
+trunc_ln106_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:106
+reg: trunc_ln106_1_reg_4053[57:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state510)
+# ST_510
+local aximm0_addr_read <read_104> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104>
+aximm0_addr_read /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104
+reg: aximm0_addr_read_reg_4064[511:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state511)
+# ST_511
+local v1_V <trunc_104> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104>
+v1_V /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:104
+reg: v1_V_reg_4069[31:0] lv
+
+local aximm0_addr_1_read <read_105> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:105>
+aximm0_addr_1_read /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:105
+reg: aximm0_addr_1_read_reg_4074[511:0] lv
+
+local add_ln105_2 <add_105> <integer> <Arithmetic> 'add' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:105>
+add_ln105_2 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:105
+reg: add_ln105_2_reg_4079[5:0] lv
+
+local add_ln106_2 <add_106> <integer> <Arithmetic> 'add' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:106>
+add_ln106_2 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:106
+reg: add_ln106_2_reg_4084[5:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state512)
+# ST_512
+local v2_V <trunc_105> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:105>
+v2_V /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:105
+reg: v2_V_reg_4089[31:0] lv
+
+local aximm0_addr_2_read <read_106> <integer> <> 'read' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:106>
+aximm0_addr_2_read /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:106
+reg: aximm0_addr_2_read_reg_4094[511:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state513)
+# ST_513
+local trunc_ln97_1 <trunc_97> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:97>
+trunc_ln97_1 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:97
+reg: trunc_ln97_1_reg_4099[5:0] lv
+
+local p_Result_4 <> <integer> <> 'bitconcatenate' <>
+__Result__ /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_ref.h:312
+reg: p_Result_4_reg_4104[95:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state514)
+# ST_514
+local bit <> <integer> <Phi> 'phi' <>
+bit /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:110
+reg: bit_reg_605[6:0] lv
+
+local haming_dis_screen <> <integer> <Phi> 'phi' <>
+haming_dis_screen /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:113
+reg: haming_dis_screen_reg_616[6:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state515)
+# ST_515
+local icmp_ln116 <icmp_116> <integer> <Comparator> 'icmp' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:116>
+icmp_ln116 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:116
+reg: icmp_ln116_reg_4122[0:0] lv
+
+local music_number <partselect_121> <integer> <> 'partselect' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:121>
+music_number /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:121
+reg: music_number_reg_4126[24:0] lv
+
+local trunc_ln8 <partselect_124> <integer> <> 'partselect' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124>
+trunc_ln8 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:124
+reg: trunc_ln8_reg_4131[57:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state585)
+# ST_585
+local zext_ln121 <zext_121> <integer> <> 'zext' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:121>
+zext_ln121 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:121
+reg: zext_ln121_reg_4142[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state601)
+# ST_601
+local add_ln23_14 <add_23> <integer> <Arithmetic> 'add' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:23>
+add_ln23_14 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:23
+reg: add_ln23_14_reg_4339[4:0] lv
+
+local add_ln23_29 <add_23> <integer> <Arithmetic> 'add' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:23>
+add_ln23_29 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:23
+reg: add_ln23_29_reg_4344[4:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state602)
+# ST_602
+local music_index <> <integer> <Phi> 'phi' <>
+reg: music_index_reg_898[31:0] lv
+
+local min_haming_dis_2 <> <integer> <Phi> 'phi' <>
+reg: min_haming_dis_2_reg_910[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state604)
+# ST_604
+local music_index_3_i_lcssa25 <> <integer> <Phi> 'phi' <>
+reg: music_index_3_i_lcssa25_reg_922[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state72)
+# ST_72
+local tempA32_V <trunc_169> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:169>
+tempA32.V /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:169
+reg: tempA32_V_reg_3778[31:0] lv
+
+local tempB32_V <partselect_169> <integer> <> 'partselect' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:169>
+tempB32.V /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:169
+reg: tempB32_V_reg_3783[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state74)
+# ST_74
+local flame_index <> <integer> <Phi> 'phi' <>
+select_ln181_2 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:181
+reg: flame_index_reg_493[6:0] lv
+
+local trunc_ln184_3 <trunc_184> <integer> <> 'trunc' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184>
+trunc_ln184_3 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184
+reg: trunc_ln184_3_reg_3793[3:0] lv
+
+local trunc_ln184_2 <partselect_184> <integer> <> 'partselect' </home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184>
+trunc_ln184_2 /home/nomoto/src/StagedLSH/ver1.2/soft/src/table_serch.cpp:184
+reg: trunc_ln184_2_reg_3798[57:0] lv
+
+
+End Function 'table_serch'
+

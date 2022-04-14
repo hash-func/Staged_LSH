@@ -1,0 +1,316 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Apr 13 19:47:27 2022
+# Process ID: 28069
+# Current directory: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_ebbe_xsdbm_0_synth_1
+# Command line: vivado -log bd_ebbe_xsdbm_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_ebbe_xsdbm_0.tcl
+# Log file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_ebbe_xsdbm_0_synth_1/bd_ebbe_xsdbm_0.vds
+# Journal file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_ebbe_xsdbm_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source bd_ebbe_xsdbm_0.tcl -notrace
+INFO: Dispatch client connection id - 42417
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/int/xo/ip_repo/xilinx_com_hls_table_serch_1_0'.
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Abstraction IP file 'xilinx.com:display_pcie4_uscaleplus:int_gtcom_rtl:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_int_gtcom_rtl.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_int_gtcom_rtl.xml
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Abstraction IP file 'xilinx.com:display_pcie4_uscaleplus:ext_gtcom_rtl:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_ext_gtcom_rtl.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_ext_gtcom_rtl.xml
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Definition IP file 'xilinx.com:display_pcie4_uscaleplus:int_gtcom:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_int_gtcom.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_int_gtcom.xml
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Abstraction IP file 'xilinx.com:display_pcie4:pcie4_gt_if_rtl:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_gt_if_rtl.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_gt_if_rtl.xml
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Definition IP file 'xilinx.com:display_pcie4:pcie4_gt_if:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_gt_if.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_gt_if.xml
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Definition IP file 'xilinx.com:display_pcie4_uscaleplus:ext_gtcom:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_ext_gtcom.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_ext_gtcom.xml
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/Vitis/2020.2/data/cache/xilinx'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/ipcache'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/Vitis/2020.2/data/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Vivado/2020.2/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:xdma:4.1'. The one found in IP location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1' will take precedence over the same IP in the Xilinx installed IP.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:pcie4_uscale_plus:1.3'. The one found in IP location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3' will take precedence over the same IP in the Xilinx installed IP.
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie3_ultrascale:pcie3_us_gt_if:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie3_us_gt_if.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie3_ultrascale_v4_4/interfaces/pcie3_us_gt_if.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:xdma_debug_ports:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/xdma_debug_ports.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/xdma_debug_ports.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:pcie4_us_plus_transceiver_debug:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_us_plus_transceiver_debug.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/pcie4_us_plus_transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:xdma_status_ports:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/xdma_status_ports.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/xdma_status_ports.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:int_shared_logic:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie3_us_int_shared_logic.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/pcie3_us_int_shared_logic.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4_uscaleplus:int_gtcom:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_int_gtcom.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_int_gtcom.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie3_ultrascale:ext_shared_logic:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie3_us_ext_shared_logic.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/axi_pcie3_v3_0/interfaces/pcie3_us_ext_shared_logic.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_gt_if:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_gt_if.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_gt_if.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:pcie3_7x_transceiver_debug:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie3_7x_transceiver_debug.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/pcie3_7x_transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:pcie3_us_transceiver_debug:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie3_us_transceiver_debug.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/pcie3_us_transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:dsc_bypass:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/dsc_bypass.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/dsc_bypass.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:pcie_debug:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie_debug.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/pcie_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4_uscaleplus:ext_gtcom:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_ext_gtcom.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_ext_gtcom.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:pcie_cfg_external_msix:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie_cfg_ext_msix.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/xdma_v4_1/interfaces/pcie_cfg_ext_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_external_msix:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_ext_msix.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_ext_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pl:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_pl.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_control:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_control.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_control.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_mgmt:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_mgmt.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_mgmt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pcie_id:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_pcie_id.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pcie_id.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4_uscaleplus:transceiver_debug:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/transceiver_debug.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_internal:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix_int.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix_int.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_rbar:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_rbar.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_rbar.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_status:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_status.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_status.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_external:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_pm:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_pm.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_pm.xml'
+Command: synth_design -top bd_ebbe_xsdbm_0 -part xcu200-fsgd2104-2-e -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu200'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu200'
+INFO: [Device 21-403] Loading part xcu200-fsgd2104-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 1 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 28417
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:10 . Memory (MB): peak = 3082.191 ; gain = 211.594 ; free physical = 75707 ; free virtual = 103525
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'bd_ebbe_xsdbm_0' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_debug_bridge_xsdbm_0/bd_0/ip/ip_0/synth/bd_ebbe_xsdbm_0.v:58]
+INFO: [Synth 8-6157] synthesizing module 'FDRE' [/opt/Vivado/2020.2/scripts/rt/data/unisim_comp.v:13724]
+INFO: [Synth 8-6155] done synthesizing module 'FDRE' (1#1) [/opt/Vivado/2020.2/scripts/rt/data/unisim_comp.v:13724]
+INFO: [Synth 8-6155] done synthesizing module 'bd_ebbe_xsdbm_0' (4#1) [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_debug_bridge_xsdbm_0/bd_0/ip/ip_0/synth/bd_ebbe_xsdbm_0.v:58]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:19 . Memory (MB): peak = 3232.035 ; gain = 361.438 ; free physical = 74567 ; free virtual = 102396
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:19 . Memory (MB): peak = 3246.879 ; gain = 376.281 ; free physical = 74574 ; free virtual = 102407
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:19 . Memory (MB): peak = 3246.879 ; gain = 376.281 ; free physical = 74574 ; free virtual = 102407
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3254.879 ; gain = 0.000 ; free physical = 74971 ; free virtual = 102744
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_debug_bridge_xsdbm_0/bd_0/ip/ip_0/bd_ebbe_xsdbm_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_debug_bridge_xsdbm_0/bd_0/ip/ip_0/bd_ebbe_xsdbm_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_debug_bridge_xsdbm_0/bd_0/ip/ip_0/constraints/xsdbm_cc_early.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_debug_bridge_xsdbm_0/bd_0/ip/ip_0/constraints/xsdbm_cc_early.xdc] for cell 'inst'
+Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_ebbe_xsdbm_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_ebbe_xsdbm_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_debug_bridge_xsdbm_0/bd_0/ip/ip_0/constraints/xsdbm_cc_late.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_debug_bridge_xsdbm_0/bd_0/ip/ip_0/constraints/xsdbm_cc_late.xdc] for cell 'inst'
+Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_debug_bridge_xsdbm_0/bd_0/ip/ip_0/constraints/xsdbm_gc_late.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_debug_bridge_xsdbm_0/bd_0/ip/ip_0/constraints/xsdbm_gc_late.xdc] for cell 'inst'
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3323.629 ; gain = 0.000 ; free physical = 75107 ; free virtual = 102935
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3323.629 ; gain = 0.000 ; free physical = 75105 ; free virtual = 102932
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:28 . Memory (MB): peak = 3323.629 ; gain = 453.031 ; free physical = 76233 ; free virtual = 104061
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu200-fsgd2104-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:28 . Memory (MB): peak = 3323.629 ; gain = 453.031 ; free physical = 76230 ; free virtual = 104058
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_ebbe_xsdbm_0_synth_1/dont_touch.xdc, line 6).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:28 . Memory (MB): peak = 3323.629 ; gain = 453.031 ; free physical = 76222 ; free virtual = 104050
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:29 . Memory (MB): peak = 3323.629 ; gain = 453.031 ; free physical = 76206 ; free virtual = 104035
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 10    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 6840 (col length:120)
+BRAMs: 4320 (col length: RAMB18 360 RAMB36 180)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:29 . Memory (MB): peak = 3323.629 ; gain = 453.031 ; free physical = 76182 ; free virtual = 104014
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:47 . Memory (MB): peak = 3519.191 ; gain = 648.594 ; free physical = 74605 ; free virtual = 102435
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:47 . Memory (MB): peak = 3519.191 ; gain = 648.594 ; free physical = 74590 ; free virtual = 102420
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:47 . Memory (MB): peak = 3538.223 ; gain = 667.625 ; free physical = 74532 ; free virtual = 102362
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3295] tying undriven pin CAPTURE_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin UPDATE_temp_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin UPDATE_temp_i_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin UPDATE_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin SHIFT_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin RESET_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin TDI_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin SEL_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin DRCK_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin TDO_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin RUNTEST_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin TCK_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin TMS_inferred:in0 to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[31] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[30] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[29] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[28] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[27] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[26] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[25] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[24] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[23] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[22] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[21] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[20] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[19] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[18] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[17] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[16] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[15] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[14] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[13] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[12] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[11] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[10] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[9] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[8] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[7] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[6] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[5] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[4] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[3] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[2] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[1] to constant 0
+INFO: [Synth 8-3295] tying undriven pin bscanid_inferred:in0[0] to constant 0
+INFO: [Synth 8-3295] tying undriven pin id_state_inferred:in0[1] to constant 0
+INFO: [Synth 8-3295] tying undriven pin id_state_inferred:in0[0] to constant 0
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:49 . Memory (MB): peak = 3544.160 ; gain = 673.562 ; free physical = 74600 ; free virtual = 102455
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:49 . Memory (MB): peak = 3544.160 ; gain = 673.562 ; free physical = 74599 ; free virtual = 102456
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:31 ; elapsed = 00:00:49 . Memory (MB): peak = 3544.160 ; gain = 673.562 ; free physical = 74597 ; free virtual = 102454
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:31 ; elapsed = 00:00:49 . Memory (MB): peak = 3544.160 ; gain = 673.562 ; free physical = 74595 ; free virtual = 102453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:00:49 . Memory (MB): peak = 3544.160 ; gain = 673.562 ; free physical = 74590 ; free virtual = 102451
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:31 ; elapsed = 00:00:49 . Memory (MB): peak = 3544.160 ; gain = 673.562 ; free physical = 74590 ; free virtual = 102451
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |    47|
+|2     |FDRE |    11|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:31 ; elapsed = 00:00:49 . Memory (MB): peak = 3544.160 ; gain = 673.562 ; free physical = 74589 ; free virtual = 102451
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:44 . Memory (MB): peak = 3544.160 ; gain = 596.812 ; free physical = 74599 ; free virtual = 102471
+Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:49 . Memory (MB): peak = 3544.168 ; gain = 673.562 ; free physical = 74598 ; free virtual = 102470
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:04 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3544.168 ; gain = 0.000 ; free physical = 74659 ; free virtual = 102531
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3614.043 ; gain = 0.000 ; free physical = 74626 ; free virtual = 102463
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+71 Infos, 33 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 3614.043 ; gain = 1177.523 ; free physical = 74747 ; free virtual = 102583
+INFO: [Common 17-600] The following parameters have non-default value.
+general.maxThreads
+INFO: [Common 17-1381] The checkpoint '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_ebbe_xsdbm_0_synth_1/bd_ebbe_xsdbm_0.dcp' has been generated.
+WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_ebbe_xsdbm_0, cache-ID = 802d3d9eb5c6d883
+INFO: [Coretcl 2-1174] Renamed 2 cell refs.
+INFO: [Common 17-1381] The checkpoint '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_ebbe_xsdbm_0_synth_1/bd_ebbe_xsdbm_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file bd_ebbe_xsdbm_0_utilization_synth.rpt -pb bd_ebbe_xsdbm_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 13 19:48:44 2022...

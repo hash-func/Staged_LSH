@@ -1,0 +1,16 @@
+{
+ "kernels": [],
+ "computeUnits": [
+  {
+   "id": "",
+   "kernelName": "",
+   "cuName": "table_serch_1",
+   "baseAddress": "",
+   "instancePath": "pfm_top_i/dynamic_region/table_serch_1/inst",
+   "slr": [
+    "1"
+   ]
+  }
+ ]
+}
+

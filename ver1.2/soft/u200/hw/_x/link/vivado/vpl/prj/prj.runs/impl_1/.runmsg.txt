@@ -1,0 +1,2 @@
+Compiling (bitstream) accelerator binary: table_serch
+Log file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/impl_1/runme.log

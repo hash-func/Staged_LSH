@@ -1,0 +1,684 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Apr 13 19:56:53 2022
+# Process ID: 3698
+# Current directory: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_dpa_hub_0_synth_1
+# Command line: vivado -log pfm_dynamic_dpa_hub_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pfm_dynamic_dpa_hub_0.tcl
+# Log file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_dpa_hub_0_synth_1/pfm_dynamic_dpa_hub_0.vds
+# Journal file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_dpa_hub_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source pfm_dynamic_dpa_hub_0.tcl -notrace
+INFO: Dispatch client connection id - 42417
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/int/xo/ip_repo/xilinx_com_hls_table_serch_1_0'.
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Abstraction IP file 'xilinx.com:display_pcie4_uscaleplus:int_gtcom_rtl:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_int_gtcom_rtl.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_int_gtcom_rtl.xml
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Abstraction IP file 'xilinx.com:display_pcie4_uscaleplus:ext_gtcom_rtl:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_ext_gtcom_rtl.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_ext_gtcom_rtl.xml
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Definition IP file 'xilinx.com:display_pcie4_uscaleplus:int_gtcom:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_int_gtcom.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_int_gtcom.xml
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Abstraction IP file 'xilinx.com:display_pcie4:pcie4_gt_if_rtl:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_gt_if_rtl.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_gt_if_rtl.xml
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Definition IP file 'xilinx.com:display_pcie4:pcie4_gt_if:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_gt_if.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_gt_if.xml
+WARNING: [IP_Flow 19-1694] Ignoring duplicate Bus Definition IP file 'xilinx.com:display_pcie4_uscaleplus:ext_gtcom:1.0' found within IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+File in use: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_ext_gtcom.xml
+File ignored: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_ext_gtcom.xml
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/Vitis/2020.2/data/cache/xilinx'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/ipcache'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/Vitis/2020.2/data/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Vivado/2020.2/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:xdma:4.1'. The one found in IP location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1' will take precedence over the same IP in the Xilinx installed IP.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:pcie4_uscale_plus:1.3'. The one found in IP location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3' will take precedence over the same IP in the Xilinx installed IP.
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie3_ultrascale:pcie3_us_gt_if:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie3_us_gt_if.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie3_ultrascale_v4_4/interfaces/pcie3_us_gt_if.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:xdma_debug_ports:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/xdma_debug_ports.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/xdma_debug_ports.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:pcie4_us_plus_transceiver_debug:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_us_plus_transceiver_debug.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/pcie4_us_plus_transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:xdma_status_ports:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/xdma_status_ports.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/xdma_status_ports.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:int_shared_logic:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie3_us_int_shared_logic.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/pcie3_us_int_shared_logic.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4_uscaleplus:int_gtcom:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_int_gtcom.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_int_gtcom.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie3_ultrascale:ext_shared_logic:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie3_us_ext_shared_logic.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/axi_pcie3_v3_0/interfaces/pcie3_us_ext_shared_logic.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_gt_if:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_gt_if.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_gt_if.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:pcie3_7x_transceiver_debug:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie3_7x_transceiver_debug.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/pcie3_7x_transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:pcie3_us_transceiver_debug:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie3_us_transceiver_debug.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/pcie3_us_transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:dsc_bypass:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/dsc_bypass.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/dsc_bypass.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:pcie_debug:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie_debug.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/qdma_v4_0/interfaces/pcie_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4_uscaleplus:ext_gtcom:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie4_usp_ext_gtcom.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_usp_ext_gtcom.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_xdma:pcie_cfg_external_msix:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/xdma_v4_1/interfaces/pcie_cfg_ext_msix.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/xdma_v4_1/interfaces/pcie_cfg_ext_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_external_msix:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_ext_msix.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_ext_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pl:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_pl.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_control:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_control.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_control.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_mgmt:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_mgmt.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_mgmt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pcie_id:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_pcie_id.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pcie_id.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4_uscaleplus:transceiver_debug:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/transceiver_debug.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_internal:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix_int.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix_int.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_rbar:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_rbar.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_rbar.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_status:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_status.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_status.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_external:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_pm:1.0'. The one found in location '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/.local/hw_platform/iprepo/iprepo/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_pm.xml' will take precedence over the same Interface in location '/opt/Vivado/2020.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_pm.xml'
+Command: synth_design -top pfm_dynamic_dpa_hub_0 -part xcu200-fsgd2104-2-e -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu200'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu200'
+INFO: [Device 21-403] Loading part xcu200-fsgd2104-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 1 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 3839
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3080.281 ; gain = 211.625 ; free physical = 71507 ; free virtual = 100206
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'pfm_dynamic_dpa_hub_0' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_dpa_hub_0/synth/pfm_dynamic_dpa_hub_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'trace_integrator' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:316]
+	Parameter NUM_TRACE_PORTS bound to: 11 - type: integer 
+	Parameter USE_PASSTHROUGH bound to: 1'b0 
+	Parameter EMULATION bound to: 1'b0 
+	Parameter EXT_TRACE_RST bound to: 1 - type: integer 
+	Parameter EXT_MON_RST bound to: 1 - type: integer 
+	Parameter _NUM_TRACE_PORTS bound to: 12 - type: integer 
+	Parameter _NUM_LOG_PORTS bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'stream_slice' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1772]
+INFO: [Synth 8-6155] done synthesizing module 'stream_slice' (1#1) [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1772]
+INFO: [Synth 8-6157] synthesizing module 'xpm_cdc_handshake' [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:469]
+	Parameter DEST_EXT_HSK bound to: 0 - type: integer 
+	Parameter DEST_SYNC_FF bound to: 4 - type: integer 
+	Parameter INIT_SYNC_FF bound to: 0 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter SRC_SYNC_FF bound to: 4 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+	Parameter WIDTH bound to: 45 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'xpm_cdc_single' [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:153]
+	Parameter DEST_SYNC_FF bound to: 4 - type: integer 
+	Parameter INIT_SYNC_FF bound to: 0 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter SRC_INPUT_REG bound to: 0 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_cdc_single' (2#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:153]
+INFO: [Synth 8-6155] done synthesizing module 'xpm_cdc_handshake' (3#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:469]
+INFO: [Synth 8-6157] synthesizing module 'xpm_cdc_single__parameterized0' [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:153]
+	Parameter DEST_SYNC_FF bound to: 3 - type: integer 
+	Parameter INIT_SYNC_FF bound to: 0 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter SRC_INPUT_REG bound to: 1 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_cdc_single__parameterized0' (3#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:153]
+INFO: [Synth 8-6157] synthesizing module 'xpm_cdc_single__parameterized1' [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:153]
+	Parameter DEST_SYNC_FF bound to: 3 - type: integer 
+	Parameter INIT_SYNC_FF bound to: 0 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter SRC_INPUT_REG bound to: 0 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_cdc_single__parameterized1' (3#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:153]
+INFO: [Synth 8-6157] synthesizing module 'AXI_LITE_IF' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:3]
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'AXI_LITE_IF' (4#1) [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:3]
+WARNING: [Synth 8-689] width (2) of port connection 'slv_reg_addr' does not match port width (14) of module 'AXI_LITE_IF' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1355]
+INFO: [Synth 8-6157] synthesizing module 'sw_timestamper' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1616]
+INFO: [Synth 8-6157] synthesizing module 'trace_fifo' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1692]
+	Parameter DEPTH bound to: 16 - type: integer 
+	Parameter WIDTH bound to: 64 - type: integer 
+	Parameter IS_ASYNC bound to: 0 - type: integer 
+	Parameter ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter FIFO_TYPE bound to: distributed - type: string 
+INFO: [Synth 8-6157] synthesizing module 'xpm_fifo_async' [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:2142]
+	Parameter FIFO_MEMORY_TYPE bound to: distributed - type: string 
+	Parameter ECC_MODE bound to: no_ecc - type: string 
+	Parameter RELATED_CLOCKS bound to: 0 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
+	Parameter FIFO_WRITE_DEPTH bound to: 16 - type: integer 
+	Parameter WRITE_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter WR_DATA_COUNT_WIDTH bound to: 4 - type: integer 
+	Parameter PROG_FULL_THRESH bound to: 10 - type: integer 
+	Parameter FULL_RESET_VALUE bound to: 0 - type: integer 
+	Parameter USE_ADV_FEATURES bound to: 0707 - type: string 
+	Parameter READ_MODE bound to: fwft - type: string 
+	Parameter FIFO_READ_LATENCY bound to: 1 - type: integer 
+	Parameter READ_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter RD_DATA_COUNT_WIDTH bound to: 4 - type: integer 
+	Parameter PROG_EMPTY_THRESH bound to: 10 - type: integer 
+	Parameter DOUT_RESET_VALUE bound to: 0 - type: string 
+	Parameter CDC_SYNC_STAGES bound to: 2 - type: integer 
+	Parameter WAKEUP_TIME bound to: 0 - type: integer 
+	Parameter EN_ADV_FEATURE_ASYNC bound to: 16'b0000011100000111 
+	Parameter P_FIFO_MEMORY_TYPE bound to: 1 - type: integer 
+	Parameter P_COMMON_CLOCK bound to: 0 - type: integer 
+	Parameter P_ECC_MODE bound to: 0 - type: integer 
+	Parameter P_READ_MODE bound to: 1 - type: integer 
+	Parameter P_WAKEUP_TIME bound to: 2 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'xpm_fifo_base' [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:56]
+	Parameter COMMON_CLOCK bound to: 0 - type: integer 
+	Parameter RELATED_CLOCKS bound to: 0 - type: integer 
+	Parameter FIFO_MEMORY_TYPE bound to: 1 - type: integer 
+	Parameter ECC_MODE bound to: 0 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
+	Parameter FIFO_WRITE_DEPTH bound to: 16 - type: integer 
+	Parameter WRITE_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter WR_DATA_COUNT_WIDTH bound to: 4 - type: integer 
+	Parameter PROG_FULL_THRESH bound to: 10 - type: integer 
+	Parameter USE_ADV_FEATURES bound to: 0707 - type: string 
+	Parameter READ_MODE bound to: 1 - type: integer 
+	Parameter FIFO_READ_LATENCY bound to: 1 - type: integer 
+	Parameter READ_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter RD_DATA_COUNT_WIDTH bound to: 4 - type: integer 
+	Parameter PROG_EMPTY_THRESH bound to: 10 - type: integer 
+	Parameter DOUT_RESET_VALUE bound to: 0 - type: string 
+	Parameter CDC_DEST_SYNC_FF bound to: 2 - type: integer 
+	Parameter FULL_RESET_VALUE bound to: 0 - type: integer 
+	Parameter REMOVE_WR_RD_PROT_LOGIC bound to: 0 - type: integer 
+	Parameter WAKEUP_TIME bound to: 0 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+	Parameter invalid bound to: 0 - type: integer 
+	Parameter stage1_valid bound to: 2 - type: integer 
+	Parameter stage2_valid bound to: 1 - type: integer 
+	Parameter both_stages_valid bound to: 3 - type: integer 
+	Parameter FIFO_MEM_TYPE bound to: 1 - type: integer 
+	Parameter RD_MODE bound to: 1 - type: integer 
+	Parameter ENABLE_ECC bound to: 0 - type: integer 
+	Parameter FIFO_READ_DEPTH bound to: 16 - type: integer 
+	Parameter FIFO_SIZE bound to: 1024 - type: integer 
+	Parameter WR_WIDTH_LOG bound to: 6 - type: integer 
+	Parameter WR_DEPTH_LOG bound to: 4 - type: integer 
+	Parameter WR_PNTR_WIDTH bound to: 4 - type: integer 
+	Parameter RD_PNTR_WIDTH bound to: 4 - type: integer 
+	Parameter FULL_RST_VAL bound to: 1'b0 
+	Parameter WR_RD_RATIO bound to: 0 - type: integer 
+	Parameter READ_MODE_LL bound to: 1 - type: integer 
+	Parameter PF_THRESH_ADJ bound to: 8 - type: integer 
+	Parameter PE_THRESH_ADJ bound to: 8 - type: integer 
+	Parameter PF_THRESH_MIN bound to: 7 - type: integer 
+	Parameter PF_THRESH_MAX bound to: 11 - type: integer 
+	Parameter PE_THRESH_MIN bound to: 5 - type: integer 
+	Parameter PE_THRESH_MAX bound to: 11 - type: integer 
+	Parameter WR_DC_WIDTH_EXT bound to: 5 - type: integer 
+	Parameter RD_DC_WIDTH_EXT bound to: 5 - type: integer 
+	Parameter RD_LATENCY bound to: 2 - type: integer 
+	Parameter WIDTH_RATIO bound to: 1 - type: integer 
+	Parameter EN_ADV_FEATURE bound to: 16'b0000011100000111 
+	Parameter EN_OF bound to: 1'b1 
+	Parameter EN_PF bound to: 1'b1 
+	Parameter EN_WDC bound to: 1'b1 
+	Parameter EN_AF bound to: 1'b0 
+	Parameter EN_WACK bound to: 1'b0 
+	Parameter FG_EQ_ASYM_DOUT bound to: 1'b0 
+	Parameter EN_UF bound to: 1'b1 
+	Parameter EN_PE bound to: 1'b1 
+	Parameter EN_RDC bound to: 1'b1 
+	Parameter EN_AE bound to: 1'b0 
+	Parameter EN_DVLD bound to: 1'b0 
+INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base' [/opt/Vivado/2020.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
+	Parameter MEMORY_TYPE bound to: 1 - type: integer 
+	Parameter MEMORY_SIZE bound to: 1024 - type: integer 
+	Parameter MEMORY_PRIMITIVE bound to: 1 - type: integer 
+	Parameter CLOCKING_MODE bound to: 1 - type: integer 
+	Parameter ECC_MODE bound to: 0 - type: integer 
+	Parameter MEMORY_INIT_FILE bound to: none - type: string 
+	Parameter MEMORY_INIT_PARAM bound to: (null) - type: string 
+	Parameter USE_MEM_INIT_MMI bound to: 0 - type: integer 
+	Parameter USE_MEM_INIT bound to: 0 - type: integer 
+	Parameter MEMORY_OPTIMIZATION bound to: true - type: string 
+	Parameter WAKEUP_TIME bound to: 0 - type: integer 
+	Parameter AUTO_SLEEP_TIME bound to: 0 - type: integer 
+	Parameter MESSAGE_CONTROL bound to: 0 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+	Parameter USE_EMBEDDED_CONSTRAINT bound to: 1 - type: integer 
+	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter WRITE_PROTECT bound to: 1 - type: integer 
+	Parameter WRITE_DATA_WIDTH_A bound to: 64 - type: integer 
+	Parameter READ_DATA_WIDTH_A bound to: 64 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_A bound to: 64 - type: integer 
+	Parameter ADDR_WIDTH_A bound to: 4 - type: integer 
+	Parameter READ_RESET_VALUE_A bound to: 0 - type: string 
+	Parameter READ_LATENCY_A bound to: 2 - type: integer 
+	Parameter WRITE_MODE_A bound to: 2 - type: integer 
+	Parameter RST_MODE_A bound to: SYNC - type: string 
+	Parameter WRITE_DATA_WIDTH_B bound to: 64 - type: integer 
+	Parameter READ_DATA_WIDTH_B bound to: 64 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_B bound to: 64 - type: integer 
+	Parameter ADDR_WIDTH_B bound to: 4 - type: integer 
+	Parameter READ_RESET_VALUE_B bound to: 0 - type: string 
+	Parameter READ_LATENCY_B bound to: 2 - type: integer 
+	Parameter WRITE_MODE_B bound to: 1 - type: integer 
+	Parameter RST_MODE_B bound to: SYNC - type: string 
+	Parameter P_MEMORY_PRIMITIVE bound to: distributed - type: string 
+	Parameter P_MIN_WIDTH_DATA_A bound to: 64 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_B bound to: 64 - type: integer 
+	Parameter P_MIN_WIDTH_DATA bound to: 64 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_ECC bound to: 64 - type: integer 
+	Parameter P_MAX_DEPTH_DATA bound to: 16 - type: integer 
+	Parameter P_ECC_MODE bound to: no_ecc - type: string 
+	Parameter P_MEMORY_OPT bound to: yes - type: string 
+	Parameter P_WIDTH_COL_WRITE_A bound to: 64 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_B bound to: 64 - type: integer 
+	Parameter P_NUM_COLS_WRITE_A bound to: 1 - type: integer 
+	Parameter P_NUM_COLS_WRITE_B bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_WRITE_A bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_WRITE_B bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_READ_A bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_READ_B bound to: 1 - type: integer 
+	Parameter P_WIDTH_ADDR_WRITE_A bound to: 4 - type: integer 
+	Parameter P_WIDTH_ADDR_WRITE_B bound to: 4 - type: integer 
+	Parameter P_WIDTH_ADDR_READ_A bound to: 4 - type: integer 
+	Parameter P_WIDTH_ADDR_READ_B bound to: 4 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_WRITE_A bound to: 0 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_WRITE_B bound to: 0 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_READ_A bound to: 0 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_READ_B bound to: 0 - type: integer 
+	Parameter P_ENABLE_BYTE_WRITE_A bound to: 0 - type: integer 
+	Parameter P_ENABLE_BYTE_WRITE_B bound to: 0 - type: integer 
+	Parameter P_SDP_WRITE_MODE bound to: yes - type: string 
+	Parameter rsta_loop_iter bound to: 64 - type: integer 
+	Parameter rstb_loop_iter bound to: 64 - type: integer 
+	Parameter NUM_CHAR_LOC bound to: 0 - type: integer 
+	Parameter MAX_NUM_CHAR bound to: 0 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 64 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_memory_base' (5#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
+INFO: [Synth 8-6157] synthesizing module 'xpm_cdc_gray' [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:284]
+	Parameter DEST_SYNC_FF bound to: 2 - type: integer 
+	Parameter INIT_SYNC_FF bound to: 1 - type: integer 
+	Parameter REG_OUTPUT bound to: 0 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter SIM_LOSSLESS_GRAY_CHK bound to: 0 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+	Parameter WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_cdc_gray' (6#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:284]
+INFO: [Synth 8-6157] synthesizing module 'xpm_fifo_reg_vec' [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1880]
+	Parameter REG_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_fifo_reg_vec' (7#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1880]
+INFO: [Synth 8-6157] synthesizing module 'xpm_cdc_gray__parameterized0' [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:284]
+	Parameter DEST_SYNC_FF bound to: 4 - type: integer 
+	Parameter INIT_SYNC_FF bound to: 1 - type: integer 
+	Parameter REG_OUTPUT bound to: 0 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter SIM_LOSSLESS_GRAY_CHK bound to: 0 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+	Parameter WIDTH bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_cdc_gray__parameterized0' (7#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:284]
+INFO: [Synth 8-6157] synthesizing module 'xpm_fifo_reg_vec__parameterized0' [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1880]
+	Parameter REG_WIDTH bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_fifo_reg_vec__parameterized0' (7#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1880]
+INFO: [Synth 8-6157] synthesizing module 'xpm_cdc_gray__parameterized1' [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:284]
+	Parameter DEST_SYNC_FF bound to: 2 - type: integer 
+	Parameter INIT_SYNC_FF bound to: 1 - type: integer 
+	Parameter REG_OUTPUT bound to: 0 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter SIM_LOSSLESS_GRAY_CHK bound to: 0 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+	Parameter WIDTH bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_cdc_gray__parameterized1' (7#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:284]
+INFO: [Synth 8-226] default block is never used [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1204]
+INFO: [Synth 8-226] default block is never used [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1271]
+INFO: [Synth 8-226] default block is never used [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1293]
+INFO: [Synth 8-6157] synthesizing module 'xpm_fifo_reg_bit' [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1902]
+	Parameter RST_VALUE bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_fifo_reg_bit' (8#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1902]
+INFO: [Synth 8-6157] synthesizing module 'xpm_counter_updn' [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1854]
+	Parameter COUNTER_WIDTH bound to: 2 - type: integer 
+	Parameter RESET_VALUE bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_counter_updn' (9#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1854]
+INFO: [Synth 8-6157] synthesizing module 'xpm_fifo_rst' [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1618]
+	Parameter COMMON_CLOCK bound to: 0 - type: integer 
+	Parameter CDC_DEST_SYNC_FF bound to: 2 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'xpm_cdc_sync_rst' [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1059]
+	Parameter DEST_SYNC_FF bound to: 2 - type: integer 
+	Parameter INIT bound to: 32'sb00000000000000000000000000000000 
+	Parameter INIT_SYNC_FF bound to: 1 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+	Parameter DEF_VAL bound to: 1'b0 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_cdc_sync_rst' (10#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1059]
+INFO: [Synth 8-6155] done synthesizing module 'xpm_fifo_rst' (11#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1618]
+INFO: [Synth 8-6157] synthesizing module 'xpm_counter_updn__parameterized0' [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1854]
+	Parameter COUNTER_WIDTH bound to: 5 - type: integer 
+	Parameter RESET_VALUE bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_counter_updn__parameterized0' (11#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1854]
+INFO: [Synth 8-6157] synthesizing module 'xpm_counter_updn__parameterized1' [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1854]
+	Parameter COUNTER_WIDTH bound to: 4 - type: integer 
+	Parameter RESET_VALUE bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_counter_updn__parameterized1' (11#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1854]
+INFO: [Synth 8-6157] synthesizing module 'xpm_counter_updn__parameterized2' [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1854]
+	Parameter COUNTER_WIDTH bound to: 4 - type: integer 
+	Parameter RESET_VALUE bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xpm_counter_updn__parameterized2' (11#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1854]
+INFO: [Synth 8-6155] done synthesizing module 'xpm_fifo_base' (12#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:56]
+INFO: [Synth 8-6155] done synthesizing module 'xpm_fifo_async' (13#1) [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:2142]
+WARNING: [Synth 8-7071] port 'prog_full' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7071] port 'wr_data_count' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7071] port 'overflow' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7071] port 'wr_rst_busy' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7071] port 'almost_full' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7071] port 'wr_ack' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7071] port 'prog_empty' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7071] port 'rd_data_count' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7071] port 'underflow' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7071] port 'rd_rst_busy' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7071] port 'almost_empty' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7071] port 'data_valid' of module 'xpm_fifo_async' is unconnected for instance 'xpm_fifo_async_inst' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+WARNING: [Synth 8-7023] instance 'xpm_fifo_async_inst' of module 'xpm_fifo_async' has 26 connections declared, but only 14 given [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1741]
+INFO: [Synth 8-6155] done synthesizing module 'trace_fifo' (14#1) [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1692]
+INFO: [Synth 8-6155] done synthesizing module 'sw_timestamper' (15#1) [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1616]
+INFO: [Synth 8-6157] synthesizing module 'merge_tree' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1484]
+	Parameter REAL_PORTS bound to: 12 - type: integer 
+	Parameter LOG_PORTS bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'stream_merge2to1' [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1540]
+INFO: [Synth 8-6155] done synthesizing module 'stream_merge2to1' (16#1) [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1540]
+INFO: [Synth 8-6155] done synthesizing module 'merge_tree' (17#1) [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:1484]
+INFO: [Synth 8-6155] done synthesizing module 'trace_integrator' (18#1) [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ipshared/5162/hdl/trace_hub_v1_1_vl_rfs.v:316]
+INFO: [Synth 8-6155] done synthesizing module 'pfm_dynamic_dpa_hub_0' (19#1) [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.gen/my_rm/bd/bd/ip/pfm_dynamic_dpa_hub_0/synth/pfm_dynamic_dpa_hub_0.v:57]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3141.188 ; gain = 272.531 ; free physical = 72129 ; free virtual = 100832
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 3159.031 ; gain = 290.375 ; free physical = 72209 ; free virtual = 100908
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 3159.031 ; gain = 290.375 ; free physical = 72209 ; free virtual = 100908
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.06 . Memory (MB): peak = 3159.031 ; gain = 0.000 ; free physical = 72199 ; free virtual = 100897
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_dpa_hub_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_dpa_hub_0_synth_1/dont_touch.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/pfm_dynamic_dpa_hub_0_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/pfm_dynamic_dpa_hub_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/pfm_dynamic_dpa_hub_0_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/pfm_dynamic_dpa_hub_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/opt/Vivado/2020.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/pfm_dynamic_dpa_hub_0_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/pfm_dynamic_dpa_hub_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/opt/Vivado/2020.2/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/pfm_dynamic_dpa_hub_0_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/pfm_dynamic_dpa_hub_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Project 1-1715] 5 XPM XDC files have been applied to the design.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3282.594 ; gain = 0.000 ; free physical = 71539 ; free virtual = 100237
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 3285.562 ; gain = 2.969 ; free physical = 71515 ; free virtual = 100213
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 3285.562 ; gain = 416.906 ; free physical = 71251 ; free virtual = 99955
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu200-fsgd2104-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 3285.562 ; gain = 416.906 ; free physical = 71249 ; free virtual = 99953
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_dpa_hub_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/sw_ts/fifo_i/xpm_fifo_async_inst/\gnuram_async_fifo.xpm_fifo_base_inst /\gen_cdc_pntr.rd_pntr_cdc_inst . (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/sw_ts/fifo_i/xpm_fifo_async_inst/\gnuram_async_fifo.xpm_fifo_base_inst /\gen_cdc_pntr.wr_pntr_cdc_inst . (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/sw_ts/fifo_i/xpm_fifo_async_inst/\gnuram_async_fifo.xpm_fifo_base_inst /\gen_cdc_pntr.rd_pntr_cdc_dc_inst . (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/sw_ts/fifo_i/xpm_fifo_async_inst/\gnuram_async_fifo.xpm_fifo_base_inst /\gen_cdc_pntr.wr_pntr_cdc_dc_inst . (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/xpm_cdc_handshake_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/xpm_cdc_handshake_inst/xpm_cdc_single_dest2src_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/xpm_cdc_handshake_inst/xpm_cdc_single_src2dest_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/xpm_cdc_single_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/xpm_cdc_single_sw_rst_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/sw_ts/fifo_i/xpm_fifo_async_inst/\gnuram_async_fifo.xpm_fifo_base_inst /xpm_fifo_rst_inst/\gen_rst_ic.rrst_wr_inst . (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/sw_ts/fifo_i/xpm_fifo_async_inst/\gnuram_async_fifo.xpm_fifo_base_inst /xpm_fifo_rst_inst/\gen_rst_ic.wrst_rd_inst . (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/sw_ts/fifo_i/xpm_fifo_async_inst. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 3285.562 ; gain = 416.906 ; free physical = 71239 ; free virtual = 99943
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'gen_rst_ic.curr_wrst_state_reg' in module 'xpm_fifo_rst'
+INFO: [Synth 8-802] inferred FSM for state register 'gen_rst_ic.curr_rrst_state_reg' in module 'xpm_fifo_rst'
+INFO: [Synth 8-802] inferred FSM for state register 'gen_fwft.curr_fwft_state_reg' in module 'xpm_fifo_base'
+INFO: [Synth 8-5552] Implemented safe state 'default_state' for state register 'gen_rst_ic.curr_wrst_state_reg' in module 'xpm_fifo_rst'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+               WRST_IDLE |                            00001 |                              000
+                 WRST_IN |                            00010 |                              010
+                WRST_OUT |                            00100 |                              111
+               WRST_EXIT |                            01000 |                              110
+            WRST_GO2IDLE |                            10000 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'gen_rst_ic.curr_wrst_state_reg' using encoding 'one-hot' in module 'xpm_fifo_rst'
+INFO: [Synth 8-5552] Implemented safe state 'default_state' for state register 'gen_rst_ic.curr_rrst_state_reg' in module 'xpm_fifo_rst'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+                 iSTATE0 |                               01 |                               10
+                 iSTATE1 |                               10 |                               11
+                 iSTATE2 |                               11 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'gen_rst_ic.curr_rrst_state_reg' using encoding 'sequential' in module 'xpm_fifo_rst'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 invalid |                               00 |                               00
+            stage1_valid |                               01 |                               10
+       both_stages_valid |                               10 |                               11
+            stage2_valid |                               11 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'gen_fwft.curr_fwft_state_reg' using encoding 'sequential' in module 'xpm_fifo_base'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 3285.562 ; gain = 416.906 ; free physical = 71221 ; free virtual = 99928
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   4 Input    5 Bit       Adders := 3     
+	   2 Input    5 Bit       Adders := 1     
+	   3 Input    5 Bit       Adders := 2     
+	   4 Input    4 Bit       Adders := 3     
+	   3 Input    4 Bit       Adders := 1     
+	   4 Input    2 Bit       Adders := 1     
++---XORs : 
+	   2 Input      5 Bit         XORs := 2     
+	   2 Input      4 Bit         XORs := 2     
+	   2 Input      1 Bit         XORs := 14    
++---Registers : 
+	               64 Bit    Registers := 29    
+	               45 Bit    Registers := 3     
+	               32 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	                5 Bit    Registers := 15    
+	                4 Bit    Registers := 14    
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 6     
+	                1 Bit    Registers := 87    
++---Muxes : 
+	   2 Input   64 Bit        Muxes := 39    
+	   3 Input   14 Bit        Muxes := 1     
+	   6 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 8     
+	   4 Input    2 Bit        Muxes := 8     
+	   2 Input    2 Bit        Muxes := 33    
+	   2 Input    1 Bit        Muxes := 77    
+	   6 Input    1 Bit        Muxes := 2     
+	   5 Input    1 Bit        Muxes := 2     
+	   4 Input    1 Bit        Muxes := 3     
+	   3 Input    1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 6840 (col length:120)
+BRAMs: 4320 (col length: RAMB18 360 RAMB36 180)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 3285.562 ; gain = 416.906 ; free physical = 71953 ; free virtual = 100661
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping	Report (see note below)
++-----------------------------------------------------------------------------------------------------------------+----------------------------------+----------------+----------------------+---------------+
+|Module Name                                                                                                      | RTL Object                       | Inference      | Size (Depth x Width) | Primitives    | 
++-----------------------------------------------------------------------------------------------------------------+----------------------------------+----------------+----------------------+---------------+
+|inst/\sw_ts/fifo_i/xpm_fifo_async_inst /\gnuram_async_fifo.xpm_fifo_base_inst /\gen_sdpram.xpm_memory_base_inst  | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 64              | RAM32M16 x 5	 | 
++-----------------------------------------------------------------------------------------------------------------+----------------------------------+----------------+----------------------+---------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:33 . Memory (MB): peak = 3544.922 ; gain = 676.266 ; free physical = 70805 ; free virtual = 99635
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:33 . Memory (MB): peak = 3547.922 ; gain = 679.266 ; free physical = 70827 ; free virtual = 99657
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping	Report
++-----------------------------------------------------------------------------------------------------------------+----------------------------------+----------------+----------------------+---------------+
+|Module Name                                                                                                      | RTL Object                       | Inference      | Size (Depth x Width) | Primitives    | 
++-----------------------------------------------------------------------------------------------------------------+----------------------------------+----------------+----------------------+---------------+
+|inst/\sw_ts/fifo_i/xpm_fifo_async_inst /\gnuram_async_fifo.xpm_fifo_base_inst /\gen_sdpram.xpm_memory_base_inst  | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 64              | RAM32M16 x 5	 | 
++-----------------------------------------------------------------------------------------------------------------+----------------------------------+----------------+----------------------+---------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:25 ; elapsed = 00:00:34 . Memory (MB): peak = 3576.969 ; gain = 708.312 ; free physical = 70736 ; free virtual = 99564
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:27 ; elapsed = 00:00:37 . Memory (MB): peak = 3576.969 ; gain = 708.312 ; free physical = 72027 ; free virtual = 100851
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:27 ; elapsed = 00:00:37 . Memory (MB): peak = 3576.969 ; gain = 708.312 ; free physical = 72027 ; free virtual = 100851
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:28 ; elapsed = 00:00:37 . Memory (MB): peak = 3576.969 ; gain = 708.312 ; free physical = 71943 ; free virtual = 100767
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:28 ; elapsed = 00:00:37 . Memory (MB): peak = 3576.969 ; gain = 708.312 ; free physical = 71937 ; free virtual = 100761
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:38 . Memory (MB): peak = 3576.969 ; gain = 708.312 ; free physical = 71798 ; free virtual = 100622
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:28 ; elapsed = 00:00:38 . Memory (MB): peak = 3576.969 ; gain = 708.312 ; free physical = 71779 ; free virtual = 100603
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY8   |     6|
+|2     |LUT1     |     7|
+|3     |LUT2     |    48|
+|4     |LUT3     |    34|
+|5     |LUT4     |    48|
+|6     |LUT5     |   726|
+|7     |LUT6     |    95|
+|8     |RAM32M16 |     5|
+|9     |FDRE     |  2076|
+|10    |FDSE     |     8|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:28 ; elapsed = 00:00:38 . Memory (MB): peak = 3576.969 ; gain = 708.312 ; free physical = 71771 ; free virtual = 100595
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 3576.969 ; gain = 581.781 ; free physical = 71766 ; free virtual = 100590
+Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:38 . Memory (MB): peak = 3576.977 ; gain = 708.312 ; free physical = 71767 ; free virtual = 100591
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.08 . Memory (MB): peak = 3591.906 ; gain = 0.000 ; free physical = 73997 ; free virtual = 102821
+INFO: [Netlist 29-17] Analyzing 11 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3646.562 ; gain = 0.000 ; free physical = 73084 ; free virtual = 101908
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 5 instances were transformed.
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 5 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+92 Infos, 47 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:41 ; elapsed = 00:00:50 . Memory (MB): peak = 3646.562 ; gain = 1215.984 ; free physical = 73024 ; free virtual = 101848
+INFO: [Common 17-600] The following parameters have non-default value.
+general.maxThreads
+INFO: [Common 17-1381] The checkpoint '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_dpa_hub_0_synth_1/pfm_dynamic_dpa_hub_0.dcp' has been generated.
+WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP pfm_dynamic_dpa_hub_0, cache-ID = 688252f06e3aa9a2
+INFO: [Coretcl 2-1174] Renamed 55 cell refs.
+INFO: [Common 17-1381] The checkpoint '/home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_dpa_hub_0_synth_1/pfm_dynamic_dpa_hub_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file pfm_dynamic_dpa_hub_0_utilization_synth.rpt -pb pfm_dynamic_dpa_hub_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 13 19:57:58 2022...

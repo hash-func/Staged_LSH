@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Apr 13 19:40:09 2022
+# Process ID: 22377
+# Current directory: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl
+# Command line: vivado -log vivado.log -applog -messageDb vivado.pb -mode batch -source vpl.tcl -notrace
+# Log file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/vivado.log
+# Journal file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/vivado.jou
+#-----------------------------------------------------------
+source vpl.tcl -notrace

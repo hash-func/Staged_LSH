@@ -1,0 +1,2 @@
+Compiling (synthesis checkpoint) kernel/IP: pfm_dynamic_dpa_mon4_0
+Log file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_dpa_mon4_0_synth_1/runme.log
