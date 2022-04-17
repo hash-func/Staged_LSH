@@ -1,0 +1,2 @@
+Compiling (synthesis checkpoint) kernel/IP: bd_d216_interconnect_ddrmem_ctrl_0
+Log file: /home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_d216_interconnect_ddrmem_ctrl_0_synth_1/runme.log

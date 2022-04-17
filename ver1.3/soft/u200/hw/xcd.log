@@ -1,0 +1,139 @@
+Sun Apr 17 14:25:44 2022: Server was asked to start on port: '38379'
+Sun Apr 17 14:25:44 2022: Server is using token UUID: '36d90bba-019e-4c35-af11-37e375399f87'
+Sun Apr 17 14:25:44 2022: SESSION_MGR: creating session with session uuid: '6d04a3e9-ade5-4ab9-8d63-1f78fcd2ec76' and name 'default'
+Sun Apr 17 14:25:44 2022: Attempting to start server on port '38379'
+Sun Apr 17 14:25:44 2022: XCD main fifo: created main fifo '/tmp/xcdmain36d90bba-019e-4c35-af11-37e375399f87', fd read = 13
+Sun Apr 17 14:25:44 2022: Running Dispatch Server
+Sun Apr 17 14:25:44 2022: Version 2.1.0
+Sun Apr 17 14:25:53 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:25:53 2022: EXCHANGE_TOKEN received, server token: 36d90bba-019e-4c35-af11-37e375399f87, passed token: 36d90bba-019e-4c35-af11-37e375399f87
+Sun Apr 17 14:25:53 2022: SESSION_MGR: creating session with session uuid: 'c36334ed-5b69-4569-81b0-11b7366d0378' and name 'v++_link_table_serch'
+Sun Apr 17 14:25:53 2022: GUIDANCE_SMGR: creating guidance session with uuid: 'c36334ed-5b69-4569-81b0-11b7366d0378' and name 'v++_link_table_serch'
+Sun Apr 17 14:26:14 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:26:31 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:29:49 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:29:49 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:29:49 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:29:49 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:29:49 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:29:50 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:29:50 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:29:50 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:30:45 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:30:45 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:30:46 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:31:05 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:31:44 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:31:44 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:32:00 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:32:00 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:32:43 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:32:59 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:33:12 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:33:42 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:33:52 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:33:53 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:33:55 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:33:56 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:34:08 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:34:09 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:34:51 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:34:51 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:34:51 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:34:55 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:35:04 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:35:04 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:35:04 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:35:07 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:35:16 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:35:19 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:35:49 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:35:49 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:36:00 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:36:03 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:36:19 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:36:19 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:36:31 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:36:40 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:36:48 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:36:48 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:37:00 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:37:04 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:37:16 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:37:17 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:37:31 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:37:32 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:37:36 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:37:40 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:37:48 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:37:56 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:38:06 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:38:14 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:38:14 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:38:36 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:38:48 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:38:49 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:39:04 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:39:14 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:39:14 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:39:17 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:39:21 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:39:29 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:39:29 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:39:33 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:39:36 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:39:50 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:05 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:13 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:16 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:19 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:28 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:29 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:29 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:29 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:37 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:44 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:45 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:40:52 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:41:00 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:41:15 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:41:16 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:41:16 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:41:29 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:41:29 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:41:44 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:41:53 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:41:54 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:41:57 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:42:24 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:42:31 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:42:32 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:42:45 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:42:54 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:43:06 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:43:09 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:43:23 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:43:31 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:43:38 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:43:39 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:43:47 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:44:05 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:44:05 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:44:37 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:44:37 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:44:38 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:44:44 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:44:45 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:44:52 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:44:52 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:45:54 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:47:15 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 14:56:59 2022: Entering handleUtilizationDuringVivadoRunRequest
+Sun Apr 17 14:56:59 2022: Leaving handleUtilizationDuringVivadoRunRequest
+Sun Apr 17 15:05:25 2022: Dispatch Server: Accepted socket connection from client
+Sun Apr 17 15:39:03 2022: Entering handleUtilizationDuringVivadoRunRequest
+Sun Apr 17 15:39:03 2022: Leaving handleUtilizationDuringVivadoRunRequest
+Sun Apr 17 16:14:54 2022: Entering handleUtilizationDuringVivadoRunRequest
+Sun Apr 17 16:14:54 2022: Leaving handleUtilizationDuringVivadoRunRequest
+Sun Apr 17 16:29:37 2022: SESSION_MGR: closing session for UUID 'c36334ed-5b69-4569-81b0-11b7366d0378' with name 'v++_link_table_serch'
+Sun Apr 17 16:29:37 2022: GUIDANCE_SMGR: closing session for UUID 'c36334ed-5b69-4569-81b0-11b7366d0378' with name 'v++_link_table_serch'

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sun Apr 17 14:44:32 2022
+# Process ID: 30290
+# Current directory: /home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_s00_regslice_11_synth_1
+# Command line: vivado -log pfm_dynamic_s00_regslice_11.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pfm_dynamic_s00_regslice_11.tcl
+# Log file: /home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_s00_regslice_11_synth_1/pfm_dynamic_s00_regslice_11.vds
+# Journal file: /home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/pfm_dynamic_s00_regslice_11_synth_1/vivado.jou
+#-----------------------------------------------------------
+source pfm_dynamic_s00_regslice_11.tcl -notrace

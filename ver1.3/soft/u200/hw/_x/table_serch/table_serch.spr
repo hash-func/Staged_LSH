@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="table_serch" dir="">
+  <FileSets>
+    <FileSet Name="kernel_table_serch" Type="DesignSrcs">
+      <File Path="/home/nomoto/src/StagedLSH/ver1.3/soft/src/table_serch.cpp"/>
+      <Config/>
+    </FileSet>
+  </FileSets>
+  <Runs/>
+</project>

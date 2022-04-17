@@ -1,0 +1,234 @@
+<ENTRY>
+{
+ "thisFile": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/table_serch.xo.compile_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Sun Apr 17 14:24:59 2022",
+ "timestampMillis": "1650173099702",
+ "buildStep": {
+  "cmdId": "a21c113f-40ed-4a36-a8c1-5d967054b05a",
+  "name": "v++",
+  "logFile": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/table_serch/table_serch.steps.log",
+  "commandLine": "/opt/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -c -t hw --config ../../src/u200.cfg -k table_serch -I../../src ../../src/table_serch.cpp -o table_serch.xo ",
+  "args": [
+   "-c",
+   "-t",
+   "hw",
+   "--config",
+   "../../src/u200.cfg",
+   "-k",
+   "table_serch",
+   "-I../../src",
+   "../../src/table_serch.cpp",
+   "-o",
+   "table_serch.xo"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/nomoto/src/StagedLSH/ver1.3/soft/src/u200.cfg",
+    "content": "platform=xilinx_u200_xdma_201830_2\ndebug=1\nsave-temps=1\n\n# カーネルへのインスタンス数とSLR（Super Logic Region）の配置調整\n[connectivity]\n# カーネルのインスタンス数指定\n# カーネルに指定した数のCUがインスタンシエートされる\nnk=table_serch:1:table_serch_1\n\n# 各インスタンスのDRAM接続を指定\n# カーネルインターフェースのプラットフォーム内のシステムポートへの割り当て\n# カーネルポートを特定のメモリリソースにマップする\nsp=table_serch_1.query:PLRAM[0]\nsp=table_serch_1.FP_DB:DDR[0]\nsp=table_serch_1.hash_table:DDR[1]\nsp=table_serch_1.hash_table_pointer:DDR[2]\nsp=table_serch_1.judge_temp:PLRAM[1]\n[profile]\ndata=all:all:all\n"
+   }
+  ],
+  "cwd": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Apr 17 14:24:59 2022",
+ "timestampMillis": "1650173099703",
+ "status": {
+  "cmdId": "a21c113f-40ed-4a36-a8c1-5d967054b05a",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Sun Apr 17 14:25:06 2022",
+ "timestampMillis": "1650173106972",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u200_xdma_201830_2.xpfm",
+  "hardwareDsa": "xilinx_u200_xdma_201830_2.dsa",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u200_xdma_201830_2",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_COMPILE",
+  "target": "TT_HW",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "table_serch",
+     "file": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/table_serch.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/nomoto/src/StagedLSH/ver1.3/soft/src/table_serch.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2020.2. SW Build (by xbuild) on 2020-11-18-05:13:29"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Apr 17 14:25:06 2022",
+ "timestampMillis": "1650173106974",
+ "buildStep": {
+  "cmdId": "2d073175-3023-4f03-a9cf-8ad1c2ae2c4a",
+  "name": "vitis_hls",
+  "logFile": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/table_serch/table_serch/vitis_hls.log",
+  "commandLine": "vitis_hls -f /home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/table_serch/table_serch/table_serch.tcl -messageDb vitis_hls.pb",
+  "args": [
+   "vitis_hls",
+   "-f",
+   "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/table_serch/table_serch/table_serch.tcl",
+   "-messageDb",
+   "vitis_hls.pb"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Apr 17 14:25:06 2022",
+ "timestampMillis": "1650173106974",
+ "status": {
+  "cmdId": "2d073175-3023-4f03-a9cf-8ad1c2ae2c4a",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Apr 17 14:25:42 2022",
+ "timestampMillis": "1650173142095",
+ "status": {
+  "cmdId": "2d073175-3023-4f03-a9cf-8ad1c2ae2c4a",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sun Apr 17 14:25:42 2022",
+ "timestampMillis": "1650173142100",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/table_serch/table_serch/table_serch/solution/.autopilot/db/table_serch.design.xml",
+  "name": "table_serch",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_REPORT"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sun Apr 17 14:25:42 2022",
+ "timestampMillis": "1650173142101",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/table_serch/table_serch/table_serch/solution/.autopilot/db/.message_syn.xml",
+  "name": "table_serch",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_DRC_SYNTHESIS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sun Apr 17 14:25:42 2022",
+ "timestampMillis": "1650173142101",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/reports/table_serch/hls_reports/table_serch_csynth.rpt",
+  "name": "table_serch",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_HLS_CSYNTH"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sun Apr 17 14:25:42 2022",
+ "timestampMillis": "1650173142101",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/table_serch/table_serch/table_serch/solution/syn/report/table_serch_csynth.xml",
+  "name": "table_serch",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_CSYNTH"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sun Apr 17 14:25:42 2022",
+ "timestampMillis": "1650173142104",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/reports/table_serch/system_estimate_table_serch.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sun Apr 17 14:25:42 2022",
+ "timestampMillis": "1650173142239",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/reports/table_serch/v++_compile_table_serch_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sun Apr 17 14:25:42 2022",
+ "timestampMillis": "1650173142239",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/ver1.3/soft/u200/hw/_x/v++_compile_table_serch_guidance.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Apr 17 14:25:42 2022",
+ "timestampMillis": "1650173142239",
+ "status": {
+  "cmdId": "a21c113f-40ed-4a36-a8c1-5d967054b05a",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>

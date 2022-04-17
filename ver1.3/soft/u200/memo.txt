@@ -3,7 +3,7 @@ vitis_hls
 
 
 
-
+find . -size +100M | sed -e 's/^\.\///' >> .gitignore
 
 【コマンド群】
 

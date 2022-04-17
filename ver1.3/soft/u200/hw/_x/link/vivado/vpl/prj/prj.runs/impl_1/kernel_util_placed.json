@@ -1,0 +1,45 @@
+{
+    "schema_version": {
+        "major": "1",
+        "minor": "0",
+        "patch": "0"
+    },
+    "design_state": "Fully Placed",
+    "user_budget": {
+        "actual_resources": {
+            "LUT": "7353",
+            "LUTAsMem": "1020",
+            "REG": "14663",
+            "BRAM": "16",
+            "URAM": "0",
+            "DSP": "0"
+        },
+        "supply_resources": {
+            "LUT": "938016",
+            "LUTAsMem": "555975",
+            "REG": "1995117",
+            "BRAM": "1617",
+            "URAM": "960",
+            "DSP": "6827"
+        }
+    },
+    "kernels": [
+        {
+            "name": "table_serch",
+            "compute_unit_count": "1",
+            "compute_units": [
+                {
+                    "cu_name": "table_serch_1",
+                    "actual_resources": {
+                        "LUT": "7353",
+                        "LUTAsMem": "1020",
+                        "REG": "14663",
+                        "BRAM": "16",
+                        "URAM": "0",
+                        "DSP": "0"
+                    }
+                }
+            ]
+        }
+    ]
+}
