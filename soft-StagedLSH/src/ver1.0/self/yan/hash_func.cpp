@@ -40,6 +40,6 @@ unsigned int hash_function(
         if (i%k_hashbit != (k_hashbit-1)) henkan = henkan << 1;
     }
     // フレーム位置ごとの値に変換
-    henkan = henkan + (flame_index * FLAME_INDEX_OUT);
+    henkan = henkan + (flame_index * std::pow(2, k_hashbit));
     return henkan;
 }

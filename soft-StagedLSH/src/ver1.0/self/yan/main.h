@@ -27,7 +27,4 @@
 #define K_HASHBIT 7            // ハッシュ関数gのbit数：K
 #define L_HASHNUM 1             // ハッシュ関数gの数：L
 
-/* 手動計算 */
-#define FLAME_INDEX_OUT 128     // 2^K_HASHBIT
-
 #endif
