@@ -29,7 +29,7 @@ int main()
     const unsigned int flame_table_size         // 各フレームHashテーブルサイズ
                         = std::pow(2, K_HASHBIT);
     const unsigned int division_num             // ハッシュテーブルの分割数
-                        = flame_table_size * FLAME_IN_MUSIC;
+                        = flame_table_size;
     const unsigned int full_table_size          // 全Hashテーブルサイズ
                         = (MUSIC_NUM*FLAME_IN_MUSIC)*L_HASHNUM;
                                                 // 全格納フレーム数
@@ -44,7 +44,7 @@ int main()
     unsigned int* hash_table;                   // ハッシュテーブル
     hash_table = (unsigned int*) aligned_alloc(full_table_size ,sizeof(unsigned int)*full_table_size);
 #ifdef ELEBITGET
-    unsigned int* bit_element;                 // Hash関数bit取得位置(96までなのでchar)
+    unsigned int* bit_element;                  // Hash関数bit取得位置(96までなのでchar)
     bit_element = (unsigned int*) calloc(K_HASHBIT*L_HASHNUM, sizeof(unsigned int));
 #endif
 #ifndef ELEBITGET
@@ -67,12 +67,13 @@ int main()
 #endif
 #ifdef ELEBITGET
     /* Hash関数bit取得位置決定配列生成(ele_func.cpp) */
-    bit_element_get(bit_element,                // bit取得位置
-                    K_HASHBIT,                  // ハッシュ関数gのbit数
-                    L_HASHNUM,                  // ハッシュ関数の数
-                    SUB_FP_SIZE,                // subFPサイズ(bit)
-                    SUBNUM_IN_FLAME             // 1フレームあたりのsubFP数
-                    );
+    bit_element_get(
+        bit_element,                // bit取得位置
+        K_HASHBIT,                  // ハッシュ関数gのbit数
+        L_HASHNUM,                  // ハッシュ関数の数
+        SUB_FP_SIZE,                // subFPサイズ(bit)
+        SUBNUM_IN_FLAME             // 1フレームあたりのsubFP数
+    );
 #endif
 #ifdef DEBUG
     printf("bit取得位置格納完了\n");

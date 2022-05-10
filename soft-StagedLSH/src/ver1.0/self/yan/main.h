@@ -4,6 +4,7 @@
 
 /* デバックのための定義 */
 #define DEBUG
+#define ELEBITGET
 
 /* 確定事項 */
 #define FPID_SIZE 4096          // 1曲あたりのFPIDサイズ(bit)
@@ -19,7 +20,7 @@
 #define SCRUTINY 1024           // 精査の閾値
 
 /* 変更パラメータ */
-#define MUSIC_NUM 300           // 楽曲数
+#define MUSIC_NUM 30000           // 楽曲数
 #define QUERY_NUM 300          // 検索数（試行回数）
 #define DISTORTION 25.0          // 歪み率(%)
 

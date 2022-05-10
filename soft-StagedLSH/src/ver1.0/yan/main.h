@@ -1,9 +1,10 @@
-#ifndef INCLUDE_main_fpga_h
-#define INCLUDE_main_fpga_h
+#ifndef INCLUDE_main_h
+#define INCLUDE_main_h
 
 
 /* デバックのための定義 */
 #define DEBUG
+#define ELEBITGET
 
 /* 確定事項 */
 #define FPID_SIZE 4096          // 1曲あたりのFPIDサイズ(bit)
@@ -18,27 +19,13 @@
 #define SCREENING 24            // スクリーニングの閾値
 #define SCRUTINY 1024           // 精査の閾値
 
+/* 変更パラメータ */
+#define MUSIC_NUM 30000           // 楽曲数
+#define QUERY_NUM 300          // 検索数（試行回数）
+#define DISTORTION 25.0          // 歪み率(%)
+
 /* 考察するパラメータ */
-#define K_HASHBIT 7            // ハッシュ関数gのbit数：K
-#define L_HASHNUM 2             // ハッシュ関数gの数：L
-
-/* 手動計算 */
-#define FLAME_INDEX_OUT 128     // 2^K_HASHBIT
-
-/* ハッシュビット取得位置 */
-#define get1 41
-#define get2 1
-#define get3 32
-#define get4 12
-#define get5 74
-#define get6 90
-#define get7 81
-#define get8 9
-#define get9 64
-#define get10 43
-#define get11 46
-#define get12 75
-#define get13 90
-#define get14 35
+#define K_HASHBIT 13            // ハッシュ関数gのbit数：K
+#define L_HASHNUM 6             // ハッシュ関数gの数：L
 
 #endif
