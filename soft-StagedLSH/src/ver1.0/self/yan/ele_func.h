@@ -4,6 +4,8 @@
 /* 関数 */
 
 /* ele_func内 */
+/* ハミング距離を求める関数(unsigned int) */
+unsigned int bit_pop_count(unsigned int b);
 /* 楽曲DBを生成する関数 */
 void fp_db_generator(
     unsigned int FP_DB[],   // 楽曲DB配列

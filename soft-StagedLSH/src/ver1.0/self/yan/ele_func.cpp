@@ -9,6 +9,18 @@
 /* 乱数生成器 rnd を生成 */
 std::random_device rnd2;
 
+/* ハミング距離を求める関数(unsigned int) */
+unsigned int bit_pop_count(unsigned int b)
+{
+    unsigned int c;
+
+    for (c=0; b; b>>=1)
+    {
+        c += b & 1;
+    }
+    return c;
+}
+
 /* 楽曲DBを生成する関数 */
 void fp_db_generator(
     unsigned int FP_DB[],           // 楽曲DB配列
@@ -23,6 +35,7 @@ void fp_db_generator(
     }
 }
 
+#ifdef ELEBITGET
 /* 取得bit位置格納関数 */
 void bit_element_get(
     unsigned int bit_element[],    // bit位置格納配列
@@ -37,6 +50,7 @@ void bit_element_get(
         bit_element[i] = rnd2() % (sub_fp_size * subnum_in_flame);
     }
 }
+#endif
 
 /* 各フレーム先頭番地を配列に格納する関数 */
 void flame_addr_get(

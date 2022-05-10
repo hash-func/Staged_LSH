@@ -2,71 +2,18 @@
 #include <stdio.h>
 #include <math.h>
 #include <random>
-#include <time.h>
-#include <ap_int.h>           // 任意精度型ライブラリ(ap_uint<1~1024>)
-//#include <hls_math.h>       // mathライブラリ(hls::poW())
-//#include <hls_stream.h>     // ストリームライブラリ(hls::stream<>)
 
-#include "main_fpga.h"
-
-/* 32bitハミング距離計算機 */
-unsigned int haming32 (
-    ap_uint<32> subfp1,
-    ap_uint<32> subfp2
-)
-{
-    unsigned int haming_dis = 0;
-    unsigned int temp = 0;
-    for (int i=0; i<SUB_FP_SIZE; i++)
-    {
-        temp = subfp1[i] ^ subfp2[i];
-        haming_dis += temp;
-    }
-    return haming_dis;
-}
-
-/* Hash値の計算 */
-ap_uint<32> hash_fpga_func(
-    ap_uint<96> flame96,                    // 対象フレーム
-    int L,                                  // 取得開始位置
-    int flame_index                         // フレームインデックス
-)
-{
-    ap_uint<32> henkan = 0;
-    /* Hash値kビットの生成 */
-    /* 2個7bit生成の場合 */
-    if (L == 0)
-    {
-        henkan[K_HASHBIT-1] = flame96[get1];
-        henkan[K_HASHBIT-2] = flame96[get2];
-        henkan[K_HASHBIT-3] = flame96[get3];
-        henkan[K_HASHBIT-4] = flame96[get4];
-        henkan[K_HASHBIT-5] = flame96[get5];
-        henkan[K_HASHBIT-6] = flame96[get6];
-        henkan[K_HASHBIT-7] = flame96[get7];
-    }
-    else if (L == 1)
-    {
-        henkan[K_HASHBIT-1] = flame96[get8];
-        henkan[K_HASHBIT-2] = flame96[get9];
-        henkan[K_HASHBIT-3] = flame96[get10];
-        henkan[K_HASHBIT-4] = flame96[get11];
-        henkan[K_HASHBIT-5] = flame96[get12];
-        henkan[K_HASHBIT-6] = flame96[get13];
-        henkan[K_HASHBIT-7] = flame96[get14];
-    }
-    /* フレーム位置に応じた値域の変更 */
-    henkan = henkan + (flame_index * FLAME_INDEX_OUT);
-    return henkan;
-}
+#include "main.h"
+#include "hash_func.h"
+#include "ele_func.h"
 
 /* 段階バケット探索 */
 int backet_serch(
-    unsigned int hash_value,                 // Hash値
+    unsigned int hash_value,                // Hash値
     unsigned int hash_table[],              // Hashテーブル
     unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
     unsigned int query[],                   // クエリ
-    ap_uint<96> flame96,                    // 対象フレーム
+    unsigned int flame96[],                 // 対象フレーム
     unsigned int FP_DB[]                    // FPデータベース
 )
 {
@@ -79,18 +26,18 @@ int backet_serch(
     else                    top = hash_table_pointer[hash_value-1] + 1;
     unsigned int end                        // 末尾Hashテーブル位置（含む）
                 = hash_table_pointer[hash_value];
-    if (top>end) top = end;
-    unsigned int haming_dis_screen;                // Haming距離の一時格納
-    unsigned int haming_temp;
+    if (top>end) top = end;                 // 要素数0の時
+
+    unsigned int haming_dis_screen;         // Haming距離一時格納
     unsigned int haming_dis_seisa;
-    unsigned int min_haming_dis = FPID_SIZE;// min_error数を一時格納
-    int music_number;                       // music_indexの一時格納
+    unsigned int min_haming_dis = FPID_SIZE;// bitエラー値最小一時格納
+    int music_number;                       // music_index一時格納
     unsigned int db_point;                  // FP_DBの特定楽曲開始位置
     
-    ap_uint<32> temp_A;
-    ap_uint<32> temp_B;
-    ap_uint<32> temp_C;
-    ap_uint<96> temp_flame96;
+    unsigned int temp_A;
+    unsigned int temp_B;
+    unsigned int temp_C;
+    unsigned int temp_flame96[SUBNUM_IN_FLAME];
 
 
     /* スクリーニングと精査 */
@@ -98,19 +45,19 @@ int backet_serch(
     {
         /* 初期化 */
         haming_dis_screen = 0;
-        haming_temp = 0;
         
         // 96bitフレーム読み込み
-        temp_A = (ap_uint<32>) FP_DB[hash_table[i]];
-        temp_B = (ap_uint<32>) FP_DB[hash_table[i] + 1];
-        temp_C = (ap_uint<32>) FP_DB[hash_table[i] + 2];
-        temp_flame96  = ((temp_A, temp_B), temp_C);
+        temp_A = FP_DB[hash_table[i]];
+        temp_B = FP_DB[hash_table[i] + 1];
+        temp_C = FP_DB[hash_table[i] + 2];
+        temp_flame96[0] = temp_A;
+        temp_flame96[1] = temp_B;
+        temp_flame96[2] = temp_C;
 
         /* 96ビットハミング距離計算 */
-        screening_loop : for (int bit=0; bit<SUBNUM_IN_FLAME*SUB_FP_SIZE; bit++)
+        screening_loop : for (int bit=0; bit<SUBNUM_IN_FLAME; bit++)
         {
-            haming_temp = flame96[bit] ^ temp_flame96[bit];
-            haming_dis_screen += haming_temp;
+            haming_dis_screen += bit_pop_count(flame96[bit] ^ temp_flame96[bit]);
         }
         /* スクリーニング閾値と比較 */
         if (haming_dis_screen <= SCREENING)
@@ -118,14 +65,12 @@ int backet_serch(
             /* 精査へ移行 */
             haming_dis_seisa = 0;
             /* 楽曲インデックス特定 */
-            music_number = hash_table[i] / ONEMUSIC_SUBNUM;
+            music_number = hash_table[i] / ONEMUSIC_SUBNUM; // 小数点以下切り捨て
                                                             // 注目する楽曲インデックス
             db_point = music_number * ONEMUSIC_SUBNUM;      // DB中楽曲開始位置特定
             seisa_loop : for (int m=0; m<ONEMUSIC_SUBNUM; m++)
             {
-            #pragma HLS unroll factor=26
-                // 32bitハミング距離計算
-                haming_dis_seisa = haming32((ap_uint<32>) query[m], (ap_uint<32>) FP_DB[db_point+m]);
+                haming_dis_seisa += bit_pop_count(query[m] ^ FP_DB[db_point+m]);
             }
             /* 精査閾値より小さく,最もエラーの小さいindex保存 */
             if (haming_dis_seisa <= SCRUTINY)
@@ -143,32 +88,26 @@ int backet_serch(
     return music_index;
 }
 
-extern "C" {
+
 /* mainからの呼び出し */
-void table_serch(
+int table_serch(
     unsigned int query[],                   // クエリFP配列
     unsigned int FP_DB[],                   // FPデータベース
     unsigned int hash_table[],              // ハッシュテーブル
     unsigned int hash_table_pointer[],      // ハッシュテーブルへの位置指定
-    int* judge_temp                         // 変換インデックス
+    unsigned int bit_element[]              // bit取得位置
 )
 {
-#pragma HLS TOP name=table_serch
-#pragma HLS INTERFACE m_axi depth=512 port=query bundle=plram0
-#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=aximm0
-#pragma HLS INTERFACE m_axi depth=302400 port=hash_table bundle=aximm1
-#pragma HLS INTERFACE m_axi depth=64512 port=hash_table_pointer bundle=aximm2
-#pragma HLS INTERFACE s_axilite depth=4 port=judge_temp bundle=plram1
     /* 戻り値 */
     int music_index = -1;                   // 楽曲の識別子
 
     /* 処理に用いる変数宣言 */
     unsigned int hash_temp = 0;
 
-    ap_uint<96> flame96;
-    ap_uint<SUB_FP_SIZE> tempA32 = query[0];
-    ap_uint<SUB_FP_SIZE> tempB32 = query[1];
-    ap_uint<SUB_FP_SIZE> tempC32;
+    unsigned int flame96[SUBNUM_IN_FLAME];  // フレームを一時格納
+    unsigned int tempA32 = query[0];        // sub-fpを一時格納
+    unsigned int tempB32 = query[1];        // sub-fpを一時格納
+    unsigned int tempC32;                   // sub-fpを一時格納
 
 #ifdef DEBUG_sub
     printf("検索側1フレーム目\n");
@@ -184,16 +123,20 @@ void table_serch(
         tempC32 = query[flame_index+2];
 
         /* 96bit_flameに結合 */
-        flame96 = ((tempA32, tempB32), tempC32);
+        flame96[0] = tempA32;
+        flame96[1] = tempB32;
+        flame96[2] = tempC32;
 
         /* Hash値を計算して探索 */
         hash_serch : for (int L=0; L<L_HASHNUM; L++)
         {
             /* Hash値の計算 */
-            hash_temp = hash_fpga_func(
-                flame96,
-                L,
-                flame_index
+            hash_temp = hash_function(
+                flame96,            // 対象フレーム
+                bit_element,        // bit取得位置
+                K_HASHBIT,          // bit数
+                flame_index         // フレーム位置
+                L*K_HASHBIT         // bit_ele取得開始位置
             );
 #ifdef DEBUG_sub
             printf ("hash_serch : %u\n", hash_temp);
@@ -222,8 +165,6 @@ void table_serch(
         tempA32 = tempB32;
         tempB32 = tempC32;
     }
-    // 返却値設定
-    *judge_temp = music_index;
-}
+    return music_index;
 }
 /* --mainからの呼び出し-- */
