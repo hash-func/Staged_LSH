@@ -84,7 +84,7 @@ void hash_table_stock(
         temp_flame96[0] = FP_DB[flame_addr[flame_index]];
         temp_flame96[1] = FP_DB[flame_addr[flame_index] + 1];
         temp_flame96[2] = FP_DB[flame_addr[flame_index] + 2];
-#ifdef DEBUG
+#ifdef DEBUG_sub
         if (flame_index%100 == 99) printf(".");
         if (flame_index%10000 == 9999) printf("\n");
 #endif

@@ -135,7 +135,7 @@ int table_serch(
                 flame96,            // 対象フレーム
                 bit_element,        // bit取得位置
                 K_HASHBIT,          // bit数
-                flame_index         // フレーム位置
+                flame_index,        // フレーム位置
                 L*K_HASHBIT         // bit_ele取得開始位置
             );
 #ifdef DEBUG_sub
