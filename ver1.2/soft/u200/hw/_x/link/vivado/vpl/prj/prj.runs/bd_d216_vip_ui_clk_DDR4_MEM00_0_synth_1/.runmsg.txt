@@ -1,2 +1,0 @@
-Compiling (synthesis checkpoint) kernel/IP: bd_d216_vip_ui_clk_DDR4_MEM00_0
-Log file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/link/vivado/vpl/prj/prj.runs/bd_d216_vip_ui_clk_DDR4_MEM00_0_synth_1/runme.log

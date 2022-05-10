@@ -1,2 +1,0 @@
-performing high-level synthesis for kernel: table_serch
-Log file: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw/_x/table_serch/table_serch/vitis_hls.log

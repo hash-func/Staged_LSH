@@ -1,7 +1,0 @@
-table_serch_control_s_axi
-table_serch_plram0_m_axi
-table_serch_aximm0_m_axi
-table_serch_aximm1_m_axi
-table_serch_aximm2_m_axi
-table_serch_gmem_m_axi
-table_serch
