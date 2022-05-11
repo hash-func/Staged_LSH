@@ -20,4 +20,7 @@ ele_func.o: ele_func.cpp
 
 .PHONY: clean
 clean:
-	rm -f main main.o table_serch.o hash_stock.o hash_func.o ele_func.o
+	rm -f main main.o table_serch.o hash_stock.o hash_func.o ele_func.o a.out
+
+a.out: main.cpp table_serch.cpp hash_stock.cpp hash_func.cpp ele_func.cpp
+	g++ -g -std=c++11 -mcmodel=medium main.cpp table_serch.cpp hash_stock.cpp hash_func.cpp ele_func.cpp

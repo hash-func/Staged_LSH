@@ -31,7 +31,7 @@ void fp_db_generator(
     for (int i=0; i<(onemusic_subnum*music_num); i++)
     {
         FP_DB[i] = rnd2();
-        if(FP_DB[i] == 0 || FP_DB[i] == 0xffffffff) i--;
+        // if(FP_DB[i] == 0 || FP_DB[i] == 0xffffffff) i--;
     }
 }
 
