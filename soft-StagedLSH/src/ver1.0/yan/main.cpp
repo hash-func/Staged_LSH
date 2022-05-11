@@ -22,8 +22,11 @@ int main()
 #ifdef DEBUG
     printf ("処理開始\n");
 #endif
+    printf ("StagedLSH[Yan]\n");
     printf ("楽曲数 : %u\n", MUSIC_NUM);
     printf ("BER : %lf %%\n", DISTORTION);
+    printf ("Hash値bit数 : %u bit\n", K_HASHBIT);
+    printf ("Hash関数個数 : %u 個\n", L_HASHNUM);
 
     /* 定数宣言 */
     const unsigned int flame_table_size         // 各フレームHashテーブルサイズ

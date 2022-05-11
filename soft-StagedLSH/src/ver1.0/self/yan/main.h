@@ -21,7 +21,7 @@
 
 /* 変更パラメータ */
 #define MUSIC_NUM 30000           // 楽曲数
-#define QUERY_NUM 300          // 検索数（試行回数）
+#define QUERY_NUM 1000          // 検索数（試行回数）
 #define DISTORTION 25.0          // 歪み率(%)
 
 /* 考察するパラメータ */

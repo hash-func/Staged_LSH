@@ -25,7 +25,7 @@
 #define DISTORTION 25.0          // 歪み率(%)
 
 /* 考察するパラメータ */
-#define K_HASHBIT 13            // ハッシュ関数gのbit数：K
-#define L_HASHNUM 6             // ハッシュ関数gの数：L
+#define K_HASHBIT 20            // ハッシュ関数gのbit数：K
+#define L_HASHNUM 1             // ハッシュ関数gの数：L
 
 #endif
