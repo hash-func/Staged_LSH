@@ -1,4 +1,5 @@
 all: app.exe emconfig.json table_serch.xclbin
+	export XCL_EMULATION_MODE=sw_emu
 
 app.exe: ../../src/main.cpp ../../src/hash_stock.cpp ../../src/hash_func.cpp ../../src/ele_func.cpp
 	g++ -Wall -g -std=c++11 ../../src/main.cpp ../../src/hash_stock.cpp ../../src/hash_func.cpp ../../src/ele_func.cpp -o app.exe -I${XILINX_XRT}/include/ -L${XILINX_XRT}/lib/ -lOpenCL -lpthread -lrt -lstdc++

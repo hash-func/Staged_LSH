@@ -16,16 +16,12 @@ void hash_table_stock(
     unsigned int flame_addr[],  // 各フレームへの先頭アドレス
     unsigned int bit_element[],// bit取得位置
     unsigned int division_num,  // ハッシュテーブルの分割数
-    unsigned int full_table_size,
-                                // 全Hashテーブルサイズ
     unsigned int music_num,     // 楽曲数
     unsigned int flame_in_music,// 1楽曲中のフレーム数
     unsigned int k_hashbit,     // ハッシュ関数のbit数
     unsigned int l_hashnum      // ハッシュ関数の数
 )
 {
-    unsigned int hash_num = division_num - 1;           // 格納目安ハッシュ値
-    unsigned int table_index = full_table_size - 1;     // テーブル内格納位置
     unsigned int hash_temp = 0;                         // 一時格納ハッシュ値
     unsigned int non_zero = 0;
 
@@ -41,7 +37,7 @@ void hash_table_stock(
         temp_flame96[2] = FP_DB[flame_addr[i] + 2];
 
         // L_HASHNUM個のハッシュ値生成
-        for (int L=0; L<l_hashnum; L++)
+        for (unsigned int L=0; L<l_hashnum; L++)
         {
             hash_temp = hash_function(
                 temp_flame96,           // 対象フレーム
@@ -84,13 +80,13 @@ void hash_table_stock(
         temp_flame96[0] = FP_DB[flame_addr[flame_index]];
         temp_flame96[1] = FP_DB[flame_addr[flame_index] + 1];
         temp_flame96[2] = FP_DB[flame_addr[flame_index] + 2];
-#ifdef DEBUG
+#ifdef DEBUG_sub
         if (flame_index%100 == 99) printf(".");
         if (flame_index%10000 == 9999) printf("\n");
 #endif
 
         // L_HASHNUM個のハッシュ値生成
-        for (int L=0; L<l_hashnum; L++)
+        for (unsigned int L=0; L<l_hashnum; L++)
         {
             hash_temp = hash_function(
                 temp_flame96,               // 対象フレーム
@@ -110,7 +106,7 @@ void hash_table_stock(
     }
 /*************************************************************************************/
     /* 再び末尾位置格納 */
-    for (int n=0; n<division_num; n++)
+    for (unsigned int n=0; n<division_num; n++)
     {
         hash_table_pointer[n] = 0;
     }
@@ -132,7 +128,7 @@ void hash_table_stock(
 #endif
 
         // L_HASHNUM個のハッシュ値生成
-        for (int L=0; L<l_hashnum; L++)
+        for (unsigned int L=0; L<l_hashnum; L++)
         {
             hash_temp = hash_function(
                 temp_flame96,           // 対象フレーム

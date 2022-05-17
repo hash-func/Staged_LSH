@@ -45,7 +45,7 @@ int main(int argc, char** argv)
                         = std::pow(2, K_HASHBIT);
     const unsigned int division_num             // ハッシュテーブルの分割数
                         = flame_table_size * FLAME_IN_MUSIC;
-    const unsigned int full_table_size          // 全Hashテーブルサイズ
+    size_t full_table_size          // 全Hashテーブルサイズ
                         = (MUSIC_NUM*FLAME_IN_MUSIC)*L_HASHNUM;
                                                 // 全格納フレーム数
     /* --定数宣言-- */
@@ -111,7 +111,6 @@ int main(int argc, char** argv)
         flame_addr,                // 各フレーム先頭アドレス
         bit_element,               // bit取得位置
         division_num,              // ハッシュテーブル分割数
-        full_table_size,           // 全ハッシュテーブルサイズ
         MUSIC_NUM,                 // 楽曲数
         FLAME_IN_MUSIC,            // 1曲あたりのflame数
         K_HASHBIT,                 // ハッシュ関数のbit数

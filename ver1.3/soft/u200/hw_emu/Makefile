@@ -1,4 +1,5 @@
 all: app.exe emconfig.json table_serch.xclbin
+	export XCL_EMULATION_MODE=hw_emu
 
 
 app.exe: ../../src/main.cpp ../../src/hash_stock.cpp ../../src/hash_func.cpp ../../src/ele_func.cpp

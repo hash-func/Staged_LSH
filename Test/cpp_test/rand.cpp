@@ -6,8 +6,8 @@
 std::random_device rnd;
 
 #define DEBUG
-#define K_HASHBIT 7
-#define L_HASHNUM 2
+#define K_HASHBIT 13
+#define L_HASHNUM 6
 #define FLAME_BIT 96
 
 /* main */

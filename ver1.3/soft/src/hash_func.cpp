@@ -34,7 +34,7 @@ unsigned int hash_function(
 {
     unsigned int henkan = 0;
     // k_hashbit個のbit取得
-    for (int i=0; i<k_hashbit; i++)
+    for (unsigned int i=0; i<k_hashbit; i++)
     {
         henkan = henkan | hash_function_ele(temp_flame96, bit_element[get_start + i]);
         if (i%k_hashbit != (k_hashbit-1)) henkan = henkan << 1;

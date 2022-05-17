@@ -16,7 +16,7 @@ void fp_db_generator(
     unsigned int onemusic_subnum    // 1曲あたりのsubFP数
 )
 {
-    for (int i=0; i<(onemusic_subnum*music_num); i++)
+    for (unsigned int i=0; i<(onemusic_subnum*music_num); i++)
     {
         FP_DB[i] = rnd2();
         if(FP_DB[i] == 0 || FP_DB[i] == 0xffffffff) i--;
@@ -75,7 +75,7 @@ void distortion_query_create(
     bit_error_num = FPID_SIZE * ((double)distortion / 100);
 
     /* queryに対応する楽曲格納 */
-    for (int i=0; i<onemusic_subnum; i++)
+    for (unsigned int i=0; i<onemusic_subnum; i++)
     {
         query[i] = FP_DB[(onemusic_subnum * music_index) + i];
     }
@@ -90,12 +90,12 @@ void distortion_query_create(
     unsigned int b = 0;
     bool flg;
 
-    for (int j=0; j<bit_error_num; j++)
+    for (unsigned int j=0; j<bit_error_num; j++)
     {
         flg = true;
         a = rnd2() % (onemusic_subnum);
         b = rnd2() % SUB_FP_SIZE;
-        for (int m=0; m<j; m++)
+        for (unsigned int m=0; m<j; m++)
         {
             if (temp_banti[m] == a && temp_bit[m] == b)
             {
