@@ -61,7 +61,7 @@ int main(int argc, char** argv)
     unsigned int* hash_table;                   // ハッシュテーブル
     hash_table = (unsigned int*) aligned_alloc(full_table_size ,sizeof(unsigned int)*full_table_size);
                                                 // Hash関数bit取得位置
-    unsigned int bit_element[K_HASHBIT*L_HASHNUM] = {41, 1, 32, 12, 74, 90, 81};
+    unsigned int bit_element[K_HASHBIT*L_HASHNUM] = {get1, get2, get3, get4, get5, get6, get7};
     unsigned int* flame_addr;                   // 各フレームの先頭アドレス(一時処理使用)
     flame_addr = (unsigned int*) malloc(sizeof(unsigned int)*MUSIC_NUM*FLAME_IN_MUSIC);
     /* --必要配列(ヒープ領域)-- */
@@ -135,8 +135,8 @@ int main(int argc, char** argv)
 
     /* 結果格納変数 */
     int music_index = 0;                // 検索楽曲識別子(0~)
-    int* judge_temp;                    // 結果判定用(一時格納)
-    *judge_temp = -1;
+    int judge_temp_addr = -1;
+    int* judge_temp = &judge_temp_addr; // 結果判定用(一時格納)
     unsigned int seikai = 0;            // 正解数
     unsigned int huseikai = 0;          // 偽陽性数（結果は出たが誤り）
     unsigned int not_find = 0;          // 未発見(負数)
@@ -258,6 +258,7 @@ int main(int argc, char** argv)
             if (music_index == *judge_temp)  seikai++;
             else                            huseikai++;
         }
+        *judge_temp = -1;
     }
 
 /****************************************************************************************************/
