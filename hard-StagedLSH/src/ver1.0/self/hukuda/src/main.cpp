@@ -37,11 +37,12 @@ int main(int argc, char** argv)
 #ifdef DEBUG
     printf ("処理開始\n");
 #endif
-    printf ("selfStagedLSH[Yan]\n");
+    printf ("self隣接StagedLSH[福田]\n");
     printf ("楽曲数 : %u\n", MUSIC_NUM);
     printf ("BER : %lf %%\n", DISTORTION);
     printf ("Hash値bit数 : %u bit\n", K_HASHBIT);
     printf ("Hash関数個数 : %u 個\n", L_HASHNUM);
+    printf ("試行回数 : %u 回\n", QUERY_NUM);
 
     /* 定数宣言 */
     const unsigned int flame_table_size         // 各フレームHashテーブルサイズ

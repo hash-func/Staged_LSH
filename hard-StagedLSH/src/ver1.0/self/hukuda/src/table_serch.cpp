@@ -178,7 +178,7 @@ void table_serch(
     int music_index = -1;                   // 楽曲の識別子
 
     /* 処理に用いる変数宣言 */
-    unsigned int hash_temp = 0;             // ハッシュ値一時格納
+    ap_uint<32> hash_temp = 0;             // ハッシュ値一時格納
     unsigned int hash_rinsetu;              // 隣接ハッシュ格納
 
     ap_uint<96> flame96;
@@ -225,9 +225,7 @@ void table_serch(
         );
         /* 楽曲が特定できた時 */
         if (music_index >= 0) break;
-#ifdef DEBUG_sub
-                printf ("発見フレーム : %d\n", flame_index);
-#endif
+
         // 1隣接要素探索
         rinsetu : for (int r=0; r<K_HASHBIT; r++)
         {
