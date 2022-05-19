@@ -140,13 +140,9 @@ int main(int argc, char** argv)
         exit(1);
     }
 #endif
-#ifdef DEBUG
-    printf("確認1\n");
-#endif
+
     free(flame_addr);
-#ifdef DEBUG
-    printf("確認2\n");
-#endif
+
     /* 結果格納変数 */
     int music_index = 0;                // 検索楽曲識別子(0~)
     int judge_temp_addr = -1;
@@ -154,18 +150,14 @@ int main(int argc, char** argv)
     unsigned int seikai = 0;            // 正解数
     unsigned int huseikai = 0;          // 偽陽性数（結果は出たが誤り）
     unsigned int not_find = 0;          // 未発見(負数)
-#ifdef DEBUG
-    printf("確認3\n");
-#endif
+
 /****************************************************************************************************/
 // OpenCLホストコードエリア
     //--------------------------------------------------------------
     // Step:1 OpenCL環境の初期化
     //--------------------------------------------------------------
     cl_int err;                             // APIコールからのエラーコード
-#ifdef DEBUG
-    printf("確認4\n");
-#endif
+
     // カーネルバイナリの名前格納変数
     std::string binaryFile = (argc != 2) ? "table_serch.xclbin" : argv[1];
 

@@ -1,0 +1,39 @@
+処理開始
+楽曲数 : 300
+BER : 20.000000 %
+DB作成完了
+フレーム先頭位置格納完了
+....................................................................................................
+....................................................................................................
+....................................................................................................
+..............................................................................
+INFO: Found Xilinx Platform
+INFO: Loading 'table_serch.xclbin'
+INFO: [HW-EMU 01] Hardware emulation runs simulation underneath. Using a large data set will result in long simulation times. It is recommended that a small dataset is used for faster execution. The flow uses approximate models for DDR memory and interconnect and hence the performance data generated is approximate.
+1 回目
+XRT build version: 2.8.743
+Build hash: 77d5484b5c4daa691a7f78235053fb036829b1e9
+Build date: 2020-11-16 00:19:11
+Git branch: 2020.2
+PID: 13618
+UID: 1003
+[Wed Apr 13 10:05:21 2022 GMT]
+HOST: alveo20
+EXE: /home/nomoto/src/StagedLSH/ver1.2/soft/u200/hw_emu/app.exe
+[XRT] WARNING: unaligned host pointer '0x7ffd14daf4a8' detected, this leads to extra memcpy
+カーネル実行終了
+
+正解率 : 100.000000 %
+不正解率 : 0.000000 %
+未発見 : 0.000000 %
+処理終了
+INFO::[ Vitis-EM 22 ] [Time elapsed: 0 minute(s) 48 seconds, Emulation time: 0.321219 ms]
+Data transfer between kernel(s) and global memory(s)
+table_serch_1:m_axi_aximm0-DDR[0]          RD = 1.812 KB               WR = 0.000 KB
+table_serch_1:m_axi_aximm1-DDR[1]          RD = 0.027 KB               WR = 0.000 KB
+table_serch_1:m_axi_aximm2-DDR[2]          RD = 0.016 KB               WR = 0.000 KB
+table_serch_1:m_axi_gmem-PLRAM[1]          RD = 0.000 KB               WR = 0.004 KB
+table_serch_1:m_axi_plram0-PLRAM[0]          RD = 0.812 KB               WR = 0.000 KB
+
+INFO: [HW-EMU 06-0] Waiting for the simulator process to exit
+INFO: [HW-EMU 06-1] All the simulator processes exited successfully
