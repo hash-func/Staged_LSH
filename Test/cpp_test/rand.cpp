@@ -25,13 +25,19 @@ int main () {
     }
 
     /* 表示 */
-    printf("unsigned char bit_element[");
-    for (int i=0; i<(K_HASHBIT*L_HASHNUM); i++)
+    for (int i=0; i<K_HASHBIT*L_HASHNUM; i++)
     {
-        if(i%(K_HASHBIT*L_HASHNUM) != (K_HASHBIT*L_HASHNUM)-1) printf("%u, ", bit_element[i]);
-        else printf("%u", bit_element[i]);
+        printf("#define get%d %d",i+1, bit_element[i]);
+        printf("\n");
     }
-    printf("];\n");
+
+    printf("{");
+    for (int i=0; i<L_HASHNUM*K_HASHBIT; i++)
+    {
+        printf("get%d, ", i+1);
+        if(i%10 == 9) printf("\n");
+    }
+    printf("};");
 
     printf("bit取得位置格納完了\n");
     return 0;

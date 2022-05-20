@@ -45,7 +45,7 @@ int main(int argc, char** argv)
                         = std::pow(2, K_HASHBIT);
     const unsigned int division_num             // ハッシュテーブルの分割数
                         = flame_table_size * FLAME_IN_MUSIC;
-    size_t full_table_size          // 全Hashテーブルサイズ
+    const unsigned int full_table_size          // 全Hashテーブルサイズ
                         = (MUSIC_NUM*FLAME_IN_MUSIC)*L_HASHNUM;
                                                 // 全格納フレーム数
     /* --定数宣言-- */

@@ -28,15 +28,15 @@ unsigned int haming32 (
 /* Hash値の計算 */
 ap_uint<32> hash_fpga_func(
     ap_uint<96> flame96,                    // 対象フレーム
-    // int L,                                  // 取得開始位置
+    int L,                                  // 取得開始位置
     int flame_index                         // フレームインデックス
 )
 {
     ap_uint<32> henkan = 0;
     /* Hash値kビットの生成 */
     /* 2個7bit生成の場合 */
-    // if (L == 0)
-    // {
+    if (L == 0)
+    {
         henkan[K_HASHBIT-1] = flame96[get1];
         henkan[K_HASHBIT-2] = flame96[get2];
         henkan[K_HASHBIT-3] = flame96[get3];
@@ -44,17 +44,17 @@ ap_uint<32> hash_fpga_func(
         henkan[K_HASHBIT-5] = flame96[get5];
         henkan[K_HASHBIT-6] = flame96[get6];
         henkan[K_HASHBIT-7] = flame96[get7];
-    // }
-    // else if (L == 1)
-    // {
-    //     henkan[K_HASHBIT-1] = flame96[get8];
-    //     henkan[K_HASHBIT-2] = flame96[get9];
-    //     henkan[K_HASHBIT-3] = flame96[get10];
-    //     henkan[K_HASHBIT-4] = flame96[get11];
-    //     henkan[K_HASHBIT-5] = flame96[get12];
-    //     henkan[K_HASHBIT-6] = flame96[get13];
-    //     henkan[K_HASHBIT-7] = flame96[get14];
-    // }
+    }
+    else if (L == 1)
+    {
+        henkan[K_HASHBIT-1] = flame96[get8];
+        henkan[K_HASHBIT-2] = flame96[get9];
+        henkan[K_HASHBIT-3] = flame96[get10];
+        henkan[K_HASHBIT-4] = flame96[get11];
+        henkan[K_HASHBIT-5] = flame96[get12];
+        henkan[K_HASHBIT-6] = flame96[get13];
+        henkan[K_HASHBIT-7] = flame96[get14];
+    }
     /* フレーム位置に応じた値域の変更 */
     henkan = henkan + (flame_index * FLAME_INDEX_OUT);
     return henkan;
@@ -187,12 +187,12 @@ void table_serch(
         flame96 = ((tempA32, tempB32), tempC32);
 
         /* Hash値を計算して探索 */
-        // hash_serch : for (int L=0; L<L_HASHNUM; L++)
-        // {
+        hash_serch : for (int L=0; L<L_HASHNUM; L++)
+        {
             /* Hash値の計算 */
             hash_temp = hash_fpga_func(
                 flame96,
-                // L,
+                L,
                 flame_index
             );
 #ifdef DEBUG_sub
@@ -208,14 +208,14 @@ void table_serch(
                 FP_DB               // FPデータベース
             );
             /* 楽曲が特定できた時 */
-            // if (music_index >= 0)
-            // {
+            if (music_index >= 0)
+            {
 #ifdef DEBUG_sub
                 printf ("発見フレーム : %d\n", flame_index);
 #endif
-                // break;
-            // }
-        // }
+                break;
+            }
+        }
         /* 楽曲が特定できた時 */
         if (music_index >= 0) break;
 

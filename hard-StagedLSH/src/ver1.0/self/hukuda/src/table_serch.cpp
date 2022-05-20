@@ -229,6 +229,7 @@ void table_serch(
         // 1隣接要素探索
         rinsetu : for (int r=0; r<K_HASHBIT; r++)
         {
+            #pragma HLS unroll factor=20
             // 1隣接ハッシュ値生成
             hash_rinsetu = ~hash_temp[r];
 

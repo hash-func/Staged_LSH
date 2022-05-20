@@ -1,6 +1,6 @@
 Profile Summary
-Generated on: 2022-04-17 17:37:55
-Msec since Epoch: 1650184675889
+Generated on: 2022-05-18 14:29:13
+Msec since Epoch: 1652851753255
 Profiled application: app.exe
 Target platform: 
 Tool version: 2020.2
@@ -13,53 +13,53 @@ Flow mode: System Run
 
 OpenCL API Calls
 API Name,Number Of Calls,Total Time (ms),Minimum Time (ms),Average Time (ms),Maximum Time (ms),
-clCreateProgramWithBinary,1,4609.25,4609.25,4609.25,4609.25,
-clReleaseProgram,1,49.8227,49.8227,49.8227,49.8227,
-clReleaseContext,1,37.9209,37.9209,37.9209,37.9209,
-clFinish,300,18.6337,0.03085,0.0621123,0.21627,
-clRetainMemObject,3000,11.0172,0.00216,0.00367241,0.02636,
-clReleaseMemObject,3005,9.47307,0.00215,0.00315244,0.02354,
-clEnqueueMigrateMemObjects,600,7.54221,0.00878,0.0125703,0.03488,
-clEnqueueTask,300,7.33395,0.01792,0.0244465,0.04733,
-clCreateContext,1,5.56271,5.56271,5.56271,5.56271,
-clSetKernelArg,1501,3.91001,0.00219,0.00260494,0.07545,
-clCreateKernel,1,0.38875,0.38875,0.38875,0.38875,
-clGetExtensionFunctionAddress,2,0.21304,0.00726,0.10652,0.20578,
-clGetExtensionFunctionAddressForPlatform,2,0.19317,0.00254,0.096585,0.19063,
-clEnqueueMapBuffer,1,0.1219,0.1219,0.1219,0.1219,
-clReleaseKernel,1,0.03341,0.03341,0.03341,0.03341,
-clCreateBuffer,5,0.01529,0.00234,0.003058,0.00529,
-clGetPlatformInfo,6,0.01441,0.0022,0.00240167,0.00294,
-clCreateCommandQueue,1,0.00759,0.00759,0.00759,0.00759,
-clReleaseDevice,2,0.00639,0.00256,0.003195,0.00383,
-clGetDeviceIDs,2,0.00638,0.00242,0.00319,0.00396,
-clRetainDevice,2,0.00546,0.00233,0.00273,0.00313,
-clReleaseCommandQueue,1,0.00381,0.00381,0.00381,0.00381,
+clReleaseContext,1,53.7828,53.7828,53.7828,53.7828,
+clReleaseProgram,1,49.5434,49.5434,49.5434,49.5434,
+clCreateProgramWithBinary,1,36.8483,36.8483,36.8483,36.8483,
+clFinish,300,17.614,0.030664,0.0587133,0.255042,
+clCreateContext,1,11.4187,11.4187,11.4187,11.4187,
+clReleaseMemObject,3005,10.728,0.00211,0.00357006,0.020942,
+clEnqueueTask,300,9.49497,0.017943,0.0316499,0.057467,
+clRetainMemObject,3000,9.02189,0.0021,0.0030073,0.033654,
+clEnqueueMigrateMemObjects,600,7.3015,0.00821,0.0121692,0.049397,
+clSetKernelArg,1501,3.85789,0.00214,0.00257021,0.094732,
+clCreateKernel,1,0.368866,0.368866,0.368866,0.368866,
+clEnqueueMapBuffer,1,0.107204,0.107204,0.107204,0.107204,
+clReleaseKernel,1,0.037145,0.037145,0.037145,0.037145,
+clGetExtensionFunctionAddress,2,0.023203,0.006511,0.0116015,0.016692,
+clCreateBuffer,5,0.015041,0.00228,0.0030082,0.005331,
+clGetPlatformInfo,6,0.013061,0.00198,0.00217683,0.0026,
+clCreateCommandQueue,1,0.00675,0.00675,0.00675,0.00675,
+clGetExtensionFunctionAddressForPlatform,2,0.006651,0.00232,0.0033255,0.004331,
+clGetDeviceIDs,2,0.006111,0.002241,0.0030555,0.00387,
+clReleaseDevice,2,0.00596,0.0025,0.00298,0.00346,
+clRetainDevice,2,0.0044,0.00207,0.0022,0.00233,
+clReleaseCommandQueue,1,0.003861,0.003861,0.003861,0.003861,
 
 
 Kernel Execution
 Kernel,Number Of Enqueues,Total Time (ms),Minimum Time (ms),Average Time (ms),Maximum Time (ms),
-table_serch,300,19.5387,0.04786,0.065129,0.15259,
+table_serch,300,18.1469,0.041665,0.0604896,0.116005,
 
 
 Compute Unit Utilization
 Device,Compute Unit,Kernel,Global Work Size,Local Work Size,Number Of Calls,Dataflow Execution,Max Overlapping Executions,Dataflow Acceleration,Total Time (ms),Minimum Time (ms),Average Time (ms),Maximum Time (ms),Clock Frequency (MHz),
-xilinx_u200_xdma_201830_2-0,table_serch_1,table_serch,1:1:1,1:1:1,300,Yes,1,1.000000x,7.49119,0.00987667,0.0249706,0.0868933,300,
+xilinx_u200_xdma_201830_2-0,table_serch_1,table_serch,1:1:1,1:1:1,300,Yes,1,1.000000x,6.87004,0.0097,0.0229001,0.07662,300,
 
 
 Data Transfer: Host to Global Memory
 Context:Number of Devices,Transfer Type,Number Of Buffer Transfers,Transfer Rate (MB/s),Average Bandwidth Utilization (%),Average Buffer Size (KB),Total Time (ms),Average Time (ms),
-context0:1,READ,300,0.233151,0.002429,0.004,5.146871,0.017156,
-context0:1,WRITE,300,5303.097981,55.240604,369.824,20.921205,0.069737,
+context0:1,READ,300,0.224858,0.002342,0.004,5.336692,0.017789,
+context0:1,WRITE,300,5408.598353,56.339566,369.824,20.513115,0.068377,
 
 
 Data Transfer: Kernels to Global Memory
 Device,Compute Unit/Port Name,Kernel Arguments,Memory Resources,Transfer Type,Number Of Transfers,Transfer Rate (MB/s),Average Bandwidth Utilization (%),Average Size (KB),Average Latency (ns),
-xilinx_u200_xdma_201830_2-0,table_serch_1/m_axi_aximm0,FP_DB,DDR[0],READ,12732,966.694,8.39144,0.0745561,207.186,
-xilinx_u200_xdma_201830_2-0,table_serch_1/m_axi_aximm1,hash_table,DDR[1],READ,4144,18.3272,0.159091,0.004,218.255,
-xilinx_u200_xdma_201830_2-0,table_serch_1/m_axi_aximm2,hash_table_pointer,DDR[2],READ,3125,20.254,0.175816,0.004,197.492,
+xilinx_u200_xdma_201830_2-0,table_serch_1/m_axi_aximm0,FP_DB,DDR[0],READ,11529,979.689,8.50424,0.0756576,207.16,
+xilinx_u200_xdma_201830_2-0,table_serch_1/m_axi_aximm1,hash_table,DDR[1],READ,3743,18.924,0.164271,0.004,211.371,
+xilinx_u200_xdma_201830_2-0,table_serch_1/m_axi_aximm2,hash_table_pointer,DDR[2],READ,2837,20.2188,0.17551,0.004,197.836,
 xilinx_u200_xdma_201830_2-0,table_serch_1/m_axi_gmem,judge_temp,PLRAM[1],WRITE,300,50,0.434028,0.004,80,
-xilinx_u200_xdma_201830_2-0,table_serch_1/m_axi_plram0,query,PLRAM[0],READ,2164,1515.08,13.1517,0.126107,83.2348,
+xilinx_u200_xdma_201830_2-0,table_serch_1/m_axi_plram0,query,PLRAM[0],READ,2019,1564.3,13.579,0.130568,83.4671,
 
 
 Data Transfer: DMA
@@ -78,54 +78,54 @@ Device,Transfer Type,Number Of Transfers,Transfer Rate (MB/s),Total Data Transfe
 
 Top Data Transfer: Kernels to Global Memory
 Device,Compute Unit,Number of Transfers,Average Bytes per Transfer,Transfer Efficiency (%),Total Data Transfer (MB),Total Write (MB),Total Read (MB),Total Transfer Rate (MB/s),
-xilinx_u200_xdma_201830_2-0,table_serch_1,22465,55.7498,1.36108,1.25242,0.0012,1.25122,462.543,
+xilinx_u200_xdma_201830_2-0,table_serch_1,20428,56.9509,1.3904,1.16339,0.0012,1.16219,477.723,
 
 
 Top Kernel Execution
 Kernel Instance Address,Kernel,Context ID,Command Queue ID,Device,Start Time (ms),Duration (ms),Global Work Size,Local Work Size,
-94379637811328,table_serch,0,0,xilinx_u200_xdma_201830_2-0,4896.16,0.15259,1:1:1,1:1:1,
-94379637811328,table_serch,0,0,xilinx_u200_xdma_201830_2-0,5628.61,0.12555,1:1:1,1:1:1,
-94379637811328,table_serch,0,0,xilinx_u200_xdma_201830_2-0,5495.91,0.10997,1:1:1,1:1:1,
-94379637811328,table_serch,0,0,xilinx_u200_xdma_201830_2-0,5372.03,0.10411,1:1:1,1:1:1,
-94379637811328,table_serch,0,0,xilinx_u200_xdma_201830_2-0,5144.23,0.10258,1:1:1,1:1:1,
-94379637811328,table_serch,0,0,xilinx_u200_xdma_201830_2-0,5051.37,0.10149,1:1:1,1:1:1,
-94379637811328,table_serch,0,0,xilinx_u200_xdma_201830_2-0,5164.09,0.10145,1:1:1,1:1:1,
-94379637811328,table_serch,0,0,xilinx_u200_xdma_201830_2-0,5447.98,0.10111,1:1:1,1:1:1,
-94379637811328,table_serch,0,0,xilinx_u200_xdma_201830_2-0,5293.33,0.10097,1:1:1,1:1:1,
-94379637811328,table_serch,0,0,xilinx_u200_xdma_201830_2-0,4899.15,0.09884,1:1:1,1:1:1,
+94172862204048,table_serch,0,0,xilinx_u200_xdma_201830_2-0,556.244,0.116005,1:1:1,1:1:1,
+94172862204048,table_serch,0,0,xilinx_u200_xdma_201830_2-0,64.7125,0.110873,1:1:1,1:1:1,
+94172862204048,table_serch,0,0,xilinx_u200_xdma_201830_2-0,530.662,0.109664,1:1:1,1:1:1,
+94172862204048,table_serch,0,0,xilinx_u200_xdma_201830_2-0,280.717,0.107743,1:1:1,1:1:1,
+94172862204048,table_serch,0,0,xilinx_u200_xdma_201830_2-0,765.331,0.106944,1:1:1,1:1:1,
+94172862204048,table_serch,0,0,xilinx_u200_xdma_201830_2-0,762.483,0.106673,1:1:1,1:1:1,
+94172862204048,table_serch,0,0,xilinx_u200_xdma_201830_2-0,127.424,0.103563,1:1:1,1:1:1,
+94172862204048,table_serch,0,0,xilinx_u200_xdma_201830_2-0,76.3319,0.101593,1:1:1,1:1:1,
+94172862204048,table_serch,0,0,xilinx_u200_xdma_201830_2-0,550.51,0.096013,1:1:1,1:1:1,
+94172862204048,table_serch,0,0,xilinx_u200_xdma_201830_2-0,883.888,0.095412,1:1:1,1:1:1,
 
 
 Top Memory Writes: Host to Global Memory
 Buffer Address,Context ID,Command Queue ID,Start Time (ms),Duration (ms),Buffer Size (KB),Writing Rate(MB/s),
-206158430208,0,0,4896.03,0.087680,369.824,4217.883212,
-206158430208,0,0,5034.36,0.082240,369.824,4496.887159,
-206158430208,0,0,5124.54,0.080270,369.824,4607.250529,
-206158430208,0,0,5101.92,0.080120,369.824,4615.876186,
-206158430208,0,0,5051.26,0.079550,369.824,4648.950346,
-206158430208,0,0,5017.45,0.078990,369.824,4681.909102,
-206158430208,0,0,5025.9,0.078590,369.824,4705.738644,
-206158430208,0,0,5093.52,0.078050,369.824,4738.295964,
-206158430208,0,0,5045.67,0.077940,369.824,4744.983320,
-206158430208,0,0,5163.99,0.077930,369.824,4745.592198,
+206158430208,0,0,144.433,0.132726,369.824,2786.371924,
+206158430208,0,0,67.617,0.125846,369.824,2938.702859,
+206158430208,0,0,64.5417,0.115925,369.824,3190.200561,
+206158430208,0,0,485.08,0.101573,369.824,3640.967580,
+206158430208,0,0,482.211,0.085261,369.824,4337.551753,
+206158430208,0,0,756.7,0.081620,369.824,4531.046312,
+206158430208,0,0,533.485,0.079050,369.824,4678.355471,
+206158430208,0,0,804.743,0.079040,369.824,4678.947368,
+206158430208,0,0,243.752,0.078880,369.824,4688.438134,
+206158430208,0,0,629.683,0.078820,369.824,4692.007105,
 
 
 Top Memory Reads: Host to Global Memory
 Buffer Address,Context ID,Command Queue ID,Start Time (ms),Duration (ms),Buffer Size (KB),Reading Rate(MB/s),
-206160527360,0,0,4896.37,0.025460,0.004,0.157109,
-206160527360,0,0,5155.71,0.024560,0.004,0.162866,
-206160527360,0,0,5504.53,0.023070,0.004,0.173385,
-206160527360,0,0,5470.61,0.022970,0.004,0.174140,
-206160527360,0,0,5273.62,0.021710,0.004,0.184247,
-206160527360,0,0,4899.27,0.021140,0.004,0.189215,
-206160527360,0,0,5583.71,0.020860,0.004,0.191755,
-206160527360,0,0,4902.08,0.019930,0.004,0.200702,
-206160527360,0,0,5606.15,0.019710,0.004,0.202943,
-206160527360,0,0,5611.79,0.019591,0.004,0.204175,
+206160527360,0,0,70.687,0.036055,0.004,0.110942,
+206160527360,0,0,232.691,0.034165,0.004,0.117079,
+206160527360,0,0,844.361,0.032204,0.004,0.124208,
+206160527360,0,0,64.8615,0.030674,0.004,0.130404,
+206160527360,0,0,383.106,0.029774,0.004,0.134345,
+206160527360,0,0,67.8217,0.027443,0.004,0.145757,
+206160527360,0,0,193.082,0.024853,0.004,0.160946,
+206160527360,0,0,739.969,0.023623,0.004,0.169327,
+206160527360,0,0,632.709,0.023533,0.004,0.169974,
+206160527360,0,0,816.204,0.023282,0.004,0.171807,
 
 
 Guidance Parameters
 Parameter,Element,Value,
-DEVICE_EXEC_TIME,xilinx_u200_xdma_201830_2-0,842.268193,
+DEVICE_EXEC_TIME,xilinx_u200_xdma_201830_2-0,847.569514,
 CU_CALLS,xilinx_u200_xdma_201830_2-0|table_serch_1,300,
 NUM_MONITORS,xilinx_u200_xdma_201830_2-0|XCL_PERF_MON_ACCEL|1,1,
 NUM_MONITORS,xilinx_u200_xdma_201830_2-0|XCL_PERF_MON_MEMORY|5,8,
@@ -153,7 +153,7 @@ OBJECTS_RELEASED,all,1,
 TRACE_MEMORY,all,FIFO,
 CU_CONTEXT_EN,all,0,
 MAX_PARALLEL_KERNEL_ENQUEUES,table_serch,1,
-COMMAND_QUEUE_OOO,94379637810704,0,
+COMMAND_QUEUE_OOO,94172862203456,0,
 PLRAM_SIZE_BYTES,xilinx_u200_xdma_201830_2-0,131072,
 KERNEL_BUFFER_INFO,table_serch|query|PLRAM[0]|1,512,
 KERNEL_BUFFER_INFO,table_serch|FP_DB|DDR[0]|1,153600,
@@ -176,10 +176,10 @@ XRT_INI_SETTING,stall_trace,all,
 XRT_INI_SETTING,timeline_trace,1,
 XRT_INI_SETTING,trace_buffer_size,1M,
 XRT_INI_SETTING,verbosity,4,
-BUFFER_RD_ACTIVE_TIME_MS,all,5.14687,
-BUFFER_WR_ACTIVE_TIME_MS,all,21.0326,
-BUFFER_TX_ACTIVE_TIME_MS,all,842.434,
-APPLICATION_RUN_TIME_MS,all,5827.4,
-TOTAL_KERNEL_RUN_TIME_MS,all,842.268,
+BUFFER_RD_ACTIVE_TIME_MS,all,5.33669,
+BUFFER_WR_ACTIVE_TIME_MS,all,20.6631,
+BUFFER_TX_ACTIVE_TIME_MS,all,847.772,
+APPLICATION_RUN_TIME_MS,all,1016.74,
+TOTAL_KERNEL_RUN_TIME_MS,all,847.57,
 
 
