@@ -11,7 +11,7 @@ xclbin Information
    Kernels:                table_serch
    Signature:              
    Content:                HW Emulation Binary
-   UUID (xclbin):          d9dc9216-c26e-441c-a1af-cd9929b1678e
+   UUID (xclbin):          5c73132f-e2e0-4e96-9c57-572027effc0e
    Sections:               DEBUG_DATA, DEBUG_IP_LAYOUT, BITSTREAM, MEM_TOPOLOGY, 
                            IP_LAYOUT, CONNECTIVITY, CLOCK_FREQ_TOPOLOGY, 
                            BUILD_METADATA, EMBEDDED_METADATA, SYSTEM_METADATA, 
@@ -104,25 +104,25 @@ Definition
 
 Ports
 -----
-   Port:          M_AXI_PLRAM0
+   Port:          M_AXI_QUERY_PLRAM0
    Mode:          master
    Range (bytes): 0xFFFFFFFF
    Data Width:    512 bits
    Port Type:     addressable
 
-   Port:          M_AXI_AXIMM0
+   Port:          M_AXI_DB_AXIMM0
    Mode:          master
    Range (bytes): 0xFFFFFFFF
    Data Width:    512 bits
    Port Type:     addressable
 
-   Port:          M_AXI_AXIMM1
+   Port:          M_AXI_TABLE_AXIMM1
    Mode:          master
    Range (bytes): 0xFFFFFFFF
    Data Width:    32 bits
    Port Type:     addressable
 
-   Port:          M_AXI_AXIMM2
+   Port:          M_AXI_POINTER_AXIMM2
    Mode:          master
    Range (bytes): 0xFFFFFFFF
    Data Width:    32 bits
@@ -146,22 +146,22 @@ Instance:        table_serch_1
 
    Argument:          query
    Register Offset:   0x10
-   Port:              M_AXI_PLRAM0
+   Port:              M_AXI_QUERY_PLRAM0
    Memory:            PLRAM[0] (MEM_DRAM)
 
    Argument:          FP_DB
    Register Offset:   0x1C
-   Port:              M_AXI_AXIMM0
+   Port:              M_AXI_DB_AXIMM0
    Memory:            bank0 (MEM_DDR4)
 
    Argument:          hash_table
    Register Offset:   0x28
-   Port:              M_AXI_AXIMM1
+   Port:              M_AXI_TABLE_AXIMM1
    Memory:            bank1 (MEM_DDR4)
 
    Argument:          hash_table_pointer
    Register Offset:   0x34
-   Port:              M_AXI_AXIMM2
+   Port:              M_AXI_POINTER_AXIMM2
    Memory:            bank2 (MEM_DDR4)
 
    Argument:          judge_temp

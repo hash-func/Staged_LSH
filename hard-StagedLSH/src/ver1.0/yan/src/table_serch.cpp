@@ -203,7 +203,7 @@ int backet_serch(
         /* 96ビットハミング距離計算 */
         screening_loop : for (int bit=0; bit<SUBNUM_IN_FLAME*SUB_FP_SIZE; bit++)
         {
-        #pragma HLS unroll factor=32
+        #pragma HLS UNROLL factor=32
         #pragma HLS PIPELINE
             haming_temp = flame96[bit] ^ temp_flame96[bit];
             haming_dis_screen += haming_temp;
@@ -220,7 +220,7 @@ int backet_serch(
             
             seisa_loop : for (int m=0; m<ONEMUSIC_SUBNUM; m++)
             {
-            #pragma HLS unroll factor=26
+            #pragma HLS UNROLL factor=26
                 // 32bitハミング距離計算
                 haming_dis_seisa = haming32((ap_uint<32>) query[m], (ap_uint<32>) FP_DB[db_point+m]);
             }
@@ -252,13 +252,19 @@ void table_serch(
     int* judge_temp                         // 変換インデックス
 )
 {
+// #pragma HLS TOP name=table_serch
+// #pragma HLS INTERFACE m_axi depth=512 port=query bundle=plram0
+// #pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=aximm0
+// #pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=aximm1
+// #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=aximm2
+// #pragma HLS INTERFACE s_axilite depth=4 port=judge_temp bundle=plram1
 #pragma HLS TOP name=table_serch
-#pragma HLS INTERFACE m_axi depth=512 port=query bundle=plram0
-#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=aximm0
-#pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=aximm1
-#pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=aximm2
-#pragma HLS INTERFACE s_axilite depth=4 port=judge_temp bundle=plram1
-
+#pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_plram0
+#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=DB_aximm0
+#pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_aximm1
+#pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_aximm2
+#pragma HLS INTERFACE s_axilite depth=4 port=judge_temp bundle=judge_plram1
+// #pragma HLS ARRAY_PARTITION variable=query complete // 配列を個々の要素に分割（レジスタへ格納）
     /* 戻り値 */
     int music_index = -1;                   // 楽曲の識別子
 
@@ -289,7 +295,8 @@ void table_serch(
         /* Hash値を計算して探索 */
         hash_serch : for (int L=0; L<L_HASHNUM; L++)
         {
-        #pragma HLS unroll factor=6
+        // #pragma HLS DATAFLOW
+        #pragma HLS UNROLL factor=6
             /* Hash値の計算 */
             hash_temp = hash_fpga_func(
                 flame96,
