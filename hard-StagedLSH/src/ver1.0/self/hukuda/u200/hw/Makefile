@@ -12,4 +12,4 @@ table_serch.xclbin: ./table_serch.xo
 	v++ -l -t hw --config ../../src/u200.cfg ./table_serch.xo -o table_serch.xclbin
 
 clean:
-	rm -rf vadd* app.exe *json *csv *log *summary _x .run .Xil .ipcache *.jou
+	rm -rf vadd* app.exe *json *csv *log *summary _x .run .Xil .ipcache *.jou *.wdb

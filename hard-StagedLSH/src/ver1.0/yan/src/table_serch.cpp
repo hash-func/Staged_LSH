@@ -19,6 +19,7 @@ unsigned int haming32 (
     unsigned int temp = 0;
     for (int i=0; i<SUB_FP_SIZE; i++)
     {
+    #pragma HLS PIPELINE
         temp = subfp1[i] ^ subfp2[i];
         haming_dis += temp;
     }
@@ -202,6 +203,8 @@ int backet_serch(
         /* 96ビットハミング距離計算 */
         screening_loop : for (int bit=0; bit<SUBNUM_IN_FLAME*SUB_FP_SIZE; bit++)
         {
+        #pragma HLS unroll factor=32
+        #pragma HLS PIPELINE
             haming_temp = flame96[bit] ^ temp_flame96[bit];
             haming_dis_screen += haming_temp;
         }
@@ -286,6 +289,7 @@ void table_serch(
         /* Hash値を計算して探索 */
         hash_serch : for (int L=0; L<L_HASHNUM; L++)
         {
+        #pragma HLS unroll factor=6
             /* Hash値の計算 */
             hash_temp = hash_fpga_func(
                 flame96,
