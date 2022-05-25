@@ -133,14 +133,6 @@ ap_uint<32> hash_fpga_func(
     default:
         break;
     }
-    henkan[K_HASHBIT-1] = flame96[get1];
-    henkan[K_HASHBIT-2] = flame96[get2];
-    henkan[K_HASHBIT-3] = flame96[get3];
-    henkan[K_HASHBIT-4] = flame96[get4];
-    henkan[K_HASHBIT-5] = flame96[get5];
-    henkan[K_HASHBIT-6] = flame96[get6];
-    henkan[K_HASHBIT-7] = flame96[get7];
-
     /* フレーム位置に応じた値域の変更 */
     // henkan = henkan + (flame_index * FLAME_INDEX_OUT);
     return henkan;

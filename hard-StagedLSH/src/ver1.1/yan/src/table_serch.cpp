@@ -19,6 +19,7 @@ unsigned int haming32 (
     unsigned int temp = 0;
     for (int i=0; i<SUB_FP_SIZE; i++)
     {
+    #pragma HLS UNROLL factor=32
     #pragma HLS PIPELINE
         temp = subfp1[i] ^ subfp2[i];
         haming_dis += temp;
@@ -31,8 +32,7 @@ unsigned int haming32 (
 /* Hash値の計算 */
 ap_uint<32> hash_fpga_func(
     ap_uint<96> flame96,                    // 対象フレーム
-    int L,                                  // 何個目の関数か
-    int flame_index                         // フレームインデックス
+    int L                                   // 何個目の関数か
 )
 {
     // 戻り値
@@ -133,13 +133,6 @@ ap_uint<32> hash_fpga_func(
     default:
         break;
     }
-    henkan[K_HASHBIT-1] = flame96[get1];
-    henkan[K_HASHBIT-2] = flame96[get2];
-    henkan[K_HASHBIT-3] = flame96[get3];
-    henkan[K_HASHBIT-4] = flame96[get4];
-    henkan[K_HASHBIT-5] = flame96[get5];
-    henkan[K_HASHBIT-6] = flame96[get6];
-    henkan[K_HASHBIT-7] = flame96[get7];
 
     /* フレーム位置に応じた値域の変更 */
     // henkan = henkan + (flame_index * FLAME_INDEX_OUT);
@@ -252,19 +245,13 @@ void table_serch(
     int* judge_temp                         // 変換インデックス
 )
 {
-// #pragma HLS TOP name=table_serch
-// #pragma HLS INTERFACE m_axi depth=512 port=query bundle=plram0
-// #pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=aximm0
-// #pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=aximm1
-// #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=aximm2
-// #pragma HLS INTERFACE s_axilite depth=4 port=judge_temp bundle=plram1
 #pragma HLS TOP name=table_serch
-#pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_plram0
-#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=DB_aximm0
-#pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_aximm1
-#pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_aximm2
-#pragma HLS INTERFACE s_axilite depth=4 port=judge_temp bundle=judge_plram1
-// #pragma HLS ARRAY_PARTITION variable=query complete // 配列を個々の要素に分割（レジスタへ格納）
+#pragma HLS INTERFACE m_axi depth=512 port=query bundle=plram0
+#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=aximm0
+#pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=aximm1
+#pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=aximm2
+#pragma HLS INTERFACE s_axilite depth=4 port=judge_temp bundle=plram1
+// #pragma HLS ARRAY_PARTITION variable=query // 配列を個々の要素に分割（レジスタへ格納）
     /* 戻り値 */
     int music_index = -1;                   // 楽曲の識別子
 
@@ -296,12 +283,11 @@ void table_serch(
         hash_serch : for (int L=0; L<L_HASHNUM; L++)
         {
         // #pragma HLS DATAFLOW
-        #pragma HLS UNROLL factor=6
+        // #pragma HLS UNROLL factor=6
             /* Hash値の計算 */
             hash_temp = hash_fpga_func(
                 flame96,
-                L,
-                flame_index
+                L
             );
 #ifdef DEBUG_sub
             printf ("hash_serch : %u\n", hash_temp);
