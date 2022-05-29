@@ -19,7 +19,7 @@ unsigned int haming32 (
     unsigned int temp = 0;
     for (int i=0; i<SUB_FP_SIZE; i++)
     {
-    #pragma HLS UNROLL factor=32
+    // #pragma HLS UNROLL factor=32 これは付けないほうが良い
     #pragma HLS PIPELINE
         temp = subfp1[i] ^ subfp2[i];
         haming_dis += temp;
@@ -283,7 +283,7 @@ void table_serch(
         hash_serch : for (int L=0; L<L_HASHNUM; L++)
         {
         // #pragma HLS DATAFLOW
-        // #pragma HLS UNROLL factor=6
+        #pragma HLS UNROLL factor=6
             /* Hash値の計算 */
             hash_temp = hash_fpga_func(
                 flame96,
@@ -316,7 +316,7 @@ void table_serch(
         tempA32 = tempB32;
         tempB32 = tempC32;
     }
-    // 返還値設定
+    // 戻り値設定
     *judge_temp = music_index;
 }
 }

@@ -4,6 +4,7 @@
 
 /* デバックのための定義 */
 #define DEBUG
+#define PLUS
 
 /* 確定事項 */
 #define FPID_SIZE 4096          // 1曲あたりのFPIDサイズ(bit)
