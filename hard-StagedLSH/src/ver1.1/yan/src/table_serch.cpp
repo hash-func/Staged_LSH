@@ -41,14 +41,14 @@ unsigned int hd_cal96 (
 }
 
 /* HID_CAL */
-ap_uint<32> hid_cal (
-    ap_uint<96> flame96,    // 対象フレーム
-    int L                   // 何個目の関数か
+ap_uint<32> hd_cal96 (
+    ap_uint<96> flame96,                    // 対象フレーム
+    int L                                  // 何個目の関数か
 )
 {
     // 戻り値
-    ap_uint<32> henkan;
-    /* Hash値の計算 */
+    ap_uint<32> henkan = 0;
+    // Hash値生成
     switch (L)
     {
     case 0:
@@ -144,9 +144,12 @@ ap_uint<32> hid_cal (
     default:
         break;
     }
+    /* フレーム位置に応じた値域の変更 */
+    // henkan = henkan + (flame_index * FLAME_INDEX_OUT);
     return henkan;
 }
 /* --HID_CAL-- */
+
 
 /* SWITCH_MODULE */
 ap_uint<96> switch_module (
@@ -170,17 +173,19 @@ ap_uint<96> switch_module (
 
 /* 4096bit Haming距離計算 */
 unsigned int fpdb_locate (
-    unsigned int query[],               // クエリ
+    unsigned int query[128],               // クエリ
     unsigned int FP_DB[],               // FPデータベース
     unsigned int db_point               // DB中楽曲開始位置
 )
 {
     // 戻り値
     unsigned int haming_dis = 0;
+    unsigned int reg = 0;
 
     seisa_loop : for (int i=0; i<ONEMUSIC_SUBNUM; i++)
     {
-        haming_dis += hd_cal32((ap_uint<32>) query[i], (ap_uint<32>) FP_DB[db_point+i]);
+        reg = hd_cal32((ap_uint<32>) query[i], (ap_uint<32>) FP_DB[db_point+i]);
+        haming_dis += reg;
     }
     return haming_dis;
 }
@@ -188,16 +193,15 @@ unsigned int fpdb_locate (
 
 
 /* StagedLSH */
-int backet_serch (
-    ap_uint<32> hash_id,                // Hash値
-    unsigned int hash_table[],          // Hashテーブル
-    unsigned int hash_table_pointer[],  // Hashテーブル位置指定
-    unsigned int query[],               // クエリ
-    ap_uint<96> flame96,                // 対象フレーム
-    unsigned int FP_DB[]                // FPデータベース
+int backet_serch(
+    ap_uint<32> hash_id,                 // Hash値
+    unsigned int hash_table[],              // Hashテーブル
+    unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
+    unsigned int query[],                   // クエリ
+    ap_uint<96> flame96,                    // 対象フレーム
+    unsigned int FP_DB[]                    // FPデータベース
 )
 {
-#pragma HLS inline  // インライン展開
     /* 戻り値 */
     int music_index = -1;
 
@@ -215,16 +219,17 @@ int backet_serch (
     int music_number;                   // music_indexの一時保存
     unsigned int min_haming_dis = FPID_SIZE;
                                         // min_error数一時保存
-
+    
     ap_uint<96> temp_flame96;
 
+
     /* スクリーニングと精査 */
-    bucket_loop : for (unsigned int i=top; i<=end; i++)
+    bucket_loop : for (int i=top; i<=end; i++)
     {
         /* 初期化 */
         haming_dis_screen = 0;
         haming_temp = 0;
-
+        
         /* SWITCH_MODULE */
         temp_flame96 = switch_module(
             FP_DB,          // FPデータベース
@@ -242,7 +247,7 @@ int backet_serch (
         /* スクリーニング閾値と比較 */
         if (haming_dis_screen <= SCREENING)
         {
-            /* 精査へ以降 */
+            /* 精査へ移行 */
             haming_dis_seisa = 0;
 
             /* 楽曲インデックスの特定 */
@@ -273,60 +278,63 @@ int backet_serch (
 }
 /* --StagedLSH-- */
 
+
 extern "C" {
 /* mainからの呼び出し */
 void table_serch(
-    unsigned int query[],               // クエリFP配列
-    unsigned int FP_DB[],                // FPデータベース
-    unsigned int hash_table[],          // ハッシュテーブル
-    unsigned int hash_table_pointer[],  // ハッシュテーブルへの位置指定
-    int* judge_temp                     // 変換インデックス
+    unsigned int query[],                   // クエリFP配列
+    unsigned int FP_DB[],                   // FPデータベース
+    unsigned int hash_table[],              // ハッシュテーブル
+    unsigned int hash_table_pointer[],      // ハッシュテーブルへの位置指定
+    int* judge_temp                         // 変換インデックス
 )
 {
 // #pragma HLS dataflow    // 内部関数間のインターフェースをping-pongバッファとする（タスク並列化）
 #pragma HLS TOP name=table_serch
-#pragma HLS INTERFACE m_axi depth=512 port=query bundle=plram0
-#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=aximm0
-#pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=aximm1
-#pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=aximm2
-#pragma HLS INTERFACE s_axilite depth=4 port=judge_temp bundle=plram1
+#pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_plram0
+#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=DB_aximm0
+#pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_aximm1
+#pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_aximm2
+#pragma HLS INTERFACE s_axilite depth=4 port=judge_temp bundle=judge_plram1
+// #pragma HLS ARRAY_PARTITION variable=query complete // 配列を個々の要素に分割（レジスタへ格納）
 
-#pragma HLS INTERFACE s_axilite port=query bundle=control
-#pragma HLS INTERFACE s_axilite port=FP_DB bundle=control
-#pragma HLS INTERFACE s_axilite port=hash_table bundle=control
-#pragma HLS INTERFACE s_axilite port=hash_table_pointer bundle=control
-#pragma HLS INTERFACE s_axilite port=judge_temp bundle=control
-#pragma HLS INTERFACE s_axilite port=return bundle=control
-#pragma HLS INTERFACE ap_ctrl_chain port=return bundle=control
+// #pragma HLS INTERFACE s_axilite port=query bundle=control
+// #pragma HLS INTERFACE s_axilite port=FP_DB bundle=control
+// #pragma HLS INTERFACE s_axilite port=hash_table bundle=control
+// #pragma HLS INTERFACE s_axilite port=hash_table_pointer bundle=control
+// #pragma HLS INTERFACE s_axilite port=judge_temp bundle=control
+// #pragma HLS INTERFACE s_axilite port=return bundle=control
+// #pragma HLS INTERFACE ap_ctrl_chain port=return bundle=control
 
-#pragma HLS stable variable=query
-#pragma HLS stable variable=FP_DB
-#pragma HLS stable variable=hash_table
-#pragma HLS stable variable=hash_table_pointer
-#pragma HLS stable variable=judge_temp
+// #pragma HLS stable variable=query
+// #pragma HLS stable variable=FP_DB
+// #pragma HLS stable variable=hash_table
+// #pragma HLS stable variable=hash_table_pointer
+// #pragma HLS stable variable=judge_temp
 
     /* 戻り値 */
-    int music_index = -1;               // 楽曲識別子
+    int music_index = -1;                   // 楽曲の識別子
 
-    /* 変数宣言 */
-    ap_uint<32> hash_temp;              // ハッシュ値一時格納
+    /* 処理に用いる変数宣言 */
+    ap_uint<32> hash_temp;
 
+    // ap_uint<96> flame96;
     ap_uint<SUB_FP_SIZE> tempA32 = query[0];
     ap_uint<SUB_FP_SIZE> tempB32 = query[1];
     ap_uint<SUB_FP_SIZE> tempC32;
 
     /* flameごとに処理 */
-    Flame_get : for (int flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
+    flame_serch : for (int flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
     {
         /* subFP-Read */
         tempC32 = query[flame_index + 2];
 
         /* Serch Module */
-        Serch_module : for (int L=0; L<L_HASHNUM; L++)
+        serch_module : for (int L=0; L<L_HASHNUM; L++)
         {
-        #pragma HLS unroll factor=6 // 6並列
+        #pragma HLS UNROLL factor=6 // 6並列
             /* HID_CAL */
-            hash_temp = hid_cal(
+            hash_temp = hd_cal96(
                 ((tempA32, tempB32), tempC32),
                 L
             );
@@ -338,10 +346,9 @@ void table_serch(
                 hash_table,         // ハッシュテーブル
                 hash_table_pointer, // ハッシュテーブルへの位置指定
                 query,              // クエリFP
-                ((tempA32, tempB32), tempC32),
-                                    // 対象フレーム
+                ((tempA32, tempB32), tempC32), // 対象フレーム
                 FP_DB               // FPデータベース
-            );            
+            );
             /* --HT_SERACH-- */
 
             /* 楽曲が特定できた時 */
@@ -361,4 +368,4 @@ void table_serch(
     *judge_temp = music_index;
 }
 }
-/* mainからの呼び出し */
+/* --mainからの呼び出し-- */
