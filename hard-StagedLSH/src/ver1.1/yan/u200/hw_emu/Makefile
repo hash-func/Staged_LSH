@@ -16,4 +16,4 @@ emconfig.json:
 	emconfigutil --platform xilinx_u200_xdma_201830_2 --nd 1
 
 clean:
-	rm -rf vadd* app.exe *json *csv *log *summary _x xilinx* .run .Xil .ipcache *.jou *.wdb
+	rm -rf vadd* app.exe *json *csv *log *summary _x xilinx* .run .Xil .ipcache *.jou *.wdb *.xclbin *.xo *.info
