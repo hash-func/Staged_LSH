@@ -17,11 +17,18 @@ unsigned int hd_cal32 (
 {
     unsigned int haming_dis = 0;
     unsigned int reg = 0;
-    haming_dis32_loop:for (int i=0; i<SUB_FP_SIZE; i++)
+
+    ap_uint<32> temp;
+    temp = subfp1 ^ subfp2;
+
+    haming_dis32_loop:for (int i=0; i<(SUB_FP_SIZE/2); i+=2)
     {
-        reg = subfp1[i] ^ subfp2[i];
+    #pragma HLS UNROLL factor=16
+    #pragma HLS PIPELINE
+        reg = temp[i] + temp[i+1];
         haming_dis += reg;
     }
+
     return haming_dis;
 }
 /* 96bitハミング距離計算機 */
@@ -32,9 +39,15 @@ unsigned int hd_cal96 (
 {
     unsigned int haming_dis = 0;
     unsigned int reg = 0;
-    haming_dis96_loop:for (int i=0; i<96; i++)
+
+    ap_uint<96> temp;
+    temp = flame96 ^ temp_flame96;
+
+    haming_dis96_loop:for (int i=0; i<96/2; i+=2)
     {
-        reg = flame96[i] ^ temp_flame96[i];
+    #pragma HLS UNROLL factor=48
+    #pragma HLS PIPELINE
+        reg = temp[i] + temp[i+1];
         haming_dis += reg;
     }
     return haming_dis;
@@ -173,7 +186,7 @@ ap_uint<96> switch_module (
 
 /* 4096bit Haming距離計算 */
 unsigned int fpdb_locate (
-    unsigned int query[128],               // クエリ
+    unsigned int query[],               // クエリ
     unsigned int FP_DB[],               // FPデータベース
     unsigned int db_point               // DB中楽曲開始位置
 )
@@ -187,6 +200,7 @@ unsigned int fpdb_locate (
         reg = hd_cal32((ap_uint<32>) query[i], (ap_uint<32>) FP_DB[db_point+i]);
         haming_dis += reg;
     }
+
     return haming_dis;
 }
 /* 4096bit Haming距離計算 */
@@ -202,6 +216,7 @@ int backet_serch(
     unsigned int FP_DB[]                    // FPデータベース
 )
 {
+// #pragma HLS UNROLL factor=6 // 6並列
     /* 戻り値 */
     int music_index = -1;
 
@@ -332,7 +347,7 @@ void table_serch(
         /* Serch Module */
         serch_module : for (int L=0; L<L_HASHNUM; L++)
         {
-        #pragma HLS UNROLL factor=6 // 6並列
+        // #pragma HLS UNROLL factor=6 // 6並列
             /* HID_CAL */
             hash_temp = hd_cal96(
                 ((tempA32, tempB32), tempC32),
@@ -353,6 +368,7 @@ void table_serch(
 
             /* 楽曲が特定できた時 */
             if (music_index >= 0) break;
+
         }
         /* --Serch Module-- */
 

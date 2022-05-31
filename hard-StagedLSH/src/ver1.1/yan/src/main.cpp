@@ -212,6 +212,12 @@ int main(int argc, char** argv)
     //--------------------------------------------------------------
     // Step:3 カーネルの実行
     //--------------------------------------------------------------
+    // バッファをカーネル引数にマッピングし、特定のデバイスメモリバンクに割り当てる
+    krnl_table_serch.setArg(0, query_buf);
+    krnl_table_serch.setArg(1, FP_DB_buf);
+    krnl_table_serch.setArg(2, hash_table_buf);
+    krnl_table_serch.setArg(3, hash_table_pointer_buf);
+    krnl_table_serch.setArg(4, judge_temp_buf);
 
     /* 指定回数検索実行 */
     for (unsigned int i=0; i<QUERY_NUM; i++)
@@ -232,13 +238,6 @@ int main(int argc, char** argv)
         );
 
         /* 検索処理（FPGA） */
-        // バッファをカーネル引数にマッピングし、特定のデバイスメモリバンクに割り当てる
-        krnl_table_serch.setArg(0, query_buf);
-        krnl_table_serch.setArg(1, FP_DB_buf);
-        krnl_table_serch.setArg(2, hash_table_buf);
-        krnl_table_serch.setArg(3, hash_table_pointer_buf);
-        krnl_table_serch.setArg(4, judge_temp_buf);
-
         // 入力のデバイスメモリへの転送
         // ホストからデバイスのグローバルメモリに転送 読み込みだけ
         q.enqueueMigrateMemObjects({
@@ -247,7 +246,7 @@ int main(int argc, char** argv)
             hash_table_buf,
             hash_table_pointer_buf
         },0 /*0はホストからの意味*/);
-
+        
         // カーネルの実行
         q.enqueueTask(krnl_table_serch);
 

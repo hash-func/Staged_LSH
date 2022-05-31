@@ -30,6 +30,95 @@ unsigned int haming32 (
 }
 #endif
 
+
+// こっちの方が回路規模が小さい
+/* 32bitハミング距離計算機 */
+unsigned int haming32 (
+	ap_uint<32> subfp1,
+	ap_uint<32> subfp2
+)
+{
+    unsigned int haming_dis = 0;
+	ap_uint<32> subfp_temp;
+
+	subfp_temp = subfp1 ^ subfp2;
+
+	
+	ap_uint<2> reg_s2_0;
+	ap_uint<2> reg_s2_1;
+	ap_uint<2> reg_s2_2;
+	ap_uint<2> reg_s2_3;
+	ap_uint<2> reg_s2_4;
+	ap_uint<2> reg_s2_5;
+	ap_uint<2> reg_s2_6;
+	ap_uint<2> reg_s2_7;
+	ap_uint<2> reg_s2_8;
+	ap_uint<2> reg_s2_9;
+	ap_uint<2> reg_s2_10;
+	ap_uint<2> reg_s2_11;
+	ap_uint<2> reg_s2_12;
+	ap_uint<2> reg_s2_13;
+	ap_uint<2> reg_s2_14;
+	ap_uint<2> reg_s2_15;
+
+	reg_s2_0 = subfp_temp[0] + subfp_temp[1];
+	reg_s2_1 = subfp_temp[2] + subfp_temp[3];
+	reg_s2_2 = subfp_temp[4] + subfp_temp[5];
+	reg_s2_3 = subfp_temp[6] + subfp_temp[7];
+	reg_s2_4 = subfp_temp[8] + subfp_temp[9];
+	reg_s2_5 = subfp_temp[10] + subfp_temp[11];
+	reg_s2_6 = subfp_temp[12] + subfp_temp[13];
+	reg_s2_7 = subfp_temp[14] + subfp_temp[15];
+	reg_s2_8 = subfp_temp[16] + subfp_temp[17];
+	reg_s2_9 = subfp_temp[18] + subfp_temp[19];
+	reg_s2_10 = subfp_temp[20] + subfp_temp[21];
+	reg_s2_11 = subfp_temp[22] + subfp_temp[23];
+	reg_s2_12 = subfp_temp[24] + subfp_temp[25];
+	reg_s2_13 = subfp_temp[26] + subfp_temp[27];
+	reg_s2_14 = subfp_temp[28] + subfp_temp[29];
+	reg_s2_15 = subfp_temp[30] + subfp_temp[31];
+
+
+	ap_uint<3> reg_s3_0;
+	ap_uint<3> reg_s3_1;
+	ap_uint<3> reg_s3_2;
+	ap_uint<3> reg_s3_3;
+	ap_uint<3> reg_s3_4;
+	ap_uint<3> reg_s3_5;
+	ap_uint<3> reg_s3_6;
+	ap_uint<3> reg_s3_7;
+
+	reg_s3_0 = reg_s2_0 + reg_s2_1;
+	reg_s3_1 = reg_s2_2 + reg_s2_3;
+	reg_s3_2 = reg_s2_4 + reg_s2_5;
+	reg_s3_3 = reg_s2_6 + reg_s2_7;
+	reg_s3_4 = reg_s2_8 + reg_s2_9;
+	reg_s3_5 = reg_s2_10 + reg_s2_11;
+	reg_s3_6 = reg_s2_12 + reg_s2_13;
+	reg_s3_7 = reg_s2_14 + reg_s2_15;
+
+	ap_uint<4> reg_s4_0;
+	ap_uint<4> reg_s4_1;
+	ap_uint<4> reg_s4_2;
+	ap_uint<4> reg_s4_3;
+
+	reg_s4_0 = reg_s3_0 + reg_s3_1;
+	reg_s4_1 = reg_s3_2 + reg_s3_3;
+	reg_s4_2 = reg_s3_4 + reg_s3_5;
+	reg_s4_3 = reg_s3_6 + reg_s3_7;
+
+	ap_uint<5> reg_s5_0;
+	ap_uint<5> reg_s5_1;
+
+	reg_s5_0 = reg_s4_0 + reg_s4_1;
+	reg_s5_1 = reg_s4_2 + reg_s4_3;
+
+	haming_dis = reg_s5_0 + reg_s5_1;
+
+    return haming_dis;
+}
+
+
 #ifdef SELECT2
 /* 32bitハミング距離計算機 */
 unsigned int haming32 (

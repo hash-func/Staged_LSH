@@ -5,6 +5,6 @@
 /* デバックのための定義 */
 #define DEBUG
 
-#define IN_SIZE 200
+#define IN_SIZE 100
 
 #endif
