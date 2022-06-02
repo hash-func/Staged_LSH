@@ -11,7 +11,7 @@ xclbin Information
    Kernels:                table_serch
    Signature:              
    Content:                HW Emulation Binary
-   UUID (xclbin):          51a4f967-70f0-4e59-9144-eedc451eb5fb
+   UUID (xclbin):          79bf0500-6971-4765-87a2-4831bb24bf51
    Sections:               DEBUG_DATA, DEBUG_IP_LAYOUT, BITSTREAM, MEM_TOPOLOGY, 
                            IP_LAYOUT, CONNECTIVITY, CLOCK_FREQ_TOPOLOGY, 
                            BUILD_METADATA, EMBEDDED_METADATA, SYSTEM_METADATA, 
@@ -113,7 +113,7 @@ Ports
    Port:          M_AXI_DB_AXIMM0
    Mode:          master
    Range (bytes): 0xFFFFFFFF
-   Data Width:    512 bits
+   Data Width:    32 bits
    Port Type:     addressable
 
    Port:          M_AXI_TABLE_AXIMM1

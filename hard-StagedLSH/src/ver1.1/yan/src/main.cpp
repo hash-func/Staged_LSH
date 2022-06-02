@@ -219,6 +219,14 @@ int main(int argc, char** argv)
     krnl_table_serch.setArg(3, hash_table_pointer_buf);
     krnl_table_serch.setArg(4, judge_temp_buf);
 
+    // 入力のデバイスメモリへの転送
+    // ホストからデバイスのグローバルメモリに転送 読み込みだけ
+    q.enqueueMigrateMemObjects({
+        FP_DB_buf,
+        hash_table_buf,
+        hash_table_pointer_buf
+    },0 /*0はホストからの意味*/);
+
     /* 指定回数検索実行 */
     for (unsigned int i=0; i<QUERY_NUM; i++)
     {
@@ -240,11 +248,15 @@ int main(int argc, char** argv)
         /* 検索処理（FPGA） */
         // 入力のデバイスメモリへの転送
         // ホストからデバイスのグローバルメモリに転送 読み込みだけ
+        // q.enqueueMigrateMemObjects({
+        //     query_buf,
+        //     FP_DB_buf,
+        //     hash_table_buf,
+        //     hash_table_pointer_buf
+        // },0 /*0はホストからの意味*/);
+
         q.enqueueMigrateMemObjects({
-            query_buf,
-            FP_DB_buf,
-            hash_table_buf,
-            hash_table_pointer_buf
+            query_buf
         },0 /*0はホストからの意味*/);
         
         // カーネルの実行

@@ -21,7 +21,7 @@ unsigned int hd_cal32 (
     ap_uint<32> temp;
     temp = subfp1 ^ subfp2;
 
-    haming_dis32_loop:for (int i=0; i<(SUB_FP_SIZE/2); i+=2)
+    haming_dis32_loop:for (int i=0; i<SUB_FP_SIZE; i+=2)
     {
     #pragma HLS UNROLL factor=16
     #pragma HLS PIPELINE
@@ -43,7 +43,7 @@ unsigned int hd_cal96 (
     ap_uint<96> temp;
     temp = flame96 ^ temp_flame96;
 
-    haming_dis96_loop:for (int i=0; i<(96/2); i+=2)
+    haming_dis96_loop:for (int i=0; i<96; i+=2)
     {
     #pragma HLS UNROLL factor=48
     #pragma HLS PIPELINE
@@ -216,7 +216,7 @@ int backet_serch(
     unsigned int FP_DB[]                    // FPデータベース
 )
 {
-// #pragma HLS UNROLL factor=6 // 6並列
+#pragma HLS UNROLL factor=6 // 6並列
     /* 戻り値 */
     int music_index = -1;
 
@@ -228,11 +228,10 @@ int backet_serch(
     else top = hash_table_pointer[hash_id-1] + 1;
 
     unsigned int haming_dis_screen;     // ハミング距離一時保存(screening)
-    unsigned int haming_temp;
     unsigned int haming_dis_seisa;      // ハミング距離一時保存(scrutiny)
     unsigned int db_point;              // FP_DBの特定楽曲開始位置
     int music_number;                   // music_indexの一時保存
-    unsigned int min_haming_dis = FPID_SIZE;
+    unsigned int min_haming_dis = SCRUTINY;
                                         // min_error数一時保存
     
     ap_uint<96> temp_flame96;
@@ -243,7 +242,6 @@ int backet_serch(
     {
         /* 初期化 */
         haming_dis_screen = 0;
-        haming_temp = 0;
         
         /* SWITCH_MODULE */
         temp_flame96 = switch_module(
@@ -277,15 +275,12 @@ int backet_serch(
             );
 
             /* 精査閾値より小さく,最もエラーの小さいindex保存 */
-            if (haming_dis_seisa <= SCRUTINY)
+            if (haming_dis_seisa <= min_haming_dis)
             {
-                if (haming_dis_seisa < min_haming_dis)
-                {
-                    // bitエラー値最小保存
-                    min_haming_dis = haming_dis_seisa;
-                    // index保存
-                    music_index = music_number;
-                }
+                // bitエラー値最小保存
+                min_haming_dis = haming_dis_seisa;
+                // index保存
+                music_index = music_number;
             }
         }
     }
