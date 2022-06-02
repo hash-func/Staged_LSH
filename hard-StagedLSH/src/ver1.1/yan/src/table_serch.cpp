@@ -43,7 +43,7 @@ unsigned int hd_cal96 (
     ap_uint<96> temp;
     temp = flame96 ^ temp_flame96;
 
-    haming_dis96_loop:for (int i=0; i<96/2; i+=2)
+    haming_dis96_loop:for (int i=0; i<(96/2); i+=2)
     {
     #pragma HLS UNROLL factor=48
     #pragma HLS PIPELINE
@@ -54,8 +54,8 @@ unsigned int hd_cal96 (
 }
 
 /* HID_CAL */
-ap_uint<32> hd_cal96 (
-    ap_uint<96> flame96,                    // 対象フレーム
+ap_uint<32> hid_cal (
+    ap_uint<96> flame96,                   // 対象フレーム
     int L                                  // 何個目の関数か
 )
 {
@@ -349,7 +349,7 @@ void table_serch(
         {
         // #pragma HLS UNROLL factor=6 // 6並列
             /* HID_CAL */
-            hash_temp = hd_cal96(
+            hash_temp = hid_cal(
                 ((tempA32, tempB32), tempC32),
                 L
             );

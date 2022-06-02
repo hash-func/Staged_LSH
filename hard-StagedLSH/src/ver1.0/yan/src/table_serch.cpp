@@ -214,7 +214,7 @@ int backet_serch(
             {
             #pragma HLS UNROLL factor=26
                 // 32bitハミング距離計算
-                haming_dis_seisa = haming32((ap_uint<32>) query[m], (ap_uint<32>) FP_DB[db_point+m]);
+                haming_dis_seisa += haming32((ap_uint<32>) query[m], (ap_uint<32>) FP_DB[db_point+m]);
             }
             /* 精査閾値より小さく,最もエラーの小さいindex保存 */
             if (haming_dis_seisa <= SCRUTINY)

@@ -30,7 +30,7 @@ int backet_serch(
 
     unsigned int haming_dis_screen;         // Haming距離一時格納
     unsigned int haming_dis_seisa;
-    unsigned int min_haming_dis = FPID_SIZE;// bitエラー値最小一時格納
+    unsigned int min_haming_dis = SCRUTINY;// bitエラー値最小一時格納
     int music_number;                       // music_index一時格納
     unsigned int db_point;                  // FP_DBの特定楽曲開始位置
     
@@ -73,15 +73,12 @@ int backet_serch(
                 haming_dis_seisa += bit_pop_count(query[m] ^ FP_DB[db_point+m]);
             }
             /* 精査閾値より小さく,最もエラーの小さいindex保存 */
-            if (haming_dis_seisa <= SCRUTINY)
+            if (haming_dis_seisa <= min_haming_dis)
             {
-                if (haming_dis_seisa < min_haming_dis)
-                {
-                    // bitエラー値最小保存
-                    min_haming_dis = haming_dis_seisa;
-                    // index保存
-                    music_index = music_number;
-                }
+                // bitエラー値最小保存
+                min_haming_dis = haming_dis_seisa;
+                // index保存
+                music_index = music_number;
             }
         }
     }
