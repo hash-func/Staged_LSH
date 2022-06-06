@@ -1,0 +1,52 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'backet_serch'" level="0">
+<item name = "Date">Fri Jun  3 08:30:08 2022
+</item>
+<item name = "Version">2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)</item>
+<item name = "Project">yan</item>
+<item name = "Solution">solution1 (Vitis Kernel Flow Target)</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcu200-fsgd2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">10.00 ns, 7.300 ns, 2.70 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">?, ?, ?, ?, ?, ?, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="haming_dis_screen_hd_cal96_fu_413">hd_cal96, 0, 0, 0 ns, 0 ns, 0, 0, none</column>
+<column name="reg_hd_cal32_fu_419">hd_cal32, 0, 0, 0 ns, 0 ns, 1, 1, yes</column>
+<column name="reg_1_hd_cal32_fu_425">hd_cal32, 0, 0, 0 ns, 0 ns, 1, 1, yes</column>
+<column name="reg_2_hd_cal32_fu_431">hd_cal32, 0, 0, 0 ns, 0 ns, 1, 1, yes</column>
+<column name="reg_3_hd_cal32_fu_437">hd_cal32, 0, 0, 0 ns, 0 ns, 1, 1, yes</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- bucket_loop">?, ?, 148 ~ 324, -, -, ?, no</column>
+<column name=" + seisa_loop">33, 33, 3, 1, 1, 32, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

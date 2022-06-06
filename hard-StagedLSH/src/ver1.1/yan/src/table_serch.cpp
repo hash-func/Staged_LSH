@@ -316,11 +316,11 @@ void table_serch(
 // #pragma HLS INTERFACE s_axilite port=return bundle=control
 // #pragma HLS INTERFACE ap_ctrl_chain port=return bundle=control
 
-// #pragma HLS stable variable=query
-// #pragma HLS stable variable=FP_DB
-// #pragma HLS stable variable=hash_table
-// #pragma HLS stable variable=hash_table_pointer
-// #pragma HLS stable variable=judge_temp
+#pragma HLS stable variable=query
+#pragma HLS stable variable=FP_DB
+#pragma HLS stable variable=hash_table
+#pragma HLS stable variable=hash_table_pointer
+#pragma HLS stable variable=judge_temp
 
     /* 戻り値 */
     int music_index = -1;                   // 楽曲の識別子
@@ -342,7 +342,7 @@ void table_serch(
         /* Serch Module */
         serch_module : for (int L=0; L<L_HASHNUM; L++)
         {
-        // #pragma HLS UNROLL factor=6 // 6並列
+        #pragma HLS UNROLL factor=6 // 6並列
             /* HID_CAL */
             hash_temp = hid_cal(
                 ((tempA32, tempB32), tempC32),

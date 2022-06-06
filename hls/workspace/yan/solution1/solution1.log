@@ -1,0 +1,1689 @@
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 207.938 MB.
+INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
+WARNING: [HLS 207-5537] '#pragma HLS unroll' can only be applied inside loop body: ../src/table_serch.cpp:219:9
+WARNING: [HLS 207-5527] unexpected pragma parameter 'depth': ../src/table_serch.cpp:308:39
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 5.01 seconds. CPU system time: 0.29 seconds. Elapsed time: 5.31 seconds; current allocated memory: 209.173 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-186] Unrolling loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' completely with a factor of 16 (../src/table_serch.cpp:24:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' has been removed because the loop is unrolled completely (../src/table_serch.cpp:24:23)
+INFO: [HLS 214-186] Unrolling loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' completely with a factor of 48 (../src/table_serch.cpp:46:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' has been removed because the loop is unrolled completely (../src/table_serch.cpp:46:23)
+INFO: [HLS 214-186] Unrolling loop 'serch_module' (../src/table_serch.cpp:343:24) in function 'table_serch' completely with a factor of 6 (../src/table_serch.cpp:343:24)
+INFO: [HLS 214-178] Inlining function 'hd_cal32(ap_uint<32>, ap_uint<32>)' into 'fpdb_locate(unsigned int*, unsigned int*, unsigned int)' (../src/table_serch.cpp:193:0)
+INFO: [HLS 214-178] Inlining function 'switch_module(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:218:0)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'query_plram0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 214-115] Multiple burst reads of length 128 and bit width 32 in loop 'seisa_loop'(../src/table_serch.cpp:198:18) has been inferred on port 'DB_aximm0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 5.79 seconds. CPU system time: 0.19 seconds. Elapsed time: 6.09 seconds; current allocated memory: 211.663 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 211.664 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.14 seconds. CPU system time: 0 seconds. Elapsed time: 0.14 seconds; current allocated memory: 218.436 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.59 seconds. CPU system time: 0 seconds. Elapsed time: 0.59 seconds; current allocated memory: 226.189 MB.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate10' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate6' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate7' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate8' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate9' automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (../src/table_serch.cpp:162:5) in function 'hid_cal'... converting 8 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'hd_cal96' (../src/table_serch.cpp:50:5)...95 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate9' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate8' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate7' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate6' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate10' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate' (../src/table_serch.cpp:189)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 2.3 seconds. CPU system time: 0.07 seconds. Elapsed time: 2.45 seconds; current allocated memory: 257.640 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 4.33 seconds. CPU system time: 0.02 seconds. Elapsed time: 4.48 seconds; current allocated memory: 401.900 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'table_serch' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 403.296 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 403.745 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hd_cal96' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.33 seconds. CPU system time: 0 seconds. Elapsed time: 0.35 seconds; current allocated memory: 405.512 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.41 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.44 seconds; current allocated memory: 407.308 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate6' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 1.04 seconds; current allocated memory: 408.281 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.48 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.49 seconds; current allocated memory: 409.377 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.06 seconds; current allocated memory: 410.487 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.29 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.32 seconds; current allocated memory: 412.519 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate7' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.42 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.44 seconds; current allocated memory: 413.493 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.5 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.55 seconds; current allocated memory: 414.631 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.11 seconds; current allocated memory: 415.732 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.27 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.4 seconds; current allocated memory: 417.780 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate9' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.41 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.65 seconds; current allocated memory: 418.771 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.5 seconds. CPU system time: 0 seconds. Elapsed time: 0.58 seconds; current allocated memory: 419.867 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.03 seconds; current allocated memory: 420.997 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.26 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.44 seconds; current allocated memory: 423.026 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate10' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.41 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.43 seconds; current allocated memory: 424.032 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.49 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.51 seconds; current allocated memory: 425.162 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.02 seconds; current allocated memory: 426.260 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.27 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.31 seconds; current allocated memory: 428.261 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.41 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.44 seconds; current allocated memory: 429.252 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.48 seconds. CPU system time: 0 seconds. Elapsed time: 0.5 seconds; current allocated memory: 430.394 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.02 seconds; current allocated memory: 431.521 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.22 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.27 seconds; current allocated memory: 433.544 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate8' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.41 seconds. CPU system time: 0.03 seconds. Elapsed time: 1.46 seconds; current allocated memory: 434.518 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.49 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.5 seconds; current allocated memory: 435.662 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.03 seconds. CPU system time: 0 seconds. Elapsed time: 1.03 seconds; current allocated memory: 436.758 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.21 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.23 seconds; current allocated memory: 438.779 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.51 seconds. CPU system time: 0.03 seconds. Elapsed time: 1.55 seconds; current allocated memory: 439.471 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 10.13 seconds. CPU system time: 0.01 seconds. Elapsed time: 10.17 seconds; current allocated memory: 440.743 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hid_cal'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 5.42 seconds. CPU system time: 0.01 seconds. Elapsed time: 5.47 seconds; current allocated memory: 441.576 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hd_cal96' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hd_cal96'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.22 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.23 seconds; current allocated memory: 446.066 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fpdb_locate6' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fpdb_locate6'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.9 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.92 seconds; current allocated memory: 456.723 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.89 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.91 seconds; current allocated memory: 464.801 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fpdb_locate7' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fpdb_locate7'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.37 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.4 seconds; current allocated memory: 470.166 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch5'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.86 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.88 seconds; current allocated memory: 478.381 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fpdb_locate9' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fpdb_locate9'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.37 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.4 seconds; current allocated memory: 483.768 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.02 seconds; current allocated memory: 207.910 MB.
+INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 5.04 seconds. CPU system time: 0.29 seconds. Elapsed time: 5.31 seconds; current allocated memory: 209.094 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-186] Unrolling loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' completely with a factor of 16 (../src/table_serch.cpp:24:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' has been removed because the loop is unrolled completely (../src/table_serch.cpp:24:23)
+INFO: [HLS 214-186] Unrolling loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' completely with a factor of 48 (../src/table_serch.cpp:46:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' has been removed because the loop is unrolled completely (../src/table_serch.cpp:46:23)
+INFO: [HLS 214-186] Unrolling loop 'serch_module' (../src/table_serch.cpp:342:24) in function 'table_serch' completely with a factor of 6 (../src/table_serch.cpp:342:24)
+INFO: [HLS 214-178] Inlining function 'hd_cal32(ap_uint<32>, ap_uint<32>)' into 'fpdb_locate(unsigned int*, unsigned int*, unsigned int)' (../src/table_serch.cpp:193:0)
+INFO: [HLS 214-178] Inlining function 'switch_module(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:218:0)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'query_plram0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 214-115] Multiple burst reads of length 128 and bit width 32 in loop 'seisa_loop'(../src/table_serch.cpp:198:18) has been inferred on port 'DB_aximm0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 5.75 seconds. CPU system time: 0.25 seconds. Elapsed time: 6.16 seconds; current allocated memory: 211.633 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 211.634 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.14 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.14 seconds; current allocated memory: 218.404 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.61 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.64 seconds; current allocated memory: 226.161 MB.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate10' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate6' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate7' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate8' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'fpdb_locate9' automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (../src/table_serch.cpp:162:5) in function 'hid_cal'... converting 8 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'hd_cal96' (../src/table_serch.cpp:50:5)...95 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate9' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate8' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate7' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate6' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate10' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'fpdb_locate' (../src/table_serch.cpp:189)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 2.35 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.39 seconds; current allocated memory: 257.611 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 4.34 seconds. CPU system time: 0.02 seconds. Elapsed time: 4.37 seconds; current allocated memory: 401.862 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'table_serch' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 403.261 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 403.788 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hd_cal96' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.32 seconds. CPU system time: 0 seconds. Elapsed time: 0.34 seconds; current allocated memory: 405.479 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.43 seconds. CPU system time: 0 seconds. Elapsed time: 0.43 seconds; current allocated memory: 407.274 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate6' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.99 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.05 seconds; current allocated memory: 408.263 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.47 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.49 seconds; current allocated memory: 409.357 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.98 seconds. CPU system time: 0 seconds. Elapsed time: 0.99 seconds; current allocated memory: 410.484 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.22 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.24 seconds; current allocated memory: 412.504 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate7' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.38 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.41 seconds; current allocated memory: 413.506 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.49 seconds. CPU system time: 0 seconds. Elapsed time: 0.49 seconds; current allocated memory: 414.614 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.97 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.01 seconds; current allocated memory: 415.715 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.2 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.22 seconds; current allocated memory: 417.761 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate9' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.37 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.41 seconds; current allocated memory: 418.753 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.48 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.48 seconds; current allocated memory: 419.848 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.98 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.99 seconds; current allocated memory: 420.993 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.19 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.22 seconds; current allocated memory: 423.041 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate10' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.38 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.41 seconds; current allocated memory: 424.017 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.48 seconds. CPU system time: 0 seconds. Elapsed time: 0.52 seconds; current allocated memory: 425.141 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.99 seconds. CPU system time: 0 seconds. Elapsed time: 1 seconds; current allocated memory: 426.243 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.22 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.28 seconds; current allocated memory: 428.246 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.39 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.4 seconds; current allocated memory: 429.266 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.48 seconds. CPU system time: 0 seconds. Elapsed time: 0.49 seconds; current allocated memory: 430.410 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.98 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.99 seconds; current allocated memory: 431.505 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.14 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.16 seconds; current allocated memory: 433.525 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fpdb_locate8' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.35 seconds. CPU system time: 0.03 seconds. Elapsed time: 1.37 seconds; current allocated memory: 434.531 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.48 seconds. CPU system time: 0 seconds. Elapsed time: 0.48 seconds; current allocated memory: 435.644 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.99 seconds. CPU system time: 0.01 seconds. Elapsed time: 1 seconds; current allocated memory: 436.758 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.23 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.24 seconds; current allocated memory: 438.777 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.53 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.56 seconds; current allocated memory: 439.469 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 10.03 seconds. CPU system time: 0 seconds. Elapsed time: 10.07 seconds; current allocated memory: 440.743 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hid_cal'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 5.35 seconds. CPU system time: 0.01 seconds. Elapsed time: 5.38 seconds; current allocated memory: 441.618 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hd_cal96' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hd_cal96'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.23 seconds. CPU system time: 0 seconds. Elapsed time: 0.34 seconds; current allocated memory: 446.039 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fpdb_locate6' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fpdb_locate6'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.83 seconds. CPU system time: 0.03 seconds. Elapsed time: 1.87 seconds; current allocated memory: 456.663 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.84 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.86 seconds; current allocated memory: 464.773 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fpdb_locate7' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fpdb_locate7'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.39 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.41 seconds; current allocated memory: 470.182 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch5'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.87 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.89 seconds; current allocated memory: 478.385 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fpdb_locate9' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fpdb_locate9'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.39 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.42 seconds; current allocated memory: 483.785 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch3'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.87 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.89 seconds; current allocated memory: 491.973 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 191.898 MB.
+INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 4.88 seconds. CPU system time: 0.28 seconds. Elapsed time: 5.25 seconds; current allocated memory: 193.092 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-186] Unrolling loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' completely with a factor of 16 (../src/table_serch.cpp:24:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' has been removed because the loop is unrolled completely (../src/table_serch.cpp:24:23)
+INFO: [HLS 214-186] Unrolling loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' completely with a factor of 48 (../src/table_serch.cpp:46:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' has been removed because the loop is unrolled completely (../src/table_serch.cpp:46:23)
+INFO: [HLS 214-188] Unrolling loop 'seisa_loop' (../src/table_serch.cpp:198:18) in function 'fpdb_locate' partially with a factor of 4 (../src/table_serch.cpp:198:18)
+INFO: [HLS 214-186] Unrolling loop 'serch_module' (../src/table_serch.cpp:440:24) in function 'table_serch' completely with a factor of 6 (../src/table_serch.cpp:440:24)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_472_1' (../src/table_serch.cpp:472:27) in function 'table_serch' completely with a factor of 6 (../src/table_serch.cpp:472:27)
+INFO: [HLS 214-178] Inlining function 'switch_module(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-178] Inlining function 'fpdb_locate(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'query_plram0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'DB_aximm0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 6.21 seconds. CPU system time: 0.19 seconds. Elapsed time: 6.46 seconds; current allocated memory: 196.256 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 196.257 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.13 seconds. CPU system time: 0 seconds. Elapsed time: 0.14 seconds; current allocated memory: 203.116 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.53 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.54 seconds; current allocated memory: 210.615 MB.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2' in function 'table_serch' automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (../src/table_serch.cpp:437:19) in function 'table_serch'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (../src/table_serch.cpp:162:5) in function 'hid_cal'... converting 8 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'table_serch' (../src/table_serch.cpp:390)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'hd_cal96' (../src/table_serch.cpp:50:5)...95 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'hd_cal32' (../src/table_serch.cpp:28:5)...31 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch5' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch4' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch3' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch2' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch1' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1.98 seconds. CPU system time: 0 seconds. Elapsed time: 2.02 seconds; current allocated memory: 241.597 MB.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch5' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch4' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch3' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch2' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch1' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+INFO: [HLS 200-472] Inferring partial write operation for 'music_index_box.1' 
+INFO: [HLS 200-472] Inferring partial write operation for 'music_index_box.1' (../src/table_serch.cpp:465:32)
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 3.41 seconds. CPU system time: 0.02 seconds. Elapsed time: 3.44 seconds; current allocated memory: 335.295 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'table_serch' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.07 seconds; current allocated memory: 336.469 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 336.936 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hd_cal96' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.34 seconds. CPU system time: 0 seconds. Elapsed time: 0.34 seconds; current allocated memory: 338.645 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.43 seconds. CPU system time: 0 seconds. Elapsed time: 0.44 seconds; current allocated memory: 340.441 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hd_cal32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'hd_cal32'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, function 'hd_cal32'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.86 seconds. CPU system time: 0 seconds. Elapsed time: 0.87 seconds; current allocated memory: 341.112 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.14 seconds. CPU system time: 0 seconds. Elapsed time: 0.14 seconds; current allocated memory: 341.755 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.07 seconds. CPU system time: 0 seconds. Elapsed time: 1.09 seconds; current allocated memory: 343.280 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.8 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.82 seconds; current allocated memory: 346.201 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.6 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.65 seconds; current allocated memory: 347.703 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.79 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.83 seconds; current allocated memory: 350.594 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.63 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.66 seconds; current allocated memory: 352.113 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.84 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.9 seconds; current allocated memory: 355.029 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.64 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.7 seconds; current allocated memory: 356.534 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.78 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.82 seconds; current allocated memory: 359.469 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.65 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.68 seconds; current allocated memory: 360.972 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.83 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.85 seconds; current allocated memory: 363.859 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.62 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.68 seconds; current allocated memory: 365.406 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.79 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.81 seconds; current allocated memory: 368.295 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'Loop 1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.23 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.24 seconds; current allocated memory: 369.116 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 16.35 seconds. CPU system time: 0.01 seconds. Elapsed time: 16.58 seconds; current allocated memory: 370.583 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hid_cal'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 9.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 9.12 seconds; current allocated memory: 371.423 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hd_cal96' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hd_cal96'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.23 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.24 seconds; current allocated memory: 375.855 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hd_cal32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hd_cal32'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.88 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.91 seconds; current allocated memory: 385.381 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.74 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.77 seconds; current allocated memory: 393.390 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch5'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.26 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.3 seconds; current allocated memory: 403.131 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch4'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.25 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.3 seconds; current allocated memory: 412.928 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch3'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.28 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.32 seconds; current allocated memory: 422.698 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch2'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.26 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.3 seconds; current allocated memory: 432.572 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.25 seconds. CPU system time: 0.04 seconds. Elapsed time: 2.31 seconds; current allocated memory: 442.341 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/query_plram0' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/DB_aximm0' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/table_aximm1' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/pointer_aximm2' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/judge_plram1' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/query' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/FP_DB' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/hash_table' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/hash_table_pointer' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/judge_temp' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'table_serch' to 's_axilite & ap_ctrl_chain'.
+WARNING: [RTGEN 206-101] Global array 'music_index_box' will not be exposed as RTL port.
+INFO: [RTGEN 206-100] Bundling port 'query', 'FP_DB', 'hash_table', 'hash_table_pointer', 'judge_temp' and 'return' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'table_serch'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.57 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.67 seconds; current allocated memory: 455.618 MB.
+INFO: [RTMG 210-279] Implementing memory 'table_serch_music_index_box_rom' using auto ROMs.
+INFO: [RTMG 210-278] Implementing memory 'table_serch_music_index_box_1_ram (RAM)' using auto RAMs.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 191.908 MB.
+INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
+WARNING: [HLS 207-5528] unexpected pragma argument 'class', expects identifier: ../src/table_serch.cpp:327:24
+WARNING: [HLS 207-5528] unexpected pragma argument 'class', expects identifier: ../src/table_serch.cpp:328:24
+WARNING: [HLS 207-5527] unexpected pragma parameter 'type': ../src/table_serch.cpp:344:45
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 5.1 seconds. CPU system time: 0.32 seconds. Elapsed time: 5.28 seconds; current allocated memory: 193.098 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-186] Unrolling loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' completely with a factor of 16 (../src/table_serch.cpp:24:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' has been removed because the loop is unrolled completely (../src/table_serch.cpp:24:23)
+INFO: [HLS 214-186] Unrolling loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' completely with a factor of 48 (../src/table_serch.cpp:46:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' has been removed because the loop is unrolled completely (../src/table_serch.cpp:46:23)
+INFO: [HLS 214-188] Unrolling loop 'seisa_loop' (../src/table_serch.cpp:198:18) in function 'fpdb_locate' partially with a factor of 4 (../src/table_serch.cpp:198:18)
+INFO: [HLS 214-186] Unrolling loop 'serch_module' (../src/table_serch.cpp:349:24) in function 'table_serch' completely with a factor of 6 (../src/table_serch.cpp:349:24)
+INFO: [HLS 214-178] Inlining function 'switch_module(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-178] Inlining function 'fpdb_locate(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'query_plram0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'DB_aximm0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 6.02 seconds. CPU system time: 0.16 seconds. Elapsed time: 6.24 seconds; current allocated memory: 195.902 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 195.903 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.13 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.15 seconds; current allocated memory: 202.663 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.54 seconds. CPU system time: 0 seconds. Elapsed time: 0.54 seconds; current allocated memory: 210.240 MB.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (../src/table_serch.cpp:162:5) in function 'hid_cal'... converting 8 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'hd_cal96' (../src/table_serch.cpp:50:5)...95 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'hd_cal32' (../src/table_serch.cpp:28:5)...31 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch5' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch4' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch3' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch2' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch1' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1.93 seconds. CPU system time: 0 seconds. Elapsed time: 1.95 seconds; current allocated memory: 241.186 MB.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch5' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch4' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch3' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch2' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch1' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 3.28 seconds. CPU system time: 0.02 seconds. Elapsed time: 3.3 seconds; current allocated memory: 334.554 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'table_serch' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.07 seconds; current allocated memory: 335.740 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 336.209 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hd_cal96' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.33 seconds. CPU system time: 0 seconds. Elapsed time: 0.33 seconds; current allocated memory: 337.902 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.43 seconds. CPU system time: 0 seconds. Elapsed time: 0.43 seconds; current allocated memory: 339.696 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hd_cal32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'hd_cal32'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, function 'hd_cal32'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.87 seconds. CPU system time: 0 seconds. Elapsed time: 0.86 seconds; current allocated memory: 340.367 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.13 seconds. CPU system time: 0 seconds. Elapsed time: 0.14 seconds; current allocated memory: 341.055 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.09 seconds. CPU system time: 0 seconds. Elapsed time: 1.11 seconds; current allocated memory: 342.581 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.84 seconds. CPU system time: 0.04 seconds. Elapsed time: 2.88 seconds; current allocated memory: 345.485 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.67 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.7 seconds; current allocated memory: 346.990 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.82 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.85 seconds; current allocated memory: 349.905 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.68 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.7 seconds; current allocated memory: 351.427 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.87 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.9 seconds; current allocated memory: 354.313 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.68 seconds. CPU system time: 0 seconds. Elapsed time: 2.69 seconds; current allocated memory: 355.818 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.83 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.85 seconds; current allocated memory: 358.754 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.66 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.68 seconds; current allocated memory: 360.288 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.81 seconds. CPU system time: 0.04 seconds. Elapsed time: 2.86 seconds; current allocated memory: 363.176 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.66 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.7 seconds; current allocated memory: 364.695 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.84 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.94 seconds; current allocated memory: 367.599 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.24 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.29 seconds; current allocated memory: 368.262 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 16.48 seconds. CPU system time: 0.01 seconds. Elapsed time: 16.57 seconds; current allocated memory: 369.535 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hid_cal'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 8.98 seconds. CPU system time: 0.01 seconds. Elapsed time: 9.14 seconds; current allocated memory: 370.424 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hd_cal96' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hd_cal96'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.24 seconds. CPU system time: 0 seconds. Elapsed time: 0.24 seconds; current allocated memory: 374.856 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hd_cal32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hd_cal32'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.89 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.96 seconds; current allocated memory: 384.474 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.75 seconds. CPU system time: 0 seconds. Elapsed time: 0.78 seconds; current allocated memory: 392.453 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch5'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.27 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.31 seconds; current allocated memory: 402.195 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch3'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.31 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.38 seconds; current allocated memory: 412.023 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch2'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.27 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.34 seconds; current allocated memory: 421.792 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.26 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.31 seconds; current allocated memory: 431.639 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch4'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.28 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.32 seconds; current allocated memory: 441.407 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/query_plram0' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/DB_aximm0' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/table_aximm1' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/pointer_aximm2' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/judge_plram1' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/query' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/FP_DB' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/hash_table' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/hash_table_pointer' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/judge_temp' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'table_serch' to 's_axilite & ap_ctrl_chain'.
+INFO: [RTGEN 206-100] Bundling port 'query', 'FP_DB', 'hash_table', 'hash_table_pointer', 'judge_temp' and 'return' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'table_serch'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.58 seconds. CPU system time: 0.05 seconds. Elapsed time: 2.63 seconds; current allocated memory: 454.335 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 14.44 seconds. CPU system time: 0.12 seconds. Elapsed time: 14.7 seconds; current allocated memory: 470.270 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for table_serch.
+INFO: [VLOG 209-307] Generating Verilog RTL for table_serch.
+INFO: [HLS 200-1603] Design has MAXI bursts, see Vitis HLS GUI synthesis summary report for detailed information.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 136.99 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 109.8 seconds. CPU system time: 1.11 seconds. Elapsed time: 111.72 seconds; current allocated memory: 475.472 MB.
+INFO: [HLS 200-112] Total CPU user time: 112.84 seconds. Total CPU system time: 1.48 seconds. Total elapsed time: 113.97 seconds; peak allocated memory: 470.270 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 191.908 MB.
+INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
+WARNING: [HLS 207-5528] unexpected pragma argument 'class', expects identifier: ../src/table_serch.cpp:327:24
+WARNING: [HLS 207-5527] unexpected pragma parameter 'type': ../src/table_serch.cpp:343:45
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 5.02 seconds. CPU system time: 0.33 seconds. Elapsed time: 5.38 seconds; current allocated memory: 193.097 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-186] Unrolling loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' completely with a factor of 16 (../src/table_serch.cpp:24:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' has been removed because the loop is unrolled completely (../src/table_serch.cpp:24:23)
+INFO: [HLS 214-186] Unrolling loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' completely with a factor of 48 (../src/table_serch.cpp:46:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' has been removed because the loop is unrolled completely (../src/table_serch.cpp:46:23)
+INFO: [HLS 214-188] Unrolling loop 'seisa_loop' (../src/table_serch.cpp:198:18) in function 'fpdb_locate' partially with a factor of 4 (../src/table_serch.cpp:198:18)
+INFO: [HLS 214-186] Unrolling loop 'serch_module' (../src/table_serch.cpp:348:24) in function 'table_serch' completely with a factor of 6 (../src/table_serch.cpp:348:24)
+INFO: [HLS 214-178] Inlining function 'switch_module(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-178] Inlining function 'fpdb_locate(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'query_plram0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'DB_aximm0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 5.94 seconds. CPU system time: 0.21 seconds. Elapsed time: 6.27 seconds; current allocated memory: 195.885 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 195.886 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.14 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.16 seconds; current allocated memory: 202.642 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.54 seconds. CPU system time: 0 seconds. Elapsed time: 0.55 seconds; current allocated memory: 210.216 MB.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (../src/table_serch.cpp:162:5) in function 'hid_cal'... converting 8 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'hd_cal96' (../src/table_serch.cpp:50:5)...95 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'hd_cal32' (../src/table_serch.cpp:28:5)...31 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch5' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch4' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch3' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch2' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch1' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1.91 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.94 seconds; current allocated memory: 241.162 MB.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch5' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch4' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch3' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch2' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch1' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 3.28 seconds. CPU system time: 0.02 seconds. Elapsed time: 3.31 seconds; current allocated memory: 334.534 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'table_serch' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 335.721 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 336.189 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hd_cal96' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.33 seconds. CPU system time: 0 seconds. Elapsed time: 0.33 seconds; current allocated memory: 337.882 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.43 seconds. CPU system time: 0 seconds. Elapsed time: 0.43 seconds; current allocated memory: 339.677 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hd_cal32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'hd_cal32'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, function 'hd_cal32'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.85 seconds. CPU system time: 0 seconds. Elapsed time: 0.86 seconds; current allocated memory: 340.347 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.14 seconds. CPU system time: 0 seconds. Elapsed time: 0.14 seconds; current allocated memory: 341.035 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.08 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.09 seconds; current allocated memory: 342.533 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.81 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.85 seconds; current allocated memory: 345.468 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.66 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.68 seconds; current allocated memory: 346.970 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.84 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.87 seconds; current allocated memory: 349.889 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.6 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.64 seconds; current allocated memory: 351.407 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.84 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.86 seconds; current allocated memory: 354.297 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.67 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.69 seconds; current allocated memory: 355.799 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.82 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.84 seconds; current allocated memory: 358.732 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.66 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.68 seconds; current allocated memory: 360.266 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.82 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.84 seconds; current allocated memory: 363.156 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.66 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.72 seconds; current allocated memory: 364.675 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.8 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.81 seconds; current allocated memory: 367.578 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.16 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.18 seconds; current allocated memory: 368.241 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 16.23 seconds. CPU system time: 0.01 seconds. Elapsed time: 16.34 seconds; current allocated memory: 369.515 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hid_cal'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 8.74 seconds. CPU system time: 0.01 seconds. Elapsed time: 8.78 seconds; current allocated memory: 370.401 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hd_cal96' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hd_cal96'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.23 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.26 seconds; current allocated memory: 374.834 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hd_cal32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hd_cal32'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.87 seconds. CPU system time: 0.03 seconds. Elapsed time: 1.91 seconds; current allocated memory: 384.437 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.76 seconds. CPU system time: 0 seconds. Elapsed time: 0.77 seconds; current allocated memory: 392.416 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch5'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.29 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.35 seconds; current allocated memory: 402.174 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch3'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.3 seconds. CPU system time: 0.04 seconds. Elapsed time: 2.34 seconds; current allocated memory: 412.002 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch2'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.29 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.34 seconds; current allocated memory: 421.770 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.27 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.32 seconds; current allocated memory: 431.632 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch4'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.28 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.32 seconds; current allocated memory: 441.401 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/query_plram0' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/DB_aximm0' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/table_aximm1' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/pointer_aximm2' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/judge_plram1' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/query' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/FP_DB' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/hash_table' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/hash_table_pointer' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'table_serch/judge_temp' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'table_serch' to 's_axilite & ap_ctrl_chain'.
+INFO: [RTGEN 206-100] Bundling port 'query', 'FP_DB', 'hash_table', 'hash_table_pointer', 'judge_temp' and 'return' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'table_serch'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.61 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.65 seconds; current allocated memory: 454.314 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 14.69 seconds. CPU system time: 0.09 seconds. Elapsed time: 14.88 seconds; current allocated memory: 470.265 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for table_serch.
+INFO: [VLOG 209-307] Generating Verilog RTL for table_serch.
+INFO: [HLS 200-1603] Design has MAXI bursts, see Vitis HLS GUI synthesis summary report for detailed information.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 136.99 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 109.13 seconds. CPU system time: 1.16 seconds. Elapsed time: 110.99 seconds; current allocated memory: 475.467 MB.
+INFO: [HLS 200-112] Total CPU user time: 112.24 seconds. Total CPU system time: 1.54 seconds. Total elapsed time: 113.24 seconds; peak allocated memory: 470.265 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 191.908 MB.
+INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 4.91 seconds. CPU system time: 0.29 seconds. Elapsed time: 5.19 seconds; current allocated memory: 193.092 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-178] Inlining function 'hd_cal32(ap_uint<32>, ap_uint<32>)' into 'fpdb_locate(unsigned int*, unsigned int*, unsigned int)' (../src/table_serch.cpp:193:0)
+INFO: [HLS 214-178] Inlining function 'switch_module(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-178] Inlining function 'hd_cal96(ap_uint<96>, ap_uint<96>)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-178] Inlining function 'fpdb_locate(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 5.56 seconds. CPU system time: 0.22 seconds. Elapsed time: 5.88 seconds; current allocated memory: 195.231 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 195.233 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.08 seconds. CPU system time: 0 seconds. Elapsed time: 0.09 seconds; current allocated memory: 201.289 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+WARNING: [SYNCHK 200-23] /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_ref.h:819: variable-indexed range selection may cause suboptimal QoR.
+INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.19 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.21 seconds; current allocated memory: 207.715 MB.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'backet_serch' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'haming_dis96_loop' in function 'backet_serch' automatically.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'backet_serch' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'haming_dis32_loop' in function 'backet_serch' completely with a factor of 16.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (../src/table_serch.cpp:162:5) in function 'hid_cal'... converting 8 basic blocks.
+INFO: [XFORM 203-602] Inlining function 'hid_cal' into 'table_serch' (../src/table_serch.cpp:351) automatically.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.63 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.66 seconds; current allocated memory: 235.934 MB.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch' more than one sub loop.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.66 seconds. CPU system time: 0 seconds. Elapsed time: 0.67 seconds; current allocated memory: 243.658 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'table_serch' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'haming_dis96_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'haming_dis96_loop'
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+WARNING: [HLS 200-885] Unable to schedule bus request on port 'gmem' (../src/table_serch.cpp:202) due to limited memory ports. Please consider using a memory core with more ports or partitioning the array.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 2, Depth = 74, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.94 seconds. CPU system time: 0 seconds. Elapsed time: 0.94 seconds; current allocated memory: 245.932 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.24 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.28 seconds; current allocated memory: 249.420 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.08 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.11 seconds; current allocated memory: 250.257 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1.11 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.23 seconds; current allocated memory: 251.709 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'backet_serch'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.68 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.71 seconds; current allocated memory: 257.488 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: ==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 207.909 MB.
+INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 4.94 seconds. CPU system time: 0.29 seconds. Elapsed time: 5.27 seconds; current allocated memory: 209.093 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-186] Unrolling loop 'serch_module' (../src/table_serch.cpp:347:24) in function 'table_serch' completely with a factor of 6 (../src/table_serch.cpp:347:24)
+INFO: [HLS 214-178] Inlining function 'hd_cal32(ap_uint<32>, ap_uint<32>)' into 'fpdb_locate(unsigned int*, unsigned int*, unsigned int)' (../src/table_serch.cpp:193:0)
+INFO: [HLS 214-178] Inlining function 'switch_module(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-178] Inlining function 'hd_cal96(ap_uint<96>, ap_uint<96>)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-178] Inlining function 'fpdb_locate(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 5.64 seconds. CPU system time: 0.22 seconds. Elapsed time: 5.96 seconds; current allocated memory: 211.433 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 211.434 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.09 seconds. CPU system time: 0 seconds. Elapsed time: 0.09 seconds; current allocated memory: 217.569 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+WARNING: [SYNCHK 200-23] /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_ref.h:819: variable-indexed range selection may cause suboptimal QoR.
+INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.21 seconds. CPU system time: 0 seconds. Elapsed time: 0.21 seconds; current allocated memory: 223.991 MB.
+INFO: [XFORM 203-510] Pipelining loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'backet_serch' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'haming_dis96_loop' in function 'backet_serch' automatically.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'seisa_loop' (../src/table_serch.cpp:195) in function 'backet_serch' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'haming_dis32_loop' in function 'backet_serch' completely with a factor of 16.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (../src/table_serch.cpp:162:5) in function 'hid_cal'... converting 8 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch' (../src/table_serch.cpp:28:46)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.69 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.7 seconds; current allocated memory: 252.235 MB.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch' more than one sub loop.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.69 seconds. CPU system time: 0 seconds. Elapsed time: 0.69 seconds; current allocated memory: 269.469 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'table_serch' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 270.099 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 270.610 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'backet_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'haming_dis96_loop'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'haming_dis96_loop'
+INFO: [SCHED 204-61] Pipelining loop 'seisa_loop'.
+WARNING: [HLS 200-885] Unable to schedule bus request on port 'gmem' (../src/table_serch.cpp:202) due to limited memory ports. Please consider using a memory core with more ports or partitioning the array.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 2, Depth = 74, loop 'seisa_loop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.02 seconds. CPU system time: 0 seconds. Elapsed time: 1.02 seconds; current allocated memory: 272.616 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.25 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.3 seconds; current allocated memory: 276.040 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'table_serch' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.16 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.18 seconds; current allocated memory: 276.696 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1.26 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.28 seconds; current allocated memory: 277.833 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
+INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 191.908 MB.
+INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 5.02 seconds. CPU system time: 0.27 seconds. Elapsed time: 5.41 seconds; current allocated memory: 193.092 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-186] Unrolling loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' completely with a factor of 16 (../src/table_serch.cpp:24:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis32_loop' (../src/table_serch.cpp:24:23) in function 'hd_cal32' has been removed because the loop is unrolled completely (../src/table_serch.cpp:24:23)
+INFO: [HLS 214-186] Unrolling loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' completely with a factor of 48 (../src/table_serch.cpp:46:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis96_loop' (../src/table_serch.cpp:46:23) in function 'hd_cal96' has been removed because the loop is unrolled completely (../src/table_serch.cpp:46:23)
+INFO: [HLS 214-188] Unrolling loop 'seisa_loop' (../src/table_serch.cpp:198:18) in function 'fpdb_locate' partially with a factor of 4 (../src/table_serch.cpp:198:18)
+INFO: [HLS 214-186] Unrolling loop 'serch_module' (../src/table_serch.cpp:347:24) in function 'table_serch' completely with a factor of 6 (../src/table_serch.cpp:347:24)
+INFO: [HLS 214-178] Inlining function 'switch_module(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-178] Inlining function 'fpdb_locate(unsigned int*, unsigned int*, unsigned int)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*)' (../src/table_serch.cpp:220:0)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'query_plram0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'DB_aximm0' (../src/table_serch.cpp:198:18)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 5.96 seconds. CPU system time: 0.19 seconds. Elapsed time: 6.25 seconds; current allocated memory: 195.819 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 195.820 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.14 seconds. CPU system time: 0 seconds. Elapsed time: 0.13 seconds; current allocated memory: 202.593 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.29 seconds. CPU system time: 0 seconds. Elapsed time: 0.3 seconds; current allocated memory: 209.563 MB.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (../src/table_serch.cpp:162:5) in function 'hid_cal'... converting 8 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'hd_cal96' (../src/table_serch.cpp:50:5)...95 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'hd_cal32' (../src/table_serch.cpp:28:5)...31 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'backet_serch' (../src/table_serch.cpp:178:18)...4 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.86 seconds; current allocated memory: 238.798 MB.
+WARNING: [HLS 200-960] Cannot flatten loop 'bucket_loop' (../src/table_serch.cpp:222:9) in function 'backet_serch' the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 1.59 seconds. CPU system time: 0 seconds. Elapsed time: 1.59 seconds; current allocated memory: 279.651 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'table_serch' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hid_cal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 280.402 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 280.868 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hd_cal96' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.32 seconds. CPU system time: 0 seconds. Elapsed time: 0.33 seconds; current allocated memory: 282.558 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.43 seconds. CPU system time: 0 seconds. Elapsed time: 0.45 seconds; current allocated memory: 284.352 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hd_cal32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'hd_cal32'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, function 'hd_cal32'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.87 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.87 seconds; current allocated memory: 285.037 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO
