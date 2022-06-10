@@ -27,6 +27,21 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>ap_int.h</name>
+			<type>1</type>
+			<location>/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int.h</location>
+		</link>
+		<link>
+			<name>ap_int_base.h</name>
+			<type>1</type>
+			<location>/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_base.h</location>
+		</link>
+		<link>
+			<name>ap_int_ref.h</name>
+			<type>1</type>
+			<location>/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_ref.h</location>
+		</link>
+		<link>
 			<name>source</name>
 			<type>2</type>
 			<location>/home/nomoto/src/StagedLSH/hls/workspace/yan/.apc/.src</location>

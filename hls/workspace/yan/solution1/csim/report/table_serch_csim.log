@@ -1,5 +1,9 @@
 INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../../src/ele_func.cpp in debug mode
+   Compiling ../../../../../src/hash_func.cpp in debug mode
+   Compiling ../../../../../src/hash_stock.cpp in debug mode
+   Compiling ../../../../../src/main.cpp in debug mode
    Compiling ../../../../../src/table_serch.cpp in debug mode
    Generating csim.exe
 処理開始
@@ -18,9 +22,9 @@ Hashテーブルへの要素格納完了
 不正解率 : 0.000000 %
 未発見 : 0.000000 %
 
-平均発見時間 : 0.001837 s
-最大発見時間 : 0.001837 s
-最小発見時間 : 0.001837 s
+平均発見時間 : 0.222422 s
+最大発見時間 : 0.222422 s
+最小発見時間 : 0.222422 s
 処理終了
 INFO: [SIM 1] CSim done with 0 errors.
 INFO: [SIM 3] *************** CSIM finish ***************

@@ -189,7 +189,7 @@ int main()
         }
 
         /* 結果の集計 */
-        if (judge_temp < 0) not_find++;
+        if (*judge_temp < 0) not_find++;
         else
         {
             if (music_index == *judge_temp)  seikai++;

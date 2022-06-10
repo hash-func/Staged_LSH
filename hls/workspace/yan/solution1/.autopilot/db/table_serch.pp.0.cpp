@@ -151,6 +151,7 @@ extern "C" {
 }
 # 2 "<built-in>" 2
 # 1 "../src/table_serch.cpp" 2
+# 997 "../src/table_serch.cpp"
 # 1 "/opt/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iostream" 1 3
 # 37 "/opt/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/iostream" 3
 
@@ -26951,7 +26952,7 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 
 }
-# 2 "../src/table_serch.cpp" 2
+# 998 "../src/table_serch.cpp" 2
 
 # 1 "/opt/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/math.h" 1 3
 # 36 "/opt/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/math.h" 3
@@ -30878,7 +30879,7 @@ using std::scalbln;
 using std::scalbn;
 using std::tgamma;
 using std::trunc;
-# 4 "../src/table_serch.cpp" 2
+# 1000 "../src/table_serch.cpp" 2
 # 1 "/opt/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/random" 1 3
 # 33 "/opt/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/random" 3
 
@@ -44570,7 +44571,7 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 }
 # 52 "/opt/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/lib/gcc/x86_64-pc-linux-gnu/6.2.0/../../../../include/c++/6.2.0/random" 2 3
-# 5 "../src/table_serch.cpp" 2
+# 1001 "../src/table_serch.cpp" 2
 
 # 1 "/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int.h" 1
 # 55 "/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int.h"
@@ -49997,12 +49998,119 @@ inline bool operator!=(
 }
 # 396 "/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_fixed.h" 2
 # 365 "/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_int.h" 2
-# 7 "../src/table_serch.cpp" 2
+# 1003 "../src/table_serch.cpp" 2
 
 
 
 # 1 "../src/main_fpga.h" 1
-# 11 "../src/table_serch.cpp" 2
+# 1007 "../src/table_serch.cpp" 2
+
+
+void hid_cal (
+    ap_uint<96> flame96,
+    int hash_index,
+    ap_uint<32>* henkan
+)
+{
+
+    switch (hash_index)
+    {
+    case 0:
+        (*henkan)[13 -1] = flame96[73];
+        (*henkan)[13 -2] = flame96[11];
+        (*henkan)[13 -3] = flame96[55];
+        (*henkan)[13 -4] = flame96[39];
+        (*henkan)[13 -5] = flame96[80];
+        (*henkan)[13 -6] = flame96[81];
+        (*henkan)[13 -7] = flame96[42];
+        (*henkan)[13 -8] = flame96[27];
+        (*henkan)[13 -9] = flame96[38];
+        (*henkan)[13 -10] = flame96[72];
+        (*henkan)[13 -11] = flame96[20];
+        (*henkan)[13 -12] = flame96[47];
+        (*henkan)[13 -13] = flame96[20];
+        break;
+    case 1:
+        (*henkan)[13 -1] = flame96[66];
+        (*henkan)[13 -2] = flame96[28];
+        (*henkan)[13 -3] = flame96[40];
+        (*henkan)[13 -4] = flame96[81];
+        (*henkan)[13 -5] = flame96[92];
+        (*henkan)[13 -6] = flame96[93];
+        (*henkan)[13 -7] = flame96[70];
+        (*henkan)[13 -8] = flame96[26];
+        (*henkan)[13 -9] = flame96[71];
+        (*henkan)[13 -10] = flame96[14];
+        (*henkan)[13 -11] = flame96[47];
+        (*henkan)[13 -12] = flame96[25];
+        (*henkan)[13 -13] = flame96[46];
+        break;
+    case 2:
+        (*henkan)[13 -1] = flame96[84];
+        (*henkan)[13 -2] = flame96[24];
+        (*henkan)[13 -3] = flame96[53];
+        (*henkan)[13 -4] = flame96[10];
+        (*henkan)[13 -5] = flame96[81];
+        (*henkan)[13 -6] = flame96[10];
+        (*henkan)[13 -7] = flame96[43];
+        (*henkan)[13 -8] = flame96[39];
+        (*henkan)[13 -9] = flame96[34];
+        (*henkan)[13 -10] = flame96[89];
+        (*henkan)[13 -11] = flame96[26];
+        (*henkan)[13 -12] = flame96[84];
+        (*henkan)[13 -13] = flame96[95];
+        break;
+    case 3:
+        (*henkan)[13 -1] = flame96[69];
+        (*henkan)[13 -2] = flame96[60];
+        (*henkan)[13 -3] = flame96[43];
+        (*henkan)[13 -4] = flame96[32];
+        (*henkan)[13 -5] = flame96[40];
+        (*henkan)[13 -6] = flame96[16];
+        (*henkan)[13 -7] = flame96[11];
+        (*henkan)[13 -8] = flame96[66];
+        (*henkan)[13 -9] = flame96[0];
+        (*henkan)[13 -10] = flame96[38];
+        (*henkan)[13 -11] = flame96[74];
+        (*henkan)[13 -12] = flame96[74];
+        (*henkan)[13 -13] = flame96[22];
+        break;
+    case 4:
+        (*henkan)[13 -1] = flame96[77];
+        (*henkan)[13 -2] = flame96[8];
+        (*henkan)[13 -3] = flame96[63];
+        (*henkan)[13 -4] = flame96[75];
+        (*henkan)[13 -5] = flame96[2];
+        (*henkan)[13 -6] = flame96[21];
+        (*henkan)[13 -7] = flame96[47];
+        (*henkan)[13 -8] = flame96[81];
+        (*henkan)[13 -9] = flame96[54];
+        (*henkan)[13 -10] = flame96[9];
+        (*henkan)[13 -11] = flame96[53];
+        (*henkan)[13 -12] = flame96[69];
+        (*henkan)[13 -13] = flame96[75];
+        break;
+    case 5:
+        (*henkan)[13 -1] = flame96[57];
+        (*henkan)[13 -2] = flame96[84];
+        (*henkan)[13 -3] = flame96[48];
+        (*henkan)[13 -4] = flame96[14];
+        (*henkan)[13 -5] = flame96[6];
+        (*henkan)[13 -6] = flame96[38];
+        (*henkan)[13 -7] = flame96[23];
+        (*henkan)[13 -8] = flame96[55];
+        (*henkan)[13 -9] = flame96[5];
+        (*henkan)[13 -10] = flame96[77];
+        (*henkan)[13 -11] = flame96[86];
+        (*henkan)[13 -12] = flame96[65];
+        (*henkan)[13 -13] = flame96[66];
+        break;
+    default:
+        break;
+    }
+}
+
+
 
 
 unsigned int hd_cal32 (
@@ -50018,6 +50126,7 @@ unsigned int hd_cal32 (
 
     haming_dis32_loop:for (int i=0; i<32; i+=2)
     {
+#pragma HLS loop_tripcount min=32 max=32 avg=32
 #pragma HLS UNROLL factor=16
 #pragma HLS PIPELINE
  reg = temp[i] + temp[i+1];
@@ -50027,163 +50136,62 @@ unsigned int hd_cal32 (
     return haming_dis;
 }
 
-unsigned int hd_cal96 (
+
+
+void hd_cal96 (
     ap_uint<96> flame96,
-    ap_uint<96> temp_flame96
+    ap_uint<96>* temp_flame96,
+    unsigned int* haming_dis96
 )
 {
     unsigned int haming_dis = 0;
     unsigned int reg = 0;
 
     ap_uint<96> temp;
-    temp = flame96 ^ temp_flame96;
+    temp = flame96 ^ *temp_flame96;
 
     haming_dis96_loop:for (int i=0; i<96; i+=2)
     {
+#pragma HLS loop_tripcount min=96 max=96 avg=96
 #pragma HLS UNROLL factor=48
 #pragma HLS PIPELINE
  reg = temp[i] + temp[i+1];
         haming_dis += reg;
     }
-    return haming_dis;
-}
-
-
-ap_uint<32> hid_cal (
-    ap_uint<96> flame96,
-    int L
-)
-{
-
-    ap_uint<32> henkan = 0;
-
-    switch (L)
-    {
-    case 0:
-        henkan[13 -1] = flame96[73];
-        henkan[13 -2] = flame96[11];
-        henkan[13 -3] = flame96[55];
-        henkan[13 -4] = flame96[39];
-        henkan[13 -5] = flame96[80];
-        henkan[13 -6] = flame96[81];
-        henkan[13 -7] = flame96[42];
-        henkan[13 -8] = flame96[27];
-        henkan[13 -9] = flame96[38];
-        henkan[13 -10] = flame96[72];
-        henkan[13 -11] = flame96[20];
-        henkan[13 -12] = flame96[47];
-        henkan[13 -13] = flame96[20];
-        break;
-    case 1:
-        henkan[13 -1] = flame96[66];
-        henkan[13 -2] = flame96[28];
-        henkan[13 -3] = flame96[40];
-        henkan[13 -4] = flame96[81];
-        henkan[13 -5] = flame96[92];
-        henkan[13 -6] = flame96[93];
-        henkan[13 -7] = flame96[70];
-        henkan[13 -8] = flame96[26];
-        henkan[13 -9] = flame96[71];
-        henkan[13 -10] = flame96[14];
-        henkan[13 -11] = flame96[47];
-        henkan[13 -12] = flame96[25];
-        henkan[13 -13] = flame96[46];
-        break;
-    case 2:
-        henkan[13 -1] = flame96[84];
-        henkan[13 -2] = flame96[24];
-        henkan[13 -3] = flame96[53];
-        henkan[13 -4] = flame96[10];
-        henkan[13 -5] = flame96[81];
-        henkan[13 -6] = flame96[10];
-        henkan[13 -7] = flame96[43];
-        henkan[13 -8] = flame96[39];
-        henkan[13 -9] = flame96[34];
-        henkan[13 -10] = flame96[89];
-        henkan[13 -11] = flame96[26];
-        henkan[13 -12] = flame96[84];
-        henkan[13 -13] = flame96[95];
-        break;
-    case 3:
-        henkan[13 -1] = flame96[69];
-        henkan[13 -2] = flame96[60];
-        henkan[13 -3] = flame96[43];
-        henkan[13 -4] = flame96[32];
-        henkan[13 -5] = flame96[40];
-        henkan[13 -6] = flame96[16];
-        henkan[13 -7] = flame96[11];
-        henkan[13 -8] = flame96[66];
-        henkan[13 -9] = flame96[0];
-        henkan[13 -10] = flame96[38];
-        henkan[13 -11] = flame96[74];
-        henkan[13 -12] = flame96[74];
-        henkan[13 -13] = flame96[22];
-        break;
-    case 4:
-        henkan[13 -1] = flame96[77];
-        henkan[13 -2] = flame96[8];
-        henkan[13 -3] = flame96[63];
-        henkan[13 -4] = flame96[75];
-        henkan[13 -5] = flame96[2];
-        henkan[13 -6] = flame96[21];
-        henkan[13 -7] = flame96[47];
-        henkan[13 -8] = flame96[81];
-        henkan[13 -9] = flame96[54];
-        henkan[13 -10] = flame96[9];
-        henkan[13 -11] = flame96[53];
-        henkan[13 -12] = flame96[69];
-        henkan[13 -13] = flame96[75];
-        break;
-    case 5:
-        henkan[13 -1] = flame96[57];
-        henkan[13 -2] = flame96[84];
-        henkan[13 -3] = flame96[48];
-        henkan[13 -4] = flame96[14];
-        henkan[13 -5] = flame96[6];
-        henkan[13 -6] = flame96[38];
-        henkan[13 -7] = flame96[23];
-        henkan[13 -8] = flame96[55];
-        henkan[13 -9] = flame96[5];
-        henkan[13 -10] = flame96[77];
-        henkan[13 -11] = flame96[86];
-        henkan[13 -12] = flame96[65];
-        henkan[13 -13] = flame96[66];
-        break;
-    default:
-        break;
-    }
-
-
-    return henkan;
+    *haming_dis96 = haming_dis;
 }
 
 
 
 
-ap_uint<96> switch_module (
+
+
+
+void switch_module (
     unsigned int FP_DB[],
     unsigned int hash_table[],
-    unsigned int get_start
+    unsigned int backet_location,
+    unsigned int backet_end,
+    ap_uint<96>* temp_flame96
 )
 {
-
-
-    ap_uint<96> flame96;
-
-    flame96 = (((ap_uint<32>) FP_DB[hash_table[get_start]],
-    (ap_uint<32>) FP_DB[hash_table[get_start] + 1]),
-    (ap_uint<32>) FP_DB[hash_table[get_start] + 2]
-    );
-
-    return flame96;
+    if (backet_location < backet_end)
+    {
+        *temp_flame96 = (((ap_uint<32>) FP_DB[hash_table[backet_location + 1]],
+        (ap_uint<32>) FP_DB[hash_table[backet_location + 1] + 1]),
+        (ap_uint<32>) FP_DB[hash_table[backet_location + 1] + 2]
+        );
+    }
 }
 
 
 
-unsigned int fpdb_locate (
+
+void fpdb_locate (
     unsigned int query[],
     unsigned int FP_DB[],
-    unsigned int db_point
+    unsigned int db_point,
+    unsigned int* haming_dis_seisa
 )
 {
 
@@ -50192,30 +50200,131 @@ unsigned int fpdb_locate (
 
     seisa_loop : for (int i=0; i<(4096/32); i++)
     {
+#pragma HLS loop_tripcount min=128 max=128 avg=128
 #pragma HLS UNROLL factor=4
 #pragma HLS PIPELINE
  reg = hd_cal32((ap_uint<32>) query[i], (ap_uint<32>) FP_DB[db_point+i]);
         haming_dis += reg;
     }
 
-    return haming_dis;
+    *haming_dis_seisa = haming_dis;
 }
 
 
 
 
-int backet_serch(
+void seisa_func(
+    unsigned int haming_dis_screen,
+    unsigned int hash_table[],
+    unsigned int query[],
+    unsigned int FP_DB[],
+    int backet_location,
+    unsigned int* min_haming_dis,
+    int* music_index_temp
+)
+{
+    int music_number;
+    unsigned int db_point;
+    unsigned int haming_dis_seisa;
+
+    if (haming_dis_screen <= 24)
+    {
+
+        music_number = hash_table[backet_location] / (4096/32);
+
+        db_point = music_number * (4096/32);
+
+
+        fpdb_locate(
+            query,
+            FP_DB,
+            db_point,
+            &haming_dis_seisa
+        );
+
+
+        if (haming_dis_seisa <= *min_haming_dis)
+        {
+
+            *min_haming_dis = haming_dis_seisa;
+
+            *music_index_temp = music_number;
+        }
+    }
+}
+
+
+
+
+void screening_seisa_func(
+    unsigned int hash_table[],
+    unsigned int query[],
+    ap_uint<96> flame96,
+    unsigned int FP_DB[],
+    ap_uint<96>* temp_flame96,
+    ap_uint<96>* temp_flame96_ping,
+    unsigned int* min_haming_dis,
+    int* music_index_temp,
+    unsigned int backet_end,
+    int backet_location
+)
+{
+#pragma HLS dataflow
+#pragma HLS stable variable=hash_table
+#pragma HLS stable variable=query
+#pragma HLS stable variable=flame96
+#pragma HLS stable variable=FP_DB
+#pragma HLS stable variable=temp_flame96
+#pragma HLS stable variable=temp_flame96_ping
+#pragma HLS stable variable=min_haming_dis
+#pragma HLS stable variable=music_index_temp
+
+#pragma HLS shared variable=hash_table
+#pragma HLS shared variable=FP_DB
+
+ unsigned int haming_dis_screen;
+
+
+    switch_module(
+        FP_DB,
+        hash_table,
+        backet_location,
+        backet_end,
+        temp_flame96_ping
+    );
+
+
+
+    hd_cal96(
+        flame96,
+        temp_flame96,
+        &haming_dis_screen
+    );
+
+
+    seisa_func(
+        haming_dis_screen,
+        hash_table,
+        query,
+        FP_DB,
+        backet_location,
+        min_haming_dis,
+        music_index_temp
+    );
+}
+
+
+
+void backet_serch(
     ap_uint<32> hash_id,
     unsigned int hash_table[],
     unsigned int hash_table_pointer[],
     unsigned int query[],
     ap_uint<96> flame96,
-    unsigned int FP_DB[]
+    unsigned int FP_DB[],
+    int* music_index
 )
 {
-
-    int music_index = -1;
-
 
     unsigned int top;
     unsigned int end;
@@ -50223,70 +50332,84 @@ int backet_serch(
     if (hash_id == 0) top = 0;
     else top = hash_table_pointer[hash_id-1] + 1;
 
-    unsigned int haming_dis_screen;
-    unsigned int haming_dis_seisa;
-    unsigned int db_point;
-    int music_number;
+
     unsigned int min_haming_dis = 1024;
 
+    int music_index_temp = -1;
 
     ap_uint<96> temp_flame96;
-
+    temp_flame96 = (((ap_uint<32>) FP_DB[hash_table[top]],
+    (ap_uint<32>) FP_DB[hash_table[top] + 1]),
+    (ap_uint<32>) FP_DB[hash_table[top] + 2]
+    );
+    ap_uint<96> temp_flame96_ping;
 
 
     bucket_loop : for (int i=top; i<=end; i++)
     {
-
-        haming_dis_screen = 0;
-
-
-        temp_flame96 = switch_module(
-            FP_DB,
+#pragma HLS loop_tripcount min=1 max=1800 avg=5
+# 1367 "../src/table_serch.cpp"
+ screening_seisa_func(
             hash_table,
+            query,
+            flame96,
+            FP_DB,
+            &temp_flame96,
+            &temp_flame96_ping,
+            &min_haming_dis,
+            &music_index_temp,
+            end,
             i
         );
 
-
-
-        haming_dis_screen = hd_cal96(
-            flame96,
-            temp_flame96
-        );
-
-
-        if (haming_dis_screen <= 24)
-        {
-
-            haming_dis_seisa = 0;
-
-
-            music_number = hash_table[i] / (4096/32);
-            db_point = music_number * (4096/32);
-
-
-            haming_dis_seisa = fpdb_locate(
-                query,
-                FP_DB,
-                db_point
-            );
-
-
-            if (haming_dis_seisa <= min_haming_dis)
-            {
-
-                min_haming_dis = haming_dis_seisa;
-
-                music_index = music_number;
-            }
-        }
+        temp_flame96 = temp_flame96_ping;
     }
-    return music_index;
+    *music_index = music_index_temp;
 }
 
 
 
-extern "C" {
 
+
+
+void serch_module (
+    unsigned int query[],
+    unsigned int FP_DB[],
+    unsigned int hash_table[],
+    unsigned int hash_table_pointer[],
+    ap_uint<96> flame96,
+    int hash_index,
+    int* music_index
+)
+{
+    ap_uint<32> hash_value = 0;
+
+
+    hid_cal(
+        flame96,
+        hash_index,
+        &hash_value
+    );
+
+
+
+    backet_serch(
+        hash_value,
+        hash_table,
+        hash_table_pointer,
+        query,
+        flame96,
+        FP_DB,
+        music_index
+    );
+
+}
+
+
+
+
+
+extern "C" {
 __attribute__((sdx_kernel("table_serch", 0))) void table_serch(
     unsigned int query[],
     unsigned int FP_DB[],
@@ -50296,8 +50419,7 @@ __attribute__((sdx_kernel("table_serch", 0))) void table_serch(
 )
 {
 #pragma HLS TOP name=table_serch
-# 302 "../src/table_serch.cpp"
-
+# 1435 "../src/table_serch.cpp"
 
 #pragma HLS TOP name=table_serch
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_plram0
@@ -50305,11 +50427,23 @@ __attribute__((sdx_kernel("table_serch", 0))) void table_serch(
 #pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_aximm1
 #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_aximm2
 #pragma HLS INTERFACE m_axi depth=4 port=judge_temp bundle=judge_plram1
-# 330 "../src/table_serch.cpp"
+
+#pragma HLS INTERFACE s_axilite port=query bundle=control
+#pragma HLS INTERFACE s_axilite port=FP_DB bundle=control
+#pragma HLS INTERFACE s_axilite port=hash_table bundle=control
+#pragma HLS INTERFACE s_axilite port=hash_table_pointer bundle=control
+#pragma HLS INTERFACE s_axilite port=judge_temp bundle=control
+#pragma HLS INTERFACE s_axilite port=return bundle=control
+
+#pragma HLS shared variable=query
+#pragma HLS shared variable=FP_DB
+#pragma HLS shared variable=hash_table
+#pragma HLS shared variable=hash_table_pointer
+
+
+
  int music_index = -1;
-
-
-    ap_uint<32> hash_temp;
+    int music_index_det = -1;
 
 
     ap_uint<32> tempA32 = query[0];
@@ -50317,48 +50451,57 @@ __attribute__((sdx_kernel("table_serch", 0))) void table_serch(
     ap_uint<32> tempC32;
 
 
+    int index_array[6];
+
+
     flame_serch : for (int flame_index=0; flame_index<((4096/32)-(3 -1)); flame_index++)
     {
+#pragma HLS loop_tripcount min=1 max=126
 
-        tempC32 = query[flame_index + 2];
+
+ tempC32 = query[flame_index + 2];
 
 
-        serch_module : for (int L=0; L<6; L++)
+        serch_module_loop : for (int L=0; L<6; L++)
         {
-#pragma HLS UNROLL factor=6
-
- hash_temp = hid_cal(
-                ((tempA32, tempB32), tempC32),
-                L
-            );
+#pragma HLS UNROLL
 
 
-
-            music_index = backet_serch(
-                hash_temp,
+ serch_module(
+                query,
+                FP_DB,
                 hash_table,
                 hash_table_pointer,
-                query,
                 ((tempA32, tempB32), tempC32),
-                FP_DB
+
+                L,
+                &music_index
             );
 
 
-
-            if (music_index >= 0) break;
+            index_array[L] = music_index;
 
         }
 
 
 
-        if (music_index >= 0) break;
+        check_loop:for (int check=0; check<6; check++)
+        {
+#pragma HLS loop_tripcount min=6 max=6 avg=6
 
+
+ if (index_array[check] >= 0)
+            {
+                music_index_det = index_array[check];
+                break;
+            }
+        }
         tempA32 = tempB32;
         tempB32 = tempC32;
     }
 
 
 
-    *judge_temp = music_index;
+    *judge_temp = music_index_det;
 }
 }

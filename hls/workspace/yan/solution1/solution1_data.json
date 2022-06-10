@@ -185,7 +185,7 @@
     "Uncertainty": "2.7",
     "IsCombinational": "0",
     "II": "x",
-    "Latency": "undef"
+    "Latency": "171377"
   },
   "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 10.000 [get_ports ap_clk]"]},
   "Ipx": {
@@ -209,6 +209,7 @@
       "impl\/vhdl\/table_serch_hd_cal32.vhd",
       "impl\/vhdl\/table_serch_hd_cal96.vhd",
       "impl\/vhdl\/table_serch_hid_cal.vhd",
+      "impl\/vhdl\/table_serch_index_array.vhd",
       "impl\/vhdl\/table_serch_judge_plram1_m_axi.vhd",
       "impl\/vhdl\/table_serch_pointer_aximm2_m_axi.vhd",
       "impl\/vhdl\/table_serch_query_plram0_m_axi.vhd",
@@ -222,6 +223,7 @@
       "impl\/verilog\/table_serch_hd_cal32.v",
       "impl\/verilog\/table_serch_hd_cal96.v",
       "impl\/verilog\/table_serch_hid_cal.v",
+      "impl\/verilog\/table_serch_index_array.v",
       "impl\/verilog\/table_serch_judge_plram1_m_axi.v",
       "impl\/verilog\/table_serch_pointer_aximm2_m_axi.v",
       "impl\/verilog\/table_serch_query_plram0_m_axi.v",
@@ -2132,33 +2134,33 @@
       "Instances": [
         {
           "ModuleName": "backet_serch",
-          "InstanceName": "grp_backet_serch_fu_299",
+          "InstanceName": "grp_backet_serch_fu_387",
           "Instances": [
             {
               "ModuleName": "hd_cal96",
-              "InstanceName": "haming_dis_screen_hd_cal96_fu_413"
+              "InstanceName": "haming_dis_screen_hd_cal96_fu_470"
             },
             {
               "ModuleName": "hd_cal32",
-              "InstanceName": "reg_hd_cal32_fu_419"
+              "InstanceName": "reg_hd_cal32_fu_476"
             },
             {
               "ModuleName": "hd_cal32",
-              "InstanceName": "reg_1_hd_cal32_fu_425"
+              "InstanceName": "reg_1_hd_cal32_fu_482"
             },
             {
               "ModuleName": "hd_cal32",
-              "InstanceName": "reg_2_hd_cal32_fu_431"
+              "InstanceName": "reg_2_hd_cal32_fu_488"
             },
             {
               "ModuleName": "hd_cal32",
-              "InstanceName": "reg_3_hd_cal32_fu_437"
+              "InstanceName": "reg_3_hd_cal32_fu_494"
             }
           ]
         },
         {
           "ModuleName": "hid_cal",
-          "InstanceName": "grp_hid_cal_fu_317"
+          "InstanceName": "grp_hid_cal_fu_406"
         }
       ]
     },
@@ -2212,13 +2214,13 @@
         "Timing": {
           "Target": "10.00",
           "Uncertainty": "2.70",
-          "Estimate": "1.181"
+          "Estimate": "1.461"
         },
         "Area": {
           "FF": "0",
           "AVAIL_FF": "2364480",
           "UTIL_FF": "0",
-          "LUT": "249",
+          "LUT": "135",
           "AVAIL_LUT": "1182240",
           "UTIL_LUT": "~0",
           "BRAM_18K": "0",
@@ -2298,10 +2300,12 @@
       },
       "backet_serch": {
         "Latency": {
-          "LatencyBest": "",
-          "LatencyAvg": "",
-          "LatencyWorst": "",
-          "PipelineII": "",
+          "LatencyBest": "222",
+          "LatencyAvg": "1075",
+          "LatencyWorst": "583490",
+          "PipelineIIMin": "222",
+          "PipelineIIMax": "583490",
+          "PipelineII": "222 ~ 583490",
           "PipelineDepth": "",
           "PipelineType": "none"
         },
@@ -2313,11 +2317,13 @@
         "Loops": [{
             "Name": "bucket_loop",
             "TripCount": "",
-            "Latency": "",
+            "LatencyMin": "3",
+            "LatencyMax": "583200",
+            "Latency": "3 ~ 583200",
             "PipelineII": "",
-            "PipelineDepthMin": "148",
+            "PipelineDepthMin": "3",
             "PipelineDepthMax": "324",
-            "PipelineDepth": "148 ~ 324",
+            "PipelineDepth": "3 ~ 324",
             "Loops": [{
                 "Name": "seisa_loop",
                 "TripCount": "32",
@@ -2327,12 +2333,12 @@
               }]
           }],
         "Area": {
-          "FF": "4907",
+          "FF": "6958",
           "AVAIL_FF": "2364480",
           "UTIL_FF": "~0",
-          "LUT": "18856",
+          "LUT": "26035",
           "AVAIL_LUT": "1182240",
-          "UTIL_LUT": "1",
+          "UTIL_LUT": "2",
           "BRAM_18K": "0",
           "AVAIL_BRAM": "4320",
           "UTIL_BRAM": "0",
@@ -2346,10 +2352,12 @@
       },
       "table_serch": {
         "Latency": {
-          "LatencyBest": "",
-          "LatencyAvg": "",
-          "LatencyWorst": "",
-          "PipelineII": "",
+          "LatencyBest": "171377",
+          "LatencyAvg": "821033",
+          "LatencyWorst": "441131183",
+          "PipelineIIMin": "171378",
+          "PipelineIIMax": "441131184",
+          "PipelineII": "171378 ~ 441131184",
           "PipelineDepth": "",
           "PipelineType": "none"
         },
@@ -2360,21 +2368,34 @@
         },
         "Loops": [{
             "Name": "flame_serch",
-            "TripCount": "",
-            "Latency": "",
+            "TripCount": "126",
+            "LatencyMin": "171234",
+            "LatencyMax": "441131040",
+            "Latency": "171234 ~ 441131040",
             "PipelineII": "",
-            "PipelineDepth": ""
+            "PipelineDepthMin": "1359",
+            "PipelineDepthMax": "3501040",
+            "PipelineDepth": "1359 ~ 3501040",
+            "Loops": [{
+                "Name": "check_loop",
+                "TripCount": "6",
+                "LatencyMin": "12",
+                "LatencyMax": "13",
+                "Latency": "12 ~ 13",
+                "PipelineII": "",
+                "PipelineDepth": "2"
+              }]
           }],
         "Area": {
           "BRAM_18K": "66",
           "AVAIL_BRAM": "4320",
           "UTIL_BRAM": "1",
-          "FF": "11254",
+          "FF": "13452",
           "AVAIL_FF": "2364480",
           "UTIL_FF": "~0",
-          "LUT": "28570",
+          "LUT": "35756",
           "AVAIL_LUT": "1182240",
-          "UTIL_LUT": "2",
+          "UTIL_LUT": "3",
           "DSP": "0",
           "AVAIL_DSP": "6840",
           "UTIL_DSP": "0",
@@ -2388,7 +2409,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2022-06-03 08:30:25 JST",
+    "Time": "2022-06-10 16:03:22 JST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }
