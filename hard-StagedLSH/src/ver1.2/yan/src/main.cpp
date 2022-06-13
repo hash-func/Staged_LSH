@@ -69,7 +69,7 @@ public:
   	cl_program       &Program )	
   {
 	mKernel  = clCreateKernel(Program, "table_serch", &mErr);
-	mQueue   = clCreateCommandQueue(Context, Device, CL_QUEUE_PROFILING_ENABLE, &mErr);
+	mQueue   = clCreateCommandQueue(Context, Device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &mErr);
 	mContext = Context;
 	mCounter = 0;
   }

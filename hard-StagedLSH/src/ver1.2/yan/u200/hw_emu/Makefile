@@ -30,4 +30,4 @@ emconfig.json:
 	emconfigutil --platform ${PLATFORM} --nd ${DEBICE_NUM}
 
 clean:
-	rm -rf vadd* app.exe *json *csv *log *summary _x xilinx* .run .Xil .ipcache *.jou *.wdb
+	rm -rf vadd* app.exe *json *csv *log *summary _x xilinx* .run .Xil .ipcache *.jou *.wdb *.info *.xclbin *.xo
