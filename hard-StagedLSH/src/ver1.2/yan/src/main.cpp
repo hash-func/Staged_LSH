@@ -889,7 +889,7 @@ public:
     cl_context       &Context,
   	cl_program       &Program )	
   {
-	mKernel  = clCreateKernel(Program, "TableSerchKernel", &mErr);
+	mKernel  = clCreateKernel(Program, "table_serch", &mErr);
 	mQueue   = clCreateCommandQueue(Context, Device, CL_QUEUE_PROFILING_ENABLE, &mErr);
 	mContext = Context;
 	mCounter = 0;
