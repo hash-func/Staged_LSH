@@ -11,7 +11,7 @@ xclbin Information
    Kernels:                table_serch
    Signature:              
    Content:                HW Emulation Binary
-   UUID (xclbin):          35243db9-6a24-4a21-bc29-615da6a5dc05
+   UUID (xclbin):          0eefb766-6a5e-4066-bdc9-b680648910af
    Sections:               DEBUG_DATA, DEBUG_IP_LAYOUT, BITSTREAM, MEM_TOPOLOGY, 
                            IP_LAYOUT, CONNECTIVITY, CLOCK_FREQ_TOPOLOGY, 
                            BUILD_METADATA, EMBEDDED_METADATA, SYSTEM_METADATA, 
@@ -100,7 +100,7 @@ Kernel: table_serch
 
 Definition
 ----------
-   Signature: table_serch (void* query, void* FP_DB, void* hash_table, void* hash_table_pointer, void* judge_temp)
+   Signature: table_serch (void* query, void* FP_DB, void* hash_table, void* hash_table_pointer, unsigned int hash_index, void* judge_temp)
 
 Ports
 -----
@@ -164,8 +164,13 @@ Instance:        table_serch_1
    Port:              M_AXI_POINTER_AXIMM2
    Memory:            bank2 (MEM_DDR4)
 
-   Argument:          judge_temp
+   Argument:          hash_index
    Register Offset:   0x40
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          judge_temp
+   Register Offset:   0x48
    Port:              M_AXI_JUDGE_PLRAM1
    Memory:            PLRAM[1] (MEM_DRAM)
 ==============================================================================
