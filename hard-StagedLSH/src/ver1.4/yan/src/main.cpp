@@ -68,24 +68,37 @@ public:
   TableSerch6(
   	cl_device_id     &Device,
     cl_context       &Context,
-  	cl_program       &Program )	
+  	cl_program       &Program,
+    unsigned int FP_DB[],
+    unsigned int hash_table[],
+    unsigned int hash_table_pointer[],
+    size_t full_table_size,
+    const unsigned int division_num )	
   {
 	mKernel  = clCreateKernel(Program, "table_serch", &mErr);
 	mQueue   = clCreateCommandQueue(Context, Device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &mErr);
 	mContext = Context;
 	mCounter = 0;
+    // Create input buffers for coefficients (host to device)
+    mConstBuf[0] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+    ONEMUSIC_SUBNUM*MUSIC_NUM*sizeof(unsigned int), FP_DB, &mErr);
+    mConstBuf[1] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+    full_table_size*sizeof(unsigned int), hash_table, &mErr);
+    mConstBuf[2] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+    division_num*sizeof(unsigned int), hash_table_pointer, &mErr);
+    // Set the kernel arguments
+    clSetKernelArg(mKernel, 1, sizeof(cl_mem),       &mConstBuf[0]);
+    clSetKernelArg(mKernel, 2, sizeof(cl_mem),       &mConstBuf[1]);
+    clSetKernelArg(mKernel, 3, sizeof(cl_mem),       &mConstBuf[2]);
+    // Schedule the execution of the kernel
+    clEnqueueMigrateMemObjects(mQueue, 3, mConstBuf, 0, 0, nullptr,  nullptr);
 #ifdef DEBUG
     printf("コンストラクタ呼び出し\n");
 #endif
   }
   
   TableSerch6Request* operator() (
-    size_t full_table_size,
-    const unsigned int division_num,
   	unsigned int query[],
-    unsigned int FP_DB[],
-    unsigned int hash_table[],
-    unsigned int hash_table_pointer[],
     unsigned int hash_index,
     int *judge_temp
     ) 
@@ -96,27 +109,18 @@ public:
 	// Create input buffers for coefficients (host to device)
   	mSrcBuf[0] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
     ONEMUSIC_SUBNUM*sizeof(int), query, &mErr);
-    mSrcBuf[1] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
-    ONEMUSIC_SUBNUM*MUSIC_NUM*sizeof(unsigned int), FP_DB, &mErr);
-    mSrcBuf[2] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
-    full_table_size*sizeof(unsigned int), hash_table, &mErr);
-    mSrcBuf[3] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
-    division_num*sizeof(unsigned int), hash_table_pointer, &mErr);
     mDstBuf[0] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY,
     sizeof(int), judge_temp, &mErr);
     
   	// Set the kernel arguments
   	clSetKernelArg(mKernel, 0, sizeof(cl_mem),       &mSrcBuf[0]);
-  	clSetKernelArg(mKernel, 1, sizeof(cl_mem),       &mSrcBuf[1]);
-    clSetKernelArg(mKernel, 2, sizeof(cl_mem),       &mSrcBuf[2]);
-    clSetKernelArg(mKernel, 3, sizeof(cl_mem),       &mSrcBuf[3]);
   	clSetKernelArg(mKernel, 4, sizeof(unsigned int), &hash_index);
   	clSetKernelArg(mKernel, 5, sizeof(cl_mem),       &mDstBuf[0]);
 
 	// Schedule the writing of the inputs
     //(コマンドキュー, メモリオブジェクト数, メモリオブジェクトリストへのポインタ,
     //フラグ(?), 同期ポイント指定なければ0, 左に同じ(内容), コマンドを識別するイベントオブジェクト )
-	clEnqueueMigrateMemObjects(mQueue, 4, mSrcBuf, 0, 0, nullptr,  &req->mEvent[0]);	
+	clEnqueueMigrateMemObjects(mQueue, 1, mSrcBuf, 0, 0, nullptr,  &req->mEvent[0]);	
 
 	// Schedule the execution of the kernel
     //(コマンドキュー, 有効なカーネル, 同期ポイント, 左内容, 実行インスタンスを識別するイベント)
@@ -141,8 +145,9 @@ private:
   cl_kernel         mKernel;
   cl_command_queue  mQueue;	
   cl_context        mContext;  
-  cl_mem            mSrcBuf[4];
-  cl_mem            mDstBuf[1]; 
+  cl_mem            mConstBuf[3];   // 共通
+  cl_mem            mSrcBuf[1];     // 毎回
+  cl_mem            mDstBuf[1];     // CU毎
   cl_int            mErr;
   int               mCounter; 
 };
@@ -290,7 +295,15 @@ int main(int argc, char** argv)
 	// Make requests to kernel(s) 
 	// ---------------------------------------------------------------------------------
 
-    TableSerch6 Serch(device, context, program);
+    TableSerch6 Serch(
+        device,
+        context,
+        program,
+        FP_DB,
+        hash_table,
+        hash_table_pointer,
+        full_table_size,
+        division_num);
     TableSerch6Request* request[6];
 
     int judge_array[6] = {-1,-1,-1,-1,-1,-1};
@@ -314,12 +327,12 @@ int main(int argc, char** argv)
         );
 
         /* 検索処理（FPGA） */
-        request[0] = Serch(full_table_size, division_num, query, FP_DB, hash_table, hash_table_pointer, 0, &judge_array[0]);
-        request[1] = Serch(full_table_size, division_num, query, FP_DB, hash_table, hash_table_pointer, 1, &judge_array[1]);
-        request[2] = Serch(full_table_size, division_num, query, FP_DB, hash_table, hash_table_pointer, 2, &judge_array[2]);
-        request[3] = Serch(full_table_size, division_num, query, FP_DB, hash_table, hash_table_pointer, 3, &judge_array[3]);
-        request[4] = Serch(full_table_size, division_num, query, FP_DB, hash_table, hash_table_pointer, 4, &judge_array[4]);
-        request[5] = Serch(full_table_size, division_num, query, FP_DB, hash_table, hash_table_pointer, 5, &judge_array[5]);
+        request[0] = Serch(query, 0, &judge_array[0]);
+        request[1] = Serch(query, 1, &judge_array[1]);
+        request[2] = Serch(query, 2, &judge_array[2]);
+        request[3] = Serch(query, 3, &judge_array[3]);
+        request[4] = Serch(query, 4, &judge_array[4]);
+        request[5] = Serch(query, 5, &judge_array[5]);
 
         /* 同期 */
         request[0]->sync();
@@ -379,4 +392,3 @@ int main(int argc, char** argv)
     return 0;
 }
 /*-- main --*/
-
