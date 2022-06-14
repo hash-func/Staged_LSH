@@ -296,9 +296,21 @@ int backet_serch(
     unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
     unsigned int query[],                   // クエリ
     ap_uint<96> flame96,                    // 対象フレーム
-    unsigned int FP_DB[]                    // FPデータベース
+    unsigned int FP_DB[],                   // FPデータベース
+    bool* in_flag,
+    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in1,        // 他のCUから受け取る状態信号
+    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in2,        // 他のCUから受け取る状態信号
+    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in3,        // 他のCUから受け取る状態信号
+    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in4,        // 他のCUから受け取る状態信号
+    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in5         // 他のCUから受け取る状態信号
 )
 {
+bool flag1;
+bool flag2;
+bool flag3;
+bool flag4;
+bool flag5;
+
     /* 変数宣言 */
     unsigned int top;   // 先頭バケット位置(含む)
     unsigned int end;   // 末尾バケット位置(含む)
@@ -345,6 +357,17 @@ int backet_serch(
         );
         /* 値の更新 */
         temp_flame96 = temp_flame96_ping;
+
+        /* 他CUで発見済みで終了 */
+        flag1 = stream_in1.empty();
+        flag2 = stream_in2.empty();
+        flag3 = stream_in3.empty();
+        flag4 = stream_in4.empty();
+        flag5 = stream_in5.empty();
+        if (!flag1 || !flag2 || !flag3 || !flag4 || !flag5){
+            *in_flag = false;
+            break;            
+        }
     }
     // 戻り値
     return music_index_temp;
@@ -380,13 +403,10 @@ void table_serch(
 #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_aximm2
 #pragma HLS INTERFACE m_axi depth=4 port=judge_temp bundle=judge_plram1
 
-bool flag1;
-bool flag2;
-bool flag3;
-bool flag4;
-bool flag5;
 ap_axiu<1, 0, 0, 0> flag_out;
 flag_out.data = 1;
+
+bool in_flag = true;
 
     /* 戻り値 */
     int music_index = -1;              // 楽曲の識別子
@@ -426,18 +446,19 @@ flag_out.data = 1;
             hash_table_pointer, // ハッシュテーブルへの位置指定
             query,              // クエリFP
             flame96,            // 対象フレーム
-            FP_DB               // FPデータベース
+            FP_DB,              // FPデータベース
+            &in_flag,           // 内部フラッグ
+            stream_in1,
+            stream_in2,
+            stream_in3,
+            stream_in4,
+            stream_in5
         );
         /* --HT_SERACH-- */
         /* --Serch Module-- */
         
         /* 他CUで発見済みで終了 */
-        flag1 = stream_in1.empty();
-        flag2 = stream_in2.empty();
-        flag3 = stream_in3.empty();
-        flag4 = stream_in4.empty();
-        flag5 = stream_in5.empty();
-        if (!flag1 || !flag2 || !flag3 || !flag4 || !flag5) break;
+        if (!in_flag) break;
 
         if (music_index >= 0)
         {
