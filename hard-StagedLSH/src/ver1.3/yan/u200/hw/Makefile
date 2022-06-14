@@ -43,7 +43,7 @@ table_serch.xclbin: ${XCLBIN_SRC}
 	v++ -l -t ${TARGET} --config ${CONFIG} ${XCLBIN_SRC} -o ${KERNEL}.xclbin
 
 clean:
-	rm -rf vadd* app.exe *json *csv *log *summary _x .run .Xil .ipcache *.jou
+	rm -rf vadd* app.exe *json *csv *log *summary _x .run .Xil .ipcache *.jou *.xclbin *.xo *.info *summary *.csv *.ltx
 
 cleanexe:
 	rm -rf *.exe

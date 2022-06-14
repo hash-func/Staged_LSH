@@ -379,8 +379,6 @@ void table_serch(
 #pragma HLS INTERFACE m_axi depth=3024000 port=hash_table bundle=table_aximm1
 #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_aximm2
 #pragma HLS INTERFACE m_axi depth=4 port=judge_temp bundle=judge_plram1
-#pragma HLS INTERFACE apxis port=stream_out
-#pragma HLS INTERFACE apxis port=stream_in
 
 bool flag1;
 bool flag2;
@@ -433,6 +431,14 @@ flag_out.data = 1;
         /* --HT_SERACH-- */
         /* --Serch Module-- */
         
+        /* 他CUで発見済みで終了 */
+        flag1 = stream_in1.empty();
+        flag2 = stream_in2.empty();
+        flag3 = stream_in3.empty();
+        flag4 = stream_in4.empty();
+        flag5 = stream_in5.empty();
+        if (!flag1 || !flag2 || !flag3 || !flag4 || !flag5) break;
+
         if (music_index >= 0)
         {
             /* 発見を他CUに知らせる */
@@ -443,13 +449,6 @@ flag_out.data = 1;
             stream_out5.write(flag_out);
             break;
         }
-        /* 他CUで発見済みで終了 */
-        flag1 = stream_in1.empty();
-        flag2 = stream_in2.empty();
-        flag3 = stream_in3.empty();
-        flag4 = stream_in4.empty();
-        flag5 = stream_in5.empty();
-        if (!flag1 || !flag2 || !flag3 || !flag4 || !flag5) break;
     }
     /* --flameごとに処理-- */
 
