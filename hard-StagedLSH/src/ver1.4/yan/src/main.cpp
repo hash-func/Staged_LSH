@@ -381,6 +381,10 @@ int main(int argc, char** argv)
 /****************************************************************************************************/
 
     /* 後処理後終了 */
+    // Release allocated memory
+    clReleaseProgram(program);
+    clReleaseContext(context);
+    clReleaseDevice(device);
     free(FP_DB);
     free(hash_table_pointer);
     free(hash_table);
