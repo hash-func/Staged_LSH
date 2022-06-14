@@ -35,8 +35,10 @@ std::random_device rnd1;
 void event_cb(cl_event event, cl_int cmd_status, void *id) 
 {
 	if (getenv("XCL_EMULATION_MODE") != NULL) {
+#ifdef DEBUG
 	 	std::cout << "  kernel finished processing request " << *(int *)id << std::endl;
-	}
+#endif
+    }
 }
 
 struct TableSerch6Request {
@@ -72,6 +74,9 @@ public:
 	mQueue   = clCreateCommandQueue(Context, Device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &mErr);
 	mContext = Context;
 	mCounter = 0;
+#ifdef DEBUG
+    printf("コンストラクタ呼び出し\n");
+#endif
   }
   
   TableSerch6Request* operator() (

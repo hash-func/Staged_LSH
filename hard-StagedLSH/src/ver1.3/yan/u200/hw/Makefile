@@ -45,3 +45,5 @@ table_serch.xclbin: ${XCLBIN_SRC}
 clean:
 	rm -rf vadd* app.exe *json *csv *log *summary _x .run .Xil .ipcache *.jou
 
+cleanexe:
+	rm -rf *.exe
