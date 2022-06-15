@@ -306,7 +306,7 @@ int main(int argc, char** argv)
         division_num);
     TableSerch6Request* request[6];
 
-    int judge_array[6] = {-1,-1,-1,-1,-1,-1};
+    alignas(32) int judge_array[6] = {-1,-1,-1,-1,-1,-1};
 
     /* 指定回数検索実行 */
     for (unsigned int i=0; i<QUERY_NUM; i++)
@@ -342,7 +342,6 @@ int main(int argc, char** argv)
         request[4]->sync();
         request[5]->sync();
         
-
 #ifdef DEBUG_sub
         printf("カーネル実行終了\n");
 #endif
@@ -359,6 +358,14 @@ int main(int argc, char** argv)
                 judge_array[2]==music_index || judge_array[3]==music_index ||
                 judge_array[4]==music_index || judge_array[5]==music_index)
                 {
+#ifdef DEBUG
+                if (judge_array[0] == music_index) printf("0番カーネル:発見\n");
+                if (judge_array[1] == music_index) printf("1番カーネル:発見\n");
+                if (judge_array[2] == music_index) printf("2番カーネル:発見\n");
+                if (judge_array[3] == music_index) printf("3番カーネル:発見\n");
+                if (judge_array[4] == music_index) printf("4番カーネル:発見\n");
+                if (judge_array[5] == music_index) printf("5番カーネル:発見\n");
+#endif
                     seikai++;
                 }
             else    huseikai++;

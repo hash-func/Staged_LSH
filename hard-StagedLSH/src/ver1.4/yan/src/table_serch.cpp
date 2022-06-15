@@ -305,11 +305,11 @@ int backet_serch(
     hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in5         // 他のCUから受け取る状態信号
 )
 {
-bool flag1;
-bool flag2;
-bool flag3;
-bool flag4;
-bool flag5;
+bool flag1 = true;
+bool flag2 = true;
+bool flag3 = true;
+bool flag4 = true;
+bool flag5 = true;
 
     /* 変数宣言 */
     unsigned int top;   // 先頭バケット位置(含む)
@@ -335,6 +335,17 @@ bool flag5;
     {
     #pragma HLS loop_tripcount min=1 max=1800 avg=50 // 300曲
 
+        /* 他CUで発見済みで終了 */
+        flag1 = stream_in1.empty();
+        flag2 = stream_in2.empty();
+        flag3 = stream_in3.empty();
+        flag4 = stream_in4.empty();
+        flag5 = stream_in5.empty();
+        if (!flag1 || !flag2 || !flag3 || !flag4 || !flag5){
+            *in_flag = false;
+            break;            
+        }
+
         /* SWITCH_MODULE */
         switch_module(
             FP_DB,              // FPデータベース
@@ -358,16 +369,7 @@ bool flag5;
         /* 値の更新 */
         temp_flame96 = temp_flame96_ping;
 
-        /* 他CUで発見済みで終了 */
-        flag1 = stream_in1.empty();
-        flag2 = stream_in2.empty();
-        flag3 = stream_in3.empty();
-        flag4 = stream_in4.empty();
-        flag5 = stream_in5.empty();
-        if (!flag1 || !flag2 || !flag3 || !flag4 || !flag5){
-            *in_flag = false;
-            break;            
-        }
+
     }
     // 戻り値
     return music_index_temp;
@@ -402,7 +404,11 @@ void table_serch(
 #pragma HLS INTERFACE m_axi depth=3024000 port=hash_table bundle=table_aximm1
 #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_aximm2
 #pragma HLS INTERFACE m_axi depth=4 port=judge_temp bundle=judge_plram1
-
+bool flag1 = true;
+bool flag2 = true;
+bool flag3 = true;
+bool flag4 = true;
+bool flag5 = true;
 ap_axiu<1, 0, 0, 0> flag_out;
 flag_out.data = 1;
 
@@ -417,7 +423,6 @@ bool in_flag = true;
     ap_uint<SUB_FP_SIZE> tempC32;
 
     ap_uint<32> hash_value;             // Hash値の格納
-    ap_uint<96> flame96;                // 96bitフレームの格納
 
     /* flameごとに処理 */
     flame_serch : for (int flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
@@ -427,15 +432,10 @@ bool in_flag = true;
         /* subFP-Read */
         tempC32 = query[flame_index + 2];
 
-        /* 96bitフレームにまとめる */
-        flame96 = ((tempA32, tempB32), tempC32);
-
-        tempA32 = tempB32;
-        tempB32 = tempC32;
-
         /* Serch Module */
         hash_value = hid_cal(
-            flame96,        // フレーム
+            ((tempA32, tempB32), tempC32),
+                            // フレーム
             hash_index      // ハッシュ関数index
         );
 
@@ -445,7 +445,8 @@ bool in_flag = true;
             hash_table,         // ハッシュテーブル
             hash_table_pointer, // ハッシュテーブルへの位置指定
             query,              // クエリFP
-            flame96,            // 対象フレーム
+            ((tempA32, tempB32), tempC32),
+                                // 対象フレーム
             FP_DB,              // FPデータベース
             &in_flag,           // 内部フラッグ
             stream_in1,
@@ -462,19 +463,36 @@ bool in_flag = true;
 
         if (music_index >= 0)
         {
-            /* 発見を他CUに知らせる */
-            stream_out1.write(flag_out);
-            stream_out2.write(flag_out);
-            stream_out3.write(flag_out);
-            stream_out4.write(flag_out);
-            stream_out5.write(flag_out);
             break;
         }
+
+        tempA32 = tempB32;
+        tempB32 = tempC32;
     }
     /* --flameごとに処理-- */
 
-    /* 戻り値 */
-    *judge_temp = music_index;
+    /* 終了を他CUに知らせる */
+    stream_out1.write(flag_out);
+    stream_out2.write(flag_out);
+    stream_out3.write(flag_out);
+    stream_out4.write(flag_out);
+    stream_out5.write(flag_out);
+    // 他カーネルの終了待ち
+    while(1){
+        if (!flag1 && !flag2 && !flag3 && !flag4 && !flag5)
+        {
+            /* 戻り値 */
+            *judge_temp = music_index;
+            break;
+        }
+        else{
+            flag1 = stream_in1.empty();
+            flag2 = stream_in2.empty();
+            flag3 = stream_in3.empty();
+            flag4 = stream_in4.empty();
+            flag5 = stream_in5.empty();
+        }
+    }
 }
 }
 /* --mainからの呼び出し-- */
