@@ -13,14 +13,47 @@
 
 
 /* HID_CAL */
-ap_uint<32> hid_cal_3 (
-    ap_uint<96> flame96     // 対象フレーム
+ap_uint<32> hid_cal (
+    ap_uint<96> flame96,    // 対象フレーム
+    int hash_index          // 何個目の関数か
 )
 {
     ap_uint<32> hash_value = 0;
     // Hash値生成
-
-    hash_value[K_HASHBIT-1] = flame96[get27];
+    switch (hash_index)
+    {
+    case 0:
+        hash_value[K_HASHBIT-1] = flame96[get1];
+        hash_value[K_HASHBIT-2] = flame96[get2];
+        hash_value[K_HASHBIT-3] = flame96[get3];
+        hash_value[K_HASHBIT-4] = flame96[get4];
+        hash_value[K_HASHBIT-5] = flame96[get5];
+        hash_value[K_HASHBIT-6] = flame96[get6];
+        hash_value[K_HASHBIT-7] = flame96[get7];
+        hash_value[K_HASHBIT-8] = flame96[get8];
+        hash_value[K_HASHBIT-9] = flame96[get9];
+        hash_value[K_HASHBIT-10] = flame96[get10];
+        hash_value[K_HASHBIT-11] = flame96[get11];
+        hash_value[K_HASHBIT-12] = flame96[get12];
+        hash_value[K_HASHBIT-13] = flame96[get13];
+        break;
+    case 1:
+        hash_value[K_HASHBIT-1] = flame96[get14];
+        hash_value[K_HASHBIT-2] = flame96[get15];
+        hash_value[K_HASHBIT-3] = flame96[get16];
+        hash_value[K_HASHBIT-4] = flame96[get17];
+        hash_value[K_HASHBIT-5] = flame96[get18];
+        hash_value[K_HASHBIT-6] = flame96[get19];
+        hash_value[K_HASHBIT-7] = flame96[get20];
+        hash_value[K_HASHBIT-8] = flame96[get21];
+        hash_value[K_HASHBIT-9] = flame96[get22];
+        hash_value[K_HASHBIT-10] = flame96[get23];
+        hash_value[K_HASHBIT-11] = flame96[get24];
+        hash_value[K_HASHBIT-12] = flame96[get25];
+        hash_value[K_HASHBIT-13] = flame96[get26];
+        break;
+    case 2:
+        hash_value[K_HASHBIT-1] = flame96[get27];
         hash_value[K_HASHBIT-2] = flame96[get28];
         hash_value[K_HASHBIT-3] = flame96[get29];
         hash_value[K_HASHBIT-4] = flame96[get30];
@@ -33,14 +66,62 @@ ap_uint<32> hid_cal_3 (
         hash_value[K_HASHBIT-11] = flame96[get37];
         hash_value[K_HASHBIT-12] = flame96[get38];
         hash_value[K_HASHBIT-13] = flame96[get39];
-
+        break;
+    case 3:
+        hash_value[K_HASHBIT-1] = flame96[get40];
+        hash_value[K_HASHBIT-2] = flame96[get41];
+        hash_value[K_HASHBIT-3] = flame96[get42];
+        hash_value[K_HASHBIT-4] = flame96[get43];
+        hash_value[K_HASHBIT-5] = flame96[get44];
+        hash_value[K_HASHBIT-6] = flame96[get45];
+        hash_value[K_HASHBIT-7] = flame96[get46];
+        hash_value[K_HASHBIT-8] = flame96[get47];
+        hash_value[K_HASHBIT-9] = flame96[get48];
+        hash_value[K_HASHBIT-10] = flame96[get49];
+        hash_value[K_HASHBIT-11] = flame96[get50];
+        hash_value[K_HASHBIT-12] = flame96[get51];
+        hash_value[K_HASHBIT-13] = flame96[get52];
+        break;
+    case 4:
+        hash_value[K_HASHBIT-1] = flame96[get53];
+        hash_value[K_HASHBIT-2] = flame96[get54];
+        hash_value[K_HASHBIT-3] = flame96[get55];
+        hash_value[K_HASHBIT-4] = flame96[get56];
+        hash_value[K_HASHBIT-5] = flame96[get57];
+        hash_value[K_HASHBIT-6] = flame96[get58];
+        hash_value[K_HASHBIT-7] = flame96[get59];
+        hash_value[K_HASHBIT-8] = flame96[get60];
+        hash_value[K_HASHBIT-9] = flame96[get61];
+        hash_value[K_HASHBIT-10] = flame96[get62];
+        hash_value[K_HASHBIT-11] = flame96[get63];
+        hash_value[K_HASHBIT-12] = flame96[get64];
+        hash_value[K_HASHBIT-13] = flame96[get65];
+        break;
+    case 5:
+        hash_value[K_HASHBIT-1] = flame96[get66];
+        hash_value[K_HASHBIT-2] = flame96[get67];
+        hash_value[K_HASHBIT-3] = flame96[get68];
+        hash_value[K_HASHBIT-4] = flame96[get69];
+        hash_value[K_HASHBIT-5] = flame96[get70];
+        hash_value[K_HASHBIT-6] = flame96[get71];
+        hash_value[K_HASHBIT-7] = flame96[get72];
+        hash_value[K_HASHBIT-8] = flame96[get73];
+        hash_value[K_HASHBIT-9] = flame96[get74];
+        hash_value[K_HASHBIT-10] = flame96[get75];
+        hash_value[K_HASHBIT-11] = flame96[get76];
+        hash_value[K_HASHBIT-12] = flame96[get77];
+        hash_value[K_HASHBIT-13] = flame96[get78];
+        break;
+    default:
+        break;
+    }
     return hash_value;
 }
 /* --HID_CAL-- */
 
 
 /* SWITCH_MODULE */
-void switch_module_3 (
+void switch_module (
     unsigned int FP_DB[],               // FPデータベース
     unsigned int hash_table[],          // Hashテーブル
     unsigned int backet_location,       // バケット先頭からの位置
@@ -61,7 +142,7 @@ void switch_module_3 (
 
 
 /* 96bitハミング距離計算機 */
-unsigned int hd_cal96_3 (
+unsigned int hd_cal96 (
     ap_uint<96> flame96,            // 対象フレーム
     ap_uint<96>* temp_flame96       // 取得フレーム
 )
@@ -86,7 +167,7 @@ unsigned int hd_cal96_3 (
 
 
 /* 32bitハミング距離計算機 */
-unsigned int hd_cal32_3 (
+unsigned int hd_cal32 (
     ap_uint<32> subfp1,
     ap_uint<32> subfp2
 )
@@ -112,7 +193,7 @@ unsigned int hd_cal32_3 (
 
 
 /* 4096bit Haming距離計算 */
-unsigned int fpdb_locate_3 (
+unsigned int fpdb_locate (
     unsigned int query[],               // クエリ
     unsigned int FP_DB[],               // FPデータベース
     unsigned int db_point               // DB中楽曲開始位置
@@ -127,7 +208,7 @@ unsigned int fpdb_locate_3 (
     #pragma HLS loop_tripcount min=128 max=128 avg=128
     #pragma HLS UNROLL factor=4
     #pragma HLS PIPELINE
-        reg = hd_cal32_3((ap_uint<32>) query[i], (ap_uint<32>) FP_DB[db_point+i]);
+        reg = hd_cal32((ap_uint<32>) query[i], (ap_uint<32>) FP_DB[db_point+i]);
         haming_dis += reg;
     }
 
@@ -137,7 +218,7 @@ unsigned int fpdb_locate_3 (
 
 
 /* 精査 */
-void seisa_func_3(
+void seisa_func(
     unsigned int hash_table[],              // Hashテーブル
     unsigned int query[],                   // クエリ
     unsigned int FP_DB[],                   // FPデータベース
@@ -155,7 +236,7 @@ void seisa_func_3(
     // DB楽曲開始位置特定
     db_point = music_number * ONEMUSIC_SUBNUM;
     /* 4096bit Haming距離計算 */
-    haming_dis_seisa = fpdb_locate_3(
+    haming_dis_seisa = fpdb_locate(
         query,              // クエリ
         FP_DB,              // FPデータベース
         db_point            // DB中楽曲開始位置
@@ -173,7 +254,7 @@ void seisa_func_3(
 
 
 /* スクリーニングと精査 */
-void screening_seisa_func_3(
+void screening_seisa_func(
     unsigned int hash_table[],              // Hashテーブル
     unsigned int query[],                   // クエリ
     ap_uint<96> flame96,                    // 対象フレーム
@@ -187,7 +268,7 @@ void screening_seisa_func_3(
     unsigned int haming_dis_screen;         // ハミング距離の一時格納(screening)
 
     /* 96bit Haming距離計算 */
-    haming_dis_screen = hd_cal96_3(
+    haming_dis_screen = hd_cal96(
         flame96,            // 対象フレーム
         temp_flame96        // 取得フレーム
     );
@@ -195,7 +276,7 @@ void screening_seisa_func_3(
     if (haming_dis_screen <= SCREENING)
     {
         /* 精査 */
-        seisa_func_3(
+        seisa_func(
             hash_table,         // Hashテーブル
             query,              // クエリ
             FP_DB,              // FPデータベース
@@ -209,7 +290,7 @@ void screening_seisa_func_3(
 
 
 /* StagedLSH */
-int backet_serch_3(
+int backet_serch(
     ap_uint<32> hash_id,                    // Hash値
     unsigned int hash_table[],              // Hashテーブル
     unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
@@ -266,7 +347,7 @@ bool flag5 = true;
         }
 
         /* SWITCH_MODULE */
-        switch_module_3(
+        switch_module(
             FP_DB,              // FPデータベース
             hash_table,         // Hashテーブル
             i,                  // フレーム開始位置
@@ -275,7 +356,7 @@ bool flag5 = true;
         );
         /* SWITCH_MODULE */
 
-        screening_seisa_func_3(
+        screening_seisa_func(
             hash_table,         // Hashテーブル
             query,              // クエリ
             flame96,            // 対象フレーム
@@ -298,11 +379,12 @@ bool flag5 = true;
 
 /* mainからの呼び出し */
 extern "C" {
-void table_serch_3(
+void table_serch(
     unsigned int query[],               // クエリFP配列
     unsigned int FP_DB[],               // FPデータベース
     unsigned int hash_table[],          // ハッシュテーブル
     unsigned int hash_table_pointer[],  // ハッシュテーブルへの位置指定
+    const unsigned int hash_index,      // 対象ハッシュ関数識別子
     int *judge_temp,                    // 変換インデックス
     hls::stream<ap_axiu<1, 0, 0, 0>>& stream_out1,       // 発見した場合の送信信号
     hls::stream<ap_axiu<1, 0, 0, 0>>& stream_out2,       // 発見した場合の送信信号
@@ -316,7 +398,7 @@ void table_serch_3(
     hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in5         // 他のCUから受け取る状態信号
 )
 {
-#pragma HLS TOP name=table_serch_3
+#pragma HLS TOP name=table_serch
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_plram0
 #pragma HLS INTERFACE m_axi depth=512000 port=FP_DB bundle=DB_aximm0
 #pragma HLS INTERFACE m_axi depth=3024000 port=hash_table bundle=table_aximm1
@@ -351,13 +433,14 @@ bool in_flag = true;
         tempC32 = query[flame_index + 2];
 
         /* Serch Module */
-        hash_value = hid_cal_3(
-            ((tempA32, tempB32), tempC32)
+        hash_value = hid_cal(
+            ((tempA32, tempB32), tempC32),
                             // フレーム
+            hash_index      // ハッシュ関数index
         );
 
         /* HT_SERACH */
-        music_index = backet_serch_3(
+        music_index = backet_serch(
             hash_value,         // ハッシュ値
             hash_table,         // ハッシュテーブル
             hash_table_pointer, // ハッシュテーブルへの位置指定
@@ -380,12 +463,6 @@ bool in_flag = true;
 
         if (music_index >= 0)
         {
-            /* 終了を他CUに知らせる */
-            stream_out1.write(flag_out);
-            stream_out2.write(flag_out);
-            stream_out3.write(flag_out);
-            stream_out4.write(flag_out);
-            stream_out5.write(flag_out);
             break;
         }
 
@@ -394,9 +471,28 @@ bool in_flag = true;
     }
     /* --flameごとに処理-- */
 
-    /* 戻り値 */
-    *judge_temp = music_index;
-
+    /* 終了を他CUに知らせる */
+    stream_out1.write(flag_out);
+    stream_out2.write(flag_out);
+    stream_out3.write(flag_out);
+    stream_out4.write(flag_out);
+    stream_out5.write(flag_out);
+    // 他カーネルの終了待ち
+    while(1){
+        if (!flag1 && !flag2 && !flag3 && !flag4 && !flag5)
+        {
+            /* 戻り値 */
+            *judge_temp = music_index;
+            break;
+        }
+        else{
+            flag1 = stream_in1.empty();
+            flag2 = stream_in2.empty();
+            flag3 = stream_in3.empty();
+            flag4 = stream_in4.empty();
+            flag5 = stream_in5.empty();
+        }
+    }
 }
 }
 /* --mainからの呼び出し-- */

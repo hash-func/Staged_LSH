@@ -11,36 +11,38 @@
 
 #include "main_fpga.h"
 
-
 /* HID_CAL */
-ap_uint<32> hid_cal_4 (
+ap_uint<32> hid_cal_set_6 (
     ap_uint<96> flame96     // 対象フレーム
 )
 {
     ap_uint<32> hash_value = 0;
     // Hash値生成
 
-    hash_value[K_HASHBIT-1] = flame96[get40];
-        hash_value[K_HASHBIT-2] = flame96[get41];
-        hash_value[K_HASHBIT-3] = flame96[get42];
-        hash_value[K_HASHBIT-4] = flame96[get43];
-        hash_value[K_HASHBIT-5] = flame96[get44];
-        hash_value[K_HASHBIT-6] = flame96[get45];
-        hash_value[K_HASHBIT-7] = flame96[get46];
-        hash_value[K_HASHBIT-8] = flame96[get47];
-        hash_value[K_HASHBIT-9] = flame96[get48];
-        hash_value[K_HASHBIT-10] = flame96[get49];
-        hash_value[K_HASHBIT-11] = flame96[get50];
-        hash_value[K_HASHBIT-12] = flame96[get51];
-        hash_value[K_HASHBIT-13] = flame96[get52];
+    hash_value[K_HASHBIT-1] =   flame96[get66 ];
+    hash_value[K_HASHBIT-2] =   flame96[get67 ];
+    hash_value[K_HASHBIT-3] =   flame96[get68 ];
+    hash_value[K_HASHBIT-4] =   flame96[get69 ];
+    hash_value[K_HASHBIT-5] =   flame96[get70 ];
+    hash_value[K_HASHBIT-6] =   flame96[get71 ];
+    hash_value[K_HASHBIT-7] =   flame96[get72 ];
+    hash_value[K_HASHBIT-8] =   flame96[get73 ];
+    hash_value[K_HASHBIT-9] =   flame96[get74 ];
+    hash_value[K_HASHBIT-10] =  flame96[get75];
+    hash_value[K_HASHBIT-11] =  flame96[get76];
+    hash_value[K_HASHBIT-12] =  flame96[get77];
+    hash_value[K_HASHBIT-13] =  flame96[get78];
 
     return hash_value;
 }
 /* --HID_CAL-- */
 
 
+
+
+
 /* SWITCH_MODULE */
-void switch_module_4 (
+void switch_module_set_6(
     unsigned int FP_DB[],               // FPデータベース
     unsigned int hash_table[],          // Hashテーブル
     unsigned int backet_location,       // バケット先頭からの位置
@@ -61,7 +63,7 @@ void switch_module_4 (
 
 
 /* 96bitハミング距離計算機 */
-unsigned int hd_cal96_4 (
+unsigned int hd_cal96_set_6(
     ap_uint<96> flame96,            // 対象フレーム
     ap_uint<96>* temp_flame96       // 取得フレーム
 )
@@ -86,7 +88,7 @@ unsigned int hd_cal96_4 (
 
 
 /* 32bitハミング距離計算機 */
-unsigned int hd_cal32_4 (
+unsigned int hd_cal32_set_6 (
     ap_uint<32> subfp1,
     ap_uint<32> subfp2
 )
@@ -112,7 +114,7 @@ unsigned int hd_cal32_4 (
 
 
 /* 4096bit Haming距離計算 */
-unsigned int fpdb_locate_4 (
+unsigned int fpdb_locate_set_6 (
     unsigned int query[],               // クエリ
     unsigned int FP_DB[],               // FPデータベース
     unsigned int db_point               // DB中楽曲開始位置
@@ -127,7 +129,7 @@ unsigned int fpdb_locate_4 (
     #pragma HLS loop_tripcount min=128 max=128 avg=128
     #pragma HLS UNROLL factor=4
     #pragma HLS PIPELINE
-        reg = hd_cal32_4((ap_uint<32>) query[i], (ap_uint<32>) FP_DB[db_point+i]);
+        reg = hd_cal32_set_6((ap_uint<32>) query[i], (ap_uint<32>) FP_DB[db_point+i]);
         haming_dis += reg;
     }
 
@@ -137,7 +139,7 @@ unsigned int fpdb_locate_4 (
 
 
 /* 精査 */
-void seisa_func_4(
+void seisa_func_set_6(
     unsigned int hash_table[],              // Hashテーブル
     unsigned int query[],                   // クエリ
     unsigned int FP_DB[],                   // FPデータベース
@@ -155,7 +157,7 @@ void seisa_func_4(
     // DB楽曲開始位置特定
     db_point = music_number * ONEMUSIC_SUBNUM;
     /* 4096bit Haming距離計算 */
-    haming_dis_seisa = fpdb_locate_4(
+    haming_dis_seisa = fpdb_locate_set_6(
         query,              // クエリ
         FP_DB,              // FPデータベース
         db_point            // DB中楽曲開始位置
@@ -173,7 +175,7 @@ void seisa_func_4(
 
 
 /* スクリーニングと精査 */
-void screening_seisa_func_4(
+void screening_seisa_func_set_6(
     unsigned int hash_table[],              // Hashテーブル
     unsigned int query[],                   // クエリ
     ap_uint<96> flame96,                    // 対象フレーム
@@ -187,7 +189,7 @@ void screening_seisa_func_4(
     unsigned int haming_dis_screen;         // ハミング距離の一時格納(screening)
 
     /* 96bit Haming距離計算 */
-    haming_dis_screen = hd_cal96_4(
+    haming_dis_screen = hd_cal96_set_6(
         flame96,            // 対象フレーム
         temp_flame96        // 取得フレーム
     );
@@ -195,7 +197,7 @@ void screening_seisa_func_4(
     if (haming_dis_screen <= SCREENING)
     {
         /* 精査 */
-        seisa_func_4(
+        seisa_func_set_6(
             hash_table,         // Hashテーブル
             query,              // クエリ
             FP_DB,              // FPデータベース
@@ -209,7 +211,7 @@ void screening_seisa_func_4(
 
 
 /* StagedLSH */
-int backet_serch_4(
+int backet_serch_set_6(
     ap_uint<32> hash_id,                    // Hash値
     unsigned int hash_table[],              // Hashテーブル
     unsigned int hash_table_pointer[],      // Hashテーブルへの位置指定
@@ -217,18 +219,10 @@ int backet_serch_4(
     ap_uint<96> flame96,                    // 対象フレーム
     unsigned int FP_DB[],                   // FPデータベース
     bool* in_flag,
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in1,        // 他のCUから受け取る状態信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in2,        // 他のCUから受け取る状態信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in3,        // 他のCUから受け取る状態信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in4,        // 他のCUから受け取る状態信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in5         // 他のCUから受け取る状態信号
+    hls::stream<ap_axiu<8, 0, 0, 0>>& stream_in1         // 他のCUから受け取る状態信号
 )
 {
 bool flag1 = true;
-bool flag2 = true;
-bool flag3 = true;
-bool flag4 = true;
-bool flag5 = true;
 
     /* 変数宣言 */
     unsigned int top;   // 先頭バケット位置(含む)
@@ -255,18 +249,11 @@ bool flag5 = true;
     #pragma HLS loop_tripcount min=1 max=1800 avg=50 // 300曲
 
         /* 他CUで発見済みで終了 */
-        flag1 = stream_in1.empty();
-        flag2 = stream_in2.empty();
-        flag3 = stream_in3.empty();
-        flag4 = stream_in4.empty();
-        flag5 = stream_in5.empty();
-        if (!flag1 || !flag2 || !flag3 || !flag4 || !flag5){
-            *in_flag = false;
-            break;            
-        }
+        *in_flag = stream_in1.empty();
+        if (!(*in_flag)) break;
 
         /* SWITCH_MODULE */
-        switch_module_4(
+        switch_module_set_6(
             FP_DB,              // FPデータベース
             hash_table,         // Hashテーブル
             i,                  // フレーム開始位置
@@ -275,7 +262,7 @@ bool flag5 = true;
         );
         /* SWITCH_MODULE */
 
-        screening_seisa_func_4(
+        screening_seisa_func_set_6(
             hash_table,         // Hashテーブル
             query,              // クエリ
             flame96,            // 対象フレーム
@@ -288,7 +275,6 @@ bool flag5 = true;
         /* 値の更新 */
         temp_flame96 = temp_flame96_ping;
 
-
     }
     // 戻り値
     return music_index_temp;
@@ -296,39 +282,26 @@ bool flag5 = true;
 /* --StagedLSH-- */
 
 
+
 /* mainからの呼び出し */
 extern "C" {
-void table_serch_4(
+void table_serch_set_6(
     unsigned int query[],               // クエリFP配列
     unsigned int FP_DB[],               // FPデータベース
     unsigned int hash_table[],          // ハッシュテーブル
     unsigned int hash_table_pointer[],  // ハッシュテーブルへの位置指定
-    int *judge_temp,                    // 変換インデックス
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_out1,       // 発見した場合の送信信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_out2,       // 発見した場合の送信信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_out3,       // 発見した場合の送信信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_out4,       // 発見した場合の送信信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_out5,       // 発見した場合の送信信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in1,        // 他のCUから受け取る状態信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in2,        // 他のCUから受け取る状態信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in3,        // 他のCUから受け取る状態信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in4,        // 他のCUから受け取る状態信号
-    hls::stream<ap_axiu<1, 0, 0, 0>>& stream_in5         // 他のCUから受け取る状態信号
+    hls::stream<ap_axiu<32, 0, 0, 0>>& stream_out1,      // 発見した場合の送信信号
+    hls::stream<ap_axiu<8, 0, 0, 0>>& stream_in1       // 他のCUから受け取る状態信号
 )
 {
-#pragma HLS TOP name=table_serch_4
+#pragma HLS TOP name=table_serch_set_6
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_plram0
 #pragma HLS INTERFACE m_axi depth=512000 port=FP_DB bundle=DB_aximm0
 #pragma HLS INTERFACE m_axi depth=3024000 port=hash_table bundle=table_aximm1
 #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_aximm2
-#pragma HLS INTERFACE m_axi depth=4 port=judge_temp bundle=judge_plram1
-bool flag1 = true;
-bool flag2 = true;
-bool flag3 = true;
-bool flag4 = true;
-bool flag5 = true;
-ap_axiu<1, 0, 0, 0> flag_out;
-flag_out.data = 1;
+
+ap_axiu<32, 0, 0, 0> out_data;
+ap_axiu<8, 0, 0, 0> in_data;
 
 bool in_flag = true;
 
@@ -351,13 +324,13 @@ bool in_flag = true;
         tempC32 = query[flame_index + 2];
 
         /* Serch Module */
-        hash_value = hid_cal_4(
+        hash_value = hid_cal_set_6(
             ((tempA32, tempB32), tempC32)
                             // フレーム
         );
 
         /* HT_SERACH */
-        music_index = backet_serch_4(
+        music_index = backet_serch_set_6(
             hash_value,         // ハッシュ値
             hash_table,         // ハッシュテーブル
             hash_table_pointer, // ハッシュテーブルへの位置指定
@@ -366,11 +339,7 @@ bool in_flag = true;
                                 // 対象フレーム
             FP_DB,              // FPデータベース
             &in_flag,           // 内部フラッグ
-            stream_in1,
-            stream_in2,
-            stream_in3,
-            stream_in4,
-            stream_in5
+            stream_in1
         );
         /* --HT_SERACH-- */
         /* --Serch Module-- */
@@ -378,25 +347,21 @@ bool in_flag = true;
         /* 他CUで発見済みで終了 */
         if (!in_flag) break;
 
-        if (music_index >= 0)
-        {
-            /* 終了を他CUに知らせる */
-            stream_out1.write(flag_out);
-            stream_out2.write(flag_out);
-            stream_out3.write(flag_out);
-            stream_out4.write(flag_out);
-            stream_out5.write(flag_out);
-            break;
-        }
+        if (music_index >= 0) break;
 
         tempA32 = tempB32;
         tempB32 = tempC32;
     }
     /* --flameごとに処理-- */
 
-    /* 戻り値 */
-    *judge_temp = music_index;
-
+    if (stream_in1.empty())
+    {
+       out_data.data = music_index;
+       stream_out1.write(out_data);
+    }else
+    {
+        in_data = stream_in1.read();
+    }
 }
 }
 /* --mainからの呼び出し-- */
