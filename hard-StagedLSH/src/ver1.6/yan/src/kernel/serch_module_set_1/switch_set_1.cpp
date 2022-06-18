@@ -29,34 +29,35 @@ void switch_set_1(
 
     /* 出力用 */
     ap_axiu<96, 0, 0, 0> flame96_stream;
+    /* 入力用 */
+    ap_axiu<32, 0, 0, 0> top_st;
+    ap_axiu<32, 0, 0, 0> end_st;
     /* 変数 */
     ap_uint<96> temp_flame96;
-    /* top-end(入力)読み込み */
-    ap_axiu<32, 0, 0, 0> top_st;
-    top_st = top_stream_in.read();
-    ap_axiu<32, 0, 0, 0> end_st;
-    end_st = end_stream_in.read();
+    unsigned int top;
+    unsigned int end;
 
-    unsigned int top = (unsigned int)top_st.data;
-    unsigned int end = (unsigned int)end_st.data;
-
-    /* 読み込み */
-    switch_read_loop: for (unsigned int i=top; i<=end; i++)
-    {
-        temp_flame96 = (((ap_uint<32>) FP_DB[hash_table[i]],
-        (ap_uint<32>) FP_DB[hash_table[i] + 1]),
-        (ap_uint<32>) FP_DB[hash_table[i] + 2]);
-
-        /* 送信データ用意 */
-        flame96_stream.data = temp_flame96;
-
-        /* Stream-portへ送信 */
-        flame96_r_stream_out.write(flame96_stream);
-    }
-
+    while (1) {
+        /* top-end(入力)読み込み */
+        top_st = top_stream_in.read();
+        end_st = end_stream_in.read();
+        top = (unsigned int) top_st.data;
+        end = (unsigned int) end_st.data;
     
-
-
+        /* 読み込み */
+        switch_read_loop: for (unsigned int i=top; i<=end; i++)
+        {
+            temp_flame96 = (((ap_uint<32>) FP_DB[hash_table[i]],
+            (ap_uint<32>) FP_DB[hash_table[i] + 1]),
+            (ap_uint<32>) FP_DB[hash_table[i] + 2]);
+    
+            /* 送信データ用意 */
+            flame96_stream.data = temp_flame96;
+    
+            /* Stream-portへ送信 */
+            flame96_r_stream_out.write(flame96_stream);
+        }
+    }
 }
 }
 /* --からの呼び出し-- */

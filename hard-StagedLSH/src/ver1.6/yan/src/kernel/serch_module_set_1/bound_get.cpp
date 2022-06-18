@@ -30,29 +30,33 @@ void bound_get_set_1(
     /* 出力用 */
     ap_axiu<32, 0, 0, 0> top_stream;
     ap_axiu<32, 0, 0, 0> end_stream;
+    /* 読み込み用 */
+    ap_axiu<32, 0, 0, 0> read_hash;
     /* 変数 */
     ap_uint<32> top;    // 先頭バケット位置(含む)
     ap_uint<32> end;    // 末尾バケット位置(含む)
+    unsigned int hash_value;
 
-    /* Hash値(入力)読み込み */
-    ap_axiu<32, 0, 0, 0> read_hash;
-    read_hash = hash_stream_in1.read();
-    unsigned int hash_value = (unsigned int)read_hash.data;
-
-    /* バケット境界（top-end）の確定 */
-    if (hash_value == 0) top = 0;
-    else top = (hash_table_pointer[hash_value-1]) + 1;
-    end = hash_table_pointer[hash_value];
-
-    /* 送信用データ用意 */
-    top_stream.data = top;
-    end_stream.data = end;
-
-    /* Stream-portへ送信 */
-    top_stream_out1.write(top_stream);
-    end_stream_out1.write(end_stream);
-    top_stream_out2.write(top_stream);
-    end_stream_out2.write(end_stream);
+    while (1) {
+        /* Hash値(入力)読み込み */
+        read_hash = hash_stream_in1.read();
+        hash_value = (unsigned int)read_hash.data;
+    
+        /* バケット境界（top-end）の確定 */
+        if (hash_value == 0) top = 0;
+        else top = (hash_table_pointer[hash_value-1]) + 1;
+        end = hash_table_pointer[hash_value];
+    
+        /* 送信用データ用意 */
+        top_stream.data = top;
+        end_stream.data = end;
+    
+        /* Stream-portへ送信 */
+        top_stream_out1.write(top_stream);
+        end_stream_out1.write(end_stream);
+        top_stream_out2.write(top_stream);
+        end_stream_out2.write(end_stream);
+    }
 }
 }
 /* --mianからの呼び出し-- */

@@ -1,4 +1,4 @@
-/* Hハミング距離計算_Module */
+/* ハミング距離計算_Module */
 
 #include <iostream>
 #include <stdio.h>
