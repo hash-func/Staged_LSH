@@ -9,7 +9,7 @@
 #include <ap_axi_sdata.h>   // ストリーミング接続
 #include "hls_stream.h"
 
-#include "../main_fpga.h"
+#include "main_fpga.h"
 
 /* mainからの呼び出し */
 extern "C" {
@@ -19,6 +19,7 @@ void switch_set_1(
     unsigned int hash_table[],              // ハッシュテーブル
     hls::stream<ap_axiu<32, 0, 0, 0>>& top_stream_in,       // top(入力->bound
     hls::stream<ap_axiu<32, 0, 0, 0>>& end_stream_in,       // end(入力->bound
+    hls::stream<ap_axiu<32, 0, 0, 0>>& loop_num_stream_out, // loop回数(出力->hdis96
     hls::stream<ap_axiu<96, 0, 0, 0>>& flame96_r_stream_out // 96bitフレーム(出力->hd96_cal
 )
 {
@@ -29,6 +30,7 @@ void switch_set_1(
 
     /* 出力用 */
     ap_axiu<96, 0, 0, 0> flame96_stream;
+    ap_axiu<32, 0, 0, 0> loop_num;
     /* 入力用 */
     ap_axiu<32, 0, 0, 0> top_st;
     ap_axiu<32, 0, 0, 0> end_st;
@@ -43,6 +45,11 @@ void switch_set_1(
         end_st = end_stream_in.read();
         top = (unsigned int) top_st.data;
         end = (unsigned int) end_st.data;
+        // printf("switch : top-end読み出し完了\n");
+
+        /* 回数送信-> hdis96_cal */
+        loop_num.data = (ap_uint<32>) (end - top) + 1;
+        loop_num_stream_out.write(loop_num);
     
         /* 読み込み */
         switch_read_loop: for (unsigned int i=top; i<=end; i++)
@@ -56,6 +63,7 @@ void switch_set_1(
     
             /* Stream-portへ送信 */
             flame96_r_stream_out.write(flame96_stream);
+            // printf("switch : 96bitflame書込み完了\n");
         }
     }
 }

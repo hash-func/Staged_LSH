@@ -9,7 +9,7 @@
 #include <ap_axi_sdata.h>   // ストリーミング接続
 #include "hls_stream.h"
 
-#include "../main_fpga.h"
+#include "main_fpga.h"
 
 
 /* mainからの呼び出し */
@@ -62,6 +62,7 @@ void hid_cal_set_1(
         /* Stream-portへ送信 */
         hash_stream_out.write(hash_stream);
         flame96_stream_out.write(flame96_stream);
+        // printf("hid_cal ハッシュ値および、96bitフレーム送信完了\n");
     }
 }
 }

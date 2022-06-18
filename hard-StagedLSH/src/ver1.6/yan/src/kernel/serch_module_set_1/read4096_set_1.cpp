@@ -9,7 +9,7 @@
 #include <ap_axi_sdata.h>   // ストリーミング接続
 #include "hls_stream.h"
 
-#include "../main_fpga.h"
+#include "main_fpga.h"
 
 /* からの呼び出し */
 extern "C" {
@@ -34,13 +34,14 @@ void read4096_set_1(
     {
         /* locate読み込み */
         read_locate = locate_stream_in.read();
+        // printf("read4096 位置情報読み込み完了\n");
         locate = (unsigned int) read_locate.data;
 
         input_read: for (int i=0; i<ONEMUSIC_SUBNUM; i++)
         {
         #pragma HLS PIPELINE
             /* 送信データ用意 */
-            bit32_stream.data = FP_DB[locate + i]
+            bit32_stream.data = (ap_uint<32>) FP_DB[locate + i];
             /* Stream-Portへ出力 */
             data_stream_out.write(bit32_stream);
         }

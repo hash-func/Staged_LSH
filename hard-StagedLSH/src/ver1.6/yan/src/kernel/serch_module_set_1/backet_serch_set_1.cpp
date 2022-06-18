@@ -9,7 +9,7 @@
 #include <ap_axi_sdata.h>   // ストリーミング接続
 #include "hls_stream.h"
 
-#include "../main_fpga.h"
+#include "main_fpga.h"
 
 /* からの呼び出し */
 extern "C" {
@@ -44,20 +44,25 @@ void backet_serch_set_1(
     unsigned int end;           // バケット末尾
 
     while (1) {
+        // printf("backet_serch : read待機\n");
         /* top-end読み込み */
         read_top = top_stream_in.read();
         read_end = end_stream_in.read();
         /* 変数 */
         top = (unsigned int) read_top.data;
         end = (unsigned int) read_end.data;
+        // printf("backet_serch top-end 読み込み完了\n");
 
         backet_loop: for (unsigned int i=top; i<=end; i++)
         {
             /* ハミング距離読み込み */
             read_haming96 = haming96_stream_in.read();
+            // printf("backet : ハミング距離読み込み完了\n");
+
+            // printf("backet : ハミング距離 : %u\n", (unsigned int)read_haming96.data);
 
             /* 閾値判定 */
-            if (read_haming96.data <= SCREENING)
+            if ((unsigned int)read_haming96.data <= SCREENING)
             {
                 /* 楽曲インデックスの特定 */
                 music_index_temp = hash_table[i] / ONEMUSIC_SUBNUM;
@@ -68,9 +73,11 @@ void backet_serch_set_1(
                 locate_stream.data = db_locate;
                 /* Stream-portへ送信 */
                 locate_stream_out.write(locate_stream);
+                // printf("backet : location書込み完了\n");
 
                 /* haming4096読み込み */
                 read_haming4096 = haming4096_stream_in.read();
+                // printf("backet : 4096bitハミング距離読み込み完了\n");
 
                 /* 閾値判定 */
                 if ((unsigned int)read_haming4096.data <= min_haming_dis)
@@ -83,7 +90,8 @@ void backet_serch_set_1(
             }
         }
         /* 送信データ用意 */
-        index_stream.data = music_index;
+        index_stream.data = (ap_uint<32>) music_index;
+        // printf("music_index : %d\n", music_index);
         /* Stream-portへ出力 */
         index_stream_out.write(index_stream);
         /* 値の初期化 */

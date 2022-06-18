@@ -43,7 +43,7 @@ void event_cb(cl_event event, cl_int cmd_status, void *id)
 
 struct TableSerch6Request {
 
-  cl_event mEvent[11];	
+  cl_event mEvent[10];	
   int      mId;
 
   TableSerch6Request(int id) {
@@ -53,8 +53,8 @@ struct TableSerch6Request {
   void sync()
   {
   	// Wait until the outputs have been read back
-    clWaitForEvents(1, &mEvent[10]);
-    for (int i=0; i<11; i++)
+    clWaitForEvents(1, &mEvent[9]);
+    for (int i=0; i<10; i++)
     {
         clReleaseEvent(mEvent[i]);
     }	
@@ -66,6 +66,7 @@ class TableSerch6 {
 
 public:
 
+  /* コンストラクタ */
   TableSerch6(
   	cl_device_id     &Device,
     cl_context       &Context,
@@ -77,16 +78,19 @@ public:
     const unsigned int division_num )	
   {
     // clCreateKernel(プログラム, 宣言されたカーネル名, エラー)
-	mKernel_1  = clCreateKernel(Program, "table_serch_set_1", &mErr);
-    mKernel_2  = clCreateKernel(Program, "table_serch_set_2", &mErr);
-    mKernel_3  = clCreateKernel(Program, "table_serch_set_3", &mErr);
-    mKernel_4  = clCreateKernel(Program, "table_serch_set_4", &mErr);
-    mKernel_5  = clCreateKernel(Program, "table_serch_set_5", &mErr);
-    mKernel_6  = clCreateKernel(Program, "table_serch_set_6", &mErr);
-    mKernel_de = clCreateKernel(Program, "determin",          &mErr);
+	mKernel_hid         = clCreateKernel(Program, "hid_cal_set_1",      &mErr);
+    mKernel_bound       = clCreateKernel(Program, "bound_set_1",        &mErr);
+    mKernel_switch      = clCreateKernel(Program, "switch_set_1",       &mErr);
+    mKernel_backet      = clCreateKernel(Program, "backet_serch_set_1", &mErr);
+    mKernel_read4096    = clCreateKernel(Program, "read4096_set_1",     &mErr);
+    mKernel_hd4096      = clCreateKernel(Program, "hdis4096_cal_set_1", &mErr);
+    mKernel_out         = clCreateKernel(Program, "out",                &mErr);
+    mKernel_determin    = clCreateKernel(Program, "determin",           &mErr);
+
 	mQueue   = clCreateCommandQueue(Context, Device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &mErr);
 	mContext = Context;
 	mCounter = 0;
+    
     // Create input buffers for coefficients (host to device)
     mConstBuf[0] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
     ONEMUSIC_SUBNUM*MUSIC_NUM*sizeof(unsigned int), FP_DB, &mErr);
@@ -94,37 +98,23 @@ public:
     full_table_size*sizeof(unsigned int), hash_table, &mErr);
     mConstBuf[2] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
     division_num*sizeof(unsigned int), hash_table_pointer, &mErr);
+    
     // Set the kernel arguments
-    clSetKernelArg(mKernel_1, 1, sizeof(cl_mem),       &mConstBuf[0]);
-    clSetKernelArg(mKernel_2, 1, sizeof(cl_mem),       &mConstBuf[0]);
-    clSetKernelArg(mKernel_3, 1, sizeof(cl_mem),       &mConstBuf[0]);
-    clSetKernelArg(mKernel_4, 1, sizeof(cl_mem),       &mConstBuf[0]);
-    clSetKernelArg(mKernel_5, 1, sizeof(cl_mem),       &mConstBuf[0]);
-    clSetKernelArg(mKernel_6, 1, sizeof(cl_mem),       &mConstBuf[0]);
+    clSetKernelArg(mKernel_switch,      0, sizeof(cl_mem),       &mConstBuf[0]);
+    clSetKernelArg(mKernel_read4096,    0, sizeof(cl_mem),       &mConstBuf[0]);
 
-    clSetKernelArg(mKernel_1, 2, sizeof(cl_mem),       &mConstBuf[1]);
-    clSetKernelArg(mKernel_2, 2, sizeof(cl_mem),       &mConstBuf[1]);
-    clSetKernelArg(mKernel_3, 2, sizeof(cl_mem),       &mConstBuf[1]);
-    clSetKernelArg(mKernel_4, 2, sizeof(cl_mem),       &mConstBuf[1]);
-    clSetKernelArg(mKernel_5, 2, sizeof(cl_mem),       &mConstBuf[1]);
-    clSetKernelArg(mKernel_6, 2, sizeof(cl_mem),       &mConstBuf[1]);
+    clSetKernelArg(mKernel_backet,      0, sizeof(cl_mem),       &mConstBuf[1]);
+    clSetKernelArg(mKernel_switch,      1, sizeof(cl_mem),       &mConstBuf[1]);
 
-    clSetKernelArg(mKernel_1, 3, sizeof(cl_mem),       &mConstBuf[2]);
-    clSetKernelArg(mKernel_2, 3, sizeof(cl_mem),       &mConstBuf[2]);
-    clSetKernelArg(mKernel_3, 3, sizeof(cl_mem),       &mConstBuf[2]);
-    clSetKernelArg(mKernel_4, 3, sizeof(cl_mem),       &mConstBuf[2]);
-    clSetKernelArg(mKernel_5, 3, sizeof(cl_mem),       &mConstBuf[2]);
-    clSetKernelArg(mKernel_6, 3, sizeof(cl_mem),       &mConstBuf[2]);
+    clSetKernelArg(mKernel_bound,       0, sizeof(cl_mem),       &mConstBuf[2]);
+
     // Schedule the execution of the kernel
     clEnqueueMigrateMemObjects(mQueue, 3, mConstBuf, 0, 0, nullptr,  nullptr);
-#ifdef DEBUG_sub
-    printf("コンストラクタ呼び出し\n");
-#endif
   }
   
   TableSerch6Request* operator() (
   	unsigned int query[],
-    int judge_temp[]
+    int* judge_temp
     ) 
   { 
   
@@ -133,81 +123,77 @@ public:
 	// Create input buffers for coefficients (host to device)
   	mSrcBuf[0] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
     ONEMUSIC_SUBNUM*sizeof(int), query, &mErr);
-    mSrcBuf[1] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
-    ONEMUSIC_SUBNUM*sizeof(int), query, &mErr);
-    mSrcBuf[2] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
-    ONEMUSIC_SUBNUM*sizeof(int), query, &mErr);
 
     mDstBuf[0] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY,
     sizeof(int), judge_temp, &mErr);
     
   	// Set the kernel arguments
-  	clSetKernelArg(mKernel_1, 0, sizeof(cl_mem),       &mSrcBuf[0]);
-    clSetKernelArg(mKernel_2, 0, sizeof(cl_mem),       &mSrcBuf[1]);
-    clSetKernelArg(mKernel_3, 0, sizeof(cl_mem),       &mSrcBuf[2]);
-    clSetKernelArg(mKernel_4, 0, sizeof(cl_mem),       &mSrcBuf[0]);
-    clSetKernelArg(mKernel_5, 0, sizeof(cl_mem),       &mSrcBuf[1]);
-    clSetKernelArg(mKernel_6, 0, sizeof(cl_mem),       &mSrcBuf[2]);
+  	clSetKernelArg(mKernel_hid,         0, sizeof(cl_mem),       &mSrcBuf[0]);
+    clSetKernelArg(mKernel_hd4096,      0, sizeof(cl_mem),       &mSrcBuf[0]);
 
-  	clSetKernelArg(mKernel_de, 0, sizeof(cl_mem),      &mDstBuf[0]);
+  	clSetKernelArg(mKernel_out,         0, sizeof(cl_mem),       &mDstBuf[0]);
+
+    bool flag = true;
+    clSetKernelArg(mKernel_determin,    0, sizeof(bool),         &flag);
 
 	// Schedule the writing of the inputs
     //(コマンドキュー, メモリオブジェクト数, メモリオブジェクトリストへのポインタ,
     //フラグ(?), 同期ポイント指定なければ0, 左に同じ(内容), コマンドを識別するイベントオブジェクト )
-	clEnqueueMigrateMemObjects(mQueue, 1, &mSrcBuf[0], 0, 0, nullptr,  &req->mEvent[0]);
-    clEnqueueMigrateMemObjects(mQueue, 1, &mSrcBuf[1], 0, 0, nullptr,  &req->mEvent[1]);
-    clEnqueueMigrateMemObjects(mQueue, 1, &mSrcBuf[2], 0, 0, nullptr,  &req->mEvent[2]);	
+	clEnqueueMigrateMemObjects(mQueue, 1, &mSrcBuf[0], 0, 0, nullptr,  &req->mEvent[0]);	
 
 	// Schedule the execution of the kernel
     //(コマンドキュー, 有効なカーネル, 同期ポイント, 左内容, 実行インスタンスを識別するイベント)
-	clEnqueueTask(mQueue, mKernel_1, 1,  &req->mEvent[0], &req->mEvent[3]);
-    clEnqueueTask(mQueue, mKernel_2, 1,  &req->mEvent[1], &req->mEvent[4]);
-    clEnqueueTask(mQueue, mKernel_3, 1,  &req->mEvent[2], &req->mEvent[5]);
-    clEnqueueTask(mQueue, mKernel_4, 1,  &req->mEvent[0], &req->mEvent[6]);
-    clEnqueueTask(mQueue, mKernel_5, 1,  &req->mEvent[1], &req->mEvent[7]);
-    clEnqueueTask(mQueue, mKernel_6, 1,  &req->mEvent[2], &req->mEvent[8]);
-    clEnqueueTask(mQueue, mKernel_de, 1,  &req->mEvent[3], &req->mEvent[9]);
-
-    clWaitForEvents(1, &req->mEvent[3]);
-    clWaitForEvents(1, &req->mEvent[4]);
-    clWaitForEvents(1, &req->mEvent[5]);
-    clWaitForEvents(1, &req->mEvent[6]);
-    clWaitForEvents(1, &req->mEvent[7]);
-    clWaitForEvents(1, &req->mEvent[8]);
+	clEnqueueTask(mQueue, mKernel_hid,      1,  &req->mEvent[0], &req->mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_bound,    1,  &req->mEvent[0], &req->mEvent[2]);
+    clEnqueueTask(mQueue, mKernel_switch,   1,  &req->mEvent[0], &req->mEvent[3]);
+    clEnqueueTask(mQueue, mKernel_backet,   1,  &req->mEvent[0], &req->mEvent[4]);
+    clEnqueueTask(mQueue, mKernel_read4096, 1,  &req->mEvent[0], &req->mEvent[5]);
+    clEnqueueTask(mQueue, mKernel_hd4096,   1,  &req->mEvent[0], &req->mEvent[6]);
+    clEnqueueTask(mQueue, mKernel_determin, 1,  &req->mEvent[0], &req->mEvent[7]);
+    clEnqueueTask(mQueue, mKernel_out,      1,  &req->mEvent[0], &req->mEvent[8]);
 	
 	// Schedule the reading of the outputs
-  	clEnqueueMigrateMemObjects(mQueue, 1, &mDstBuf[0], CL_MIGRATE_MEM_OBJECT_HOST, 1, &req->mEvent[9], &req->mEvent[10]);
+  	clEnqueueMigrateMemObjects(mQueue, 1, &mDstBuf[0], CL_MIGRATE_MEM_OBJECT_HOST, 1, &req->mEvent[8], &req->mEvent[9]);
 
 	// Register call back to notify of kernel completion
-	clSetEventCallback(req->mEvent[2], CL_COMPLETE, event_cb, &req->mId); 
+	clSetEventCallback(req->mEvent[0], CL_COMPLETE, event_cb, &req->mId); 
 	
 	return req;
   }; 
- 
+
+  /* デコンストラクタ */
   ~TableSerch6()
-  {  
+  {
 	clReleaseCommandQueue(mQueue);
-	clReleaseKernel(mKernel_1);
-    clReleaseKernel(mKernel_2);
-    clReleaseKernel(mKernel_3);
-    clReleaseKernel(mKernel_4);
-    clReleaseKernel(mKernel_5);
-    clReleaseKernel(mKernel_6);
-    clReleaseKernel(mKernel_de);
+    clReleaseContext(mContext);
+	clReleaseKernel(mKernel_hid         );
+    clReleaseKernel(mKernel_bound       );
+    clReleaseKernel(mKernel_switch      );
+    clReleaseKernel(mKernel_backet      );
+    clReleaseKernel(mKernel_read4096    );
+    clReleaseKernel(mKernel_hd4096      );
+    clReleaseKernel(mKernel_out         );
+    clReleaseKernel(mKernel_determin    );
+    clReleaseMemObject(mConstBuf[0]);
+    clReleaseMemObject(mConstBuf[1]);
+    clReleaseMemObject(mConstBuf[2]);
+    clReleaseMemObject(mSrcBuf[0]);
+    clReleaseMemObject(mDstBuf[0]);
   };  
   
 private:
-  cl_kernel         mKernel_1;
-  cl_kernel         mKernel_2;
-  cl_kernel         mKernel_3;
-  cl_kernel         mKernel_4;
-  cl_kernel         mKernel_5;
-  cl_kernel         mKernel_6;
-  cl_kernel         mKernel_de;
+  cl_kernel         mKernel_hid         ;
+  cl_kernel         mKernel_bound       ;
+  cl_kernel         mKernel_switch      ;
+  cl_kernel         mKernel_backet      ;
+  cl_kernel         mKernel_read4096    ;
+  cl_kernel         mKernel_hd4096      ;
+  cl_kernel         mKernel_out         ;
+  cl_kernel         mKernel_determin    ;
   cl_command_queue  mQueue;	
   cl_context        mContext;  
   cl_mem            mConstBuf[3];   // 共通
-  cl_mem            mSrcBuf[3];     // 毎回(3種)
+  cl_mem            mSrcBuf[1];     // 毎回
   cl_mem            mDstBuf[1];     // CU毎
   cl_int            mErr;
   int               mCounter; 
@@ -365,19 +351,17 @@ int main(int argc, char** argv)
         hash_table_pointer,
         full_table_size,
         division_num);
+
     TableSerch6Request* request[1];
 
-    alignas(32) int judge_array[1] = {-1};
+    alignas(32) int judge = -1;
+    int* judge_ad = &judge;
 
     /* 指定回数検索実行 */
     for (unsigned int i=0; i<QUERY_NUM; i++)
     {
-#ifdef DEBUG_sub
-        printf("%d 回目\n",i+1);
-#endif
         /* 楽曲識別子生成 */
         music_index = rnd1() % MUSIC_NUM;
-        printf("\nMusic_index : %d\n\n", music_index);
 
         /* index楽曲格納 + 歪みのあるクエリの作成(ele_func.cpp) */
         distortion_query_create(
@@ -389,34 +373,32 @@ int main(int argc, char** argv)
         );
 
         /* 検索処理（FPGA） */
-        request[0] = Serch(query, judge_array);
+        request[0] = Serch(query, judge_ad);
 
         /* 同期 */
         request[0]->sync();
+        printf("main値 : judge : %d\n", judge);
         
-#ifdef DEBUG_sub
-        printf("カーネル実行終了\n");
-#endif
 
         /* 結果の集計 */
-        if (judge_array[0]<0)
+        if (judge<0)
             {
                 not_find++;
             }
         else
         {
-            if (judge_array[0]==music_index)
+            if (judge==music_index)
             {
                 seikai++;
             }
             else
             {
-                printf("不正解 : %d\n", judge_array[0]);
+                printf("不正解 : %d\n", judge);
                 huseikai++;
             }
         }
         /* 初期化 */
-        judge_array[0] = -1;
+        judge = -1;
     }
 
 /****************************************************************************************************/
