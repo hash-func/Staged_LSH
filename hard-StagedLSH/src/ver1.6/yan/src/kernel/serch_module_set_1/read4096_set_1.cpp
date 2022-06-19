@@ -15,8 +15,10 @@
 extern "C" {
 void read4096_set_1(
     unsigned int FP_DB[],      // Hashテーブル
-    hls::stream<ap_axiu<32, 0, 0, 0>>& locate_stream_in,    // locate(入力<-backet_serch
-    hls::stream<ap_axiu<32, 0, 0, 0>>& data_stream_out     // (出力->determin
+    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_in, // 処理終了信号(入力<-backet
+    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out,// 処理終了信号(出力->hdis4096
+    hls::stream<ap_axiu<32, 0, 0, 0>>& locate_stream_in,  // locate(入力<-backet_serch
+    hls::stream<ap_axiu<32, 0, 0, 0>>& data_stream_out    // (出力->determin
 )
 {
 #pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
@@ -30,22 +32,33 @@ void read4096_set_1(
     /* 変数 */
     unsigned int locate;
 
-    while (1)
+    while (complete_stream_in.empty())
     {
-        /* locate読み込み */
-        read_locate = locate_stream_in.read();
-        // printf("read4096 位置情報読み込み完了\n");
-        locate = (unsigned int) read_locate.data;
-
-        input_read: for (int i=0; i<ONEMUSIC_SUBNUM; i++)
+        /* 継続的な終了チェック */
+        if (!locate_stream_in.empty())
         {
-        #pragma HLS PIPELINE
-            /* 送信データ用意 */
-            bit32_stream.data = (ap_uint<32>) FP_DB[locate + i];
-            /* Stream-Portへ出力 */
-            data_stream_out.write(bit32_stream);
+            /* locate読み込み */
+            read_locate = locate_stream_in.read();
+            // printf("read4096 位置情報読み込み完了\n");
+            locate = (unsigned int) read_locate.data;
+
+            input_read: for (int i=0; i<ONEMUSIC_SUBNUM; i++)
+            {
+            #pragma HLS PIPELINE
+                /* 送信データ用意 */
+                bit32_stream.data = (ap_uint<32>) FP_DB[locate + i];
+                /* Stream-Portへ出力 */
+                data_stream_out.write(bit32_stream);
+            }
         }
     }
+    /* 終了信号送信 */
+    /* 後処理 */
+    while (!locate_stream_in.empty()) {
+        read_locate = locate_stream_in.read();
+    }
+    printf("read4096 : 終了...............\n");
+    complete_stream_out.write(complete_stream_in.read());
 }
 }
 /* --からの呼び出し-- */

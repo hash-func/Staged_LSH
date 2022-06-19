@@ -59,7 +59,6 @@ struct TableSerch6Request {
         clReleaseEvent(mEvent[i]);
     }	
   }
-
 };
 
 class TableSerch6 {
@@ -117,7 +116,6 @@ public:
     int* judge_temp
     ) 
   { 
-  
   	TableSerch6Request* req = new TableSerch6Request(mCounter++);
 
 	// Create input buffers for coefficients (host to device)
@@ -132,9 +130,9 @@ public:
     clSetKernelArg(mKernel_hd4096,      0, sizeof(cl_mem),       &mSrcBuf[0]);
 
   	clSetKernelArg(mKernel_out,         0, sizeof(cl_mem),       &mDstBuf[0]);
-
+    
     bool flag = true;
-    clSetKernelArg(mKernel_determin,    0, sizeof(bool),         &flag);
+    clSetKernelArg(mKernel_determin,    0, sizeof(bool),       &flag);
 
 	// Schedule the writing of the inputs
     //(コマンドキュー, メモリオブジェクト数, メモリオブジェクトリストへのポインタ,
@@ -165,7 +163,7 @@ public:
   ~TableSerch6()
   {
 	clReleaseCommandQueue(mQueue);
-    clReleaseContext(mContext);
+    // clReleaseContext(mContext);
 	clReleaseKernel(mKernel_hid         );
     clReleaseKernel(mKernel_bound       );
     clReleaseKernel(mKernel_switch      );
@@ -174,11 +172,11 @@ public:
     clReleaseKernel(mKernel_hd4096      );
     clReleaseKernel(mKernel_out         );
     clReleaseKernel(mKernel_determin    );
-    clReleaseMemObject(mConstBuf[0]);
-    clReleaseMemObject(mConstBuf[1]);
-    clReleaseMemObject(mConstBuf[2]);
-    clReleaseMemObject(mSrcBuf[0]);
-    clReleaseMemObject(mDstBuf[0]);
+    // clReleaseMemObject(mConstBuf[0]);
+    // clReleaseMemObject(mConstBuf[1]);
+    // clReleaseMemObject(mConstBuf[2]);
+    // clReleaseMemObject(mSrcBuf[0]);
+    // clReleaseMemObject(mDstBuf[0]);
   };  
   
 private:
@@ -377,14 +375,13 @@ int main(int argc, char** argv)
 
         /* 同期 */
         request[0]->sync();
-        printf("main値 : judge : %d\n", judge);
         
 
         /* 結果の集計 */
         if (judge<0)
-            {
+        {
                 not_find++;
-            }
+        }
         else
         {
             if (judge==music_index)

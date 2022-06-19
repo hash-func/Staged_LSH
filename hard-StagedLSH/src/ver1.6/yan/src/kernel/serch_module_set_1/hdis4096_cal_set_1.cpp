@@ -16,6 +16,8 @@
 extern "C" {
 void hdis4096_cal_set_1(
     unsigned int query[128],      // Hashテーブル
+    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_in, // 処理終了信号(入力<-read4096
+    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out,// 処理終了信号(出力<-backet
     hls::stream<ap_axiu<32, 0, 0, 0>>& bit32_stream_in,   // subfp(入力<-read4096
     hls::stream<ap_axiu<32, 0, 0, 0>>& haming_stream_out  // (出力->backet_serch
 )
@@ -27,6 +29,7 @@ void hdis4096_cal_set_1(
     ap_axiu<32, 0, 0, 0> haming4096_stream;
     /* 読み込み用 */
     ap_axiu<32, 0, 0, 0> subfp_stream;
+    ap_axiu<1, 0, 0, 0> complete;
 
     /* 変数 */
     ap_uint<32> haming_dis;
@@ -34,7 +37,7 @@ void hdis4096_cal_set_1(
     ap_uint<32> temp_subfp;
     ap_uint<32> xor_temp;
 
-    while (1) 
+    while (complete_stream_in.empty()) 
     {
         haming_dis = 0; // 初期化
 
@@ -43,26 +46,42 @@ void hdis4096_cal_set_1(
         #pragma HLS loop_tripcount min=128 max=128 avg=128
         #pragma HLS UNROLL factor=4
         #pragma HLS PIPELINE
-            /* 32bit読み込み */
-            subfp_stream = bit32_stream_in.read();
-            temp_subfp = subfp_stream.data;
-            // printf("hdis4096 : 32bit読み込み\n");
-            
-            xor_temp = temp_subfp ^ (ap_uint<32>)query[i];
-
-            hdis_32_loop: for (int j=0; j<SUB_FP_SIZE; j+=2)
+            if (complete_stream_in.empty())
             {
-            #pragma HLS UNROLL
-                reg = xor_temp[j] + xor_temp[j+1];
-                haming_dis += reg;
+                /* 32bit読み込み */
+                if (!bit32_stream_in.empty())
+                {
+                    subfp_stream = bit32_stream_in.read();
+                    temp_subfp = subfp_stream.data;
+                    // printf("hdis4096 : 32bit読み込み\n");
+
+                    xor_temp = temp_subfp ^ (ap_uint<32>)query[i];
+
+                    hdis_32_loop: for (int j=0; j<SUB_FP_SIZE; j+=2)
+                    {
+                    #pragma HLS UNROLL
+                        reg = xor_temp[j] + xor_temp[j+1];
+                        haming_dis += reg;
+                    }
+                }else i--;
             }
         }
-        /* 送信データ用意 */
-        haming4096_stream.data = haming_dis;
-        /* Stream-portへ出力 */
-        haming_stream_out.write(haming4096_stream);
-        // printf("hdis4096 : ハミング距離書込み完了\n");
+        if (complete_stream_in.empty())
+        {
+            /* 送信データ用意 */
+            haming4096_stream.data = haming_dis;
+            /* Stream-portへ出力 */
+            haming_stream_out.write(haming4096_stream);
+            // printf("hdis4096 : ハミング距離書込み完了\n");
+        }
     }
+    /* 終了信号を読みだしておく */
+    /* 後処理 */
+    while (!bit32_stream_in.empty()) {
+        subfp_stream = bit32_stream_in.read();
+    }
+    printf("hdis4096 : 終了................\n");
+    complete_stream_out.write(complete_stream_in.read());
 }
 }
 /* --からの呼び出し-- */
