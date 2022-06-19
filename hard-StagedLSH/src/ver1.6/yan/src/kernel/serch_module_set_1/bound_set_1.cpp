@@ -76,10 +76,11 @@ void bound_set_1(
     complete_stream_switch = complete_stream_in.read();
     complete_stream_backet.data = complete_stream_switch.data;
     /* 後処理 */
-    while (!hash_stream_in1.empty())
-    {
-        read_hash = hash_stream_in1.read();
-    }
+    // while (!hash_stream_in1.empty())
+    // {
+    //     printf("boud-hash-stream\n");
+    //     read_hash = hash_stream_in1.read();
+    // }
     /* 完了信号の送信 */
     printf("bound : 終了............\n");
     complete_stream_out1.write(complete_stream_switch);

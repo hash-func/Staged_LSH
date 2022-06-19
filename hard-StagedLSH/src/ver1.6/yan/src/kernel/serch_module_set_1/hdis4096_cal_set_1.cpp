@@ -77,9 +77,10 @@ void hdis4096_cal_set_1(
     }
     /* 終了信号を読みだしておく */
     /* 後処理 */
-    while (!bit32_stream_in.empty()) {
-        subfp_stream = bit32_stream_in.read();
-    }
+    // while (!bit32_stream_in.empty()) {
+    //     printf("hd4096-bit32-stream\n");
+    //     subfp_stream = bit32_stream_in.read();
+    // }
     printf("hdis4096 : 終了................\n");
     complete_stream_out.write(complete_stream_in.read());
 }

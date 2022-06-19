@@ -139,9 +139,10 @@ void determin (
     }
     /* 完了信号を読みだし->送信 */
     /* 後処理 */
-    while (!index_stream_in1.empty()) {
-        read_index1 = index_stream_in1.read();
-    }
+    // while (!index_stream_in1.empty()) {
+    //     printf("determin-index-stream\n");
+    //     read_index1 = index_stream_in1.read();
+    // }
     printf("determin : 終了................\n");
     complete_stream_out.write(complete_stream_in.read());
 }

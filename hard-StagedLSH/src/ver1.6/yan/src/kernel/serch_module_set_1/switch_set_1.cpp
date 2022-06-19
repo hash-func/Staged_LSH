@@ -78,9 +78,11 @@ void switch_set_1(
     /* 完了信号が来た時 */
     /* 後処理 */
     while(!top_stream_in.empty()){
+        // printf("switch-top-stream\n");
         top_st = top_stream_in.read();
     }
     while(!end_stream_in.empty()){
+        // printf("switch-end-stream\n");
         end_st = end_stream_in.read();
     }
     printf("switch : 終了...............\n");

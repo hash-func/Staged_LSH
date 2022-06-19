@@ -35,7 +35,7 @@ std::random_device rnd1;
 void event_cb(cl_event event, cl_int cmd_status, void *id) 
 {
 	if (getenv("XCL_EMULATION_MODE") != NULL) {
-#ifdef DEBUG_sub
+#ifdef DEBUG
 	 	std::cout << "  kernel finished processing request " << *(int *)id << std::endl;
 #endif
     }
@@ -43,7 +43,7 @@ void event_cb(cl_event event, cl_int cmd_status, void *id)
 
 struct TableSerch6Request {
 
-  cl_event mEvent[10];	
+  cl_event mEvent[3];	
   int      mId;
 
   TableSerch6Request(int id) {
@@ -53,8 +53,8 @@ struct TableSerch6Request {
   void sync()
   {
   	// Wait until the outputs have been read back
-    clWaitForEvents(1, &mEvent[9]);
-    for (int i=0; i<10; i++)
+    clWaitForEvents(1, &mEvent[2]);
+    for (int i=0; i<3; i++)
     {
         clReleaseEvent(mEvent[i]);
     }	
@@ -142,19 +142,19 @@ public:
 	// Schedule the execution of the kernel
     //(コマンドキュー, 有効なカーネル, 同期ポイント, 左内容, 実行インスタンスを識別するイベント)
 	clEnqueueTask(mQueue, mKernel_hid,      1,  &req->mEvent[0], &req->mEvent[1]);
-    clEnqueueTask(mQueue, mKernel_bound,    1,  &req->mEvent[0], &req->mEvent[2]);
-    clEnqueueTask(mQueue, mKernel_switch,   1,  &req->mEvent[0], &req->mEvent[3]);
-    clEnqueueTask(mQueue, mKernel_backet,   1,  &req->mEvent[0], &req->mEvent[4]);
-    clEnqueueTask(mQueue, mKernel_read4096, 1,  &req->mEvent[0], &req->mEvent[5]);
-    clEnqueueTask(mQueue, mKernel_hd4096,   1,  &req->mEvent[0], &req->mEvent[6]);
-    clEnqueueTask(mQueue, mKernel_determin, 1,  &req->mEvent[0], &req->mEvent[7]);
-    clEnqueueTask(mQueue, mKernel_out,      1,  &req->mEvent[0], &req->mEvent[8]);
+    clEnqueueTask(mQueue, mKernel_bound,    1,  &req->mEvent[0], &req->mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_switch,   1,  &req->mEvent[0], &req->mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_backet,   1,  &req->mEvent[0], &req->mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_read4096, 1,  &req->mEvent[0], &req->mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_hd4096,   1,  &req->mEvent[0], &req->mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_determin, 1,  &req->mEvent[0], &req->mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_out,      1,  &req->mEvent[0], &req->mEvent[1]);
 	
 	// Schedule the reading of the outputs
-  	clEnqueueMigrateMemObjects(mQueue, 1, &mDstBuf[0], CL_MIGRATE_MEM_OBJECT_HOST, 1, &req->mEvent[8], &req->mEvent[9]);
+  	clEnqueueMigrateMemObjects(mQueue, 1, &mDstBuf[0], CL_MIGRATE_MEM_OBJECT_HOST, 1, &req->mEvent[1], &req->mEvent[2]);
 
 	// Register call back to notify of kernel completion
-	clSetEventCallback(req->mEvent[0], CL_COMPLETE, event_cb, &req->mId); 
+	clSetEventCallback(req->mEvent[1], CL_COMPLETE, event_cb, &req->mId); 
 	
 	return req;
   }; 
@@ -375,7 +375,6 @@ int main(int argc, char** argv)
 
         /* 同期 */
         request[0]->sync();
-        
 
         /* 結果の集計 */
         if (judge<0)

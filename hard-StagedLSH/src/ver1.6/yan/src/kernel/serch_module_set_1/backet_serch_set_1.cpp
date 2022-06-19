@@ -119,7 +119,7 @@ void backet_serch_set_1(
                 // printf("music_index : %d\n", music_index);
                 /* Stream-portへ出力 */
                 index_stream_out.write(index_stream);
-                printf("backet : determinへの送信完了\n");
+                // printf("backet : determinへの送信完了\n");
             }
         }
     }
@@ -131,15 +131,19 @@ void backet_serch_set_1(
     /* 終了信号->determin */
     /* 後処理 */
     while (!top_stream_in.empty()){
+        // printf("backet-top-stream\n");
         read_top = top_stream_in.read();
     }
     while (!end_stream_in.empty()){
+        // printf("backet-end-stream\n");
         read_end = end_stream_in.read();
     }
     while (!haming96_stream_in.empty()){
+        // printf("backet-haming96-stream\n");
         read_haming96 = haming96_stream_in.read();   
     }
     while (!haming4096_stream_in.empty()){
+        // printf("backet-haming4096-stream\n");
         read_haming4096 = haming4096_stream_in.read();
     }
     printf("backet : 終了..............\n");

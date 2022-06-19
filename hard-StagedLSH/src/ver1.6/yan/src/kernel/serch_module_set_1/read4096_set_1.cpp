@@ -54,9 +54,10 @@ void read4096_set_1(
     }
     /* 終了信号送信 */
     /* 後処理 */
-    while (!locate_stream_in.empty()) {
-        read_locate = locate_stream_in.read();
-    }
+    // while (!locate_stream_in.empty()) {
+    //     printf("read4096-locate-stream\n");
+    //     read_locate = locate_stream_in.read();
+    // }
     printf("read4096 : 終了...............\n");
     complete_stream_out.write(complete_stream_in.read());
 }

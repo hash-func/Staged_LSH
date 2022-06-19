@@ -88,12 +88,15 @@ void hdis96_cal_set_1(
     /* 完了通知後 */
     /* 後処理 */
     while(!flame96_stream_in1.empty()){
+        // printf("hd96-flame96-1-stream\n");
         flame96 = flame96_stream_in1.read();
     }
     while(!loop_num_stream_in.empty()){
+        // printf("hd96-loop-stream\n");
         loop_num = loop_num_stream_in.read();
     }
     while(!flame96_stream_in2.empty()){
+        // printf("hd96-flame96-2-stream\n");
         flame96_read = flame96_stream_in2.read();
     }
     printf("hdi96 : 終了............\n");
