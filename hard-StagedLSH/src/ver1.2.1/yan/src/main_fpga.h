@@ -1,5 +1,5 @@
-#ifndef INCLUDE_main_h
-#define INCLUDE_main_h
+#ifndef INCLUDE_main_fpga_h
+#define INCLUDE_main_fpga_h
 
 
 /* デバックのための定義 */
@@ -18,17 +18,13 @@
 #define SCREENING 24            // スクリーニングの閾値
 #define SCRUTINY 1024           // 精査の閾値
 
-/* 変更パラメータ */
-#define MUSIC_NUM 300           // 楽曲数
-#define QUERY_NUM 2          // 検索数（試行回数）
-#define DISTORTION 25.0          // 歪み率(%)
-
-/* 考察するパラメータ(main＿fpga.h合わせる) */
-#define K_HASHBIT 13            // ハッシュ関数gのbit数：K
+/* 考察するパラメータ(main.h合わせる) */
+#define K_HASHBIT 13             // ハッシュ関数gのbit数：K
 #define L_HASHNUM 6             // ハッシュ関数gの数：L
 
 /* 手動計算 */
-#define FLAME_INDEX_OUT 128     // 2^K_HASHBIT
+#define FLAME_INDEX_OUT 8192    // 2^K_HASHBIT
+#define HTP_SIZE FLAME_IN_MUSIC // クエリ配列サイズ
 
 /* ハッシュビット取得位置 */
 #define get1 73
@@ -109,5 +105,4 @@
 #define get76 86
 #define get77 65
 #define get78 66
-
 #endif
