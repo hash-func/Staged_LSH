@@ -35,8 +35,8 @@ void hid_cal_set_1(
     /* 変数 */
     ap_uint<SUB_FP_SIZE> tempA32 = query[0];
     ap_uint<SUB_FP_SIZE> tempB32 = query[1];
-    ap_uint<SUB_FP_SIZE> tempC32;
-    ap_uint<96> flame96;
+    ap_uint<SUB_FP_SIZE> tempC32 = query[2];
+    ap_uint<96> flame96 = ((tempA32, tempB32), tempC32);
     ap_uint<32> hash_value;                     // Hash値
     ap_uint<32> top;    // 先頭バケット位置(含む)
     ap_uint<32> end;    // 末尾バケット位置(含む)
@@ -45,46 +45,44 @@ void hid_cal_set_1(
     {
         if (complete_stream_in.empty())
         {
-            /* subFP-Read */
-            tempC32 = query[flame_index + 2];
+            if (!top_stream_out.full() && !end_stream_out.full())
+            {
+                hash_value[K_HASHBIT-1] =   flame96[get1 ];
+                hash_value[K_HASHBIT-2] =   flame96[get2 ];
+                hash_value[K_HASHBIT-3] =   flame96[get3 ];
+                hash_value[K_HASHBIT-4] =   flame96[get4 ];
+                hash_value[K_HASHBIT-5] =   flame96[get5 ];
+                hash_value[K_HASHBIT-6] =   flame96[get6 ];
+                hash_value[K_HASHBIT-7] =   flame96[get7 ];
+                hash_value[K_HASHBIT-8] =   flame96[get8 ];
+                hash_value[K_HASHBIT-9] =   flame96[get9 ];
+                hash_value[K_HASHBIT-10] =  flame96[get10];
+                hash_value[K_HASHBIT-11] =  flame96[get11];
+                hash_value[K_HASHBIT-12] =  flame96[get12];
+                hash_value[K_HASHBIT-13] =  flame96[get13];
 
-            /* 96bit結合 */
-            flame96 = ((tempA32, tempB32), tempC32);
+                /* バケット境界(top-end)の確定 */
+                if (hash_value == 0) top = 0;
+                else top = (hash_table_pointer[hash_value-1]) + 1;
+                end = hash_table_pointer[hash_value];
 
-            hash_value[K_HASHBIT-1] =   flame96[get1 ];
-            hash_value[K_HASHBIT-2] =   flame96[get2 ];
-            hash_value[K_HASHBIT-3] =   flame96[get3 ];
-            hash_value[K_HASHBIT-4] =   flame96[get4 ];
-            hash_value[K_HASHBIT-5] =   flame96[get5 ];
-            hash_value[K_HASHBIT-6] =   flame96[get6 ];
-            hash_value[K_HASHBIT-7] =   flame96[get7 ];
-            hash_value[K_HASHBIT-8] =   flame96[get8 ];
-            hash_value[K_HASHBIT-9] =   flame96[get9 ];
-            hash_value[K_HASHBIT-10] =  flame96[get10];
-            hash_value[K_HASHBIT-11] =  flame96[get11];
-            hash_value[K_HASHBIT-12] =  flame96[get12];
-            hash_value[K_HASHBIT-13] =  flame96[get13];
+                /* 送信用データ用意 */
+                top_stream.data = top;
+                end_stream.data = end;
 
-
-            /* バケット境界(top-end)の確定 */
-            if (hash_value == 0) top = 0;
-            else top = (hash_table_pointer[hash_value-1]) + 1;
-            end = hash_table_pointer[hash_value];
-
-            /* 送信用データ用意 */
-            top_stream.data = top;
-            end_stream.data = end;
-
-            /* Stream-portへ送信 */
-            top_stream_out.write(top_stream);
-            end_stream_out.write(end_stream);
-            // printf("hid_cal : top-end送信完了\n");
-        }
-        else {
-            break;
-        }
+                /* Stream-portへ送信 */
+                top_stream_out.write(top_stream);
+                end_stream_out.write(end_stream);
+                tempA32 = tempB32;
+                tempB32 = tempC32;
+                /* subFP-Read */
+                tempC32 = query[flame_index + 3];
+                /* 96bit結合 */
+                flame96 = ((tempA32, tempB32), tempC32);
+            } else flame_index--;
+        } else break;
     }
-
+    
     /* 完了通知が来るまで待ち */
     while(complete_stream_in.empty());
     /* 完了通知後 */
@@ -92,6 +90,7 @@ void hid_cal_set_1(
 
     /* 後処理 */
     complete_stream_out.write(complete_stream_in.read());
+    return;
 }
 }
 /* --mianからの呼び出し-- */

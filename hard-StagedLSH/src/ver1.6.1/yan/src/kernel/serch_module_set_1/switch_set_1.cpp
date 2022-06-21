@@ -26,7 +26,7 @@ void switch_set_1(
     hls::stream<ap_axiu<96, 0, 0, 0>>& flame96_r_stream_out // 96bitフレーム(出力->hd96_cal
 )
 {
-// #pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
+#pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
 // 300曲想定
 #pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=DB_switch_set_1
 #pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_switch_set_1
@@ -42,7 +42,7 @@ void switch_set_1(
     unsigned int end;
 
     while (complete_stream_in.empty()) {
-        if (!top_stream_in.empty() && !end_stream_in.empty())
+        if (!top_stream_in.empty() && !end_stream_in.empty() && !top_stream_out.full() && !end_stream_out.full())
         {
             /* top-end(入力)読み込み */
             top_st = top_stream_in.read();
@@ -61,18 +61,20 @@ void switch_set_1(
             {
                 if (complete_stream_in.empty())
                 {
-                    temp_flame96 = (((ap_uint<32>) FP_DB[hash_table[i]],
-                    (ap_uint<32>) FP_DB[hash_table[i] + 1]),
-                    (ap_uint<32>) FP_DB[hash_table[i] + 2]);
+                    if (!flame96_r_stream_out.full())
+                    {
+                        temp_flame96 = (((ap_uint<32>) FP_DB[hash_table[i]],
+                        (ap_uint<32>) FP_DB[hash_table[i] + 1]),
+                        (ap_uint<32>) FP_DB[hash_table[i] + 2]);
 
-                    /* 送信データ用意 */
-                    flame96_stream.data = temp_flame96;
+                        /* 送信データ用意 */
+                        flame96_stream.data = temp_flame96;
 
-                    /* Stream-portへ送信 */
-                    flame96_r_stream_out.write(flame96_stream);
-                    // printf("switch : 96bitflame書込み完了\n");
-                }
-                else break;
+                        /* Stream-portへ送信 */
+                        flame96_r_stream_out.write(flame96_stream);
+                        // printf("switch : 96bitflame書込み完了\n");
+                    } else i--;
+                } else break;
             }
         }
     }
@@ -90,6 +92,7 @@ void switch_set_1(
     }
     printf("switch : 終了...............\n");
     complete_stream_out.write(complete_stream_in.read());
+    return;
 }
 }
 /* --からの呼び出し-- */

@@ -47,6 +47,7 @@ void out_complete (
     /* 結果の格納 */
     printf("out_complete : 終了..............\n");
     *judge_temp = (int) music_index.data;
+    return;
 }
 }
 /* --からの呼び出し-- */

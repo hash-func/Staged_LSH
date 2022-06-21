@@ -69,6 +69,7 @@ void determin (
             // printf("count : %u\n", count1);
             if ((int) read_index1.data >= 0 && out_flag)
             {
+                /* 1回しか送信しないflag */
                 out_flag = false;
                 /* Stream-portへ出力 */
                 index_stream_out.write(read_index1);
@@ -135,14 +136,16 @@ void determin (
             /* Stream-portへ出力 */
             index_stream_out.write(write_index);
             // printf("未発見\n");
+            /* 1回しか送信しないflag */
+            out_flag = false;
         }
     }
     /* 完了信号を読みだし->送信 */
     /* 後処理 */
-    // while (!index_stream_in1.empty()) {
-    //     printf("determin-index-stream\n");
-    //     read_index1 = index_stream_in1.read();
-    // }
+    while (!index_stream_in1.empty()) {
+        printf("determin-index-stream\n");
+        read_index1 = index_stream_in1.read();
+    }
     printf("determin : 終了................\n");
     complete_stream_out.write(complete_stream_in.read());
 }

@@ -66,11 +66,11 @@ void backet_serch_set_1(
     hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_in, // 処理終了信号(入力<-hd96
     hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out,// 処理終了信号(出力->determin
     hls::stream<ap_axiu<32, 0, 0, 0>>& locate_stream_in,  // DPDB位置(入力<-hd96_cal
-    hls::stream<ap_axiu<1, 0, 0, 0>>& endpt_stream_in,    // 出力判定(入力<-hd96_cal
+    hls::stream<ap_axiu<32, 0, 0, 0>>& endpt_stream_in,   // 出力判定(入力<-hd96_cal
     hls::stream<ap_axiu<32, 0, 0, 0>>& index_stream_out   // 曲識別子(出力->determin
 )
 {
-// #pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
+#pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
 #pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=DB_backet_set_1
 #pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_backet_set_1
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_backet_set_1
@@ -79,7 +79,7 @@ void backet_serch_set_1(
     ap_axiu<32, 0, 0, 0> index_stream;
     /* 読み込み用 */
     ap_axiu<32, 0, 0, 0> locate_stream;
-    ap_axiu<1, 0, 0, 0> endpt_stream;
+    ap_axiu<32, 0, 0, 0> endpt_stream;
     
 
     /* 変数 */
@@ -88,13 +88,17 @@ void backet_serch_set_1(
     int music_index_temp;
     unsigned int db_locate;      // DB楽曲開始位置
     unsigned int haming_dis = 0; // 4096bitハミング距離
+    ap_uint<32> count = 0;
+    ap_uint<32> num_count = 0;
+    bool flag = true;
 
-    /* 前半カーネルが2つとも終了次第終了 */
+
     while (complete_stream_in.empty())
     {
         if (!locate_stream_in.empty())
         {
             locate_stream = locate_stream_in.read();
+            count++;
             // printf("backet : 位置情報読み込み\n");
             /* 楽曲インデックス特定 */
             music_index_temp = hash_table[locate_stream.data] / ONEMUSIC_SUBNUM;
@@ -122,18 +126,27 @@ void backet_serch_set_1(
         }
 
         /* バケット終端信号を受信後 */
-        if (!endpt_stream_in.empty() && complete_stream_in.empty())
+        if (!endpt_stream_in.empty() || !flag)
         {
-            /* 結果の送信 */
-            index_stream.data = (ap_uint<32>) music_index;
-            index_stream_out.write(index_stream);
-            // printf("backet : 楽曲インデックス送信\n");
-
-            /* 終端信号の読み出し */
-            endpt_stream = endpt_stream_in.read();
-            /* 値の初期化 */
-            music_index = -1;
-            min_haming_dis = SCRUTINY;
+            if (!endpt_stream_in.empty() && flag)
+            {
+                /* 終端信号の読み出し */
+                endpt_stream = endpt_stream_in.read();
+                num_count = endpt_stream.data;
+                flag = false;   // アクセスを1回制限
+            }
+            if (num_count <= count && !index_stream_out.full() && !flag)
+            {
+                /* 結果の送信 */
+                index_stream.data = (ap_uint<32>) music_index;
+                index_stream_out.write(index_stream);
+                // printf("backet : 楽曲インデックス送信\n");
+                /* 値の初期化 */
+                music_index = -1;
+                min_haming_dis = SCRUTINY;
+                count = count - num_count;
+                flag = true;
+            }
         }
     }
     /* 終了信号->determin */
