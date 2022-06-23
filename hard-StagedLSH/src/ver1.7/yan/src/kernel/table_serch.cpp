@@ -221,22 +221,34 @@ void hdis_4096 (
 
 
 /*バケット内探索関数*/
-int backet_serch (
+void backet_serch (
     unsigned int query[],                       // クエリFP配列
     unsigned int FP_DB[],                       // FPデータベース
     unsigned int hash_table[],                  // ハッシュテーブル
-    hls::stream<ap_uint<32>> &top,               // バケット先頭(入力<-
-    hls::stream<ap_uint<32>> &end,               // バケット末尾(入力<-
-    hls::stream<ap_uint<96>> &flame96_stream      // 対象フレーム(入力<-
+    hls::stream<ap_uint<32>> &top,              // バケット先頭(入力<-
+    hls::stream<ap_uint<32>> &end,              // バケット末尾(入力<-
+    hls::stream<ap_uint<96>> &flame96_stream,   // 対象フレーム(入力<-
+    int* judge                                  // 戻り値
 )
 {
+/* デュアルポート生成 */
+#pragma HLS bind_storage variable=FP_DB type=RAM_T2P impl=URAM
+#pragma HLS bind_storage variable=hash_table type=RAM_T2P impl=URAM
     /* top-endの読み込み */
     ap_uint<32> top_in = top.read();
     ap_uint<32> end_in = end.read();
     ap_uint<96> flame96_in = flame96_stream.read();
     printf("dataflow : top-end読み込み完了\n");
 
-#pragma HLS DATAFLOW
+#pragma HLS shared variable=top_in
+#pragma HLS shared variable=end_in
+#pragma HLS stable variable=top_in
+#pragma HLS stable variable=end_in
+
+#pragma HLS shared variable=FP_DB
+#pragma HLS shared variable=hash_table
+#pragma HLS stable variable=FP_DB
+#pragma HLS stable variable=hash_table
     /* Stream-port */
     hls::stream<ap_uint<96>> flame;         // 96bitフレーム
     #pragma HLS STREAM variable=flame depth=2
@@ -244,7 +256,7 @@ int backet_serch (
     #pragma HLS STREAM variable=haming_96 depth=2
     hls::stream<ap_uint<32>> music_index;   // 楽曲インデックス
     #pragma HLS STREAM variable=music_index depth=1
-
+#pragma HLS DATAFLOW
     /* 96bitフレームの読み出し */
     switch_func(
         flame,      // 96bitフレーム(出力->hd96
@@ -275,9 +287,8 @@ int backet_serch (
     );
 
     /* 出力 */
-    int judge = (int) music_index.read();
+    *judge = (int) music_index.read();
     printf("backet : 結果書込み完了\n");
-    return judge;
 }
 
 /* データフロー関数 */
@@ -306,7 +317,6 @@ int compute_music_index_dataflow (
 
     for (int flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
     {
-    #pragma HLS DATAFLOW
         /* ハッシュ関数を求める->バケット境界を計算 */
         hid_bound(
             temp96,
@@ -318,13 +328,14 @@ int compute_music_index_dataflow (
         );
 
         /* バケット内を検索する関数 */
-        judge_tmp = backet_serch(
+        backet_serch(
             query,
             FP_DB,
             hash_table,
             top,
             end,
-            flame96_stream
+            flame96_stream,
+            &judge_tmp
         );
 
         /* 結果の判定 */
@@ -361,10 +372,15 @@ void table_serch(
 #pragma HLS TOP name=table_serch
 /* 300曲想定 */
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_plram1
-#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=DB_aximm2
-#pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_aximm0
+#pragma HLS INTERFACE m-axi depth=153600 port=FP_DB bundle=DB_aximm2
+#pragma HLS INTERFACE m-axi depth=907200 port=hash_table bundle=table_aximm0
 #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_aximm1
 #pragma HLS INTERFACE m_axi depth=4 port=judge_temp bundle=judge_plram1
+
+/* デュアルポート生成 */
+#pragma HLS bind_storage variable=FP_DB type=RAM_T2P impl=URAM
+#pragma HLS bind_storage variable=hash_table type=RAM_T2P impl=URAM
+
 
     /* queryをローカルに格納->配列を小型のレジスタに分割 */
     unsigned int query_local[128];
@@ -376,8 +392,6 @@ void table_serch(
         tmp = query[i];
         query_local[i] = tmp;
     }
-
-#pragma HLS DATAFLOW
 
     /* データフローからの出力 */
     int judge = -1;
