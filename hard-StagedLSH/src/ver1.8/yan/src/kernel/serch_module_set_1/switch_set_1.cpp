@@ -28,7 +28,8 @@ void switch_set_1(
 // 300曲想定
 #pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=DB_switch_set_1
 #pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_switch_set_1
-#pragma HLS STREAM variable=flame96_stream_out depth=4
+
+// #pragma HLS STREAM variable=flame96_stream_out depth=32
 
     /* 出力用 */
     ap_axiu<96, 0, 0, 0> flame96_stream;

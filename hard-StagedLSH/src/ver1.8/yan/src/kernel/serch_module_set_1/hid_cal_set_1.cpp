@@ -39,6 +39,17 @@ void hid_cal_set_1(
 #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_hid_set_1
 #pragma HLS INTERFACE m_axi depth=4 port=judge bundle=judge_hid_set_1
 
+// #pragma HLS STREAM variable=flame_stream_out depth=32
+// #pragma HLS STREAM variable=top_stream_out_1 depth=32
+// #pragma HLS STREAM variable=end_stream_out_1 depth=32
+// #pragma HLS STREAM variable=top_stream_out_2 depth=32
+// #pragma HLS STREAM variable=end_stream_out_2 depth=32
+// #pragma HLS STREAM variable=top_stream_out_3 depth=32
+// #pragma HLS STREAM variable=end_stream_out_3 depth=32
+// #pragma HLS STREAM variable=complete_stream_out1 depth=32
+// #pragma HLS STREAM variable=complete_stream_out2 depth=32
+// #pragma HLS STREAM variable=complete_stream_out3 depth=32
+
     /* 出力用 */
     ap_axiu<32, 0, 0, 0> top_stream;
     ap_axiu<32, 0, 0, 0> end_stream;
@@ -53,13 +64,58 @@ void hid_cal_set_1(
     ap_uint<SUB_FP_SIZE> tempB32 = query[1];
     ap_uint<SUB_FP_SIZE> tempC32 = query[2];
     ap_uint<96> flame96 = ((tempA32, tempB32), tempC32);
-    ap_uint<32> hash_value;                     // Hash値
-    ap_uint<32> top;    // 先頭バケット位置(含む)
-    ap_uint<32> end;    // 末尾バケット位置(含む)
-    
-    int flame_index;
-    hash_gen_loop: for (flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
+    ap_uint<32> hash_value = 0; // Hash値(0初期化重要)
+    ap_uint<32> top = 0;    // 先頭バケット位置(含む)
+    ap_uint<32> end = 0;    // 末尾バケット位置(含む)
+    // printf("ハッシュ値生成\n");
+    /* 1回目 */
+    /* Hash値生成 */
+    hash_value[K_HASHBIT-1] =   flame96[get1 ];
+    hash_value[K_HASHBIT-2] =   flame96[get2 ];
+    hash_value[K_HASHBIT-3] =   flame96[get3 ];
+    hash_value[K_HASHBIT-4] =   flame96[get4 ];
+    hash_value[K_HASHBIT-5] =   flame96[get5 ];
+    hash_value[K_HASHBIT-6] =   flame96[get6 ];
+    hash_value[K_HASHBIT-7] =   flame96[get7 ];
+    hash_value[K_HASHBIT-8] =   flame96[get8 ];
+    hash_value[K_HASHBIT-9] =   flame96[get9 ];
+    hash_value[K_HASHBIT-10] =  flame96[get10];
+    hash_value[K_HASHBIT-11] =  flame96[get11];
+    hash_value[K_HASHBIT-12] =  flame96[get12];
+    hash_value[K_HASHBIT-13] =  flame96[get13];
+    /* バケット境界(top-end)の確定 */
+    if ((unsigned int)hash_value == 0) top = 0;
+    else top = (hash_table_pointer[hash_value-1]) + 1;
+    end = hash_table_pointer[hash_value];
+    /* 送信用データ用意 */
+    top_stream.data = top;
+    end_stream.data = end;
+    /* Stream-portへ送信 */
+    top_stream_out_1.write(top_stream);
+    end_stream_out_1.write(end_stream);
+    top_stream_out_2.write(top_stream);
+    end_stream_out_2.write(end_stream);
+    top_stream_out_3.write(top_stream);
+    end_stream_out_3.write(end_stream);
+    // printf("hid : top-end共有情報の送信完了\n");
+    /* 96bitフレームの送信 */
+    flame_stream.data = flame96;
+    flame_stream_out.write(flame_stream);
+    /* 更新 */
+    tempA32 = tempB32;
+    tempB32 = tempC32;
+    /* subFP-Read */
+    tempC32 = query[3];
+    /* 96bit結合 */
+    flame96 = ((tempA32, tempB32), tempC32);
+    // printf("hid : %d回目\n", flame_index);
+
+    int flame_index = 0;
+
+    hash_gen_loop: while (flame_index<FLAME_IN_MUSIC-2)
     {
+        /* ハッシュ値0初期化 */
+        hash_value = 0;
         /* Hash値生成 */
         hash_value[K_HASHBIT-1] =   flame96[get1 ];
         hash_value[K_HASHBIT-2] =   flame96[get2 ];
@@ -82,8 +138,8 @@ void hid_cal_set_1(
         top_stream.data = top;
         end_stream.data = end;
         /* 結果の判定 */
-        if (flame_index != 0)
-        {
+        // if (flame_index != 0)
+        // {
             /* 結果読み込み待ち */
             index_stream = index_stream_in.read();
             if ((int) index_stream.data >= 0)
@@ -107,7 +163,7 @@ void hid_cal_set_1(
                 complete_stream_out2.write(complete_stream);
                 complete_stream_out3.write(complete_stream);
             }
-        }
+        // }
         /* Stream-portへ送信 */
         top_stream_out_1.write(top_stream);
         end_stream_out_1.write(end_stream);
@@ -124,13 +180,14 @@ void hid_cal_set_1(
         tempA32 = tempB32;
         tempB32 = tempC32;
         /* subFP-Read */
-        tempC32 = query[flame_index + 3];
+        tempC32 = query[flame_index + 4];
         /* 96bit結合 */
         flame96 = ((tempA32, tempB32), tempC32);
         // printf("hid : %d回目\n", flame_index);
+        flame_index++;
     }
     /* 未発見の時 */
-    if (flame_index >= 125)
+    if (flame_index == (FLAME_IN_MUSIC-2))
     {
         /* 終了信号送信 */
         complete_stream.data = 1;

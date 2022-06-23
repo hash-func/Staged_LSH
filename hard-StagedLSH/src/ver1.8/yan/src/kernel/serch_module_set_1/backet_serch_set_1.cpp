@@ -76,6 +76,17 @@ void backet_serch_set_1(
 #pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_backet_set_1
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_backet_set_1
 
+// #pragma HLS STREAM variable=index_stream_out depth=32
+    /* queryをローカルに格納->配列を小型のレジスタに分割 */
+    unsigned int query_local[128];
+#pragma HLS ARRAY_PARTITION variable=query_local complete dim=1
+    unsigned int tmp;
+    read_query: for (int i=0; i<128; i++)
+    {
+    #pragma HLS UNROLL
+        tmp = query[i];
+        query_local[i] = tmp;
+    }
     /* 出力用 */
     ap_axiu<32, 0, 0, 0> index_stream;
     /* 読み込み用 */
@@ -117,7 +128,7 @@ void backet_serch_set_1(
                 /* 楽曲ハミング距離計算 */
                 squrutiny_func(
                     FP_DB,
-                    query,
+                    query_local,
                     db_locate,
                     &haming_dis
                 );

@@ -26,8 +26,10 @@ void hdis96_cal_set_1(
 {
 // #pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
 // #pragma HLS interface ap_ctrl_none port=return
-#pragma HLS STREAM variable=haming_stream_out depth=4
 // #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_hid_set_1
+
+// #pragma HLS STREAM variable=haming_stream_out depth=32
+
     /* 出力用 */
     ap_axiu<32, 0, 0, 0> haming96;
     /* 入力用 */
@@ -38,8 +40,8 @@ void hdis96_cal_set_1(
     ap_axiu<1, 0, 0, 0> complete_in;
     /* 処理に用いる変数宣言 */
     ap_uint<32> haming_dis;
-    ap_uint<2> reg;
-    ap_uint<96> xor96;
+    ap_uint<2> reg = 0;
+    ap_uint<96> xor96 = 0;
 
     while (1)
     {
