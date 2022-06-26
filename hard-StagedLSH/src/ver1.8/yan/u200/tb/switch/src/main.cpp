@@ -35,7 +35,7 @@ std::random_device rnd1;
 void event_cb(cl_event event, cl_int cmd_status, void *id) 
 {
 	if (getenv("XCL_EMULATION_MODE") != NULL) {
-#ifdef DEBUG
+#ifdef DEBUG_sub
 	 	std::cout << "  kernel finished processing request " << *(int *)id << std::endl;
 #endif
     }
@@ -103,7 +103,8 @@ public:
   
   TableSerch6Request* operator() (
   	unsigned int query[],
-    int* judge_temp
+    int* judge_temp,
+    bool flag
     ) 
   { 
   	TableSerch6Request* req = new TableSerch6Request(mCounter++);
@@ -118,18 +119,22 @@ public:
 	// Schedule the writing of the inputs
     //(コマンドキュー, メモリオブジェクト数, メモリオブジェクトリストへのポインタ,
     //フラグ(?), 同期ポイント指定なければ0, 左に同じ(内容), コマンドを識別するイベントオブジェクト )
-    clSetKernelArg(mKernel_test,      0, sizeof(cl_mem),       &mDstBuf[0]);	
+    clSetKernelArg(mKernel_test,      0, sizeof(cl_mem),       &mDstBuf[0]);
+    clSetKernelArg(mKernel_test,      1, sizeof(bool),       &flag);	
+
+    clSetKernelArg(mKernel_switch,    2, sizeof(cl_mem),       &mSrcBuf[0]);
 
 	// Schedule the execution of the kernel
     //(コマンドキュー, 有効なカーネル, 同期ポイント, 左内容, 実行インスタンスを識別するイベント)
-	clEnqueueTask(mQueue, mKernel_test,     0,  nullptr, &req->mEvent[0]);
-    clEnqueueTask(mQueue, mKernel_switch,   0,  nullptr, &req->mEvent[1]);
-	
+    clEnqueueMigrateMemObjects(mQueue, 1, &mSrcBuf[0], 0, 0, nullptr,  &req->mEvent[0]);
+	clEnqueueTask(mQueue, mKernel_test,     1,  &req->mEvent[0], &req->mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_switch,   1,  &req->mEvent[0], &req->mEvent[1]);
+    
 	// Schedule the reading of the outputs
-  	clEnqueueMigrateMemObjects(mQueue, 1, &mDstBuf[0], CL_MIGRATE_MEM_OBJECT_HOST, 2, &req->mEvent[0], &req->mEvent[2]);
+  	clEnqueueMigrateMemObjects(mQueue, 1, &mDstBuf[0], CL_MIGRATE_MEM_OBJECT_HOST, 1, &req->mEvent[1], &req->mEvent[2]);
 
 	// Register call back to notify of kernel completion
-	clSetEventCallback(req->mEvent[2], CL_COMPLETE, event_cb, &req->mId); 
+	clSetEventCallback(req->mEvent[0], CL_COMPLETE, event_cb, &req->mId); 
 	
 	return req;
   }; 
@@ -317,10 +322,12 @@ int main(int argc, char** argv)
 
     alignas(32) int judge = -1;
     int* judge_ad = &judge;
+    bool flag = true;
 
     /* 指定回数検索実行 */
     for (unsigned int i=0; i<QUERY_NUM; i++)
     {
+        if (i == QUERY_NUM-1) flag = false;
         /* 楽曲識別子生成 */
         music_index = rnd1() % MUSIC_NUM;
 
@@ -334,7 +341,7 @@ int main(int argc, char** argv)
         );
 
         /* 検索処理（FPGA） */
-        request[0] = Serch(query, judge_ad);
+        request[0] = Serch(query, judge_ad, flag);
 
         /* 同期 */
         request[0]->sync();

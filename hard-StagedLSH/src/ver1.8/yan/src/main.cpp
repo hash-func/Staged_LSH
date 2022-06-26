@@ -339,6 +339,8 @@ int main(int argc, char** argv)
 
     alignas(32) int judge = -1;
     alignas(32) int* judge_ad = &judge;
+
+    int before;
     
 
     /* 指定回数検索実行 */
@@ -377,11 +379,13 @@ int main(int argc, char** argv)
             {
                 printf("不正解 : %d\n", judge);
                 printf("%d回目\n", i);
+                printf("before : %d\n",before);
                 huseikai++;
             }
         }
         /* 初期化 */
         judge = -1;
+        before = music_index;
     }
 
 /****************************************************************************************************/

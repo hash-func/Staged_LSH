@@ -1,0 +1,98 @@
+/* 96bitフレーム読み出し:Switch_Module */
+
+#include <iostream>
+#include <stdio.h>
+#include <math.h>
+#include <random>
+#include <time.h>
+#include <ap_int.h>         // 任意精度型ライブラリ(ap_uint<1~1024>)
+#include <ap_axi_sdata.h>   // ストリーミング接続
+#include "hls_stream.h"
+
+#include "main_fpga.h"
+
+/* mainからの呼び出し */
+extern "C" {
+void switch_set_1(
+    unsigned int FP_DB[],                   // FPデータベース
+    unsigned int hash_table[],              // ハッシュテーブル
+    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_in,  // 処理終了信号(入力<-switch
+    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out, // 処理終了信号(出力->hdis96
+    hls::stream<ap_axiu<32, 0, 0, 0>>& top_stream_in,       // top(入力<-hid
+    hls::stream<ap_axiu<32, 0, 0, 0>>& end_stream_in,       // end(入力<-hid
+    hls::stream<ap_axiu<32, 0, 0, 0>>& top_stream_out,      // top(出力->h96
+    hls::stream<ap_axiu<32, 0, 0, 0>>& end_stream_out,      // end(出力->h96
+    hls::stream<ap_axiu<96, 0, 0, 0>>& flame96_r_stream_out // 96bitフレーム(出力->hd96_cal
+)
+{
+#pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
+// 300曲想定
+#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=DB_switch_set_1
+#pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_switch_set_1
+
+    /* 出力用 */
+    ap_axiu<96, 0, 0, 0> flame96_stream;
+    /* 入力用 */
+    ap_axiu<32, 0, 0, 0> top_st;
+    ap_axiu<32, 0, 0, 0> end_st;
+    /* 変数 */
+    ap_uint<96> temp_flame96;
+    unsigned int top;
+    unsigned int end;
+
+    while (1) {
+        if (!complete_stream_in.empty()) break;
+        if (!top_stream_in.empty() && !end_stream_in.empty() && !top_stream_out.full() && !end_stream_out.full())
+        {
+            /* top-end(入力)読み込み */
+            top_st = top_stream_in.read();
+            end_st = end_stream_in.read();
+            top = (unsigned int) top_st.data;
+            end = (unsigned int) end_st.data;
+            // printf("switch : top-end読み出し完了\n");
+
+            /* ループ回数送信 */
+            top_stream_out.write(top_st);
+            end_stream_out.write(end_st);
+            // printf("switch : top-end書込み完了\n");
+
+            /* 読み込み */
+            switch_read_loop: for (unsigned int i=top; i<=end; i++)
+            {
+                if (complete_stream_in.empty())
+                {
+                    if (!flame96_r_stream_out.full())
+                    {
+                        temp_flame96 = (((ap_uint<32>) FP_DB[hash_table[i]],
+                        (ap_uint<32>) FP_DB[hash_table[i] + 1]),
+                        (ap_uint<32>) FP_DB[hash_table[i] + 2]);
+
+                        /* 送信データ用意 */
+                        flame96_stream.data = temp_flame96;
+
+                        /* Stream-portへ送信 */
+                        flame96_r_stream_out.write(flame96_stream);
+                        // printf("switch : 96bitflame書込み完了\n");
+                    } else i--;
+                } else break;
+            }
+        }
+    }
+
+
+    /* 完了信号が来た時 */
+    /* 後処理 */
+    while(!top_stream_in.empty()){
+        // printf("switch-top-stream\n");
+        top_st = top_stream_in.read();
+    }
+    while(!end_stream_in.empty()){
+        // printf("switch-end-stream\n");
+        end_st = end_stream_in.read();
+    }
+    printf("switch : 終了...............\n");
+    complete_stream_out.write(complete_stream_in.read());
+    return;
+}
+}
+/* --からの呼び出し-- */

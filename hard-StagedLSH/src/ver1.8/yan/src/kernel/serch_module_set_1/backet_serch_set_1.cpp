@@ -106,6 +106,7 @@ void backet_serch_set_1(
     {
         /* 初期化 */
         min_haming_dis = SCRUTINY;
+        music_index = -1;
         /* top-end読み込み */
         top_st = top_stream_in.read();
         end_st = end_stream_in.read();
@@ -140,6 +141,7 @@ void backet_serch_set_1(
                     min_haming_dis = haming_dis;
                     /* 楽曲インデックス保存 */
                     music_index = music_index_temp;
+                    printf("精査通過\n");
                 }
             }
         }
