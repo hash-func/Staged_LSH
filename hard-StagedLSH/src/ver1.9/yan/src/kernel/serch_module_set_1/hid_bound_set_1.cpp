@@ -32,6 +32,8 @@ void hid_bound_set_1(
 // 300曲想定値
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_hid_set_1
 #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_hid_set_1
+    // printf("hid : 実行開始\n");
+    printf("flag : %d\n", flag);
     /* 出力用 */
     ap_axiu<32, 0, 0, 0> top_stream;
     ap_axiu<32, 0, 0, 0> end_stream;
@@ -54,7 +56,7 @@ void hid_bound_set_1(
         /* Hash値初期化 */
         ap_uint<32> hash_value = 0;
         tempC32 = query[flame_index + 2];
-        flame96 = ((tempA32, tempB32), tempC32)
+        flame96 = ((tempA32, tempB32), tempC32);
         /* Hash値生成 */
         hash_value[K_HASHBIT-1] =   flame96[get1 ];
         hash_value[K_HASHBIT-2] =   flame96[get2 ];
@@ -79,30 +81,33 @@ void hid_bound_set_1(
         /* 続行判定待ち */
         if (flame_index != 0) {
             complete_stream_det = complete_stream_in.read();
-            if (complete_stream_det == 1) {
-                /* 発見終了 */
-                if (!flag) {
-                    /* 最終処理なら全てのカーネル停止 */
-                    complete_stream_out1.write(complete_stream_out);
-                    complete_stream_out2.write(complete_stream_out);
-                    printf("his_bound : カーネル停止信号送信\n");
-                }
-                break;
-            }
+            if ((int)complete_stream_det.data == 1) {break;}
         }
         /* Stream-portへ送信 */
         top_stream_out_1.write(top_stream);
         end_stream_out_1.write(end_stream);
         top_stream_out_2.write(top_stream);
         end_stream_out_2.write(end_stream);
-        printf("hid_bound : top-end共有情報送信完了\n");
+        // printf("hid_bound : top-end共有情報送信完了\n");
         /* 96bitフレーム送信 */
         flame_stream.data = flame96;
         flame_stream_out.write(flame_stream);
-        printf("hid_bound : 96bit flame送信\n");
+        // printf("hid_bound : 96bit flame送信\n");
         /* 更新 */
         tempA32 = tempB32;
         tempB32 = tempC32;
+    }
+    printf("hid : 終了............\n");
+    /* 最後の処理の判定待ち */
+    if (flame_index == FLAME_IN_MUSIC) {
+        /* 続行信号受け取り */
+        complete_stream_det = complete_stream_in.read();
+    }
+    /* 最終よりなら全てのカーネル停止 */
+    if (!flag) {
+        complete_stream_out1.write(complete_stream_out);
+        complete_stream_out2.write(complete_stream_out);
+        printf("his_bound : カーネル停止信号送信\n");
     }
 }
 }

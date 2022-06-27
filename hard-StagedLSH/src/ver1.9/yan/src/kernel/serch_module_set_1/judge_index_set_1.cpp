@@ -32,6 +32,8 @@ void judge_index_set_1(
     ap_axiu<32, 0, 0, 0> fp32_out;
     ap_axiu<32, 0, 0, 0> index_stream;
     /* 読み込み用 */
+    ap_axiu<32, 0, 0, 0> count_in;
+    count_in.data = 4294967295;
     /* 保存用 */
     /* 変数 */
     unsigned int min_haming_dis = SCRUTINY;
@@ -41,6 +43,7 @@ void judge_index_set_1(
 
     while(complete_stream_in.empty())
     {
+        // printf("judge : 実行中\n");
         if (count_stream_in.empty() && !locate_stream_in.empty()) {
             /* 位置情報の読み取り */
             ap_axiu<32, 0, 0, 0> locate_in = locate_stream_in.read();
@@ -51,7 +54,7 @@ void judge_index_set_1(
             unsigned int db_locate = music_index_temp * ONEMUSIC_SUBNUM;
             /* 楽曲ハミング距離計算 */
             /* 512bitの送信 */
-            4096_write_loop: for (int w=0; w<ONEMUSIC_SUBNUM; w++) {
+            write4096_loop: for (int w=0; w<ONEMUSIC_SUBNUM; w++) {
             #pragma HLS PIPELINE
                 /* バースト読み出し->書込み */
                 fp32_out.data = FP_DB[db_locate + w];
@@ -72,8 +75,10 @@ void judge_index_set_1(
         }
         else if (!count_stream_in.empty() || !flag) {
             /* 処理回数の読み出し */
-            ap_axiu<32, 0, 0, 0> count_in = count_stream_in.read();
-            flag = false;
+            if (!count_stream_in.empty()) {
+                count_in = count_stream_in.read();
+                flag = false;
+            }
             /* 処理回数条件を満たしたとき */
             if (count >= (unsigned int) count_in.data) {
                 /* Stream-Port出力 */

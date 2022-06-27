@@ -76,11 +76,14 @@ public:
     size_t full_table_size,
     const unsigned int division_num )	
   {
+    // イベント宣言
+    cl_event mEvent[2];
     // clCreateKernel(プログラム, 宣言されたカーネル名, エラー)
-	mKernel_hid         = clCreateKernel(Program, "hid_cal_set_1",      &mErr);
+    mKernel_hid         = clCreateKernel(Program, "hid_bound_set_1",    &mErr);
     mKernel_switch      = clCreateKernel(Program, "switch_set_1",       &mErr);
-    mKernel_hd96        = clCreateKernel(Program, "hdis96_cal_set_1",   &mErr);
-    mKernel_backet      = clCreateKernel(Program, "backet_serch_set_1", &mErr);
+    mKernel_judge       = clCreateKernel(Program, "judge_index_set_1",  &mErr);
+    mKernel_hd4096      = clCreateKernel(Program, "hdis4096_set_1",     &mErr);
+    mKernel_det         = clCreateKernel(Program, "determin",           &mErr);
 
 	mQueue   = clCreateCommandQueue(Context, Device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &mErr);
 	mContext = Context;
@@ -95,24 +98,30 @@ public:
     division_num*sizeof(unsigned int), hash_table_pointer, &mErr);
     
     // Set the kernel arguments
+    // FPDB
     clSetKernelArg(mKernel_switch,      0, sizeof(cl_mem),       &mConstBuf[0]);
-    clSetKernelArg(mKernel_backet,      0, sizeof(cl_mem),       &mConstBuf[0]);
-
-    clSetKernelArg(mKernel_backet,      1, sizeof(cl_mem),       &mConstBuf[1]);
+    clSetKernelArg(mKernel_judge,       0, sizeof(cl_mem),       &mConstBuf[0]);
+    // hash_table
     clSetKernelArg(mKernel_switch,      1, sizeof(cl_mem),       &mConstBuf[1]);
-
+    clSetKernelArg(mKernel_judge,       1, sizeof(cl_mem),       &mConstBuf[1]);
+    // hash_table_pointer
     clSetKernelArg(mKernel_hid,         1, sizeof(cl_mem),       &mConstBuf[2]);
 
-    bool flag = true;
-    clSetKernelArg(mKernel_hd96,        0, sizeof(bool),         &flag);
-
     // Schedule the execution of the kernel
-    clEnqueueMigrateMemObjects(mQueue, 3, mConstBuf, 0, 0, nullptr,  nullptr);
+    clEnqueueMigrateMemObjects(mQueue, 3, mConstBuf, 0, 0, nullptr,  &mEvent[0]);
+    // Schedule the execution of the kernel
+    clEnqueueTask(mQueue, mKernel_switch,      1,  &mEvent[0], &mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_judge,       1,  &mEvent[0], &mEvent[1]);
+
+    // clWaitForEvents(1, &mEvent[1]);
+    clReleaseEvent(mEvent[0]);
+    clReleaseEvent(mEvent[1]);
   }
   
   TableSerch6Request* operator() (
   	unsigned int query[],
-    int* judge_temp
+    int* judge_temp,
+    bool flag
     ) 
   { 
   	TableSerch6Request* req = new TableSerch6Request(mCounter++);
@@ -125,10 +134,13 @@ public:
     sizeof(int), judge_temp, &mErr);
     
   	// Set the kernel arguments
+    // query
   	clSetKernelArg(mKernel_hid,         0, sizeof(cl_mem),       &mSrcBuf[0]);
-    clSetKernelArg(mKernel_backet,      2, sizeof(cl_mem),       &mSrcBuf[0]);
-
-  	clSetKernelArg(mKernel_hid,         2, sizeof(cl_mem),       &mDstBuf[0]);
+    clSetKernelArg(mKernel_hd4096,      0, sizeof(cl_mem),       &mSrcBuf[0]);
+    // flag
+    clSetKernelArg(mKernel_hid,         2, sizeof(bool),         &flag);
+    // judge
+  	clSetKernelArg(mKernel_det,         0, sizeof(cl_mem),       &mDstBuf[0]);
 
 	// Schedule the writing of the inputs
     //(コマンドキュー, メモリオブジェクト数, メモリオブジェクトリストへのポインタ,
@@ -138,15 +150,14 @@ public:
 	// Schedule the execution of the kernel
     //(コマンドキュー, 有効なカーネル, 同期ポイント, 左内容, 実行インスタンスを識別するイベント)
 	clEnqueueTask(mQueue, mKernel_hid,      1,  &req->mEvent[0], &req->mEvent[1]);
-    clEnqueueTask(mQueue, mKernel_switch,   1,  &req->mEvent[0], &req->mEvent[1]);
-    clEnqueueTask(mQueue, mKernel_hd96,     1,  &req->mEvent[0], &req->mEvent[1]);
-    clEnqueueTask(mQueue, mKernel_backet,   1,  &req->mEvent[0], &req->mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_hd4096,   1,  &req->mEvent[0], &req->mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_det,      1,  &req->mEvent[0], &req->mEvent[1]);
 	
 	// Schedule the reading of the outputs
   	clEnqueueMigrateMemObjects(mQueue, 1, &mDstBuf[0], CL_MIGRATE_MEM_OBJECT_HOST, 1, &req->mEvent[1], &req->mEvent[2]);
 
 	// Register call back to notify of kernel completion
-	clSetEventCallback(req->mEvent[2], CL_COMPLETE, event_cb, &req->mId); 
+	clSetEventCallback(req->mEvent[0], CL_COMPLETE, event_cb, &req->mId); 
 	
 	return req;
   }; 
@@ -158,8 +169,9 @@ public:
     clReleaseContext(mContext);
 	clReleaseKernel(mKernel_hid         );
     clReleaseKernel(mKernel_switch      );
-    clReleaseKernel(mKernel_hd96        );
-    clReleaseKernel(mKernel_backet      );
+    clReleaseKernel(mKernel_judge        );
+    clReleaseKernel(mKernel_hd4096      );
+    clReleaseKernel(mKernel_det      );
     clReleaseMemObject(mConstBuf[0]);
     clReleaseMemObject(mConstBuf[1]);
     clReleaseMemObject(mConstBuf[2]);
@@ -170,8 +182,9 @@ public:
 private:
   cl_kernel         mKernel_hid         ;
   cl_kernel         mKernel_switch      ;
-  cl_kernel         mKernel_hd96        ;
-  cl_kernel         mKernel_backet      ;
+  cl_kernel         mKernel_judge       ;
+  cl_kernel         mKernel_hd4096      ;
+  cl_kernel         mKernel_det         ;
   cl_command_queue  mQueue;	
   cl_context        mContext;  
   cl_mem            mConstBuf[3];   // 共通
@@ -339,14 +352,15 @@ int main(int argc, char** argv)
 
     alignas(32) int judge = -1;
     alignas(32) int* judge_ad = &judge;
-    
+    bool flag = true;
 
     /* 指定回数検索実行 */
     for (unsigned int i=0; i<QUERY_NUM; i++)
     {
+        /* flagの判定->更新 */
+        if (i == QUERY_NUM-1) flag = false;
         /* 楽曲識別子生成 */
         music_index = rnd1() % MUSIC_NUM;
-
         /* index楽曲格納 + 歪みのあるクエリの作成(ele_func.cpp) */
         distortion_query_create(
             FP_DB,                              // FPデータベース
@@ -357,7 +371,7 @@ int main(int argc, char** argv)
         );
 
         /* 検索処理（FPGA） */
-        request[0] = Serch(query, judge_ad);
+        request[0] = Serch(query, judge_ad, flag);
 
         /* 同期 */
         request[0]->sync();
@@ -376,7 +390,6 @@ int main(int argc, char** argv)
             else
             {
                 printf("不正解 : %d\n", judge);
-                printf("%d回目\n", i);
                 huseikai++;
             }
         }

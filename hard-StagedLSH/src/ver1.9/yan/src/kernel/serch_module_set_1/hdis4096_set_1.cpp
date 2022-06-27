@@ -83,7 +83,7 @@ void hdis4096_set_1(
         }
     }
     /* 終了信号受信後 */
-    printf("judge : judge終了...........\n");
+    printf("hdis4096 : hdis4096終了...........\n");
     ap_axiu<1, 0, 0, 0> complete_in = complete_stream_in.read();
 }
 }

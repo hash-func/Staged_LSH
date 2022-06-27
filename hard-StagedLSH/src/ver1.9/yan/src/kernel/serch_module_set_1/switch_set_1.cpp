@@ -31,6 +31,7 @@ void switch_set_1(
     /* 入力用 */
     /* 変数 */
     switch_wait_loop: while (complete_stream_in.empty()) {
+        // printf("switch : 実行中\n");
         if (!top_stream_in.empty() && !end_stream_in.empty())
         {
             /* top-end(入力)読み込み */
@@ -38,7 +39,7 @@ void switch_set_1(
             ap_axiu<32, 0, 0, 0> end_st = end_stream_in.read();
             unsigned int top = (unsigned int) top_st.data;
             unsigned int end = (unsigned int) end_st.data;
-            printf("switch : top-end読み出し完了\n");
+            // printf("switch : top-end読み出し完了\n");
             /* 読み込み */
             switch_read_loop: for (unsigned int i=top; i<=end; i++)
             {
@@ -49,7 +50,7 @@ void switch_set_1(
                 flame96_stream.data = temp_flame96;
                 /* Stream-portへ送信 */
                 flame96_stream_out.write(flame96_stream);
-                printf("switch : 96bit flame書込み完了\n");
+                // printf("switch : 96bit flame書込み完了\n");
             }
         }
     }
