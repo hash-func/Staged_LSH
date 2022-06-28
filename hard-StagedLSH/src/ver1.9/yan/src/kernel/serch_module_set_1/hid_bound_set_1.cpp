@@ -33,7 +33,7 @@ void hid_bound_set_1(
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_hid_set_1
 #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_hid_set_1
     // printf("hid : 実行開始\n");
-    printf("flag : %d\n", flag);
+    printf("hid : flag : %d\n", flag);
     /* 出力用 */
     ap_axiu<32, 0, 0, 0> top_stream;
     ap_axiu<32, 0, 0, 0> end_stream;
@@ -97,13 +97,14 @@ void hid_bound_set_1(
         tempA32 = tempB32;
         tempB32 = tempC32;
     }
-    printf("hid : 終了............\n");
     /* 最後の処理の判定待ち */
     if (flame_index == FLAME_IN_MUSIC) {
         /* 続行信号受け取り */
         complete_stream_det = complete_stream_in.read();
+        /*0でも1でも終了処理には変わらない*/
     }
-    /* 最終よりなら全てのカーネル停止 */
+    printf("hid : 終了............\n");
+    /* 最終処理なら全てのカーネル停止 */
     if (!flag) {
         complete_stream_out1.write(complete_stream_out);
         complete_stream_out2.write(complete_stream_out);

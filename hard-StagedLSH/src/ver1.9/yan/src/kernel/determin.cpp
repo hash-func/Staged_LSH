@@ -46,6 +46,10 @@ void determin (
                 flag = false;
             }
         }
+        /* 全て検索しても見つからなかった時 */
+        /* 全て検索した後は続行信号より先に終了処理 */
+        if (count >= DO*126) break;
+
         /* 終了判定（以下） */
         if (!flag1) {
             /* 前並列から処理を待ってまだ見つかっていない場合続行 */
@@ -55,10 +59,8 @@ void determin (
                 complete_stream_out1_1.write(complete_stream);
                 /* flag_NUM初期化 */
                 flag1 = true;
-            } else {break;}
+            } else {break;} // 見つかっていたら抜ける
         }
-        /* 全て検索しても見つからなかった時 */
-        if (count >= DO*126) break;
     }
     /* 対象カーネルの停止 */
     complete_stream.data = 1;

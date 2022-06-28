@@ -21,7 +21,7 @@
 /* 変更パラメータ */
 #define MUSIC_NUM 300           // 楽曲数
 #define QUERY_NUM 1          // 検索数（試行回数）
-#define DISTORTION 26.0          // 歪み率(%)
+#define DISTORTION 0.0          // 歪み率(%)
 
 /* 考察するパラメータ(main＿fpga.h合わせる) */
 #define K_HASHBIT 13            // ハッシュ関数gのbit数：K
