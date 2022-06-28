@@ -34,24 +34,31 @@ void judge_index_set_1(
     /* 読み込み用 */
     ap_axiu<32, 0, 0, 0> count_in;
     count_in.data = 4294967295;
+    ap_axiu<32, 0, 0, 0> locate_in;
+    ap_axiu<32, 0, 0, 0> haming_in;
+    ap_axiu<1, 0, 0, 0> complete_in;
     /* 保存用 */
-    /* 変数 */
     unsigned int min_haming_dis = SCRUTINY;
     int music_index = -1;
     unsigned int count = 0;
     bool flag = true;
+    /* 変数 */
+    unsigned int locate;
+    int music_index_temp;
+    unsigned int db_locate;
+    unsigned int haming = 0;
 
     while(complete_stream_in.empty())
     {
         // printf("judge : 実行中\n");
         if (count_stream_in.empty() && !locate_stream_in.empty()) {
             /* 位置情報の読み取り */
-            ap_axiu<32, 0, 0, 0> locate_in = locate_stream_in.read();
-            unsigned int locate = (unsigned int) locate_in.data;
+            locate_in = locate_stream_in.read();
+            locate = (unsigned int) locate_in.data;
             /* 楽曲インデックス特定 */
-            int music_index_temp = hash_table[locate] / ONEMUSIC_SUBNUM;
+            music_index_temp = hash_table[locate] / ONEMUSIC_SUBNUM;
             /* 楽曲開始位置特定 */
-            unsigned int db_locate = music_index_temp * ONEMUSIC_SUBNUM;
+            db_locate = music_index_temp * ONEMUSIC_SUBNUM;
             /* 楽曲ハミング距離計算 */
             /* 512bitの送信 */
             write4096_loop: for (int w=0; w<ONEMUSIC_SUBNUM; w++) {
@@ -61,8 +68,8 @@ void judge_index_set_1(
                 fp32_stream_out.write(fp32_out);
             }
             /* ハミング距離の取得 */
-            ap_axiu<32, 0, 0, 0> haming_in = haming_stream_in.read();
-            unsigned int haming = (unsigned int) haming_in.data;
+            haming_in = haming_stream_in.read();
+            haming = (unsigned int) haming_in.data;
             /* 閾値判定 */
             if (haming <= min_haming_dis) {
                 /* bitエラー最小値保存 */
@@ -94,7 +101,7 @@ void judge_index_set_1(
     }
     /* 終了信号受信後 */
     printf("judge : 終了...........\n");
-    ap_axiu<1, 0, 0, 0> complete_in = complete_stream_in.read();
+    complete_in = complete_stream_in.read();
 }
 }
 /* --からの呼び出し-- */

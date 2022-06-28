@@ -54,13 +54,8 @@ void test_bench(
     end_stream_1 = end_stream_in.read();
     printf("tb : top-end読み込み完了\n");
 
-    if (!top_stream_out.full() && !end_stream_out.full())
-    {
-        top_stream_out.write(top_stream);
-        end_stream_out.write(end_stream);
-    }
     /* 40個読み出し */
-    for (int i=0; i<40; i++)
+    for (int i=top; i<=end; i++)
     {
         if (!flame96_r_stream_in.empty())
         {

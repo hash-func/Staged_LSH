@@ -40,8 +40,8 @@ void switch_set_1(
     unsigned int top;
     unsigned int end;
 
-    while (1) {
-        if (!complete_stream_in.empty()) break;
+    while (complete_stream_in.empty()) {
+        // if (!complete_stream_in.empty()) break;
         if (!top_stream_in.empty() && !end_stream_in.empty() && !top_stream_out.full() && !end_stream_out.full())
         {
             /* top-end(入力)読み込み */

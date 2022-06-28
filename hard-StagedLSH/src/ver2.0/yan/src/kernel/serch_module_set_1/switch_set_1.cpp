@@ -29,21 +29,28 @@ void switch_set_1(
     /* 出力用 */
     ap_axiu<96, 0, 0, 0> flame96_stream;
     /* 入力用 */
+    ap_axiu<32, 0, 0, 0> top_st;
+    ap_axiu<32, 0, 0, 0> end_st;
+    ap_axiu<1, 0, 0, 0> complete_in;
     /* 変数 */
+    ap_uint<96> temp_flame96;
+    unsigned int top;
+    unsigned int end;
+    
     switch_wait_loop: while (complete_stream_in.empty()) {
         // printf("switch : 実行中\n");
         if (!top_stream_in.empty() && !end_stream_in.empty())
         {
             /* top-end(入力)読み込み */
-            ap_axiu<32, 0, 0, 0> top_st = top_stream_in.read();
-            ap_axiu<32, 0, 0, 0> end_st = end_stream_in.read();
-            unsigned int top = (unsigned int) top_st.data;
-            unsigned int end = (unsigned int) end_st.data;
+            top_st = top_stream_in.read();
+            end_st = end_stream_in.read();
+            top = (unsigned int) top_st.data;
+            end = (unsigned int) end_st.data;
             // printf("switch : top-end読み出し完了\n");
             /* 読み込み */
             switch_read_loop: for (unsigned int i=top; i<=end; i++)
             {
-                ap_uint<96> temp_flame96 = (((ap_uint<32>) FP_DB[hash_table[i]],
+                temp_flame96 = (((ap_uint<32>) FP_DB[hash_table[i]],
                                     (ap_uint<32>) FP_DB[hash_table[i] + 1]),
                                     (ap_uint<32>) FP_DB[hash_table[i] + 2]);
                 /* 送信データ用意 */
@@ -56,6 +63,6 @@ void switch_set_1(
     }
     printf("switch : 終了............\n");
     /* 読み出し */
-    ap_axiu<1, 0, 0, 0> complete_in = complete_stream_in.read();
+    complete_in = complete_stream_in.read();
 }
 }

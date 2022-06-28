@@ -20,7 +20,7 @@ unsigned int hd_cal32 (
     unsigned int haming_dis = 0;
     ap_uint<2> reg = 0;
 
-    ap_uint<32> temp;
+    ap_uint<32> temp = 0;
     temp = subfp1 ^ subfp2;
 
     haming_dis32_loop:for (int i=0; i<SUB_FP_SIZE; i+=2)
@@ -59,9 +59,11 @@ void hdis4096_set_1(
     /* 出力用 */
     ap_axiu<32, 0, 0, 0> haming_out;
     /* 読み込み用 */
+    ap_axiu<32, 0, 0, 0> subfp_in;
+    ap_axiu<1, 0, 0, 0> complete_in;
     /* 保存用 */
     /* 変数 */
-    ap_uint<32> haming_dis;
+    ap_uint<32> haming_dis = 0;
     unsigned int reg = 0;
     while(complete_stream_in.empty())
     {
@@ -73,7 +75,7 @@ void hdis4096_set_1(
             #pragma HLS UNROLL factor=4
             #pragma HLS PIPELINE
                 /* 32bitの読み込み */
-                ap_axiu<32, 0, 0, 0> subfp_in = fp32_stream_in.read();
+                subfp_in = fp32_stream_in.read();
                 reg = hd_cal32((ap_uint<32>) query[i], (ap_uint<32>) subfp_in.data);
                 haming_dis += reg;
             }
@@ -84,6 +86,6 @@ void hdis4096_set_1(
     }
     /* 終了信号受信後 */
     printf("hdis4096 : hdis4096終了...........\n");
-    ap_axiu<1, 0, 0, 0> complete_in = complete_stream_in.read();
+    complete_in = complete_stream_in.read();
 }
 }

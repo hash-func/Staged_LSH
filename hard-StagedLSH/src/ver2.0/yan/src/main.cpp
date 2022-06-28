@@ -81,6 +81,7 @@ public:
     // clCreateKernel(プログラム, 宣言されたカーネル名, エラー)
     mKernel_hid         = clCreateKernel(Program, "hid_bound_set_1",    &mErr);
     mKernel_switch      = clCreateKernel(Program, "switch_set_1",       &mErr);
+    mKernel_hd96        = clCreateKernel(Program, "hdis96_set_1",       &mErr);
     mKernel_judge       = clCreateKernel(Program, "judge_index_set_1",  &mErr);
     mKernel_hd4096      = clCreateKernel(Program, "hdis4096_set_1",     &mErr);
     mKernel_det         = clCreateKernel(Program, "determin",           &mErr);
@@ -106,11 +107,15 @@ public:
     clSetKernelArg(mKernel_judge,       1, sizeof(cl_mem),       &mConstBuf[1]);
     // hash_table_pointer
     clSetKernelArg(mKernel_hid,         1, sizeof(cl_mem),       &mConstBuf[2]);
+    // flag -> hd96
+    bool flag_hd96 = true;
+    clSetKernelArg(mKernel_hd96,        0, sizeof(bool),         &flag_hd96);
 
     // Schedule the execution of the kernel
     clEnqueueMigrateMemObjects(mQueue, 3, mConstBuf, 0, 0, nullptr,  &mEvent[0]);
     // Schedule the execution of the kernel
     clEnqueueTask(mQueue, mKernel_switch,      1,  &mEvent[0], &mEvent[1]);
+    clEnqueueTask(mQueue, mKernel_hd96,        1,  &mEvent[0], &mEvent[1]);
     clEnqueueTask(mQueue, mKernel_judge,       1,  &mEvent[0], &mEvent[1]);
 
     // clWaitForEvents(1, &mEvent[1]);
@@ -169,6 +174,7 @@ public:
     clReleaseContext(mContext);
 	clReleaseKernel(mKernel_hid         );
     clReleaseKernel(mKernel_switch      );
+    clReleaseKernel(mKernel_hd96        );
     clReleaseKernel(mKernel_judge        );
     clReleaseKernel(mKernel_hd4096      );
     clReleaseKernel(mKernel_det      );
@@ -182,6 +188,7 @@ public:
 private:
   cl_kernel         mKernel_hid         ;
   cl_kernel         mKernel_switch      ;
+  cl_kernel         mKernel_hd96        ;
   cl_kernel         mKernel_judge       ;
   cl_kernel         mKernel_hd4096      ;
   cl_kernel         mKernel_det         ;

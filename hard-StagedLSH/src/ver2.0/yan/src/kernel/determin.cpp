@@ -25,6 +25,8 @@ void determin (
 #pragma HLS INTERFACE m_axi depth=4 port=judge bundle=judge_determin_set_1
     /* 出力用 */
     ap_axiu<1, 0, 0, 0> complete_stream;
+    /* 読み込み */
+    ap_axiu<32, 0, 0, 0> index_in1;
     /* 変数 */
     int index = -1;
     unsigned int count = 0;
@@ -39,7 +41,7 @@ void determin (
             count++;
             flag1 = false;
             /* 読み込み */
-            ap_axiu<32, 0, 0, 0> index_in1 = index_stream_in1.read();
+            index_in1 = index_stream_in1.read();
             /* 発見したとき */
             if ((int) index_in1.data >= 0) {
                 index = (int) index_in1.data;
