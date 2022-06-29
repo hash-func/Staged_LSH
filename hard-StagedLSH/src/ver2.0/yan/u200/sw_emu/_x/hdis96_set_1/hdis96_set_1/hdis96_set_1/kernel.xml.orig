@@ -1,0 +1,26 @@
+<root versionMajor = "1" versionMinor = "5">
+  <kernel name="hdis96_set_1" language="c" vlnv="xilinx.com:hls:hdis96_set_1:1.0" attributes="" hash="" preferredWorkGroupSizeMultiple="0" workGroupSize="1" debug="false" compileOptions="" profileType="none" hwControlProtocol="ap_ctrl_chain">
+    <ports>
+      <port name="COMPLETE_STREAM_IN" mode="read_only" dataWidth="1" portType="stream"/>
+      <port name="TOP_STREAM_IN" mode="read_only" dataWidth="32" portType="stream"/>
+      <port name="END_STREAM_IN" mode="read_only" dataWidth="32" portType="stream"/>
+      <port name="FLAME96_STREAM_IN1" mode="read_only" dataWidth="96" portType="stream"/>
+      <port name="FLAME96_STREAM_IN2" mode="read_only" dataWidth="96" portType="stream"/>
+      <port name="COUNT_STREAM_OUT" mode="write_only" dataWidth="32" portType="stream"/>
+      <port name="LOCATE_STREAM_OUT" mode="write_only" dataWidth="32" portType="stream"/>
+      <port name="S_AXI_CONTROL" portType="addressable" mode="slave" base="0x0" range="0x1000" dataWidth="32"/>
+    </ports>
+    <args>
+    <arg id="0" name="flag" addressQualifier="0" port="S_AXI_CONTROL" hostOffset="0x0" hostSize="0x1" offset="0x10" size="0x4" type="unsigned int"/>
+      <arg id="1" name="complete_stream_in" addressQualifier="4" port="COMPLETE_STREAM_IN" hostOffset="0x0" hostSize="0x8" offset="0x0" size="0x0" type="stream&lt;hls::axis&lt;ap_uint&lt;1&gt;, 0, 0, 0&gt;, 0&gt;&amp;" memSize="0x1" origName="complete_stream_in" origUse="variable"/>
+      <arg id="2" name="top_stream_in" addressQualifier="4" port="TOP_STREAM_IN" hostOffset="0x0" hostSize="0x8" offset="0x0" size="0x0" type="stream&lt;hls::axis&lt;ap_uint&lt;32&gt;, 0, 0, 0&gt;, 0&gt;&amp;" memSize="0x4" origName="top_stream_in" origUse="variable"/>
+      <arg id="3" name="end_stream_in" addressQualifier="4" port="END_STREAM_IN" hostOffset="0x0" hostSize="0x8" offset="0x0" size="0x0" type="stream&lt;hls::axis&lt;ap_uint&lt;32&gt;, 0, 0, 0&gt;, 0&gt;&amp;" memSize="0x4" origName="end_stream_in" origUse="variable"/>
+      <arg id="4" name="flame96_stream_in1" addressQualifier="4" port="FLAME96_STREAM_IN1" hostOffset="0x0" hostSize="0x8" offset="0x0" size="0x0" type="stream&lt;hls::axis&lt;ap_uint&lt;96&gt;, 0, 0, 0&gt;, 0&gt;&amp;" memSize="0x10" origName="flame96_stream_in1" origUse="variable"/>
+      <arg id="5" name="flame96_stream_in2" addressQualifier="4" port="FLAME96_STREAM_IN2" hostOffset="0x0" hostSize="0x8" offset="0x0" size="0x0" type="stream&lt;hls::axis&lt;ap_uint&lt;96&gt;, 0, 0, 0&gt;, 0&gt;&amp;" memSize="0x10" origName="flame96_stream_in2" origUse="variable"/>
+      <arg id="6" name="count_stream_out" addressQualifier="4" port="COUNT_STREAM_OUT" hostOffset="0x0" hostSize="0x8" offset="0x0" size="0x0" type="stream&lt;hls::axis&lt;ap_uint&lt;32&gt;, 0, 0, 0&gt;, 0&gt;&amp;" memSize="0x4" origName="count_stream_out" origUse="variable"/>
+      <arg id="7" name="locate_stream_out" addressQualifier="4" port="LOCATE_STREAM_OUT" hostOffset="0x0" hostSize="0x8" offset="0x0" size="0x0" type="stream&lt;hls::axis&lt;ap_uint&lt;32&gt;, 0, 0, 0&gt;, 0&gt;&amp;" memSize="0x4" origName="locate_stream_out" origUse="variable"/>
+    </args>
+    <compileWorkGroupSize x="1" y="1" z="1"/>
+    <maxWorkGroupSize x="1" y="1" z="1"/>
+  </kernel>
+</root>

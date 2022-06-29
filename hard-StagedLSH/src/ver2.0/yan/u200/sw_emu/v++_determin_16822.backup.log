@@ -1,0 +1,19 @@
+INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
+	Reports: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/reports/determin
+	Log files: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/logs/determin
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/determin.xo.compile_summary, at Wed Jun 29 20:57:56 2022
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Wed Jun 29 20:57:56 2022
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/reports/determin/v++_compile_determin_guidance.html', at Wed Jun 29 20:57:57 2022
+INFO: [v++ 60-895]   Target platform: /opt/xilinx/platforms/xilinx_u200_xdma_201830_2/xilinx_u200_xdma_201830_2.xpfm
+INFO: [v++ 60-1578]   This platform contains Device Support Archive '/opt/xilinx/platforms/xilinx_u200_xdma_201830_2/hw/xilinx_u200_xdma_201830_2.dsa'
+INFO: [v++ 74-74] Compiler Version string: 2020.2
+INFO: [v++ 60-1302] Platform 'xilinx_u200_xdma_201830_2.xpfm' has been explicitly enabled for this release.
+INFO: [v++ 60-585] Compiling for software emulation target
+INFO: [v++ 60-423]   Target device: xilinx_u200_xdma_201830_2
+INFO: [v++ 60-242] Creating kernel: 'determin'
+INFO: [v++ 60-594] Finished kernel compilation
+INFO: [v++ 60-586] Created determin.xo
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command. 
+    vitis_analyzer /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/determin.xo.compile_summary 
+INFO: [v++ 60-791] Total elapsed time: 0h 0m 35s
+INFO: [v++ 60-1653] Closing dispatch client.

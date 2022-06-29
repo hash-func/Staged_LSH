@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="link" dir="">
+  <FileSets>
+    <FileSet Name="kernel_determin" Type="DesignSrcs">
+      <File Path="/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/link/int/xo/determin/determin/cpu_sources/determin.cpp"/>
+      <Config/>
+    </FileSet>
+    <FileSet Name="kernel_hdis96_set_1" Type="DesignSrcs">
+      <File Path="/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/link/int/xo/hdis96_set_1/hdis96_set_1/cpu_sources/hdis96_set_1.cpp"/>
+      <Config/>
+    </FileSet>
+    <FileSet Name="kernel_hdis4096_set_1" Type="DesignSrcs">
+      <File Path="/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/link/int/xo/hdis4096_set_1/hdis4096_set_1/cpu_sources/hdis4096_set_1.cpp"/>
+      <Config/>
+    </FileSet>
+    <FileSet Name="kernel_hid_bound_set_1" Type="DesignSrcs">
+      <File Path="/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/link/int/xo/hid_bound_set_1/hid_bound_set_1/cpu_sources/hid_bound_set_1.cpp"/>
+      <Config/>
+    </FileSet>
+    <FileSet Name="kernel_judge_index_set_1" Type="DesignSrcs">
+      <File Path="/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/link/int/xo/judge_index_set_1/judge_index_set_1/cpu_sources/judge_index_set_1.cpp"/>
+      <Config/>
+    </FileSet>
+    <FileSet Name="kernel_switch_set_1" Type="DesignSrcs">
+      <File Path="/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/link/int/xo/switch_set_1/switch_set_1/cpu_sources/switch_set_1.cpp"/>
+      <Config/>
+    </FileSet>
+  </FileSets>
+  <Runs/>
+</project>

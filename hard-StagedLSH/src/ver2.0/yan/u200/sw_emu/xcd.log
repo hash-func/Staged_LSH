@@ -1,0 +1,13 @@
+Wed Jun 29 23:56:54 2022: Server was asked to start on port: '35725'
+Wed Jun 29 23:56:54 2022: Server is using token UUID: 'a84135a1-921b-437c-9787-698f0901fc48'
+Wed Jun 29 23:56:54 2022: SESSION_MGR: creating session with session uuid: '6d04a3e9-ade5-4ab9-8d63-1f78fcd2ec76' and name 'default'
+Wed Jun 29 23:56:54 2022: Attempting to start server on port '35725'
+Wed Jun 29 23:56:54 2022: XCD main fifo: created main fifo '/tmp/xcdmaina84135a1-921b-437c-9787-698f0901fc48', fd read = 13
+Wed Jun 29 23:56:54 2022: Running Dispatch Server
+Wed Jun 29 23:56:54 2022: Version 2.1.0
+Wed Jun 29 23:57:03 2022: Dispatch Server: Accepted socket connection from client
+Wed Jun 29 23:57:03 2022: EXCHANGE_TOKEN received, server token: a84135a1-921b-437c-9787-698f0901fc48, passed token: a84135a1-921b-437c-9787-698f0901fc48
+Wed Jun 29 23:57:03 2022: SESSION_MGR: creating session with session uuid: '15021797-af4e-47a0-8414-e85c2423dde4' and name 'v++_link_table_serch'
+Wed Jun 29 23:57:03 2022: GUIDANCE_SMGR: creating guidance session with uuid: '15021797-af4e-47a0-8414-e85c2423dde4' and name 'v++_link_table_serch'
+Wed Jun 29 23:57:18 2022: SESSION_MGR: closing session for UUID '15021797-af4e-47a0-8414-e85c2423dde4' with name 'v++_link_table_serch'
+Wed Jun 29 23:57:18 2022: GUIDANCE_SMGR: closing session for UUID '15021797-af4e-47a0-8414-e85c2423dde4' with name 'v++_link_table_serch'

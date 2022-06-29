@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root versionMajor="1" versionMinor="5">
+  <kernel name="determin" language="c" vlnv="xilinx.com:hls:determin:1.0" attributes="" hash="" preferredWorkGroupSizeMultiple="0" workGroupSize="1" debug="true" compileOptions=" -g -I /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel" profileType="" interrupt="true" hwControlProtocol="ap_ctrl_chain">
+    <ports>
+      <port name="M_AXI_JUDGE_DETERMIN_SET_1" mode="master" range="0xFFFFFFFF" dataWidth="32" portType="addressable" base="0x0"/>
+      <port name="INDEX_STREAM_IN1" mode="read_only" dataWidth="32" portType="stream"/>
+      <port name="COMPLETE_STREAM_OUT1_1" mode="write_only" dataWidth="1" portType="stream"/>
+      <port name="COMPLETE_STREAM_OUT1_2" mode="write_only" dataWidth="1" portType="stream"/>
+      <port name="COMPLETE_STREAM_IN1_1" mode="read_only" dataWidth="1" portType="stream"/>
+      <port name="COMPLETE_STREAM_IN1_2" mode="read_only" dataWidth="1" portType="stream"/>
+      <port name="S_AXI_CONTROL" mode="slave" range="0x1000" dataWidth="32" portType="addressable" base="0x0"/>
+    </ports>
+    <args>
+      <arg name="judge" addressQualifier="1" id="0" port="M_AXI_JUDGE_DETERMIN_SET_1" size="0x8" offset="0x10" hostOffset="0x0" hostSize="0x8" type="void*"/>
+      <arg name="index_stream_in1" addressQualifier="4" id="1" port="INDEX_STREAM_IN1" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;32>, 0, 0, 0>, 0>&amp;" memSize="0x4" origName="index_stream_in1" origUse="variable"/>
+      <arg name="complete_stream_out1_1" addressQualifier="4" id="2" port="COMPLETE_STREAM_OUT1_1" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;1>, 0, 0, 0>, 0>&amp;" memSize="0x1" origName="complete_stream_out1_1" origUse="variable"/>
+      <arg name="complete_stream_out1_2" addressQualifier="4" id="3" port="COMPLETE_STREAM_OUT1_2" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;1>, 0, 0, 0>, 0>&amp;" memSize="0x1" origName="complete_stream_out1_2" origUse="variable"/>
+      <arg name="complete_stream_in1_1" addressQualifier="4" id="4" port="COMPLETE_STREAM_IN1_1" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;1>, 0, 0, 0>, 0>&amp;" memSize="0x1" origName="complete_stream_in1_1" origUse="variable"/>
+      <arg name="complete_stream_in1_2" addressQualifier="4" id="5" port="COMPLETE_STREAM_IN1_2" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;1>, 0, 0, 0>, 0>&amp;" memSize="0x1" origName="complete_stream_in1_2" origUse="variable"/>
+    </args>
+    <compileWorkGroupSize x="1" y="1" z="1"/>
+    <maxWorkGroupSize x="1" y="1" z="1"/>
+  </kernel>
+</root>

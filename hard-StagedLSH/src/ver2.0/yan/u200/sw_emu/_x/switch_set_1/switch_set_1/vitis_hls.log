@@ -1,0 +1,83 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source /opt/Vitis_HLS/2020.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: Applying HLS Y2K22 patch v1.2 for IP revision
+INFO: [HLS 200-10] Running '/opt/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-120-generic) on Wed Jun 29 23:22:58 JST 2022
+INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
+INFO: [HLS 200-10] In directory '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/switch_set_1/switch_set_1'
+Sourcing Tcl script 'switch_set_1.tcl'
+INFO: [HLS 200-1510] Running: open_project switch_set_1 
+INFO: [HLS 200-10] Creating and opening project '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/switch_set_1/switch_set_1/switch_set_1'.
+INFO: [HLS 200-1510] Running: set_top switch_set_1 
+INFO: [HLS 200-1510] Running: add_files /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel/serch_module_set_1/switch_set_1.cpp -cflags  -g -I /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel  
+INFO: [HLS 200-10] Adding design file '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel/serch_module_set_1/switch_set_1.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution -flow_target vitis solution 
+INFO: [HLS 200-10] Creating and opening solution '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/switch_set_1/switch_set_1/switch_set_1/solution'.
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_offset=slave
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
+INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+INFO: [HLS 200-1510] Running: config_rtl -kernel_profile 
+INFO: [HLS 200-1510] Running: config_dataflow -strict_mode warning 
+INFO: [HLS 200-1510] Running: config_debug -enable 
+INFO: [HLS 200-1510] Running: config_export -disable_deadlock_detection=true 
+INFO: [HLS 200-1510] Running: config_rtl -m_axi_conservative_mode=1 
+WARNING: [HLS 200-483] The 'config_rtl -m_axi_conservative_mode' command is deprecated and will be removed in a future release. Use 'config_interface -m_axi_conservative_mode' as its replacement.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=0 
+INFO: [HLS 200-1510] Running: config_export -format ip_catalog -ipname switch_set_1 
+INFO: [HLS 200-1510] Running: csynth_design -synthesis_check 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 189.698 MB.
+INFO: [HLS 200-10] Analyzing design file '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel/serch_module_set_1/switch_set_1.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.71 seconds. CPU system time: 0.22 seconds. Elapsed time: 2.51 seconds; current allocated memory: 190.322 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>::get_user_ptr()' into 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::empty()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:267:60)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>::get_dest_ptr()' into 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::empty()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:268:61)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>::get_id_ptr()' into 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::empty()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:268:45)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_user_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::empty()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:267:60)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_dest_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::empty()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:268:61)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_id_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::empty()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:268:45)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_user_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:293:50)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_dest_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:296:25)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_id_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:295:67)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_user_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:295:36)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_dest_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:294:39)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_id_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:294:23)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>::get_user_ptr()' into 'hls::stream<hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<96>, 0ul, 0ul, 0ul> const&)' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:304:51)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>::get_dest_ptr()' into 'hls::stream<hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<96>, 0ul, 0ul, 0ul> const&)' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:307:26)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>::get_id_ptr()' into 'hls::stream<hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<96>, 0ul, 0ul, 0ul> const&)' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:306:68)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>::get_user_ptr()' into 'hls::stream<hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<96>, 0ul, 0ul, 0ul> const&)' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:306:37)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>::get_dest_ptr()' into 'hls::stream<hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<96>, 0ul, 0ul, 0ul> const&)' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:305:40)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>::get_id_ptr()' into 'hls::stream<hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<96>, 0ul, 0ul, 0ul> const&)' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:305:24)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>::get_user_ptr()' into 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:293:50)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>::get_dest_ptr()' into 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:296:25)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>::get_id_ptr()' into 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:295:67)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>::get_user_ptr()' into 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:295:36)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>::get_dest_ptr()' into 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:294:39)
+INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>::get_id_ptr()' into 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:294:23)
+INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::empty()' into 'switch_set_1' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel/serch_module_set_1/switch_set_1.cpp:42:49)
+INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::read()' into 'switch_set_1' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel/serch_module_set_1/switch_set_1.cpp:70:38)
+INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<96>, 0ul, 0ul, 0ul> const&)' into 'switch_set_1' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel/serch_module_set_1/switch_set_1.cpp:63:36)
+INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' into 'switch_set_1' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel/serch_module_set_1/switch_set_1.cpp:50:36)
+INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' into 'switch_set_1' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel/serch_module_set_1/switch_set_1.cpp:49:36)
+INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::empty()' into 'switch_set_1' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel/serch_module_set_1/switch_set_1.cpp:44:54)
+INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::empty()' into 'switch_set_1' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel/serch_module_set_1/switch_set_1.cpp:44:28)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.59 seconds. CPU system time: 0.14 seconds. Elapsed time: 2.73 seconds; current allocated memory: 191.815 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 191.816 MB.
+INFO: [HLS 200-1493] Running only source code synthesis checks, skipping scheduling and RTL generation.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5.3 seconds. CPU system time: 0.36 seconds. Elapsed time: 5.24 seconds; current allocated memory: 191.789 MB.
+HLS completed successfully
+INFO: [HLS 200-112] Total CPU user time: 7.07 seconds. Total CPU system time: 0.65 seconds. Total elapsed time: 6.48 seconds; peak allocated memory: 191.816 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Wed Jun 29 23:23:04 2022...
