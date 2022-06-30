@@ -50626,7 +50626,7 @@ __attribute__((sdx_kernel("switch_set_1", 0))) void switch_set_1(
 
     switch_wait_loop: while (complete_stream_in.empty()) {
 
-        if (!top_stream_in.empty() && !end_stream_in.empty())
+        if (!top_stream_in.empty() || !end_stream_in.empty())
         {
 
 

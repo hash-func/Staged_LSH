@@ -9,10 +9,10 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Wed Jun 29 20:59:13 2022",
- "timestampMillis": "1656503953701",
+ "dateTimestamp": "Thu Jun 30 14:34:42 2022",
+ "timestampMillis": "1656567282126",
  "buildStep": {
-  "cmdId": "b64ef7cc-47d8-4b7c-bcaa-8344bcacf31d",
+  "cmdId": "5615726c-b3ae-4fe6-bb54-aff0eb77deea",
   "name": "v++",
   "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/hdis4096_set_1/hdis4096_set_1.steps.log",
   "commandLine": "/opt/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -c --optimize 0 -t sw_emu --config ../../src/cfg/hdis4096_set_1.cfg -k hdis4096_set_1 -I../../src/kernel ../../src/kernel/serch_module_set_1/hdis4096_set_1.cpp -o hdis4096_set_1.xo ",
@@ -44,10 +44,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jun 29 20:59:13 2022",
- "timestampMillis": "1656503953702",
+ "dateTimestamp": "Thu Jun 30 14:34:42 2022",
+ "timestampMillis": "1656567282127",
  "status": {
-  "cmdId": "b64ef7cc-47d8-4b7c-bcaa-8344bcacf31d",
+  "cmdId": "5615726c-b3ae-4fe6-bb54-aff0eb77deea",
   "state": "CS_RUNNING"
  }
 }
@@ -55,8 +55,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Wed Jun 29 20:59:25 2022",
- "timestampMillis": "1656503965427",
+ "dateTimestamp": "Thu Jun 30 14:34:49 2022",
+ "timestampMillis": "1656567289408",
  "buildSummary": {
   "hardwarePlatform": "xilinx_u200_xdma_201830_2.xpfm",
   "hardwareDsa": "xilinx_u200_xdma_201830_2.dsa",
@@ -91,10 +91,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Wed Jun 29 20:59:25 2022",
- "timestampMillis": "1656503965437",
+ "dateTimestamp": "Thu Jun 30 14:34:49 2022",
+ "timestampMillis": "1656567289410",
  "buildStep": {
-  "cmdId": "f3f0146a-d7f1-4acd-b6ea-9a44d6e71d5a",
+  "cmdId": "4b25db94-f8b9-47ff-ae3e-25c8fbbc4116",
   "name": "vitis_hls",
   "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/hdis4096_set_1/hdis4096_set_1/vitis_hls.log",
   "commandLine": "vitis_hls -f /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/hdis4096_set_1/hdis4096_set_1/hdis4096_set_1.tcl -messageDb vitis_hls.pb",
@@ -113,10 +113,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jun 29 20:59:25 2022",
- "timestampMillis": "1656503965443",
+ "dateTimestamp": "Thu Jun 30 14:34:49 2022",
+ "timestampMillis": "1656567289411",
  "status": {
-  "cmdId": "f3f0146a-d7f1-4acd-b6ea-9a44d6e71d5a",
+  "cmdId": "4b25db94-f8b9-47ff-ae3e-25c8fbbc4116",
   "state": "CS_RUNNING"
  }
 }
@@ -124,10 +124,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jun 29 20:59:40 2022",
- "timestampMillis": "1656503980109",
+ "dateTimestamp": "Thu Jun 30 14:34:57 2022",
+ "timestampMillis": "1656567297911",
  "status": {
-  "cmdId": "f3f0146a-d7f1-4acd-b6ea-9a44d6e71d5a",
+  "cmdId": "4b25db94-f8b9-47ff-ae3e-25c8fbbc4116",
   "state": "CS_PASSED"
  }
 }
@@ -135,8 +135,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Jun 29 20:59:40 2022",
- "timestampMillis": "1656503980296",
+ "dateTimestamp": "Thu Jun 30 14:34:58 2022",
+ "timestampMillis": "1656567298007",
  "report": {
   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/reports/hdis4096_set_1/v++_compile_hdis4096_set_1_guidance.html",
   "name": "",
@@ -148,8 +148,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Jun 29 20:59:40 2022",
- "timestampMillis": "1656503980297",
+ "dateTimestamp": "Thu Jun 30 14:34:58 2022",
+ "timestampMillis": "1656567298007",
  "report": {
   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/v++_compile_hdis4096_set_1_guidance.pb",
   "name": "",
@@ -161,10 +161,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jun 29 20:59:40 2022",
- "timestampMillis": "1656503980297",
+ "dateTimestamp": "Thu Jun 30 14:34:58 2022",
+ "timestampMillis": "1656567298008",
  "status": {
-  "cmdId": "b64ef7cc-47d8-4b7c-bcaa-8344bcacf31d",
+  "cmdId": "5615726c-b3ae-4fe6-bb54-aff0eb77deea",
   "state": "CS_PASSED"
  }
 }

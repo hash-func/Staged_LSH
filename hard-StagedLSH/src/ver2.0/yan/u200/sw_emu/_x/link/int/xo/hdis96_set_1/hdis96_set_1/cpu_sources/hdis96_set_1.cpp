@@ -46,7 +46,7 @@ void hdis96_set_1(
     // unsigned int a = 0;
     /* ループ回数読み込み */
     while(complete_stream_in.empty()) { // ソフトウェアエミュレーション以外で消す
-        if (!top_stream_in.empty() && !end_stream_in.empty())
+        if (!top_stream_in.empty() || !end_stream_in.empty())
         {
             top_st = top_stream_in.read();
             end_st = end_stream_in.read();

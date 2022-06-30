@@ -4,7 +4,7 @@ XRT Build Version: 2.8.743 (2020.2)
 Creating a default 'in-memory' xclbin image.
 
 Section: 'BITSTREAM'(0) was successfully added.
-Size   : 2051496 bytes
+Size   : 2051712 bytes
 Format : RAW
 File   : '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/link/int/table_serch.so'
 
@@ -44,5 +44,5 @@ File   : '/dev/null'
 Section: 'IP_LAYOUT'(8) was successfully appended to.
 Format : JSON
 File   : 'ip_layout'
-Successfully wrote (2133432 bytes) to the output file: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/table_serch.xclbin
+Successfully wrote (2133620 bytes) to the output file: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/table_serch.xclbin
 Leaving xclbinutil.

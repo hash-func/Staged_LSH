@@ -50631,7 +50631,7 @@ __attribute__((sdx_kernel("hdis96_set_1", 0))) void hdis96_set_1(
 
 
     while(complete_stream_in.empty()) {
-        if (!top_stream_in.empty() && !end_stream_in.empty())
+        if (!top_stream_in.empty() || !end_stream_in.empty())
         {
             top_st = top_stream_in.read();
             end_st = end_stream_in.read();

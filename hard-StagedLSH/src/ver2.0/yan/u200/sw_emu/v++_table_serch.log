@@ -1,9 +1,9 @@
 INFO: [v++ 60-1306] Additional information associated with this v++ link can be found at:
 	Reports: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/reports/link
 	Log files: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/logs/link
-INFO: [v++ 60-1548] Creating build summary session with primary output /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/table_serch.xclbin.link_summary, at Wed Jun 29 23:57:03 2022
-INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Wed Jun 29 23:57:03 2022
-INFO: [v++ 60-1315] Creating rulecheck session with output '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/reports/link/v++_link_table_serch_guidance.html', at Wed Jun 29 23:57:04 2022
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/table_serch.xclbin.link_summary, at Thu Jun 30 14:46:31 2022
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Thu Jun 30 14:46:31 2022
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/reports/link/v++_link_table_serch_guidance.html', at Thu Jun 30 14:46:32 2022
 INFO: [v++ 60-895]   Target platform: /opt/xilinx/platforms/xilinx_u200_xdma_201830_2/xilinx_u200_xdma_201830_2.xpfm
 INFO: [v++ 60-1578]   This platform contains Device Support Archive '/opt/xilinx/platforms/xilinx_u200_xdma_201830_2/hw/xilinx_u200_xdma_201830_2.dsa'
 INFO: [v++ 74-74] Compiler Version string: 2020.2

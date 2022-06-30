@@ -50633,8 +50633,17 @@ __attribute__((sdx_kernel("hdis4096_set_1", 0))) void hdis4096_set_1(
 
 
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_hd4096_set_1
-# 61 "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/src/kernel/serch_module_set_1/hdis4096_set_1.cpp"
- ap_axiu<32, 0, 0, 0> haming_out;
+
+ unsigned int query_local[128];
+#pragma HLS ARRAY_PARTITION variable=query_local complete dim=1
+ read_query: for (int i=0; i<128; i++)
+    {
+#pragma HLS UNROLL
+ unsigned int tmp = query[i];
+        query_local[i] = tmp;
+    }
+
+    ap_axiu<32, 0, 0, 0> haming_out;
 
     ap_axiu<32, 0, 0, 0> subfp_in;
 
@@ -50652,7 +50661,7 @@ __attribute__((sdx_kernel("hdis4096_set_1", 0))) void hdis4096_set_1(
 #pragma HLS PIPELINE
 
  subfp_in = fp32_stream_in.read();
-                reg = hd_cal32((ap_uint<32>) query[i], (ap_uint<32>) subfp_in.data);
+                reg = hd_cal32((ap_uint<32>) query_local[i], (ap_uint<32>) subfp_in.data);
                 haming_dis += reg;
             }
 

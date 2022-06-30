@@ -41,7 +41,7 @@ void switch_set_1(
     
     switch_wait_loop: while (complete_stream_in.empty()) {
         // printf("switch : 実行中\n");
-        if (!top_stream_in.empty() && !end_stream_in.empty())
+        if (!top_stream_in.empty() || !end_stream_in.empty())
         {
             // a++;
             // printf("switch : top-end読み出し回数 %u\n", a);

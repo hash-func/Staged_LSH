@@ -48,15 +48,15 @@ void hdis4096_set_1(
 {
 // #pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_hd4096_set_1
-//     /* queryをローカルに格納->配列を小型のレジスタに分割 */
-//     unsigned int query_local[128];
-// #pragma HLS ARRAY_PARTITION variable=query_local complete dim=1
-//     read_query: for (int i=0; i<128; i++)
-//     {
-//     #pragma HLS UNROLL
-//         unsigned int tmp = query[i];
-//         query_local[i] = tmp;
-//     }
+    /* queryをローカルに格納->配列を小型のレジスタに分割 */
+    unsigned int query_local[128];
+#pragma HLS ARRAY_PARTITION variable=query_local complete dim=1
+    read_query: for (int i=0; i<128; i++)
+    {
+    #pragma HLS UNROLL
+        unsigned int tmp = query[i];
+        query_local[i] = tmp;
+    }
     /* 出力用 */
     ap_axiu<32, 0, 0, 0> haming_out;
     /* 読み込み用 */
@@ -76,7 +76,7 @@ void hdis4096_set_1(
             #pragma HLS PIPELINE
                 /* 32bitの読み込み */
                 subfp_in = fp32_stream_in.read();
-                reg = hd_cal32((ap_uint<32>) query[i], (ap_uint<32>) subfp_in.data);
+                reg = hd_cal32((ap_uint<32>) query_local[i], (ap_uint<32>) subfp_in.data);
                 haming_dis += reg;
             }
             /* ハミング距離送信 */

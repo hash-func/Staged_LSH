@@ -9,10 +9,10 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Wed Jun 29 23:22:49 2022",
- "timestampMillis": "1656512569323",
+ "dateTimestamp": "Thu Jun 30 14:43:53 2022",
+ "timestampMillis": "1656567833401",
  "buildStep": {
-  "cmdId": "bf2fe1e8-1fbc-43df-aab8-9ff46a71eb36",
+  "cmdId": "ae9da533-473e-4445-bc84-e943777aeeb0",
   "name": "v++",
   "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/switch_set_1/switch_set_1.steps.log",
   "commandLine": "/opt/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -c --optimize 0 -t sw_emu --config ../../src/cfg/switch_set_1.cfg -k switch_set_1 -I../../src/kernel ../../src/kernel/serch_module_set_1/switch_set_1.cpp -o switch_set_1.xo ",
@@ -44,10 +44,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jun 29 23:22:49 2022",
- "timestampMillis": "1656512569323",
+ "dateTimestamp": "Thu Jun 30 14:43:53 2022",
+ "timestampMillis": "1656567833402",
  "status": {
-  "cmdId": "bf2fe1e8-1fbc-43df-aab8-9ff46a71eb36",
+  "cmdId": "ae9da533-473e-4445-bc84-e943777aeeb0",
   "state": "CS_RUNNING"
  }
 }
@@ -55,8 +55,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Wed Jun 29 23:22:56 2022",
- "timestampMillis": "1656512576590",
+ "dateTimestamp": "Thu Jun 30 14:44:00 2022",
+ "timestampMillis": "1656567840678",
  "buildSummary": {
   "hardwarePlatform": "xilinx_u200_xdma_201830_2.xpfm",
   "hardwareDsa": "xilinx_u200_xdma_201830_2.dsa",
@@ -91,10 +91,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Wed Jun 29 23:22:56 2022",
- "timestampMillis": "1656512576592",
+ "dateTimestamp": "Thu Jun 30 14:44:00 2022",
+ "timestampMillis": "1656567840680",
  "buildStep": {
-  "cmdId": "1419f606-0ecc-4401-91f1-0356d9b16cd1",
+  "cmdId": "73d1dd67-ff31-4dd7-9a42-d992223d30bc",
   "name": "vitis_hls",
   "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/switch_set_1/switch_set_1/vitis_hls.log",
   "commandLine": "vitis_hls -f /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/switch_set_1/switch_set_1/switch_set_1.tcl -messageDb vitis_hls.pb",
@@ -113,10 +113,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jun 29 23:22:56 2022",
- "timestampMillis": "1656512576592",
+ "dateTimestamp": "Thu Jun 30 14:44:00 2022",
+ "timestampMillis": "1656567840680",
  "status": {
-  "cmdId": "1419f606-0ecc-4401-91f1-0356d9b16cd1",
+  "cmdId": "73d1dd67-ff31-4dd7-9a42-d992223d30bc",
   "state": "CS_RUNNING"
  }
 }
@@ -124,10 +124,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jun 29 23:23:04 2022",
- "timestampMillis": "1656512584937",
+ "dateTimestamp": "Thu Jun 30 14:44:08 2022",
+ "timestampMillis": "1656567848998",
  "status": {
-  "cmdId": "1419f606-0ecc-4401-91f1-0356d9b16cd1",
+  "cmdId": "73d1dd67-ff31-4dd7-9a42-d992223d30bc",
   "state": "CS_PASSED"
  }
 }
@@ -135,8 +135,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Jun 29 23:23:05 2022",
- "timestampMillis": "1656512585032",
+ "dateTimestamp": "Thu Jun 30 14:44:09 2022",
+ "timestampMillis": "1656567849091",
  "report": {
   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/reports/switch_set_1/v++_compile_switch_set_1_guidance.html",
   "name": "",
@@ -148,8 +148,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Jun 29 23:23:05 2022",
- "timestampMillis": "1656512585032",
+ "dateTimestamp": "Thu Jun 30 14:44:09 2022",
+ "timestampMillis": "1656567849091",
  "report": {
   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/v++_compile_switch_set_1_guidance.pb",
   "name": "",
@@ -161,10 +161,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jun 29 23:23:05 2022",
- "timestampMillis": "1656512585032",
+ "dateTimestamp": "Thu Jun 30 14:44:09 2022",
+ "timestampMillis": "1656567849091",
  "status": {
-  "cmdId": "bf2fe1e8-1fbc-43df-aab8-9ff46a71eb36",
+  "cmdId": "ae9da533-473e-4445-bc84-e943777aeeb0",
   "state": "CS_PASSED"
  }
 }
