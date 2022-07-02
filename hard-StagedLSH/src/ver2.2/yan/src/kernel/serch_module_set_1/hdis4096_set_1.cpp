@@ -41,7 +41,6 @@ extern "C" {
 void hdis4096_set_1(
     unsigned int query[],
     hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_in,// 終了信号(入力<-deter
-    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out,// 終了信号(出力->deter
     hls::stream<ap_axiu<32, 0, 0, 0>>& fp32_stream_in,   // FP32(入力<-judge
     hls::stream<ap_axiu<32, 0, 0, 0>>& haming_stream_out // ハミング距離(出力->judge
 )
@@ -49,6 +48,7 @@ void hdis4096_set_1(
 // #pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_hd4096_set_1
     /* queryをローカルに格納->配列を小型のレジスタに分割 */
+    // printf("hd4096 : 開始\n");
     unsigned int query_local[128];
 #pragma HLS ARRAY_PARTITION variable=query_local complete dim=1
     read_query: for (int i=0; i<128; i++)
@@ -61,6 +61,7 @@ void hdis4096_set_1(
     ap_axiu<32, 0, 0, 0> haming_out;
     /* 読み込み用 */
     ap_axiu<32, 0, 0, 0> subfp_in;
+    ap_axiu<1, 0, 0, 0> complete_in;
     /* 保存用 */
     /* 変数 */
     ap_uint<32> haming_dis = 0;
@@ -85,7 +86,8 @@ void hdis4096_set_1(
         }
     }
     /* 終了信号受信後 */
-    printf("hdis4096 : hdis4096終了...........\n");
-    complete_stream_out.write(complete_stream_in.read());
+    // printf("hdis4096 : hdis4096終了...........\n");
+    /* 終了信号読み出し */
+    complete_in = complete_stream_in.read();
 }
 }

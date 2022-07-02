@@ -21,7 +21,6 @@ CONFIG_hdis96   := hdis96${1}.cfg
 CONFIG_hdis4096 := hdis4096${1}.cfg
 CONFIG_hid      := hid_bound${1}.cfg
 CONFIG_judge    := judge_index${1}.cfg
-CONFIG_switch   := switch${1}.cfg
 CONFIG_LINK		:= u200.cfg
 # .xo作成
 KERNEL_determin := determin
@@ -29,7 +28,6 @@ KERNEL_hdis96   := hdis96${1}
 KERNEL_hdis4096 := hdis4096${1}
 KERNEL_hid      := hid_bound${1}
 KERNEL_judge    := judge_index${1}
-KERNEL_switch   := switch${1}
 
 INCLUDE := ../../src/kernel
 XO_SRC  := ../../src/kernel
@@ -39,13 +37,11 @@ XO_SRC_hdis96   := /serch_module${1}/hdis96${1}.cpp
 XO_SRC_hdis4096 := /serch_module${1}/hdis4096${1}.cpp
 XO_SRC_hid      := /serch_module${1}/hid_bound${1}.cpp
 XO_SRC_judge    := /serch_module${1}/judge_index${1}.cpp
-XO_SRC_switch   := /serch_module${1}/switch${1}.cpp
 
 # .xclbin
 XCLBIN_SRC := ./${KERNEL_determin}.xo
 XCLBIN_SRC += ./${KERNEL_hdis96}.xo ./${KERNEL_hdis4096}.xo
 XCLBIN_SRC += ./${KERNEL_hid}.xo ./${KERNEL_judge}.xo
-XCLBIN_SRC += ./${KERNEL_switch}.xo
 KERNEL := table_serch
 
 all: app.exe emconfig.json ${KERNEL}.xclbin
@@ -68,9 +64,6 @@ ${KERNEL_hid}.xo: ${XO_SRC}${XO_SRC_hid}
 
 ${KERNEL_judge}.xo: ${XO_SRC}${XO_SRC_judge}
 	v++ -c ${OPTIMIZE} -t ${TARGET} --config ${CONFIG}${CONFIG_judge} -k ${KERNEL_judge} -I${INCLUDE} ${XO_SRC}${XO_SRC_judge} -o ${KERNEL_judge}.xo
-
-${KERNEL_switch}.xo: ${XO_SRC}${XO_SRC_switch}
-	v++ -c ${OPTIMIZE} -t ${TARGET} --config ${CONFIG}${CONFIG_switch} -k ${KERNEL_switch} -I${INCLUDE} ${XO_SRC}${XO_SRC_switch} -o ${KERNEL_switch}.xo
 
 
 ${KERNEL}.xclbin: ${XCLBIN_SRC}

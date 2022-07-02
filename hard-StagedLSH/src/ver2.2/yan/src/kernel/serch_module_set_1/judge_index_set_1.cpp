@@ -17,7 +17,7 @@ extern "C" {
 void judge_index_set_1(
     unsigned int FP_DB[],                   // FPデータベース
     unsigned int hash_table[],              // Hashテーブル
-    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_in,   // 終了信号(入力<-hid
+    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_in,   // 終了信号(入力<-determin
     hls::stream<ap_axiu<32, 0, 0, 0>>& fp32_stream_out,     // FP32(出力->hd4096
     hls::stream<ap_axiu<32, 0, 0, 0>>& haming_stream_in,    // ハミング距離(入力<-hd4096
     hls::stream<ap_axiu<32, 0, 0, 0>>& index_stream_out,    // 楽曲インデックス(出力->determin
@@ -33,7 +33,6 @@ void judge_index_set_1(
     ap_axiu<32, 0, 0, 0> index_stream;
     /* 読み込み用 */
     ap_axiu<32, 0, 0, 0> count_in;
-    count_in.data = 4294967295;
     ap_axiu<32, 0, 0, 0> locate_in;
     ap_axiu<32, 0, 0, 0> haming_in;
     ap_axiu<1, 0, 0, 0> complete_in;
@@ -47,8 +46,6 @@ void judge_index_set_1(
     int music_index_temp;
     unsigned int db_locate;
     unsigned int haming = 0;
-
-    // int a = 0;
 
     while(complete_stream_in.empty())
     {
@@ -94,19 +91,17 @@ void judge_index_set_1(
                 /* Stream-Port出力 */
                 index_stream.data = (ap_uint<32>) music_index;
                 index_stream_out.write(index_stream);
-                // a++;
-                // printf("judge : 楽曲インデックス書き出し%d回目\n", a);
+                // printf("judge : index = %d\n", music_index);
                 /* 値の初期化 */
                 min_haming_dis = SCRUTINY;
                 music_index = -1;
                 count = count - ((unsigned int)count_in.data);
-                // printf("judge : count初期化 %u \n", count);
                 flag = true;
             }
         }
     }
     /* 終了信号受信後 */
-    printf("judge : 終了...........\n");
+    // printf("judge : 終了...........\n");
     complete_in = complete_stream_in.read();
 }
 }

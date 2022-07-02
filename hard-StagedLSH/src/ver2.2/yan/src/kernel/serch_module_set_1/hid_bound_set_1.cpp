@@ -36,182 +36,119 @@ ap_uint<32> hash_func(
     return hash_value;
 }
 
+/* hid_bound */
+void hid_bound_func (
+    ap_uint<96> flame96,                        // 対象フレーム
+    unsigned int hash_table_pointer[],          // Hashテーブル位置指定
+    hls::stream<unsigned int>& top_switch,       // バケット始端（出力->switch
+    hls::stream<unsigned int>& end_switch,       // バケット終端 (出力->switch
+    hls::stream<ap_axiu<32, 0, 0, 0>>& top_stream_out_1,  // バケット始端（出力->hd96
+    hls::stream<ap_axiu<32, 0, 0, 0>>& end_stream_out_1   // バケット終端（出力->hd96
+)
+{
+    /* 出力用 */
+    ap_axiu<32, 0, 0, 0> top_stream;
+    ap_axiu<32, 0, 0, 0> end_stream;
+    /* 入力用 */
+    /* 変数 */
+    unsigned int hash_value;
+    unsigned int top;    // 先頭バケット位置(含む)
+    unsigned int end;    // 末尾バケット位置(含む)
+    /* Hash値生成 */
+    hash_value = (unsigned int) hash_func(flame96);
+    /* バケット境界(top-end)の確定 */
+    if (hash_value == 0) top = 0;
+    else top = (hash_table_pointer[hash_value-1]) + 1;
+    end = hash_table_pointer[hash_value];
+    /* 送信用データ用意 */
+    top_stream.data = (ap_uint<32>) top;
+    end_stream.data = (ap_uint<32>) end;
+    /* Stream-portへ送信 */
+    top_switch.write(top);
+    end_switch.write(end);
+    top_stream_out_1.write(top_stream);
+    end_stream_out_1.write(end_stream);
+    // printf("hid_bound : top-end共有情報送信完了\n");
+    // printf("hid : 終了............\n");
+}
+
+/* Switch */
+void switch_func (
+    unsigned int FP_DB[],                       // Fデータベース
+    unsigned int hash_table[],                  // ハッシュテーブル
+    hls::stream<unsigned int>& top_switch,      // top(入力<-hid
+    hls::stream<unsigned int>& end_switch,      // end(入力<-hid
+    hls::stream<ap_axiu<96, 0, 0, 0>>& flame96_stream_out // 96bitフレーム(出力->hd96
+)
+{
+    /* Switch_Module */
+    // printf("switch : 開始\n");
+    /* 出力用 */
+    ap_axiu<96, 0, 0, 0> flame96_stream;
+    /* 入力用 */
+    unsigned int top;
+    unsigned int end;
+    /* 変数 */
+    ap_uint<96> temp_flame96;
+    /* 入力 */
+    top = top_switch.read();
+    end = end_switch.read();
+    switch_read_loop: for (unsigned int i=top; i<=end; i++) {
+        temp_flame96 = (((ap_uint<32>) FP_DB[hash_table[i]],
+                        (ap_uint<32>) FP_DB[hash_table[i] + 1]),
+                        (ap_uint<32>) FP_DB[hash_table[i] + 2]);
+        /* 送信データ用意 */
+        flame96_stream.data = temp_flame96;
+        /* Stream-portへ送信 */
+        flame96_stream_out.write(flame96_stream);
+        // printf("switch : 96bit flame書込み完了\n");
+    }
+}
+
 /* mainからの呼び出し */
 extern "C" {
 void hid_bound_set_1(
-    unsigned int flame[],                       // クエリ(4096bit)
+    unsigned int flame[],                       // クエリ(96bit)
     unsigned int hash_table_pointer[],          // Hashテーブル位置指定
-    bool flag,                                  // カーネル停止確認フラグ
-    hls::stream<ap_axiu<96, 0, 0, 0>>& flame_stream_out,    // フレーム(出力->hd96
-    hls::stream<ap_axiu<32, 0, 0, 0>>& top_stream_out_1,    // バケット始端（出力->switch
-    hls::stream<ap_axiu<32, 0, 0, 0>>& end_stream_out_1,    // バケット終端（出力->switch
-    hls::stream<ap_axiu<32, 0, 0, 0>>& top_stream_out_2,    // バケット始端（出力->hd96
-    hls::stream<ap_axiu<32, 0, 0, 0>>& end_stream_out_2,    // バケット終端（出力->hd96
-    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out1, // 終了通知（出力-> switch
-    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out2, // 終了通知（出力-> hd4096
-    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out3, // 終了通知（出力-> hd96
-    hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_in    // 終了通知（入力<- determin
+    unsigned int FP_DB[],                       // Fデータベース
+    unsigned int hash_table[],                  // ハッシュテーブル
+    hls::stream<ap_axiu<32, 0, 0, 0>>& top_stream_out_1,  // バケット始端（出力->hd96
+    hls::stream<ap_axiu<32, 0, 0, 0>>& end_stream_out_1,  // バケット終端（出力->hd96
+    hls::stream<ap_axiu<96, 0, 0, 0>>& flame96_stream_out // 96bitフレーム(出力->hd96
 )
 {
 // #pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
 // 300曲想定値
 #pragma HLS INTERFACE m_axi depth=12 port=flame bundle=flame_hid_set_1
 #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_hid_set_1
+#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=DB_switch_set_1
+#pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_switch_set_1
     // printf("hid : 実行開始\n");
-    printf("hid : flag : %d\n", flag);
-    /* 出力用 */
-    ap_axiu<32, 0, 0, 0> top_stream;
-    ap_axiu<32, 0, 0, 0> end_stream;
-    ap_axiu<96, 0, 0, 0> flame_stream;
-    /* 入力用 */
-    ap_axiu<1, 0, 0, 0> complete_det;
-    /* 変数 */
-    ap_uint<32> hash_value = 0;
-    ap_uint<32> top = 0;    // 先頭バケット位置(含む)
-    ap_uint<32> end = 0;    // 末尾バケット位置(含む)
+    /* AXI-Stream-BUS */
+    hls::stream<unsigned int> top_switch;
+    hls::stream<unsigned int> end_switch;
     /* flameの用意 */
-    ap_uint<SUB_FP_SIZE> tempA32 = flame[0];
-    ap_uint<SUB_FP_SIZE> tempB32 = flame[1];
-    ap_uint<SUB_FP_SIZE> tempC32 = flame[2];
-    ap_uint<96> flame96 = ((tempA32, tempB32), tempC32);
-
-    /* Hash値生成 */
-    hash_value = hash_func(flame96);
-    /* バケット境界(top-end)の確定 */
-    if ((ap_uint<32>) hash_value == 0) top = 0;
-    else top = (hash_table_pointer[hash_value-1]) + 1;
-    end = hash_table_pointer[hash_value];
-    /* 送信用データ用意 */
-    top_stream.data = top;
-    end_stream.data = end;
-    /* Stream-portへ送信 */
-    top_stream_out_1.write(top_stream);
-    end_stream_out_1.write(end_stream);
-    top_stream_out_2.write(top_stream);
-    end_stream_out_2.write(end_stream);
-    // printf("hid_bound : top-end共有情報送信完了\n");
-    /* 96bitフレーム送信 */
-    flame_stream.data = flame96;
-    flame_stream_out.write(flame_stream);
-    // printf("hid_bound : 96bit flame送信\n");
-    /* determinからの終了通知まで待ち */
-    complete_det = complete_stream_in.read();
-    /* 最終処理なら全てのカーネル停止 */
-    if (!flag) {
-        // complete_out.data = 1;
-        complete_stream_out1.write(complete_stream_det);
-        complete_stream_out2.write(complete_stream_det);
-        complete_stream_out3.write(complete_stream_det);
-        printf("his_bound : カーネル停止信号送信\n");
+    ap_uint<96> flame96 = 0;
+    flame_read: for (int i=0; i<3; i++) {
+    #pragma HLS UNROLL
+        ap_uint<SUB_FP_SIZE> temp32 = flame[i];
+        flame96.range(((32*(3-i))-1), (32*(2-i))) = temp32;
     }
-    printf("hid : 終了............\n");
+    hid_bound_func(
+        flame96,
+        hash_table_pointer,
+        top_switch,
+        end_switch,
+        top_stream_out_1,
+        end_stream_out_1
+    );
+    switch_func(
+        FP_DB,
+        hash_table,
+        top_switch,
+        end_switch,
+        flame96_stream_out
+    );
 }
 }
 /* --mianからの呼び出し-- */
-
-
-
-
-
-
-
-
-// /* mainからの呼び出し */
-// extern "C" {
-// void hid_bound_set_1(
-//     unsigned int query[],                       // クエリ(4096bit)
-//     unsigned int hash_table_pointer[],          // Hashテーブル位置指定
-//     bool flag,                                  // カーネル停止確認フラグ
-//     hls::stream<ap_axiu<96, 0, 0, 0>>& flame_stream_out,    // フレーム(出力->hd96
-//     hls::stream<ap_axiu<32, 0, 0, 0>>& top_stream_out_1,    // バケット始端（出力->switch
-//     hls::stream<ap_axiu<32, 0, 0, 0>>& end_stream_out_1,    // バケット終端（出力->switch
-//     hls::stream<ap_axiu<32, 0, 0, 0>>& top_stream_out_2,    // バケット始端（出力->hd96
-//     hls::stream<ap_axiu<32, 0, 0, 0>>& end_stream_out_2,    // バケット終端（出力->hd96
-//     hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out1, // 終了通知（出力-> switch
-//     hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out2, // 終了通知（出力-> hd4096
-//     hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out3, // 終了通知（出力-> hd96
-//     hls::stream<ap_axiu<1, 0, 0, 0>>& continue_stream_in,   // 続行通知（入力<- determin
-//     hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_in,   // 終了通知（入力<- determin
-//     hls::stream<ap_axiu<1, 0, 0, 0>>& complete_stream_out   // 終了(出力-> determin
-// )
-// {
-// // #pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
-// // 300曲想定値
-// #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_hid_set_1
-// #pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_hid_set_1
-//     // printf("hid : 実行開始\n");
-//     printf("hid : flag : %d\n", flag);
-//     /* 出力用 */
-//     ap_axiu<32, 0, 0, 0> top_stream;
-//     ap_axiu<32, 0, 0, 0> end_stream;
-//     ap_axiu<96, 0, 0, 0> flame_stream;
-//     // ap_axiu<1, 0, 0, 0> complete_out;
-//     /* 入力用 */
-//     ap_axiu<1, 0, 0, 0> complete_stream_det;
-//     ap_axiu<1, 0, 0, 0> continue_stream_det;
-//     /* 変数 */
-//     ap_uint<32> hash_value;
-//     ap_uint<SUB_FP_SIZE> tempA32 = query[0];
-//     ap_uint<SUB_FP_SIZE> tempB32 = query[1];
-//     ap_uint<SUB_FP_SIZE> tempC32 = 0;
-//     ap_uint<96> flame96 = 0;
-//     ap_uint<32> top = 0;    // 先頭バケット位置(含む)
-//     ap_uint<32> end = 0;    // 末尾バケット位置(含む)
-    
-//     unsigned int flame_index = 0;
-//     while (1)
-//     {
-//     // #pragma HLS loop_tripcount min=1 max=126
-//         flame_index++;
-//         /* Hash値初期化 */
-//         hash_value = 0;
-//         tempC32 = query[flame_index + 2];
-//         flame96 = ((tempA32, tempB32), tempC32);
-//         /* Hash値生成 */
-//         hash_value = hash_func(flame96);
-//         /* バケット境界(top-end)の確定 */
-//         if ((ap_uint<32>) hash_value == 0) top = 0;
-//         else top = (hash_table_pointer[hash_value-1]) + 1;
-//         end = hash_table_pointer[hash_value];
-//         /* 送信用データ用意 */
-//         top_stream.data = top;
-//         end_stream.data = end;
-//         /* Stream-portへ送信 */
-//         top_stream_out_1.write(top_stream);
-//         end_stream_out_1.write(end_stream);
-//         top_stream_out_2.write(top_stream);
-//         end_stream_out_2.write(end_stream);
-//         // printf("hid_bound : top-end共有情報送信完了\n");
-//         /* 96bitフレーム送信 */
-//         flame_stream.data = flame96;
-//         flame_stream_out.write(flame_stream);
-//         // printf("hid_bound : 96bit flame送信\n");
-//         /* 更新 */
-//         tempA32 = tempB32;
-//         tempB32 = tempC32;
-//         /* 続行信号読み待ち */
-//         continue_stream_det = continue_stream_in.read();
-//         /* 1なら発見->終了 */
-//         if ((continue_stream_det.data == 1) || (flame_index == FLAME_IN_MUSIC)) break;
-//     }
-//     // printf("hid_bound : 終了flame_index = %u\n", flame_index);
-//     /* determinからの終了通知まで待ち */
-//     complete_stream_det = complete_stream_in.read();
-//     /* 最終処理なら全てのカーネル停止 */
-//     if (!flag) {
-//         // complete_out.data = 1;
-//         complete_stream_out1.write(complete_stream_det);
-//         complete_stream_out2.write(complete_stream_det);
-//         complete_stream_out3.write(complete_stream_det);
-//         printf("his_bound : カーネル停止信号送信\n");
-//     }
-//     printf("hid : 終了............\n");
-//     complete_stream_out.write(complete_stream_det);
-// }
-// }
-// /* --mianからの呼び出し-- */
-
-
-
-
-
