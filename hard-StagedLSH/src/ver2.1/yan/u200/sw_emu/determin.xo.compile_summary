@@ -1,0 +1,171 @@
+<ENTRY>
+{
+ "thisFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/determin.xo.compile_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Thu Jun 30 22:17:58 2022",
+ "timestampMillis": "1656595078807",
+ "buildStep": {
+  "cmdId": "e925fb38-c101-4830-b2f2-8716082991e3",
+  "name": "v++",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/determin/determin.steps.log",
+  "commandLine": "/opt/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -c --optimize 0 -t sw_emu --config ../../src/cfg/determin.cfg -k determin -I../../src/kernel ../../src/kernel/determin.cpp -o determin.xo ",
+  "args": [
+   "-c",
+   "--optimize",
+   "0",
+   "-t",
+   "sw_emu",
+   "--config",
+   "../../src/cfg/determin.cfg",
+   "-k",
+   "determin",
+   "-I../../src/kernel",
+   "../../src/kernel/determin.cpp",
+   "-o",
+   "determin.xo"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/src/cfg/determin.cfg",
+    "content": "platform=xilinx_u200_xdma_201830_2\ndebug=1\nsave-temps=1\n\n# カーネルへのインスタンス数とSLR（Super Logic Region）の配置調整\n[connectivity]\n# カーネルのインスタンス数指定\n# カーネルに指定した数のCUがインスタンシエートされる\n# 8カーネル\nnk=determin:1:determin\n\n# 各インスタンスのDRAM接続を指定\n# カーネルインターフェースのプラットフォーム内のシステムポートへの割り当て\n# カーネルポートを特定のメモリリソースにマップする\n\n[hls]\njobs=4\n\n[profile]\ndata=all:all:all# Monitor data on all kernels and CUs\n#stall=all:all   # Monitor stalls for all CUs of all kernels\n#exec=all:all    # Monitor execution times for all CUs\n#aie=all         # Monitor all AIE streams\n"
+   }
+  ],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jun 30 22:17:58 2022",
+ "timestampMillis": "1656595078807",
+ "status": {
+  "cmdId": "e925fb38-c101-4830-b2f2-8716082991e3",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Thu Jun 30 22:18:06 2022",
+ "timestampMillis": "1656595086078",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u200_xdma_201830_2.xpfm",
+  "hardwareDsa": "xilinx_u200_xdma_201830_2.dsa",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u200_xdma_201830_2",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_COMPILE",
+  "target": "TT_SW_EMU",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "determin",
+     "file": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/determin.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/src/kernel/determin.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2020.2. SW Build (by xbuild) on 2020-11-18-05:13:29"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jun 30 22:18:06 2022",
+ "timestampMillis": "1656595086080",
+ "buildStep": {
+  "cmdId": "75141d2e-5c1e-45cc-840e-1e0737f654d4",
+  "name": "vitis_hls",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/determin/determin/vitis_hls.log",
+  "commandLine": "vitis_hls -f /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/determin/determin/determin.tcl -messageDb vitis_hls.pb",
+  "args": [
+   "vitis_hls",
+   "-f",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/determin/determin/determin.tcl",
+   "-messageDb",
+   "vitis_hls.pb"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jun 30 22:18:06 2022",
+ "timestampMillis": "1656595086080",
+ "status": {
+  "cmdId": "75141d2e-5c1e-45cc-840e-1e0737f654d4",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jun 30 22:18:14 2022",
+ "timestampMillis": "1656595094279",
+ "status": {
+  "cmdId": "75141d2e-5c1e-45cc-840e-1e0737f654d4",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jun 30 22:18:14 2022",
+ "timestampMillis": "1656595094372",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/reports/determin/v++_compile_determin_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jun 30 22:18:14 2022",
+ "timestampMillis": "1656595094373",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/v++_compile_determin_guidance.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jun 30 22:18:14 2022",
+ "timestampMillis": "1656595094373",
+ "status": {
+  "cmdId": "e925fb38-c101-4830-b2f2-8716082991e3",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>

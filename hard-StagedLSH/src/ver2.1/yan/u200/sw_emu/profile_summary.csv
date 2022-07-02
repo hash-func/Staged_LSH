@@ -1,0 +1,214 @@
+Profile Summary
+Generated on: 2022-06-30 22:48:32
+Msec since Epoch: 1656596912879
+Profiled application: app.exe
+Target platform: 
+Tool version: 2020.2
+XRT build version: 2.8.743
+Build version branch: 2020.2
+Build version hash: 77d5484b5c4daa691a7f78235053fb036829b1e9
+Build version date: N/A 
+Target devices: xilinx_u200_xdma_201830_2-0
+Flow mode: Software Emulation
+
+OpenCL API Calls
+API Name,Number Of Calls,Total Time (ms),Minimum Time (ms),Average Time (ms),Maximum Time (ms),
+clCreateProgramWithBinary,1,12.5632,12.5632,12.5632,12.5632,
+clCreateKernel,7,2.3789,0.333175,0.339842,0.364006,
+clSetKernelArg,10,2.1473,0.00234,0.21473,1.89964,
+clWaitForEvents,1,1.13063,1.13063,1.13063,1.13063,
+clEnqueueTask,7,0.284395,0.02756,0.0406279,0.074751,
+clEnqueueMigrateMemObjects,3,0.145161,0.01755,0.048387,0.096471,
+clReleaseMemObject,5,0.031391,0.00222,0.0062782,0.021651,
+clGetExtensionFunctionAddress,2,0.028311,0.00654,0.0141555,0.021771,
+clSetEventCallback,1,0.020731,0.020731,0.020731,0.020731,
+clCreateContext,1,0.01988,0.01988,0.01988,0.01988,
+clReleaseKernel,7,0.01765,0.00214,0.00252143,0.00294,
+clCreateBuffer,5,0.01661,0.0026,0.003322,0.00512,
+clReleaseEvent,5,0.01498,0.00227,0.002996,0.00414,
+clGetPlatformInfo,6,0.0131,0.00199,0.00218333,0.00264,
+clGetExtensionFunctionAddressForPlatform,2,0.00866,0.00229,0.00433,0.00637,
+clReleaseContext,2,0.00525,0.002529,0.002625,0.002721,
+clCreateCommandQueue,1,0.00517,0.00517,0.00517,0.00517,
+clBuildProgram,1,0.00497,0.00497,0.00497,0.00497,
+clReleaseCommandQueue,1,0.00422,0.00422,0.00422,0.00422,
+clGetDeviceIDs,1,0.00422,0.00422,0.00422,0.00422,
+clReleaseProgram,1,0.00368,0.00368,0.00368,0.00368,
+clReleaseDevice,1,0.00273,0.00273,0.00273,0.00273,
+
+
+Kernel Execution
+Kernel,Number Of Enqueues,Total Time (ms),Minimum Time (ms),Average Time (ms),Maximum Time (ms),
+determin,1,0.878764,0.878764,0.878764,0.878764,
+hdis4096_set_1,1,1.0161,1.0161,1.0161,1.0161,
+hdis96_set_1,1,1.24857,1.24857,1.24857,1.24857,
+hid_bound_set_1,1,1.29918,1.29918,1.29918,1.29918,
+judge_index_set_1,1,0.999766,0.999766,0.999766,0.999766,
+query_set_1,1,1.08656,1.08656,1.08656,1.08656,
+switch_set_1,1,1.28591,1.28591,1.28591,1.28591,
+
+
+Compute Unit Utilization
+Device,Compute Unit,Kernel,Global Work Size,Local Work Size,Number Of Calls,Dataflow Execution,Max Overlapping Executions,Dataflow Acceleration,Total Time (ms),Minimum Time (ms),Average Time (ms),Maximum Time (ms),Clock Frequency (MHz),
+xilinx_u200_xdma_201830_2-0,determin,determin,1:1:1,1:1:1,1,No,0,1.000000x,88.6755,88.6755,88.6755,88.6755,300,
+xilinx_u200_xdma_201830_2-0,hdis4096_set_1,hdis4096_set_1,1:1:1,1:1:1,1,No,0,1.000000x,88.654,88.654,88.654,88.654,300,
+xilinx_u200_xdma_201830_2-0,hdis96_set_1,hdis96_set_1,1:1:1,1:1:1,1,No,0,1.000000x,88.6081,88.6081,88.6081,88.6081,300,
+xilinx_u200_xdma_201830_2-0,hid_bound_set_1,hid_bound_set_1,1:1:1,1:1:1,1,No,0,1.000000x,88.5466,88.5466,88.5466,88.5466,300,
+xilinx_u200_xdma_201830_2-0,judge_index_set_1,judge_index_set_1,1:1:1,1:1:1,1,No,0,1.000000x,88.664,88.664,88.664,88.664,300,
+xilinx_u200_xdma_201830_2-0,query_set_1,query_set_1,1:1:1,1:1:1,1,No,0,1.000000x,88.6427,88.6427,88.6427,88.6427,300,
+xilinx_u200_xdma_201830_2-0,switch_set_1,switch_set_1,1:1:1,1:1:1,1,No,0,1.000000x,88.5957,88.5957,88.5957,88.5957,300,
+
+
+Data Transfer: Host to Global Memory
+Context:Number of Devices,Transfer Type,Number Of Buffer Transfers,Transfer Rate (MB/s),Average Bandwidth Utilization (%),Average Buffer Size (KB),Total Time (ms),Average Time (ms),
+
+
+Data Transfer: Kernels to Global Memory
+Device,Compute Unit/Port Name,Kernel Arguments,Memory Resources,Transfer Type,Number Of Transfers,Transfer Rate (MB/s),Average Bandwidth Utilization (%),Average Size (KB),Average Latency (ns),
+
+
+Top Data Transfer: Kernels to Global Memory
+Device,Compute Unit,Number of Transfers,Average Bytes per Transfer,Transfer Efficiency (%),Total Data Transfer (MB),Total Write (MB),Total Read (MB),Total Transfer Rate (MB/s),
+
+
+Top Kernel Execution
+Kernel Instance Address,Kernel,Context ID,Command Queue ID,Device,Start Time (ms),Duration (ms),Global Work Size,Local Work Size,
+93967584713312,hid_bound_set_1,0,0,xilinx_u200_xdma_201830_2-0,87.2582,1.29918,1:1:1,1:1:1,
+93967585706688,switch_set_1,0,0,xilinx_u200_xdma_201830_2-0,87.3128,1.28591,1:1:1,1:1:1,
+93967585706896,hdis96_set_1,0,0,xilinx_u200_xdma_201830_2-0,87.3613,1.24857,1:1:1,1:1:1,
+93967584706768,query_set_1,0,0,xilinx_u200_xdma_201830_2-0,87.5596,1.08656,1:1:1,1:1:1,
+93967585690864,hdis4096_set_1,0,0,xilinx_u200_xdma_201830_2-0,87.64,1.0161,1:1:1,1:1:1,
+93967585707104,judge_index_set_1,0,0,xilinx_u200_xdma_201830_2-0,87.6664,0.999766,1:1:1,1:1:1,
+93967585691360,determin,0,0,xilinx_u200_xdma_201830_2-0,87.7987,0.878764,1:1:1,1:1:1,
+
+
+Top Memory Writes: Host to Global Memory
+Buffer Address,Context ID,Command Queue ID,Start Time (ms),Duration (ms),Buffer Size (KB),Writing Rate(MB/s),
+34359738368,0,0,85.0808,N/A,1093.57,N/A,
+17180811264,0,0,87.3894,N/A,0.512,N/A,
+
+
+Top Memory Reads: Host to Global Memory
+Buffer Address,Context ID,Command Queue ID,Start Time (ms),Duration (ms),Buffer Size (KB),Reading Rate(MB/s),
+17180815360,0,0,88.7159,N/A,0.004,N/A,
+
+
+Guidance Parameters
+Parameter,Element,Value,
+DEVICE_EXEC_TIME,xilinx_u200_xdma_201830_2-0,1.419252,
+CU_CALLS,xilinx_u200_xdma_201830_2-0|determin,1,
+CU_CALLS,xilinx_u200_xdma_201830_2-0|hdis4096_set_1,1,
+CU_CALLS,xilinx_u200_xdma_201830_2-0|hdis96_set_1,1,
+CU_CALLS,xilinx_u200_xdma_201830_2-0|hid_bound_set_1,1,
+CU_CALLS,xilinx_u200_xdma_201830_2-0|judge_index_set_1,1,
+CU_CALLS,xilinx_u200_xdma_201830_2-0|query_set_1,1,
+CU_CALLS,xilinx_u200_xdma_201830_2-0|switch_set_1,1,
+MIGRATE_MEM,host,3,
+MEMORY_USAGE,xilinx_u200_xdma_201830_2-0|DDR[1],1,
+MEMORY_USAGE,xilinx_u200_xdma_201830_2-0|DDR[2],1,
+MEMORY_USAGE,xilinx_u200_xdma_201830_2-0|hlsaxisapuint10,1,
+MEMORY_USAGE,xilinx_u200_xdma_201830_2-0|hlsaxisapuint32,1,
+MEMORY_USAGE,xilinx_u200_xdma_201830_2-0|hlsaxisapuint96,1,
+PLRAM_DEVICE,all,1,
+HBM_DEVICE,all,0,
+KDMA_DEVICE,all,1,
+P2P_DEVICE,all,1,
+P2P_HOST_TRANSFERS,host,0,
+PORT_BIT_WIDTH,judge_index_set_1/complete_stream_in,1,
+PORT_BIT_WIDTH,judge_index_set_1/count_stream_in,32,
+PORT_BIT_WIDTH,judge_index_set_1/fp32_stream_out,32,
+PORT_BIT_WIDTH,judge_index_set_1/haming_stream_in,32,
+PORT_BIT_WIDTH,judge_index_set_1/index_stream_out,32,
+PORT_BIT_WIDTH,judge_index_set_1/locate_stream_in,32,
+PORT_BIT_WIDTH,judge_index_set_1/m_axi_db_judge_set_1,32,
+PORT_BIT_WIDTH,judge_index_set_1/m_axi_table_judge_set_1,32,
+PORT_BIT_WIDTH,switch_set_1/complete_stream_in,1,
+PORT_BIT_WIDTH,switch_set_1/end_stream_in,32,
+PORT_BIT_WIDTH,switch_set_1/flame96_stream_out,96,
+PORT_BIT_WIDTH,switch_set_1/m_axi_db_switch_set_1,32,
+PORT_BIT_WIDTH,switch_set_1/m_axi_table_switch_set_1,32,
+PORT_BIT_WIDTH,switch_set_1/top_stream_in,32,
+PORT_BIT_WIDTH,hid_bound_set_1/complete_stream_in,1,
+PORT_BIT_WIDTH,hid_bound_set_1/end_stream_out_1,32,
+PORT_BIT_WIDTH,hid_bound_set_1/end_stream_out_2,32,
+PORT_BIT_WIDTH,hid_bound_set_1/flame_stream_in,96,
+PORT_BIT_WIDTH,hid_bound_set_1/flame_stream_out,96,
+PORT_BIT_WIDTH,hid_bound_set_1/m_axi_pointer_hid_set_1,32,
+PORT_BIT_WIDTH,hid_bound_set_1/top_stream_out_1,32,
+PORT_BIT_WIDTH,hid_bound_set_1/top_stream_out_2,32,
+PORT_BIT_WIDTH,query_set_1/complete_stream_in,1,
+PORT_BIT_WIDTH,query_set_1/complete_stream_out,1,
+PORT_BIT_WIDTH,query_set_1/complete_stream_out1,1,
+PORT_BIT_WIDTH,query_set_1/complete_stream_out2,1,
+PORT_BIT_WIDTH,query_set_1/complete_stream_out3,1,
+PORT_BIT_WIDTH,query_set_1/complete_stream_out4,1,
+PORT_BIT_WIDTH,query_set_1/continue_stream_in,1,
+PORT_BIT_WIDTH,query_set_1/flame_stream_out,96,
+PORT_BIT_WIDTH,query_set_1/m_axi_query_hid_set_1,32,
+PORT_BIT_WIDTH,determin/complete_stream_in1_1,1,
+PORT_BIT_WIDTH,determin/complete_stream_in1_2,1,
+PORT_BIT_WIDTH,determin/complete_stream_out1_1,1,
+PORT_BIT_WIDTH,determin/complete_stream_out1_2,1,
+PORT_BIT_WIDTH,determin/continue_stream_out1_1,1,
+PORT_BIT_WIDTH,determin/index_stream_in1,32,
+PORT_BIT_WIDTH,determin/m_axi_judge_determin_set_1,32,
+PORT_BIT_WIDTH,hdis96_set_1/complete_stream_in,1,
+PORT_BIT_WIDTH,hdis96_set_1/count_stream_out,32,
+PORT_BIT_WIDTH,hdis96_set_1/end_stream_in,32,
+PORT_BIT_WIDTH,hdis96_set_1/flame96_stream_in1,96,
+PORT_BIT_WIDTH,hdis96_set_1/flame96_stream_in2,96,
+PORT_BIT_WIDTH,hdis96_set_1/locate_stream_out,32,
+PORT_BIT_WIDTH,hdis96_set_1/top_stream_in,32,
+PORT_BIT_WIDTH,hdis4096_set_1/complete_stream_in,1,
+PORT_BIT_WIDTH,hdis4096_set_1/complete_stream_out,1,
+PORT_BIT_WIDTH,hdis4096_set_1/fp32_stream_in,32,
+PORT_BIT_WIDTH,hdis4096_set_1/haming_stream_out,32,
+PORT_BIT_WIDTH,hdis4096_set_1/m_axi_query_hd4096_set_1,32,
+KERNEL_COUNT,determin,1,
+KERNEL_COUNT,hdis4096_set_1,1,
+KERNEL_COUNT,hdis96_set_1,1,
+KERNEL_COUNT,hid_bound_set_1,1,
+KERNEL_COUNT,judge_index_set_1,1,
+KERNEL_COUNT,query_set_1,1,
+KERNEL_COUNT,switch_set_1,1,
+OBJECTS_RELEASED,all,0,
+TRACE_MEMORY,all,NA,
+CU_CONTEXT_EN,all,0,
+MAX_PARALLEL_KERNEL_ENQUEUES,determin,1,
+MAX_PARALLEL_KERNEL_ENQUEUES,hdis4096_set_1,1,
+MAX_PARALLEL_KERNEL_ENQUEUES,hdis96_set_1,1,
+MAX_PARALLEL_KERNEL_ENQUEUES,hid_bound_set_1,1,
+MAX_PARALLEL_KERNEL_ENQUEUES,judge_index_set_1,1,
+MAX_PARALLEL_KERNEL_ENQUEUES,query_set_1,1,
+MAX_PARALLEL_KERNEL_ENQUEUES,switch_set_1,1,
+COMMAND_QUEUE_OOO,93967582244720,1,
+KERNEL_BUFFER_INFO,query_set_1|query|DDR[1]|0,512,
+KERNEL_BUFFER_INFO,hid_bound_set_1|hash_table_pointer|DDR[1]|1,32768,
+KERNEL_BUFFER_INFO,hdis4096_set_1|query|DDR[1]|0,512,
+KERNEL_BUFFER_INFO,determin|judge|DDR[1]|0,4,
+KERNEL_BUFFER_INFO,switch_set_1|FP_DB|hlsaxisapuint10|1,153600,
+KERNEL_BUFFER_INFO,switch_set_1|hash_table|DDR[1]|1,907200,
+KERNEL_BUFFER_INFO,judge_index_set_1|FP_DB|hlsaxisapuint10|1,153600,
+KERNEL_BUFFER_INFO,judge_index_set_1|hash_table|DDR[1]|1,907200,
+MEMORY_TYPE_BIT_WIDTH,xilinx_u200_xdma_201830_2-0|DDR,512,
+MEMORY_TYPE_BIT_WIDTH,xilinx_u200_xdma_201830_2-0|HBM,256,
+MEMORY_TYPE_BIT_WIDTH,xilinx_u200_xdma_201830_2-0|PLRAM,512,
+XRT_INI_SETTING,aie_trace_buffer_size,8M,
+XRT_INI_SETTING,continuous_trace,0,
+XRT_INI_SETTING,continuous_trace_interval_ms,10,
+XRT_INI_SETTING,data_transfer_trace,off,
+XRT_INI_SETTING,launch_waveform,batch,
+XRT_INI_SETTING,lop_trace,0,
+XRT_INI_SETTING,power_profile,0,
+XRT_INI_SETTING,profile,1,
+XRT_INI_SETTING,stall_trace,off,
+XRT_INI_SETTING,timeline_trace,1,
+XRT_INI_SETTING,trace_buffer_size,1M,
+XRT_INI_SETTING,verbosity,4,
+BUFFER_RD_ACTIVE_TIME_MS,all,0.024191,
+BUFFER_WR_ACTIVE_TIME_MS,all,7.2299,
+BUFFER_TX_ACTIVE_TIME_MS,all,3.65926,
+APPLICATION_RUN_TIME_MS,all,88.9907,
+TOTAL_KERNEL_RUN_TIME_MS,all,1.41925,
+
+

@@ -1,0 +1,171 @@
+<ENTRY>
+{
+ "thisFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/query_set_1.xo.compile_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Thu Jun 30 22:46:20 2022",
+ "timestampMillis": "1656596780919",
+ "buildStep": {
+  "cmdId": "4fbf7bc8-80e5-4de1-8e1d-0c14571c3455",
+  "name": "v++",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/query_set_1/query_set_1.steps.log",
+  "commandLine": "/opt/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -c --optimize 0 -t sw_emu --config ../../src/cfg/query_set_1.cfg -k query_set_1 -I../../src/kernel ../../src/kernel/serch_module_set_1/query_set_1.cpp -o query_set_1.xo ",
+  "args": [
+   "-c",
+   "--optimize",
+   "0",
+   "-t",
+   "sw_emu",
+   "--config",
+   "../../src/cfg/query_set_1.cfg",
+   "-k",
+   "query_set_1",
+   "-I../../src/kernel",
+   "../../src/kernel/serch_module_set_1/query_set_1.cpp",
+   "-o",
+   "query_set_1.xo"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/src/cfg/query_set_1.cfg",
+    "content": "platform=xilinx_u200_xdma_201830_2\ndebug=1\nsave-temps=1\n\n# カーネルへのインスタンス数とSLR（Super Logic Region）の配置調整\n[connectivity]\n# カーネルのインスタンス数指定\n# カーネルに指定した数のCUがインスタンシエートされる\n# 8カーネル\nnk=query_set_1:1:query_set_1\n\n# 各インスタンスのDRAM接続を指定\n# カーネルインターフェースのプラットフォーム内のシステムポートへの割り当て\n# カーネルポートを特定のメモリリソースにマップする\n\n# query\nsp=query_set_1.query:PLRAM[1]\n\n\n[hls]\njobs=4\n\n[profile]\ndata=all:all:all# Monitor data on all kernels and CUs\n#stall=all:all   # Monitor stalls for all CUs of all kernels\n#exec=all:all    # Monitor execution times for all CUs\n#aie=all         # Monitor all AIE streams\n"
+   }
+  ],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jun 30 22:46:20 2022",
+ "timestampMillis": "1656596780919",
+ "status": {
+  "cmdId": "4fbf7bc8-80e5-4de1-8e1d-0c14571c3455",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Thu Jun 30 22:46:28 2022",
+ "timestampMillis": "1656596788191",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u200_xdma_201830_2.xpfm",
+  "hardwareDsa": "xilinx_u200_xdma_201830_2.dsa",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u200_xdma_201830_2",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_COMPILE",
+  "target": "TT_SW_EMU",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "query_set_1",
+     "file": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/query_set_1.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/src/kernel/serch_module_set_1/query_set_1.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2020.2. SW Build (by xbuild) on 2020-11-18-05:13:29"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jun 30 22:46:28 2022",
+ "timestampMillis": "1656596788193",
+ "buildStep": {
+  "cmdId": "30825910-4d37-4886-a4f6-f7db4aec244d",
+  "name": "vitis_hls",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/query_set_1/query_set_1/vitis_hls.log",
+  "commandLine": "vitis_hls -f /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/query_set_1/query_set_1/query_set_1.tcl -messageDb vitis_hls.pb",
+  "args": [
+   "vitis_hls",
+   "-f",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/query_set_1/query_set_1/query_set_1.tcl",
+   "-messageDb",
+   "vitis_hls.pb"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jun 30 22:46:28 2022",
+ "timestampMillis": "1656596788194",
+ "status": {
+  "cmdId": "30825910-4d37-4886-a4f6-f7db4aec244d",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jun 30 22:46:36 2022",
+ "timestampMillis": "1656596796441",
+ "status": {
+  "cmdId": "30825910-4d37-4886-a4f6-f7db4aec244d",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jun 30 22:46:36 2022",
+ "timestampMillis": "1656596796535",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/reports/query_set_1/v++_compile_query_set_1_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jun 30 22:46:36 2022",
+ "timestampMillis": "1656596796536",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/v++_compile_query_set_1_guidance.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jun 30 22:46:36 2022",
+ "timestampMillis": "1656596796536",
+ "status": {
+  "cmdId": "4fbf7bc8-80e5-4de1-8e1d-0c14571c3455",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>

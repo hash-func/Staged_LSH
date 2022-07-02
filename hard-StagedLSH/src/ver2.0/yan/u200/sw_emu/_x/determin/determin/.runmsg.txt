@@ -1,2 +1,0 @@
-performing high-level synthesis for kernel: determin
-Log file: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/determin/determin/vitis_hls.log

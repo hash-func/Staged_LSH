@@ -1,2 +1,0 @@
-performing high-level synthesis for kernel: switch_set_1
-Log file: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.0/yan/u200/sw_emu/_x/switch_set_1/switch_set_1/vitis_hls.log

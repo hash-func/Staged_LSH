@@ -1,0 +1,2 @@
+performing high-level synthesis for kernel: hdis4096_set_1
+Log file: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.1/yan/u200/sw_emu/_x/hdis4096_set_1/hdis4096_set_1/vitis_hls.log
