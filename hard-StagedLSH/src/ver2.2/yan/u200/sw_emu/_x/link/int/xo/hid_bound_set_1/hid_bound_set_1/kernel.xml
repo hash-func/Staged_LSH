@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root versionMajor="1" versionMinor="5">
+  <kernel name="hid_bound_set_1" language="c" vlnv="xilinx.com:hls:hid_bound_set_1:1.0" attributes="" hash="" preferredWorkGroupSizeMultiple="0" workGroupSize="1" debug="true" compileOptions=" -g -I /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel" profileType="" interrupt="true" hwControlProtocol="ap_ctrl_chain">
+    <ports>
+      <port name="M_AXI_FLAME_HID_SET_1" mode="master" range="0xFFFFFFFF" dataWidth="32" portType="addressable" base="0x0"/>
+      <port name="M_AXI_POINTER_HID_SET_1" mode="master" range="0xFFFFFFFF" dataWidth="32" portType="addressable" base="0x0"/>
+      <port name="M_AXI_DB_SWITCH_SET_1" mode="master" range="0xFFFFFFFF" dataWidth="32" portType="addressable" base="0x0"/>
+      <port name="M_AXI_TABLE_SWITCH_SET_1" mode="master" range="0xFFFFFFFF" dataWidth="32" portType="addressable" base="0x0"/>
+      <port name="TOP_STREAM_OUT_1" mode="write_only" dataWidth="32" portType="stream"/>
+      <port name="END_STREAM_OUT_1" mode="write_only" dataWidth="32" portType="stream"/>
+      <port name="FLAME96_STREAM_OUT" mode="write_only" dataWidth="96" portType="stream"/>
+      <port name="S_AXI_CONTROL" mode="slave" range="0x1000" dataWidth="32" portType="addressable" base="0x0"/>
+    </ports>
+    <args>
+      <arg name="flame" addressQualifier="1" id="0" port="M_AXI_FLAME_HID_SET_1" size="0x8" offset="0x10" hostOffset="0x0" hostSize="0x8" type="void*"/>
+      <arg name="hash_table_pointer" addressQualifier="1" id="1" port="M_AXI_POINTER_HID_SET_1" size="0x8" offset="0x1C" hostOffset="0x0" hostSize="0x8" type="void*"/>
+      <arg name="FP_DB" addressQualifier="1" id="2" port="M_AXI_DB_SWITCH_SET_1" size="0x8" offset="0x28" hostOffset="0x0" hostSize="0x8" type="void*"/>
+      <arg name="hash_table" addressQualifier="1" id="3" port="M_AXI_TABLE_SWITCH_SET_1" size="0x8" offset="0x34" hostOffset="0x0" hostSize="0x8" type="void*"/>
+      <arg name="top_stream_out_1" addressQualifier="4" id="4" port="TOP_STREAM_OUT_1" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;32>, 0, 0, 0>, 0>&amp;" memSize="0x4" origName="top_stream_out_1" origUse="variable"/>
+      <arg name="end_stream_out_1" addressQualifier="4" id="5" port="END_STREAM_OUT_1" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;32>, 0, 0, 0>, 0>&amp;" memSize="0x4" origName="end_stream_out_1" origUse="variable"/>
+      <arg name="flame96_stream_out" addressQualifier="4" id="6" port="FLAME96_STREAM_OUT" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;96>, 0, 0, 0>, 0>&amp;" memSize="0x10" origName="flame96_stream_out" origUse="variable"/>
+    </args>
+    <compileWorkGroupSize x="1" y="1" z="1"/>
+    <maxWorkGroupSize x="1" y="1" z="1"/>
+  </kernel>
+</root>

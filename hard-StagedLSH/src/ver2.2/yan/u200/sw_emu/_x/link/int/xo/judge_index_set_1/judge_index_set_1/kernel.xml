@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root versionMajor="1" versionMinor="5">
+  <kernel name="judge_index_set_1" language="c" vlnv="xilinx.com:hls:judge_index_set_1:1.0" attributes="" hash="" preferredWorkGroupSizeMultiple="0" workGroupSize="1" debug="true" compileOptions=" -g -I /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel" profileType="" interrupt="true" hwControlProtocol="ap_ctrl_chain">
+    <ports>
+      <port name="M_AXI_DB_JUDGE_SET_1" mode="master" range="0xFFFFFFFF" dataWidth="32" portType="addressable" base="0x0"/>
+      <port name="M_AXI_TABLE_JUDGE_SET_1" mode="master" range="0xFFFFFFFF" dataWidth="32" portType="addressable" base="0x0"/>
+      <port name="COMPLETE_STREAM_IN" mode="read_only" dataWidth="1" portType="stream"/>
+      <port name="FP32_STREAM_OUT" mode="write_only" dataWidth="32" portType="stream"/>
+      <port name="HAMING_STREAM_IN" mode="read_only" dataWidth="32" portType="stream"/>
+      <port name="INDEX_STREAM_OUT" mode="write_only" dataWidth="32" portType="stream"/>
+      <port name="LOCATE_STREAM_IN" mode="read_only" dataWidth="32" portType="stream"/>
+      <port name="COUNT_STREAM_IN" mode="read_only" dataWidth="32" portType="stream"/>
+      <port name="S_AXI_CONTROL" mode="slave" range="0x1000" dataWidth="32" portType="addressable" base="0x0"/>
+    </ports>
+    <args>
+      <arg name="FP_DB" addressQualifier="1" id="0" port="M_AXI_DB_JUDGE_SET_1" size="0x8" offset="0x10" hostOffset="0x0" hostSize="0x8" type="void*"/>
+      <arg name="hash_table" addressQualifier="1" id="1" port="M_AXI_TABLE_JUDGE_SET_1" size="0x8" offset="0x1C" hostOffset="0x0" hostSize="0x8" type="void*"/>
+      <arg name="complete_stream_in" addressQualifier="4" id="2" port="COMPLETE_STREAM_IN" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;1>, 0, 0, 0>, 0>&amp;" memSize="0x1" origName="complete_stream_in" origUse="variable"/>
+      <arg name="fp32_stream_out" addressQualifier="4" id="3" port="FP32_STREAM_OUT" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;32>, 0, 0, 0>, 0>&amp;" memSize="0x4" origName="fp32_stream_out" origUse="variable"/>
+      <arg name="haming_stream_in" addressQualifier="4" id="4" port="HAMING_STREAM_IN" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;32>, 0, 0, 0>, 0>&amp;" memSize="0x4" origName="haming_stream_in" origUse="variable"/>
+      <arg name="index_stream_out" addressQualifier="4" id="5" port="INDEX_STREAM_OUT" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;32>, 0, 0, 0>, 0>&amp;" memSize="0x4" origName="index_stream_out" origUse="variable"/>
+      <arg name="locate_stream_in" addressQualifier="4" id="6" port="LOCATE_STREAM_IN" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;32>, 0, 0, 0>, 0>&amp;" memSize="0x4" origName="locate_stream_in" origUse="variable"/>
+      <arg name="count_stream_in" addressQualifier="4" id="7" port="COUNT_STREAM_IN" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;32>, 0, 0, 0>, 0>&amp;" memSize="0x4" origName="count_stream_in" origUse="variable"/>
+    </args>
+    <compileWorkGroupSize x="1" y="1" z="1"/>
+    <maxWorkGroupSize x="1" y="1" z="1"/>
+  </kernel>
+</root>

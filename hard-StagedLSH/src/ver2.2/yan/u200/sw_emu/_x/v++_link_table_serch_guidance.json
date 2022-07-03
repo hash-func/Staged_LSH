@@ -1,0 +1,41 @@
+{
+ "session": {
+  "name": "v++_link_table_serch",
+  "uuid": "801f025b-6b64-413d-9a18-32424d0e7b4e",
+  "description": "v++  -l --optimize 0 -t sw_emu --config ../../src/cfg/u200.cfg ./determin.xo ./hdis96_set_1.xo ./hdis4096_set_1.xo ./hid_bound_set_1.xo ./judge_index_set_1.xo -o table_serch.xclbin ",
+  "timestamp": "0",
+  "report_file": {
+   "scheme": "FILE",
+   "host": "",
+   "port": 0,
+   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/reports/link/v++_link_table_serch_guidance.html",
+   "query": "",
+   "fragment": "",
+   "media_type": "",
+   "encoding": "",
+   "data": ""
+  },
+  "proto_file": {
+   "scheme": "FILE",
+   "host": "",
+   "port": 0,
+   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/v++_link_table_serch_guidance.pb",
+   "query": "",
+   "fragment": "",
+   "media_type": "",
+   "encoding": "",
+   "data": ""
+  },
+  "build_target": "",
+  "config_files": [
+   {
+    "fileName": "../../src/cfg/u200.cfg",
+    "contents": "platform=xilinx_u200_xdma_201830_2\ndebug=1\nsave-temps=1\n\n# カーネルへのインスタンス数とSLR（Super Logic Region）の配置調整\n[connectivity]\n# カーネルのインスタンス数指定\n# カーネルに指定した数のCUがインスタンシエートされる\n# 8カーネル\nnk=hid_bound_set_1:1:hid_bound_set_1\nnk=hdis96_set_1:1:hdis96_set_1\nnk=judge_index_set_1:1:judge_index_set_1\nnk=hdis4096_set_1:1:hdis4096_set_1\nnk=determin:1:determin\n\n# slr=table_serch_1:SLR0\n# slr=table_serch_2:SLR1\n# slr=table_serch_3:SLR0\n# slr=table_serch_4:SLR1\n# slr=table_serch_5:SLR0\n# slr=table_serch_6:SLR1\n\n# 各インスタンスのDRAM接続を指定\n# カーネルインターフェースのプラットフォーム内のシステムポートへの割り当て\n# カーネルポートを特定のメモリリソースにマップする\n# FP_DB\nsp=hid_bound_set_1.FP_DB:DDR[2]\nsp=judge_index_set_1.FP_DB:DDR[2]\n# hash_table\nsp=hid_bound_set_1.hash_table:DDR[0]\nsp=judge_index_set_1.hash_table:DDR[0]\n# hash_table_pointer\nsp=hid_bound_set_1.hash_table_pointer:DDR[1]\n# flame\nsp=hid_bound_set_1.flame:PLRAM[1]\nsp=hdis96_set_1.flame:PLRAM[1]\n# query\nsp=hdis4096_set_1.query:DDR[3]\n\n# 配線\n# hid_bound\nstream_connect=hid_bound_set_1.flame96_stream_out:hdis96_set_1.flame96_stream_in1:16\nstream_connect=hid_bound_set_1.top_stream_out_1:hdis96_set_1.top_stream_in\nstream_connect=hid_bound_set_1.end_stream_out_1:hdis96_set_1.end_stream_in\n# hdis96\nstream_connect=hdis96_set_1.count_stream_out:judge_index_set_1.count_stream_in\nstream_connect=hdis96_set_1.locate_stream_out:judge_index_set_1.locate_stream_in\n# judge\nstream_connect=judge_index_set_1.fp32_stream_out:hdis4096_set_1.fp32_stream_in:32\nstream_connect=judge_index_set_1.index_stream_out:determin.index_stream_in1\n# hdis4096\nstream_connect=hdis4096_set_1.haming_stream_out:judge_index_set_1.haming_stream_in\n\n# 完了信号\n# determin\nstream_connect=determin.complete_stream_out1_1:hdis4096_set_1.complete_stream_in\nstream_connect=determin.complete_stream_out1_2:judge_index_set_1.complete_stream_in\n\n[hls]\njobs=4\n\n[profile]\ndata=all:all:all# Monitor data on all kernels and CUs\n#stall=all:all   # Monitor stalls for all CUs of all kernels\n#exec=all:all    # Monitor execution times for all CUs\n#aie=all         # Monitor all AIE streams\n"
+   }
+  ]
+ },
+ "violation_count": 0,
+ "waived_count": 0,
+ "affirmation_count": 0
+}
+

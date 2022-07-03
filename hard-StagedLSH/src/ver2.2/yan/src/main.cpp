@@ -624,6 +624,8 @@ int main(int argc, char** argv)
     mKernel_hd96.setArg  (0,   flame_buf);
     // query
     mKernel_hd4096.setArg(0,   query_buf);
+    // judge
+    mKernel_det.setArg   (0,  judge_buf);
 
     unsigned int* query = (unsigned int*)q.enqueueMapBuffer(
         query_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(unsigned int)*ONEMUSIC_SUBNUM);
@@ -687,7 +689,7 @@ int main(int argc, char** argv)
         /* query送信 */
         q.enqueueMigrateMemObjects({
             query_buf
-        },0 /*0はホストからの意味*/, NULL, &hd4096_buffDone);
+        },0 /*0はホストからの意味*/, &judge_writeWait, &hd4096_buffDone);
         hd4096_writeWait.push_back(hd4096_buffDone);
         // カーネルの実行
         q.enqueueTask(mKernel_hd4096, &hd4096_writeWait, &hd4096_krnlDone);
@@ -710,7 +712,7 @@ int main(int argc, char** argv)
             /* query送信 */
             q.enqueueMigrateMemObjects({
                 flame_buf
-            },0 /*0はホストからの意味*/, NULL, &buffDone);
+            },0 /*0はホストからの意味*/, &hd4096_writeWait, &buffDone);
             writeWait.push_back(buffDone);
             // カーネルの実行
             q.enqueueTask(mKernel_hid,  &writeWait, &hid_krnlDone);
@@ -724,10 +726,13 @@ int main(int argc, char** argv)
             q.enqueueMigrateMemObjects({judge_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &det_krnlWait, &finishDone);
             finishWait.push_back(finishDone);
             // スケジュールされた全ての動作終了まで待ち
+            hid_krnlWait[count].wait();
+            hd96_krnlWait[count].wait();
+            det_krnlWait[count].wait();
             finishWait[count].wait();
             /* 解が見つかった時点で終了 */
             count++;
-            printf("host : %u回目\n", count);
+            // printf("host : %u回目\n", count);
             if (judge[0] >= 0) break;
             // 更新
             flame96[0] = flame96[1];
@@ -752,6 +757,9 @@ int main(int argc, char** argv)
             }
         }
     }
+    // 全てのカーネル終了まで待ち
+    judge_krnlWait[0].wait();
+    hd4096_krnlWait[QUERY_NUM-1].wait();
 
 
 /****************************************************************************************************/

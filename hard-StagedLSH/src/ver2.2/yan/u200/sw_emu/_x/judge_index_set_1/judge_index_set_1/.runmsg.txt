@@ -1,0 +1,2 @@
+performing high-level synthesis for kernel: judge_index_set_1
+Log file: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1/vitis_hls.log

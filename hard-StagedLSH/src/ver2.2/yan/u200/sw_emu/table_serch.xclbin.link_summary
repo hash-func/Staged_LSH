@@ -1,0 +1,1092 @@
+<ENTRY>
+{
+ "thisFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/table_serch.xclbin.link_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:40 2022",
+ "timestampMillis": "1656822580408",
+ "buildStep": {
+  "cmdId": "f81acbc7-f9ce-4756-a70e-b41fd89aff11",
+  "name": "v++",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/link.steps.log",
+  "commandLine": "/opt/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -l --optimize 0 -t sw_emu --config ../../src/cfg/u200.cfg ./determin.xo ./hdis96_set_1.xo ./hdis4096_set_1.xo ./hid_bound_set_1.xo ./judge_index_set_1.xo -o table_serch.xclbin ",
+  "args": [
+   "-l",
+   "--optimize",
+   "0",
+   "-t",
+   "sw_emu",
+   "--config",
+   "../../src/cfg/u200.cfg",
+   "./determin.xo",
+   "./hdis96_set_1.xo",
+   "./hdis4096_set_1.xo",
+   "./hid_bound_set_1.xo",
+   "./judge_index_set_1.xo",
+   "-o",
+   "table_serch.xclbin"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/cfg/u200.cfg",
+    "content": "platform=xilinx_u200_xdma_201830_2\ndebug=1\nsave-temps=1\n\n# カーネルへのインスタンス数とSLR（Super Logic Region）の配置調整\n[connectivity]\n# カーネルのインスタンス数指定\n# カーネルに指定した数のCUがインスタンシエートされる\n# 8カーネル\nnk=hid_bound_set_1:1:hid_bound_set_1\nnk=hdis96_set_1:1:hdis96_set_1\nnk=judge_index_set_1:1:judge_index_set_1\nnk=hdis4096_set_1:1:hdis4096_set_1\nnk=determin:1:determin\n\n# slr=table_serch_1:SLR0\n# slr=table_serch_2:SLR1\n# slr=table_serch_3:SLR0\n# slr=table_serch_4:SLR1\n# slr=table_serch_5:SLR0\n# slr=table_serch_6:SLR1\n\n# 各インスタンスのDRAM接続を指定\n# カーネルインターフェースのプラットフォーム内のシステムポートへの割り当て\n# カーネルポートを特定のメモリリソースにマップする\n# FP_DB\nsp=hid_bound_set_1.FP_DB:DDR[2]\nsp=judge_index_set_1.FP_DB:DDR[2]\n# hash_table\nsp=hid_bound_set_1.hash_table:DDR[0]\nsp=judge_index_set_1.hash_table:DDR[0]\n# hash_table_pointer\nsp=hid_bound_set_1.hash_table_pointer:DDR[1]\n# flame\nsp=hid_bound_set_1.flame:PLRAM[1]\nsp=hdis96_set_1.flame:PLRAM[1]\n# query\nsp=hdis4096_set_1.query:DDR[3]\n\n# 配線\n# hid_bound\nstream_connect=hid_bound_set_1.flame96_stream_out:hdis96_set_1.flame96_stream_in1:16\nstream_connect=hid_bound_set_1.top_stream_out_1:hdis96_set_1.top_stream_in\nstream_connect=hid_bound_set_1.end_stream_out_1:hdis96_set_1.end_stream_in\n# hdis96\nstream_connect=hdis96_set_1.count_stream_out:judge_index_set_1.count_stream_in\nstream_connect=hdis96_set_1.locate_stream_out:judge_index_set_1.locate_stream_in\n# judge\nstream_connect=judge_index_set_1.fp32_stream_out:hdis4096_set_1.fp32_stream_in:32\nstream_connect=judge_index_set_1.index_stream_out:determin.index_stream_in1\n# hdis4096\nstream_connect=hdis4096_set_1.haming_stream_out:judge_index_set_1.haming_stream_in\n\n# 完了信号\n# determin\nstream_connect=determin.complete_stream_out1_1:hdis4096_set_1.complete_stream_in\nstream_connect=determin.complete_stream_out1_2:judge_index_set_1.complete_stream_in\n\n[hls]\njobs=4\n\n[profile]\ndata=all:all:all# Monitor data on all kernels and CUs\n#stall=all:all   # Monitor stalls for all CUs of all kernels\n#exec=all:all    # Monitor execution times for all CUs\n#aie=all         # Monitor all AIE streams\n"
+   }
+  ],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:40 2022",
+ "timestampMillis": "1656822580409",
+ "status": {
+  "cmdId": "f81acbc7-f9ce-4756-a70e-b41fd89aff11",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Sun Jul  3 13:29:47 2022",
+ "timestampMillis": "1656822587636",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u200_xdma_201830_2.xpfm",
+  "hardwareDsa": "xilinx_u200_xdma_201830_2.dsa",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u200_xdma_201830_2",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_LINK",
+  "target": "TT_SW_EMU",
+  "binaryContainer": {
+   "base": {
+    "type": "BT_UKNOWN",
+    "name": "table_serch",
+    "file": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/table_serch.xclbin",
+    "reports": [],
+    "uuid": ""
+   },
+   "kernels": []
+  },
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "determin",
+     "file": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/determin.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/determin/determin/cpu_sources/determin.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "determin"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "hdis96_set_1",
+     "file": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/hdis96_set_1.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/hdis96_set_1/hdis96_set_1/cpu_sources/hdis96_set_1.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "hdis96_set_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "hdis4096_set_1",
+     "file": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/hdis4096_set_1.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/hdis4096_set_1/hdis4096_set_1/cpu_sources/hdis4096_set_1.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "hdis4096_set_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "hid_bound_set_1",
+     "file": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/hid_bound_set_1.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/hid_bound_set_1/hid_bound_set_1/cpu_sources/hid_bound_set_1.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "hid_bound_set_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "judge_index_set_1",
+     "file": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/judge_index_set_1.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/judge_index_set_1/judge_index_set_1/cpu_sources/judge_index_set_1.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "judge_index_set_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2020.2. SW Build (by xbuild) on 2020-11-18-05:13:29"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:47 2022",
+ "timestampMillis": "1656822587640",
+ "buildStep": {
+  "cmdId": "83afc28f-aa50-4808-99b3-7fb85eb73305",
+  "name": "regiongen",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch_regiongen.log",
+  "commandLine": "/opt/Vitis/2020.2/bin/../runtime/bin/regiongen_new -v -n -m /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch.xml -t alg -o xcl_top",
+  "args": [
+   "-v",
+   "-n",
+   "-m",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch.xml",
+   "-t",
+   "alg",
+   "-o",
+   "xcl_top"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:47 2022",
+ "timestampMillis": "1656822587641",
+ "status": {
+  "cmdId": "83afc28f-aa50-4808-99b3-7fb85eb73305",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:48 2022",
+ "timestampMillis": "1656822588692",
+ "status": {
+  "cmdId": "83afc28f-aa50-4808-99b3-7fb85eb73305",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:48 2022",
+ "timestampMillis": "1656822588693",
+ "buildStep": {
+  "cmdId": "d3366fd2-eca1-4a0b-ad31-0c3ef1b5b6e4",
+  "name": "gcc",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/determin/determin_kernel_gcc.log",
+  "commandLine": "/opt/Vivado/2020.2/tps/lnx64/gcc-6.2.0/bin/gcc -I . -I /opt//Vitis_HLS/2020.2/bin/../include -I /opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include -I /opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl -I /opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl -I /usr/include/x86_64-linux-gnu -std=c++14 -g -I /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel -g -fPIC -g -c -DHLS_STREAM_THREAD_SAFE -MD -MT obj/determin.o -MP -MF obj/determin.Cd /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/determin/determin/cpu_sources/determin.cpp -o obj/determin.o",
+  "args": [
+   "-I",
+   ".",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/usr/include/x86_64-linux-gnu",
+   "-std=c++14",
+   "-g",
+   "-I",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel",
+   "-g",
+   "-fPIC",
+   "-g",
+   "-c",
+   "-DHLS_STREAM_THREAD_SAFE",
+   "-MD",
+   "-MT",
+   "obj/determin.o",
+   "-MP",
+   "-MF",
+   "obj/determin.Cd",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/determin/determin/cpu_sources/determin.cpp",
+   "-o",
+   "obj/determin.o"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:48 2022",
+ "timestampMillis": "1656822588693",
+ "status": {
+  "cmdId": "d3366fd2-eca1-4a0b-ad31-0c3ef1b5b6e4",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:49 2022",
+ "timestampMillis": "1656822589564",
+ "status": {
+  "cmdId": "d3366fd2-eca1-4a0b-ad31-0c3ef1b5b6e4",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:49 2022",
+ "timestampMillis": "1656822589565",
+ "buildStep": {
+  "cmdId": "675c29e9-90b5-43e8-a582-714daf28263b",
+  "name": "ar",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/determin/determin_ar.log",
+  "commandLine": "/opt/Vivado/2020.2/tps/lnx64/binutils-2.26/bin/ar -cr /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/determin/determin.csim_cu.a /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/determin/obj/determin.o",
+  "args": [
+   "-cr",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/determin/determin.csim_cu.a",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/determin/obj/determin.o"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:49 2022",
+ "timestampMillis": "1656822589565",
+ "status": {
+  "cmdId": "675c29e9-90b5-43e8-a582-714daf28263b",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:49 2022",
+ "timestampMillis": "1656822589568",
+ "status": {
+  "cmdId": "675c29e9-90b5-43e8-a582-714daf28263b",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:49 2022",
+ "timestampMillis": "1656822589568",
+ "buildStep": {
+  "cmdId": "3e26ab8d-fd4e-4abe-bd45-7c296cfb9755",
+  "name": "gcc",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis96_set_1/hdis96_set_1_kernel_gcc.log",
+  "commandLine": "/opt/Vivado/2020.2/tps/lnx64/gcc-6.2.0/bin/gcc -I . -I /opt//Vitis_HLS/2020.2/bin/../include -I /opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include -I /opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl -I /opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl -I /usr/include/x86_64-linux-gnu -std=c++14 -g -I /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel -g -fPIC -g -c -DHLS_STREAM_THREAD_SAFE -MD -MT obj/hdis96_set_1.o -MP -MF obj/hdis96_set_1.Cd /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/hdis96_set_1/hdis96_set_1/cpu_sources/hdis96_set_1.cpp -o obj/hdis96_set_1.o",
+  "args": [
+   "-I",
+   ".",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/usr/include/x86_64-linux-gnu",
+   "-std=c++14",
+   "-g",
+   "-I",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel",
+   "-g",
+   "-fPIC",
+   "-g",
+   "-c",
+   "-DHLS_STREAM_THREAD_SAFE",
+   "-MD",
+   "-MT",
+   "obj/hdis96_set_1.o",
+   "-MP",
+   "-MF",
+   "obj/hdis96_set_1.Cd",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/hdis96_set_1/hdis96_set_1/cpu_sources/hdis96_set_1.cpp",
+   "-o",
+   "obj/hdis96_set_1.o"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:49 2022",
+ "timestampMillis": "1656822589569",
+ "status": {
+  "cmdId": "3e26ab8d-fd4e-4abe-bd45-7c296cfb9755",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:50 2022",
+ "timestampMillis": "1656822590560",
+ "status": {
+  "cmdId": "3e26ab8d-fd4e-4abe-bd45-7c296cfb9755",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:50 2022",
+ "timestampMillis": "1656822590560",
+ "buildStep": {
+  "cmdId": "8d830dab-2102-4c98-8349-b2aec27676ce",
+  "name": "ar",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis96_set_1/hdis96_set_1_ar.log",
+  "commandLine": "/opt/Vivado/2020.2/tps/lnx64/binutils-2.26/bin/ar -cr /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis96_set_1/hdis96_set_1.csim_cu.a /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis96_set_1/obj/hdis96_set_1.o",
+  "args": [
+   "-cr",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis96_set_1/hdis96_set_1.csim_cu.a",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis96_set_1/obj/hdis96_set_1.o"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:50 2022",
+ "timestampMillis": "1656822590560",
+ "status": {
+  "cmdId": "8d830dab-2102-4c98-8349-b2aec27676ce",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:50 2022",
+ "timestampMillis": "1656822590564",
+ "status": {
+  "cmdId": "8d830dab-2102-4c98-8349-b2aec27676ce",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:50 2022",
+ "timestampMillis": "1656822590565",
+ "buildStep": {
+  "cmdId": "669a57e5-a68a-4a27-a479-9676f19f4c31",
+  "name": "gcc",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/judge_index_set_1/judge_index_set_1_kernel_gcc.log",
+  "commandLine": "/opt/Vivado/2020.2/tps/lnx64/gcc-6.2.0/bin/gcc -I . -I /opt//Vitis_HLS/2020.2/bin/../include -I /opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include -I /opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl -I /opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl -I /usr/include/x86_64-linux-gnu -std=c++14 -g -I /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel -g -fPIC -g -c -DHLS_STREAM_THREAD_SAFE -MD -MT obj/judge_index_set_1.o -MP -MF obj/judge_index_set_1.Cd /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/judge_index_set_1/judge_index_set_1/cpu_sources/judge_index_set_1.cpp -o obj/judge_index_set_1.o",
+  "args": [
+   "-I",
+   ".",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/usr/include/x86_64-linux-gnu",
+   "-std=c++14",
+   "-g",
+   "-I",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel",
+   "-g",
+   "-fPIC",
+   "-g",
+   "-c",
+   "-DHLS_STREAM_THREAD_SAFE",
+   "-MD",
+   "-MT",
+   "obj/judge_index_set_1.o",
+   "-MP",
+   "-MF",
+   "obj/judge_index_set_1.Cd",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/judge_index_set_1/judge_index_set_1/cpu_sources/judge_index_set_1.cpp",
+   "-o",
+   "obj/judge_index_set_1.o"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:50 2022",
+ "timestampMillis": "1656822590565",
+ "status": {
+  "cmdId": "669a57e5-a68a-4a27-a479-9676f19f4c31",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:51 2022",
+ "timestampMillis": "1656822591448",
+ "status": {
+  "cmdId": "669a57e5-a68a-4a27-a479-9676f19f4c31",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:51 2022",
+ "timestampMillis": "1656822591449",
+ "buildStep": {
+  "cmdId": "d916072f-a9ac-47d6-a8ed-1820f593c1f0",
+  "name": "ar",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/judge_index_set_1/judge_index_set_1_ar.log",
+  "commandLine": "/opt/Vivado/2020.2/tps/lnx64/binutils-2.26/bin/ar -cr /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/judge_index_set_1/judge_index_set_1.csim_cu.a /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/judge_index_set_1/obj/judge_index_set_1.o",
+  "args": [
+   "-cr",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/judge_index_set_1/judge_index_set_1.csim_cu.a",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/judge_index_set_1/obj/judge_index_set_1.o"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:51 2022",
+ "timestampMillis": "1656822591449",
+ "status": {
+  "cmdId": "d916072f-a9ac-47d6-a8ed-1820f593c1f0",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:51 2022",
+ "timestampMillis": "1656822591453",
+ "status": {
+  "cmdId": "d916072f-a9ac-47d6-a8ed-1820f593c1f0",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:51 2022",
+ "timestampMillis": "1656822591453",
+ "buildStep": {
+  "cmdId": "776c6cc1-b6f0-477f-9b38-727c1d49b84e",
+  "name": "gcc",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis4096_set_1/hdis4096_set_1_kernel_gcc.log",
+  "commandLine": "/opt/Vivado/2020.2/tps/lnx64/gcc-6.2.0/bin/gcc -I . -I /opt//Vitis_HLS/2020.2/bin/../include -I /opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include -I /opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl -I /opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl -I /usr/include/x86_64-linux-gnu -std=c++14 -g -I /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel -g -fPIC -g -c -DHLS_STREAM_THREAD_SAFE -MD -MT obj/hdis4096_set_1.o -MP -MF obj/hdis4096_set_1.Cd /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/hdis4096_set_1/hdis4096_set_1/cpu_sources/hdis4096_set_1.cpp -o obj/hdis4096_set_1.o",
+  "args": [
+   "-I",
+   ".",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/usr/include/x86_64-linux-gnu",
+   "-std=c++14",
+   "-g",
+   "-I",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel",
+   "-g",
+   "-fPIC",
+   "-g",
+   "-c",
+   "-DHLS_STREAM_THREAD_SAFE",
+   "-MD",
+   "-MT",
+   "obj/hdis4096_set_1.o",
+   "-MP",
+   "-MF",
+   "obj/hdis4096_set_1.Cd",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/hdis4096_set_1/hdis4096_set_1/cpu_sources/hdis4096_set_1.cpp",
+   "-o",
+   "obj/hdis4096_set_1.o"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:51 2022",
+ "timestampMillis": "1656822591454",
+ "status": {
+  "cmdId": "776c6cc1-b6f0-477f-9b38-727c1d49b84e",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:52 2022",
+ "timestampMillis": "1656822592362",
+ "status": {
+  "cmdId": "776c6cc1-b6f0-477f-9b38-727c1d49b84e",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:52 2022",
+ "timestampMillis": "1656822592362",
+ "buildStep": {
+  "cmdId": "f501b52d-f25b-4aaf-95be-e0f7cc1c5937",
+  "name": "ar",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis4096_set_1/hdis4096_set_1_ar.log",
+  "commandLine": "/opt/Vivado/2020.2/tps/lnx64/binutils-2.26/bin/ar -cr /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis4096_set_1/hdis4096_set_1.csim_cu.a /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis4096_set_1/obj/hdis4096_set_1.o",
+  "args": [
+   "-cr",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis4096_set_1/hdis4096_set_1.csim_cu.a",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hdis4096_set_1/obj/hdis4096_set_1.o"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:52 2022",
+ "timestampMillis": "1656822592362",
+ "status": {
+  "cmdId": "f501b52d-f25b-4aaf-95be-e0f7cc1c5937",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:52 2022",
+ "timestampMillis": "1656822592366",
+ "status": {
+  "cmdId": "f501b52d-f25b-4aaf-95be-e0f7cc1c5937",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:52 2022",
+ "timestampMillis": "1656822592367",
+ "buildStep": {
+  "cmdId": "2ddcd268-1288-4e96-8024-dbb376886eff",
+  "name": "gcc",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hid_bound_set_1/hid_bound_set_1_kernel_gcc.log",
+  "commandLine": "/opt/Vivado/2020.2/tps/lnx64/gcc-6.2.0/bin/gcc -I . -I /opt//Vitis_HLS/2020.2/bin/../include -I /opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include -I /opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl -I /opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl -I /usr/include/x86_64-linux-gnu -std=c++14 -g -I /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel -g -fPIC -g -c -DHLS_STREAM_THREAD_SAFE -MD -MT obj/hid_bound_set_1.o -MP -MF obj/hid_bound_set_1.Cd /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/hid_bound_set_1/hid_bound_set_1/cpu_sources/hid_bound_set_1.cpp -o obj/hid_bound_set_1.o",
+  "args": [
+   "-I",
+   ".",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/usr/include/x86_64-linux-gnu",
+   "-std=c++14",
+   "-g",
+   "-I",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel",
+   "-g",
+   "-fPIC",
+   "-g",
+   "-c",
+   "-DHLS_STREAM_THREAD_SAFE",
+   "-MD",
+   "-MT",
+   "obj/hid_bound_set_1.o",
+   "-MP",
+   "-MF",
+   "obj/hid_bound_set_1.Cd",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/xo/hid_bound_set_1/hid_bound_set_1/cpu_sources/hid_bound_set_1.cpp",
+   "-o",
+   "obj/hid_bound_set_1.o"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:52 2022",
+ "timestampMillis": "1656822592367",
+ "status": {
+  "cmdId": "2ddcd268-1288-4e96-8024-dbb376886eff",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:53 2022",
+ "timestampMillis": "1656822593451",
+ "status": {
+  "cmdId": "2ddcd268-1288-4e96-8024-dbb376886eff",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:53 2022",
+ "timestampMillis": "1656822593452",
+ "buildStep": {
+  "cmdId": "58156454-ea74-4499-902f-5df3f4325da5",
+  "name": "ar",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hid_bound_set_1/hid_bound_set_1_ar.log",
+  "commandLine": "/opt/Vivado/2020.2/tps/lnx64/binutils-2.26/bin/ar -cr /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hid_bound_set_1/hid_bound_set_1.csim_cu.a /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hid_bound_set_1/obj/hid_bound_set_1.o",
+  "args": [
+   "-cr",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hid_bound_set_1/hid_bound_set_1.csim_cu.a",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/hid_bound_set_1/obj/hid_bound_set_1.o"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:53 2022",
+ "timestampMillis": "1656822593452",
+ "status": {
+  "cmdId": "58156454-ea74-4499-902f-5df3f4325da5",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:53 2022",
+ "timestampMillis": "1656822593457",
+ "status": {
+  "cmdId": "58156454-ea74-4499-902f-5df3f4325da5",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:53 2022",
+ "timestampMillis": "1656822593457",
+ "buildStep": {
+  "cmdId": "dab0c7a7-3083-4409-89db-db789eb26380",
+  "name": "g++",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch_xcl_top_gpp.log",
+  "commandLine": "/usr/bin/env PATH=/usr/bin:/bin g++ -I . -I /opt//Vitis_HLS/2020.2/bin/../include -I /opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl -I /opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl -I /opt/Vitis/2020.2/bin/../data/emulation/include -I /opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include -fPIC -g -DHLS_STREAM_THREAD_SAFE -std=c++14 -fpermissive -c -MD -MT obj/xcl_top.o -MP -MF obj/xcl_top.CXXd xcl_top.cpp -o obj/xcl_top.o",
+  "args": [
+   "PATH=/usr/bin:/bin",
+   "g++",
+   "-I",
+   ".",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/opt/Vitis/2020.2/bin/../common/technology/autopilot/opencl",
+   "-I",
+   "/opt/Vitis/2020.2/bin/../data/emulation/include",
+   "-I",
+   "/opt//Vitis_HLS/2020.2/bin/../lnx64/tools/auto_cc/include",
+   "-fPIC",
+   "-g",
+   "-DHLS_STREAM_THREAD_SAFE",
+   "-std=c++14",
+   "-fpermissive",
+   "-c",
+   "-MD",
+   "-MT",
+   "obj/xcl_top.o",
+   "-MP",
+   "-MF",
+   "obj/xcl_top.CXXd",
+   "xcl_top.cpp",
+   "-o",
+   "obj/xcl_top.o"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:53 2022",
+ "timestampMillis": "1656822593457",
+ "status": {
+  "cmdId": "dab0c7a7-3083-4409-89db-db789eb26380",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594403",
+ "status": {
+  "cmdId": "dab0c7a7-3083-4409-89db-db789eb26380",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594403",
+ "buildStep": {
+  "cmdId": "abfe2a13-c124-465d-8185-f348527be5e1",
+  "name": "g++",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch_top_gpp.log",
+  "commandLine": "/usr/bin/env PATH=/usr/bin:/bin g++ -fPIC -DHLS_STREAM_THREAD_SAFE -std=c++14 -Wall -shared -Wl,--whole-archive,-soname,table_serch.so -o table_serch.so determin/determin.csim_cu.a hdis96_set_1/hdis96_set_1.csim_cu.a judge_index_set_1/judge_index_set_1.csim_cu.a hdis4096_set_1/hdis4096_set_1.csim_cu.a hid_bound_set_1/hid_bound_set_1.csim_cu.a obj/xcl_top.o -Wl,--no-whole-archive -Wl,--as-needed -L /opt//Vitis_HLS/2020.2/bin/../lib/lnx64.o -lhlsmathsim -L /opt//Vitis_HLS/2020.2/bin/../lnx64/tools/fpo_v7_0 -lgmp -lmpfr -lIp_floating_point_v7_0_bitacc_cmodel -Wl,-rpath,/opt//Vitis_HLS/2020.2/bin/../lnx64/tools/fpo_v7_0 -L /opt//Vitis_HLS/2020.2/bin/../lnx64/tools/fft_v9_1 -lIp_xfft_v9_1_bitacc_cmodel -L /opt//Vitis_HLS/2020.2/bin/../lnx64/tools/fir_v7_0 -lgmp -lIp_fir_compiler_v7_2_bitacc_cmodel -L /opt//Vitis_HLS/2020.2/bin/../lnx64/lib/csim -lhlsmc++-GCC46 -L /opt/Vivado/2020.2/tps/lnx64/gcc-6.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/6.2.0/ -lgcov",
+  "args": [
+   "PATH=/usr/bin:/bin",
+   "g++",
+   "-fPIC",
+   "-DHLS_STREAM_THREAD_SAFE",
+   "-std=c++14",
+   "-Wall",
+   "-shared",
+   "-Wl,--whole-archive,-soname,table_serch.so",
+   "-o",
+   "table_serch.so",
+   "determin/determin.csim_cu.a",
+   "hdis96_set_1/hdis96_set_1.csim_cu.a",
+   "judge_index_set_1/judge_index_set_1.csim_cu.a",
+   "hdis4096_set_1/hdis4096_set_1.csim_cu.a",
+   "hid_bound_set_1/hid_bound_set_1.csim_cu.a",
+   "obj/xcl_top.o",
+   "-Wl,--no-whole-archive",
+   "-Wl,--as-needed",
+   "-L",
+   "/opt//Vitis_HLS/2020.2/bin/../lib/lnx64.o",
+   "-lhlsmathsim",
+   "-L",
+   "/opt//Vitis_HLS/2020.2/bin/../lnx64/tools/fpo_v7_0",
+   "-lgmp",
+   "-lmpfr",
+   "-lIp_floating_point_v7_0_bitacc_cmodel",
+   "-Wl,-rpath,/opt//Vitis_HLS/2020.2/bin/../lnx64/tools/fpo_v7_0",
+   "-L",
+   "/opt//Vitis_HLS/2020.2/bin/../lnx64/tools/fft_v9_1",
+   "-lIp_xfft_v9_1_bitacc_cmodel",
+   "-L",
+   "/opt//Vitis_HLS/2020.2/bin/../lnx64/tools/fir_v7_0",
+   "-lgmp",
+   "-lIp_fir_compiler_v7_2_bitacc_cmodel",
+   "-L",
+   "/opt//Vitis_HLS/2020.2/bin/../lnx64/lib/csim",
+   "-lhlsmc++-GCC46",
+   "-L",
+   "/opt/Vivado/2020.2/tps/lnx64/gcc-6.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/6.2.0/",
+   "-lgcov"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594404",
+ "status": {
+  "cmdId": "abfe2a13-c124-465d-8185-f348527be5e1",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594470",
+ "status": {
+  "cmdId": "abfe2a13-c124-465d-8185-f348527be5e1",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594569",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch_xml.rtd",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "XCLBIN_INFO"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594572",
+ "buildStep": {
+  "cmdId": "2e3e92cc-3aff-44bf-8612-9bec5d788765",
+  "name": "xclbinutil",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch_xclbinutil.log",
+  "commandLine": "/opt/Vitis/2020.2/bin/xclbinutil --add-section BITSTREAM:RAW:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch.so --force --target sw_emu --add-section :JSON:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch.rtd --append-section :JSON:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/appendSection.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch_xml.rtd --add-section BUILD_METADATA:JSON:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch_build.rtd --add-section EMBEDDED_METADATA:RAW:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch.xml --add-section DEBUG_DATA:RAW:/dev/null --output /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/table_serch.xclbin",
+  "args": [
+   "--add-section",
+   "BITSTREAM:RAW:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch.so",
+   "--force",
+   "--target",
+   "sw_emu",
+   "--add-section",
+   ":JSON:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch.rtd",
+   "--append-section",
+   ":JSON:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/appendSection.rtd",
+   "--add-section",
+   "CLOCK_FREQ_TOPOLOGY:JSON:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch_xml.rtd",
+   "--add-section",
+   "BUILD_METADATA:JSON:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch_build.rtd",
+   "--add-section",
+   "EMBEDDED_METADATA:RAW:/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/link/int/table_serch.xml",
+   "--add-section",
+   "DEBUG_DATA:RAW:/dev/null",
+   "--output",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/table_serch.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594573",
+ "status": {
+  "cmdId": "2e3e92cc-3aff-44bf-8612-9bec5d788765",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594647",
+ "status": {
+  "cmdId": "2e3e92cc-3aff-44bf-8612-9bec5d788765",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594648",
+ "buildStep": {
+  "cmdId": "3b2dd2d3-8845-4e89-9a50-d3798f5f3205",
+  "name": "xclbinutil",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/table_serch.xclbin.info",
+  "commandLine": "/opt/Vitis/2020.2/bin/xclbinutil --quiet --info --input /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/table_serch.xclbin",
+  "args": [
+   "--quiet",
+   "--info",
+   "--input",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/table_serch.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594648",
+ "status": {
+  "cmdId": "3b2dd2d3-8845-4e89-9a50-d3798f5f3205",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594729",
+ "status": {
+  "cmdId": "3b2dd2d3-8845-4e89-9a50-d3798f5f3205",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594819",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/reports/link/v++_link_table_serch_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594819",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/v++_link_table_serch_guidance.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594819",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/logs/optraceViewer.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "OPERATION_TRACE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sun Jul  3 13:29:54 2022",
+ "timestampMillis": "1656822594820",
+ "status": {
+  "cmdId": "f81acbc7-f9ce-4756-a70e-b41fd89aff11",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>

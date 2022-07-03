@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="determin" dir="">
+  <FileSets>
+    <FileSet Name="kernel_determin" Type="DesignSrcs">
+      <File Path="/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/determin.cpp"/>
+      <Config/>
+    </FileSet>
+  </FileSets>
+  <Runs/>
+</project>
