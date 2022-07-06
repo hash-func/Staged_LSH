@@ -1862,7 +1862,7 @@ public:
     /* 処理用変数 */
     cl_ulong start_time, end_time;
     cl_ulong max_t_temp = 0;       // 最大
-    cl_ulong min_t_temp = 900000000; // 最小
+    cl_ulong min_t_temp = UINT64_MAX; // 最小
     cl_ulong serch_t_temp = 0;     // 合計
     unsigned int count = 0;
 
@@ -2131,10 +2131,10 @@ int main(int argc, char** argv)
     // 時間
     uint64_t flame_time_add = 0;
     uint64_t flame_max_time = 0;
-    uint64_t flame_min_time = 900000000;
+    uint64_t flame_min_time = UINT64_MAX;
     uint64_t query_time_add = 0;
     uint64_t query_max_time = 0;
-    uint64_t query_min_time = 900000000;
+    uint64_t query_min_time = UINT64_MAX;
 /****************************************************************************************************/
 // OpenCLホストコードエリア
 
@@ -2185,8 +2185,6 @@ int main(int argc, char** argv)
         request[0] = Serch(query, &judge, flag, 
         &max_time, &min_time, &avg_time, &serch_time);
 
-        printf("最終同期待ち\n");
-        printf("avg_time : %lu ns\n", avg_time);
         /* 同期 */
         request[0]->sync();
         /* 時間処理 */
