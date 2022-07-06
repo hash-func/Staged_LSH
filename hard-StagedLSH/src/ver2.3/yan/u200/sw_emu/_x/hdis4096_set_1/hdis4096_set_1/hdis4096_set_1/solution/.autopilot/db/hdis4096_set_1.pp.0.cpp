@@ -50673,6 +50673,7 @@ __attribute__((sdx_kernel("hdis4096_set_1", 0))) void hdis4096_set_1(
 
     printf("hdis4096 : hdis4096終了...........\n");
 
+
     complete_in = complete_stream_in.read();
 }
 }

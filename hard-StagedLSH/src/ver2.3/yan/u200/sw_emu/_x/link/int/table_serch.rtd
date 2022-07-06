@@ -11,21 +11,21 @@
                 "m_used": "1",
                 "m_sizeKB": "17179869184",
                 "m_base_address": "10",
+                "m_tag": "DDR[2]"
+            },
+            "mem_data": {
+                "m_type": "MEM_DDR4",
+                "m_used": "1",
+                "m_sizeKB": "17179869184",
+                "m_base_address": "20",
                 "m_tag": "DDR[1]"
             },
             "mem_data": {
                 "m_type": "MEM_STREAMING",
                 "m_used": "1",
                 "m_sizeKB": "0",
-                "m_base_address": "20",
-                "m_tag": "hlsaxisapuint10"
-            },
-            "mem_data": {
-                "m_type": "MEM_STREAMING",
-                "m_used": "1",
-                "m_sizeKB": "0",
                 "m_base_address": "30",
-                "m_tag": "hlsaxisapuint32"
+                "m_tag": "hlsaxisapuint10"
             },
             "mem_data": {
                 "m_type": "MEM_STREAMING",
@@ -35,39 +35,39 @@
                 "m_tag": "hlsaxisapuint32"
             },
             "mem_data": {
-                "m_type": "MEM_DDR4",
-                "m_used": "1",
-                "m_sizeKB": "17179869184",
-                "m_base_address": "65586",
-                "m_tag": "DDR[1]"
-            },
-            "mem_data": {
-                "m_type": "MEM_DDR4",
-                "m_used": "1",
-                "m_sizeKB": "17179869184",
-                "m_base_address": "65596",
-                "m_tag": "DDR[1]"
-            },
-            "mem_data": {
-                "m_type": "MEM_DDR4",
-                "m_used": "1",
-                "m_sizeKB": "17179869184",
-                "m_base_address": "65606",
-                "m_tag": "DDR[1]"
-            },
-            "mem_data": {
                 "m_type": "MEM_STREAMING",
                 "m_used": "1",
-                "m_sizeKB": "65536",
-                "m_base_address": "65616",
+                "m_sizeKB": "0",
+                "m_base_address": "50",
                 "m_tag": "hlsaxisapuint32"
             },
             "mem_data": {
                 "m_type": "MEM_STREAMING",
                 "m_used": "1",
-                "m_sizeKB": "65536",
-                "m_base_address": "65556",
-                "m_tag": "hlsaxisapuint10"
+                "m_sizeKB": "0",
+                "m_base_address": "60",
+                "m_tag": "hlsaxisapuint32"
+            },
+            "mem_data": {
+                "m_type": "MEM_STREAMING",
+                "m_used": "1",
+                "m_sizeKB": "0",
+                "m_base_address": "70",
+                "m_tag": "hlsaxisapuint32"
+            },
+            "mem_data": {
+                "m_type": "MEM_STREAMING",
+                "m_used": "1",
+                "m_sizeKB": "0",
+                "m_base_address": "80",
+                "m_tag": "hlsaxisapuint32"
+            },
+            "mem_data": {
+                "m_type": "MEM_DDR4",
+                "m_used": "1",
+                "m_sizeKB": "17179869184",
+                "m_base_address": "65626",
+                "m_tag": "DDR[1]"
             },
             "mem_data": {
                 "m_type": "MEM_STREAMING",
@@ -77,18 +77,46 @@
                 "m_tag": "hlsaxisapuint10"
             },
             "mem_data": {
-                "m_type": "MEM_DDR4",
+                "m_type": "MEM_STREAMING",
                 "m_used": "1",
-                "m_sizeKB": "17179869184",
-                "m_base_address": "131182",
-                "m_tag": "DDR[2]"
+                "m_sizeKB": "65536",
+                "m_base_address": "65576",
+                "m_tag": "hlsaxisapuint32"
+            },
+            "mem_data": {
+                "m_type": "MEM_STREAMING",
+                "m_used": "1",
+                "m_sizeKB": "65536",
+                "m_base_address": "65586",
+                "m_tag": "hlsaxisapuint32"
             },
             "mem_data": {
                 "m_type": "MEM_DDR4",
                 "m_used": "1",
                 "m_sizeKB": "17179869184",
-                "m_base_address": "131192",
+                "m_base_address": "131202",
                 "m_tag": "DDR[1]"
+            },
+            "mem_data": {
+                "m_type": "MEM_DDR4",
+                "m_used": "1",
+                "m_sizeKB": "17179869184",
+                "m_base_address": "131212",
+                "m_tag": "DDR[1]"
+            },
+            "mem_data": {
+                "m_type": "MEM_DDR4",
+                "m_used": "1",
+                "m_sizeKB": "17179869184",
+                "m_base_address": "131222",
+                "m_tag": "DDR[1]"
+            },
+            "mem_data": {
+                "m_type": "MEM_STREAMING",
+                "m_used": "1",
+                "m_sizeKB": "131072",
+                "m_base_address": "131132",
+                "m_tag": "hlsaxisapuint32"
             },
             "mem_data": {
                 "m_type": "MEM_STREAMING",
@@ -102,35 +130,7 @@
                 "m_used": "1",
                 "m_sizeKB": "131072",
                 "m_base_address": "131102",
-                "m_tag": "hlsaxisapuint32"
-            },
-            "mem_data": {
-                "m_type": "MEM_STREAMING",
-                "m_used": "1",
-                "m_sizeKB": "131072",
-                "m_base_address": "131112",
-                "m_tag": "hlsaxisapuint32"
-            },
-            "mem_data": {
-                "m_type": "MEM_STREAMING",
-                "m_used": "1",
-                "m_sizeKB": "131072",
-                "m_base_address": "131152",
-                "m_tag": "hlsaxisapuint32"
-            },
-            "mem_data": {
-                "m_type": "MEM_STREAMING",
-                "m_used": "1",
-                "m_sizeKB": "131072",
-                "m_base_address": "131242",
-                "m_tag": "hlsaxisapuint32"
-            },
-            "mem_data": {
-                "m_type": "MEM_STREAMING",
-                "m_used": "1",
-                "m_sizeKB": "131072",
-                "m_base_address": "131252",
-                "m_tag": "hlsaxisapuint32"
+                "m_tag": "hlsaxisapuint10"
             },
             "mem_data": {
                 "m_type": "MEM_DDR4",
@@ -164,14 +164,14 @@
                 "m_type": "MEM_STREAMING",
                 "m_used": "1",
                 "m_sizeKB": "196608",
-                "m_base_address": "196788",
+                "m_base_address": "196688",
                 "m_tag": "hlsaxisapuint32"
             },
             "mem_data": {
                 "m_type": "MEM_STREAMING",
                 "m_used": "1",
                 "m_sizeKB": "196608",
-                "m_base_address": "196778",
+                "m_base_address": "196678",
                 "m_tag": "hlsaxisapuint32"
             }
         },
@@ -183,19 +183,19 @@
                 "m_type": "IP_KERNEL",
                 "properties": "0x1",
                 "m_base_address": "0",
-                "m_name": "hdis4096_set_1:hdis4096_set_1"
+                "m_name": "judge_index_set_1:judge_index_set_1"
             },
             "mem_data": {
                 "m_type": "IP_KERNEL",
                 "properties": "0x1",
                 "m_base_address": "65536",
-                "m_name": "determin:determin"
+                "m_name": "hdis4096_set_1:hdis4096_set_1"
             },
             "mem_data": {
                 "m_type": "IP_KERNEL",
                 "properties": "0x1",
                 "m_base_address": "131072",
-                "m_name": "judge_index_set_1:judge_index_set_1"
+                "m_name": "determin:determin"
             },
             "mem_data": {
                 "m_type": "IP_KERNEL",
@@ -211,30 +211,30 @@
             "connection": {
                 "arg_index": "0",
                 "m_ip_layout_index": "0",
+                "mem_data_index": "2"
+            },
+            "connection": {
+                "arg_index": "1",
+                "m_ip_layout_index": "0",
                 "mem_data_index": "1"
             },
             "connection": {
                 "arg_index": "0",
-                "m_ip_layout_index": "1",
-                "mem_data_index": "1"
-            },
-            "connection": {
-                "arg_index": "1",
-                "m_ip_layout_index": "1",
-                "mem_data_index": "1"
-            },
-            "connection": {
-                "arg_index": "2",
                 "m_ip_layout_index": "1",
                 "mem_data_index": "1"
             },
             "connection": {
                 "arg_index": "0",
                 "m_ip_layout_index": "2",
-                "mem_data_index": "2"
+                "mem_data_index": "1"
             },
             "connection": {
                 "arg_index": "1",
+                "m_ip_layout_index": "2",
+                "mem_data_index": "1"
+            },
+            "connection": {
+                "arg_index": "2",
                 "m_ip_layout_index": "2",
                 "mem_data_index": "1"
             },

@@ -11,7 +11,7 @@
 source /opt/Vitis_HLS/2020.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-121-generic) on Wed Jul 06 15:02:31 JST 2022
+INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-121-generic) on Thu Jul 07 00:02:41 JST 2022
 INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
 INFO: [HLS 200-10] In directory '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/determin/determin'
 Sourcing Tcl script 'determin.tcl'
@@ -43,9 +43,9 @@ INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64
 INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=0 
 INFO: [HLS 200-1510] Running: config_export -format ip_catalog -ipname determin 
 INFO: [HLS 200-1510] Running: csynth_design -synthesis_check 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 189.667 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 189.697 MB.
 INFO: [HLS 200-10] Analyzing design file '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/src/kernel/determin.cpp' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.64 seconds. CPU system time: 0.16 seconds. Elapsed time: 2.43 seconds; current allocated memory: 190.321 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.64 seconds. CPU system time: 0.23 seconds. Elapsed time: 2.45 seconds; current allocated memory: 190.304 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
 INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_user_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::empty()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:267:60)
 INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_dest_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::empty()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:268:61)
@@ -66,10 +66,10 @@ INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0
 INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<1>, 0ul, 0ul, 0ul> const&)' into 'determin' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/src/kernel/determin.cpp:65:32)
 INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<1>, 0ul, 0ul, 0ul> const&)' into 'determin' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/src/kernel/determin.cpp:60:32)
 INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' into 'determin' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/src/kernel/determin.cpp:42:42)
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.42 seconds. CPU system time: 0.13 seconds. Elapsed time: 2.56 seconds; current allocated memory: 191.767 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 191.768 MB.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.41 seconds. CPU system time: 0.17 seconds. Elapsed time: 2.59 seconds; current allocated memory: 191.766 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 191.767 MB.
 INFO: [HLS 200-1493] Running only source code synthesis checks, skipping scheduling and RTL generation.
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5.07 seconds. CPU system time: 0.29 seconds. Elapsed time: 4.99 seconds; current allocated memory: 191.741 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5.06 seconds. CPU system time: 0.4 seconds. Elapsed time: 5.04 seconds; current allocated memory: 191.740 MB.
 HLS completed successfully
-INFO: [HLS 200-112] Total CPU user time: 6.85 seconds. Total CPU system time: 0.58 seconds. Total elapsed time: 6.22 seconds; peak allocated memory: 191.768 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Wed Jul  6 15:02:37 2022...
+INFO: [HLS 200-112] Total CPU user time: 6.8 seconds. Total CPU system time: 0.73 seconds. Total elapsed time: 6.27 seconds; peak allocated memory: 191.767 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Thu Jul  7 00:02:47 2022...

@@ -9,10 +9,10 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Wed Jul  6 15:01:28 2022",
- "timestampMillis": "1657087288442",
+ "dateTimestamp": "Thu Jul  7 00:01:37 2022",
+ "timestampMillis": "1657119697921",
  "buildStep": {
-  "cmdId": "ea357cd9-2105-4882-8371-c0c9d311d3aa",
+  "cmdId": "cbf36aa7-22e3-465d-ac20-84955427b6c6",
   "name": "v++",
   "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/hid_bound_set_1/hid_bound_set_1.steps.log",
   "commandLine": "/opt/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -c --optimize 0 -t sw_emu --config ../../src/cfg/hid_bound_set_1.cfg -k hid_bound_set_1 -I../../src/kernel ../../src/kernel/serch_module_set_1/hid_bound_set_1.cpp -o hid_bound_set_1.xo ",
@@ -44,10 +44,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jul  6 15:01:28 2022",
- "timestampMillis": "1657087288442",
+ "dateTimestamp": "Thu Jul  7 00:01:37 2022",
+ "timestampMillis": "1657119697921",
  "status": {
-  "cmdId": "ea357cd9-2105-4882-8371-c0c9d311d3aa",
+  "cmdId": "cbf36aa7-22e3-465d-ac20-84955427b6c6",
   "state": "CS_RUNNING"
  }
 }
@@ -55,8 +55,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Wed Jul  6 15:01:35 2022",
- "timestampMillis": "1657087295714",
+ "dateTimestamp": "Thu Jul  7 00:01:45 2022",
+ "timestampMillis": "1657119705204",
  "buildSummary": {
   "hardwarePlatform": "xilinx_u200_xdma_201830_2.xpfm",
   "hardwareDsa": "xilinx_u200_xdma_201830_2.dsa",
@@ -91,10 +91,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Wed Jul  6 15:01:35 2022",
- "timestampMillis": "1657087295716",
+ "dateTimestamp": "Thu Jul  7 00:01:45 2022",
+ "timestampMillis": "1657119705206",
  "buildStep": {
-  "cmdId": "84de875f-5a34-43b7-a4c6-c0fc7257004d",
+  "cmdId": "972dcc8f-f230-437d-bf0d-d5e924f77e73",
   "name": "vitis_hls",
   "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/hid_bound_set_1/hid_bound_set_1/vitis_hls.log",
   "commandLine": "vitis_hls -f /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/hid_bound_set_1/hid_bound_set_1/hid_bound_set_1.tcl -messageDb vitis_hls.pb",
@@ -113,10 +113,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jul  6 15:01:35 2022",
- "timestampMillis": "1657087295716",
+ "dateTimestamp": "Thu Jul  7 00:01:45 2022",
+ "timestampMillis": "1657119705206",
  "status": {
-  "cmdId": "84de875f-5a34-43b7-a4c6-c0fc7257004d",
+  "cmdId": "972dcc8f-f230-437d-bf0d-d5e924f77e73",
   "state": "CS_RUNNING"
  }
 }
@@ -124,10 +124,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jul  6 15:01:44 2022",
- "timestampMillis": "1657087304027",
+ "dateTimestamp": "Thu Jul  7 00:01:53 2022",
+ "timestampMillis": "1657119713659",
  "status": {
-  "cmdId": "84de875f-5a34-43b7-a4c6-c0fc7257004d",
+  "cmdId": "972dcc8f-f230-437d-bf0d-d5e924f77e73",
   "state": "CS_PASSED"
  }
 }
@@ -135,8 +135,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Jul  6 15:01:44 2022",
- "timestampMillis": "1657087304121",
+ "dateTimestamp": "Thu Jul  7 00:01:53 2022",
+ "timestampMillis": "1657119713753",
  "report": {
   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/reports/hid_bound_set_1/v++_compile_hid_bound_set_1_guidance.html",
   "name": "",
@@ -148,8 +148,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Jul  6 15:01:44 2022",
- "timestampMillis": "1657087304121",
+ "dateTimestamp": "Thu Jul  7 00:01:53 2022",
+ "timestampMillis": "1657119713753",
  "report": {
   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/v++_compile_hid_bound_set_1_guidance.pb",
   "name": "",
@@ -161,10 +161,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jul  6 15:01:44 2022",
- "timestampMillis": "1657087304121",
+ "dateTimestamp": "Thu Jul  7 00:01:53 2022",
+ "timestampMillis": "1657119713753",
  "status": {
-  "cmdId": "ea357cd9-2105-4882-8371-c0c9d311d3aa",
+  "cmdId": "cbf36aa7-22e3-465d-ac20-84955427b6c6",
   "state": "CS_PASSED"
  }
 }

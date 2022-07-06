@@ -1,13 +1,13 @@
-Wed Jul  6 15:03:06 2022: Server was asked to start on port: '41929'
-Wed Jul  6 15:03:06 2022: Server is using token UUID: '51dedf84-a3da-4262-ac33-e16a37076363'
-Wed Jul  6 15:03:06 2022: SESSION_MGR: creating session with session uuid: '6d04a3e9-ade5-4ab9-8d63-1f78fcd2ec76' and name 'default'
-Wed Jul  6 15:03:06 2022: Attempting to start server on port '41929'
-Wed Jul  6 15:03:06 2022: XCD main fifo: created main fifo '/tmp/xcdmain51dedf84-a3da-4262-ac33-e16a37076363', fd read = 13
-Wed Jul  6 15:03:06 2022: Running Dispatch Server
-Wed Jul  6 15:03:06 2022: Version 2.1.0
-Wed Jul  6 15:03:15 2022: Dispatch Server: Accepted socket connection from client
-Wed Jul  6 15:03:15 2022: EXCHANGE_TOKEN received, server token: 51dedf84-a3da-4262-ac33-e16a37076363, passed token: 51dedf84-a3da-4262-ac33-e16a37076363
-Wed Jul  6 15:03:15 2022: SESSION_MGR: creating session with session uuid: '532251a2-b811-4642-9de1-c591763ef975' and name 'v++_link_table_serch'
-Wed Jul  6 15:03:15 2022: GUIDANCE_SMGR: creating guidance session with uuid: '532251a2-b811-4642-9de1-c591763ef975' and name 'v++_link_table_serch'
-Wed Jul  6 15:03:29 2022: SESSION_MGR: closing session for UUID '532251a2-b811-4642-9de1-c591763ef975' with name 'v++_link_table_serch'
-Wed Jul  6 15:03:29 2022: GUIDANCE_SMGR: closing session for UUID '532251a2-b811-4642-9de1-c591763ef975' with name 'v++_link_table_serch'
+Thu Jul  7 00:03:16 2022: Server was asked to start on port: '33439'
+Thu Jul  7 00:03:16 2022: Server is using token UUID: 'a72c8c17-20c9-4008-af4a-01643dbb70ae'
+Thu Jul  7 00:03:16 2022: SESSION_MGR: creating session with session uuid: '6d04a3e9-ade5-4ab9-8d63-1f78fcd2ec76' and name 'default'
+Thu Jul  7 00:03:16 2022: Attempting to start server on port '33439'
+Thu Jul  7 00:03:16 2022: XCD main fifo: created main fifo '/tmp/xcdmaina72c8c17-20c9-4008-af4a-01643dbb70ae', fd read = 13
+Thu Jul  7 00:03:16 2022: Running Dispatch Server
+Thu Jul  7 00:03:16 2022: Version 2.1.0
+Thu Jul  7 00:03:25 2022: Dispatch Server: Accepted socket connection from client
+Thu Jul  7 00:03:25 2022: EXCHANGE_TOKEN received, server token: a72c8c17-20c9-4008-af4a-01643dbb70ae, passed token: a72c8c17-20c9-4008-af4a-01643dbb70ae
+Thu Jul  7 00:03:25 2022: SESSION_MGR: creating session with session uuid: '20c9c7e0-818e-4b27-bc7f-752d3af4e399' and name 'v++_link_table_serch'
+Thu Jul  7 00:03:25 2022: GUIDANCE_SMGR: creating guidance session with uuid: '20c9c7e0-818e-4b27-bc7f-752d3af4e399' and name 'v++_link_table_serch'
+Thu Jul  7 00:03:39 2022: SESSION_MGR: closing session for UUID '20c9c7e0-818e-4b27-bc7f-752d3af4e399' with name 'v++_link_table_serch'
+Thu Jul  7 00:03:39 2022: GUIDANCE_SMGR: closing session for UUID '20c9c7e0-818e-4b27-bc7f-752d3af4e399' with name 'v++_link_table_serch'

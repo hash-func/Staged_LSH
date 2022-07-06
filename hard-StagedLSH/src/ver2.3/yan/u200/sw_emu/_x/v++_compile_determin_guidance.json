@@ -1,7 +1,7 @@
 {
  "session": {
   "name": "v++_compile_determin",
-  "uuid": "71403d63-3dc6-4bb7-a5b6-0ec3383391b5",
+  "uuid": "cf04027d-6386-422e-b8e0-7771f89b39ca",
   "description": "v++  -c --optimize 0 -t sw_emu --config ../../src/cfg/determin.cfg -k determin -I../../src/kernel ../../src/kernel/determin.cpp -o determin.xo ",
   "timestamp": "0",
   "report_file": {

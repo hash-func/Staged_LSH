@@ -1,9 +1,9 @@
 INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
 	Reports: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/reports/judge_index_set_1
 	Log files: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/logs/judge_index_set_1
-INFO: [v++ 60-1548] Creating build summary session with primary output /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/judge_index_set_1.xo.compile_summary, at Wed Jul  6 15:01:55 2022
-INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Wed Jul  6 15:01:55 2022
-INFO: [v++ 60-1315] Creating rulecheck session with output '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/reports/judge_index_set_1/v++_compile_judge_index_set_1_guidance.html', at Wed Jul  6 15:01:56 2022
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/judge_index_set_1.xo.compile_summary, at Thu Jul  7 00:02:04 2022
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Thu Jul  7 00:02:04 2022
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/reports/judge_index_set_1/v++_compile_judge_index_set_1_guidance.html', at Thu Jul  7 00:02:05 2022
 INFO: [v++ 60-895]   Target platform: /opt/xilinx/platforms/xilinx_u200_xdma_201830_2/xilinx_u200_xdma_201830_2.xpfm
 INFO: [v++ 60-1578]   This platform contains Device Support Archive '/opt/xilinx/platforms/xilinx_u200_xdma_201830_2/hw/xilinx_u200_xdma_201830_2.dsa'
 INFO: [v++ 74-74] Compiler Version string: 2020.2

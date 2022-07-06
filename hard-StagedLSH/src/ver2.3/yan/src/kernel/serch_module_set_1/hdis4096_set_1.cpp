@@ -87,6 +87,7 @@ void hdis4096_set_1(
     }
     /* 終了信号受信後 */
     printf("hdis4096 : hdis4096終了...........\n");
+    // printf(".");
     /* 終了信号読み出し */
     complete_in = complete_stream_in.read();
 }

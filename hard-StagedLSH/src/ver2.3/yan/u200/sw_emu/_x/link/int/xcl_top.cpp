@@ -14,6 +14,23 @@ using namespace std;
 
 extern "C" {
 
+void judge_index_set_1(size_t FP_DB, size_t hash_table, size_t complete_stream_in, size_t fp32_stream_out, size_t haming_stream_in, size_t index_stream_out, size_t locate_stream_in, size_t count_stream_in);
+
+static pthread_mutex_t __xlnx_cl_judge_index_set_1_mutex = PTHREAD_MUTEX_INITIALIZER;
+void __stub____xlnx_cl_judge_index_set_1(char **argv) {
+  void **args = (void **)argv;
+  size_t FP_DB = *((size_t*)args[0+1]);
+  size_t hash_table = *((size_t*)args[1+1]);
+  size_t complete_stream_in = *((size_t*)args[2+1]);
+  size_t fp32_stream_out = *((size_t*)args[3+1]);
+  size_t haming_stream_in = *((size_t*)args[4+1]);
+  size_t index_stream_out = *((size_t*)args[5+1]);
+  size_t locate_stream_in = *((size_t*)args[6+1]);
+  size_t count_stream_in = *((size_t*)args[7+1]);
+ //  pthread_mutex_lock(&__xlnx_cl_judge_index_set_1_mutex);
+  judge_index_set_1(FP_DB, hash_table, complete_stream_in, fp32_stream_out, haming_stream_in, index_stream_out, locate_stream_in, count_stream_in);
+ //   pthread_mutex_unlock(&__xlnx_cl_judge_index_set_1_mutex);
+}
 void hdis4096_set_1(size_t query, size_t complete_stream_in, size_t fp32_stream_in, size_t haming_stream_out);
 
 static pthread_mutex_t __xlnx_cl_hdis4096_set_1_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -41,23 +58,6 @@ void __stub____xlnx_cl_determin(char **argv) {
  //  pthread_mutex_lock(&__xlnx_cl_determin_mutex);
   determin(judge, trial_flag, qe_flag, index_stream_in1, complete_stream_out1_1, complete_stream_out1_2);
  //   pthread_mutex_unlock(&__xlnx_cl_determin_mutex);
-}
-void judge_index_set_1(size_t FP_DB, size_t hash_table, size_t complete_stream_in, size_t fp32_stream_out, size_t haming_stream_in, size_t index_stream_out, size_t locate_stream_in, size_t count_stream_in);
-
-static pthread_mutex_t __xlnx_cl_judge_index_set_1_mutex = PTHREAD_MUTEX_INITIALIZER;
-void __stub____xlnx_cl_judge_index_set_1(char **argv) {
-  void **args = (void **)argv;
-  size_t FP_DB = *((size_t*)args[0+1]);
-  size_t hash_table = *((size_t*)args[1+1]);
-  size_t complete_stream_in = *((size_t*)args[2+1]);
-  size_t fp32_stream_out = *((size_t*)args[3+1]);
-  size_t haming_stream_in = *((size_t*)args[4+1]);
-  size_t index_stream_out = *((size_t*)args[5+1]);
-  size_t locate_stream_in = *((size_t*)args[6+1]);
-  size_t count_stream_in = *((size_t*)args[7+1]);
- //  pthread_mutex_lock(&__xlnx_cl_judge_index_set_1_mutex);
-  judge_index_set_1(FP_DB, hash_table, complete_stream_in, fp32_stream_out, haming_stream_in, index_stream_out, locate_stream_in, count_stream_in);
- //   pthread_mutex_unlock(&__xlnx_cl_judge_index_set_1_mutex);
 }
 void hid_bound_set_1(size_t flame, size_t hash_table_pointer, size_t FP_DB, size_t hash_table, size_t count_stream_out, size_t locate_stream_out);
 

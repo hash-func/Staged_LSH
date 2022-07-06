@@ -9,10 +9,10 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Wed Jul  6 15:01:55 2022",
- "timestampMillis": "1657087315338",
+ "dateTimestamp": "Thu Jul  7 00:02:04 2022",
+ "timestampMillis": "1657119724972",
  "buildStep": {
-  "cmdId": "fb212f29-8bb0-4cae-a707-d1904521941f",
+  "cmdId": "7fcf9f61-db3b-4b0d-8d3e-75e6706a7f51",
   "name": "v++",
   "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1.steps.log",
   "commandLine": "/opt/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -c --optimize 0 -t sw_emu --config ../../src/cfg/judge_index_set_1.cfg -k judge_index_set_1 -I../../src/kernel ../../src/kernel/serch_module_set_1/judge_index_set_1.cpp -o judge_index_set_1.xo ",
@@ -44,10 +44,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jul  6 15:01:55 2022",
- "timestampMillis": "1657087315338",
+ "dateTimestamp": "Thu Jul  7 00:02:04 2022",
+ "timestampMillis": "1657119724973",
  "status": {
-  "cmdId": "fb212f29-8bb0-4cae-a707-d1904521941f",
+  "cmdId": "7fcf9f61-db3b-4b0d-8d3e-75e6706a7f51",
   "state": "CS_RUNNING"
  }
 }
@@ -55,8 +55,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Wed Jul  6 15:02:02 2022",
- "timestampMillis": "1657087322602",
+ "dateTimestamp": "Thu Jul  7 00:02:12 2022",
+ "timestampMillis": "1657119732245",
  "buildSummary": {
   "hardwarePlatform": "xilinx_u200_xdma_201830_2.xpfm",
   "hardwareDsa": "xilinx_u200_xdma_201830_2.dsa",
@@ -91,10 +91,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Wed Jul  6 15:02:02 2022",
- "timestampMillis": "1657087322604",
+ "dateTimestamp": "Thu Jul  7 00:02:12 2022",
+ "timestampMillis": "1657119732247",
  "buildStep": {
-  "cmdId": "cdc32893-830e-4199-9869-c689a43e6dc2",
+  "cmdId": "5e5c7598-b019-45ce-9c61-c1278ade58f9",
   "name": "vitis_hls",
   "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1/vitis_hls.log",
   "commandLine": "vitis_hls -f /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1/judge_index_set_1.tcl -messageDb vitis_hls.pb",
@@ -113,10 +113,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jul  6 15:02:02 2022",
- "timestampMillis": "1657087322604",
+ "dateTimestamp": "Thu Jul  7 00:02:12 2022",
+ "timestampMillis": "1657119732248",
  "status": {
-  "cmdId": "cdc32893-830e-4199-9869-c689a43e6dc2",
+  "cmdId": "5e5c7598-b019-45ce-9c61-c1278ade58f9",
   "state": "CS_RUNNING"
  }
 }
@@ -124,10 +124,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jul  6 15:02:10 2022",
- "timestampMillis": "1657087330744",
+ "dateTimestamp": "Thu Jul  7 00:02:20 2022",
+ "timestampMillis": "1657119740525",
  "status": {
-  "cmdId": "cdc32893-830e-4199-9869-c689a43e6dc2",
+  "cmdId": "5e5c7598-b019-45ce-9c61-c1278ade58f9",
   "state": "CS_PASSED"
  }
 }
@@ -135,8 +135,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Jul  6 15:02:10 2022",
- "timestampMillis": "1657087330837",
+ "dateTimestamp": "Thu Jul  7 00:02:20 2022",
+ "timestampMillis": "1657119740618",
  "report": {
   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/reports/judge_index_set_1/v++_compile_judge_index_set_1_guidance.html",
   "name": "",
@@ -148,8 +148,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Wed Jul  6 15:02:10 2022",
- "timestampMillis": "1657087330838",
+ "dateTimestamp": "Thu Jul  7 00:02:20 2022",
+ "timestampMillis": "1657119740618",
  "report": {
   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.3/yan/u200/sw_emu/_x/v++_compile_judge_index_set_1_guidance.pb",
   "name": "",
@@ -161,10 +161,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Wed Jul  6 15:02:10 2022",
- "timestampMillis": "1657087330838",
+ "dateTimestamp": "Thu Jul  7 00:02:20 2022",
+ "timestampMillis": "1657119740619",
  "status": {
-  "cmdId": "fb212f29-8bb0-4cae-a707-d1904521941f",
+  "cmdId": "7fcf9f61-db3b-4b0d-8d3e-75e6706a7f51",
   "state": "CS_PASSED"
  }
 }
