@@ -22,9 +22,9 @@ INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64
 INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=0 
 INFO: [HLS 200-1510] Running: config_export -format ip_catalog -ipname hdis96_set_1 
 INFO: [HLS 200-1510] Running: csynth_design -synthesis_check 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 189.665 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 189.698 MB.
 INFO: [HLS 200-10] Analyzing design file '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hdis96_set_1.cpp' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.73 seconds. CPU system time: 0.17 seconds. Elapsed time: 2.49 seconds; current allocated memory: 190.290 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.69 seconds. CPU system time: 0.2 seconds. Elapsed time: 2.47 seconds; current allocated memory: 190.323 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
 INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_user_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:293:50)
 INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_dest_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:296:25)

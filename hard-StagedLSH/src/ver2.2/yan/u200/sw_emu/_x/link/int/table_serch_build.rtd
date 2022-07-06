@@ -75,258 +75,6 @@
                     "base_address": "",
                     "kernels": [
                         {
-                            "name": "determin",
-                            "ports": [
-                                {
-                                    "name": "M_AXI_JUDGE_DETERMIN_SET_1",
-                                    "mode": "master",
-                                    "range": "0xFFFFFFFF",
-                                    "data_width": "32",
-                                    "port_type": "addressable",
-                                    "base": "0x0"
-                                },
-                                {
-                                    "name": "INDEX_STREAM_IN1",
-                                    "mode": "read_only",
-                                    "range": "",
-                                    "data_width": "32",
-                                    "port_type": "stream",
-                                    "base": ""
-                                },
-                                {
-                                    "name": "COMPLETE_STREAM_OUT1_1",
-                                    "mode": "write_only",
-                                    "range": "",
-                                    "data_width": "1",
-                                    "port_type": "stream",
-                                    "base": ""
-                                },
-                                {
-                                    "name": "COMPLETE_STREAM_OUT1_2",
-                                    "mode": "write_only",
-                                    "range": "",
-                                    "data_width": "1",
-                                    "port_type": "stream",
-                                    "base": ""
-                                },
-                                {
-                                    "name": "S_AXI_CONTROL",
-                                    "mode": "slave",
-                                    "range": "0x1000",
-                                    "data_width": "32",
-                                    "port_type": "addressable",
-                                    "base": "0x0"
-                                }
-                            ],
-                            "arguments": [
-                                {
-                                    "name": "judge",
-                                    "address_qualifier": "1",
-                                    "id": "0",
-                                    "port": "M_AXI_JUDGE_DETERMIN_SET_1",
-                                    "size": "0x8",
-                                    "offset": "0x10",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x8",
-                                    "type": "void*"
-                                },
-                                {
-                                    "name": "trial_flag",
-                                    "address_qualifier": "0",
-                                    "id": "1",
-                                    "port": "S_AXI_CONTROL",
-                                    "size": "0x4",
-                                    "offset": "0x1C",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x1",
-                                    "type": "unsigned int"
-                                },
-                                {
-                                    "name": "qe_flag",
-                                    "address_qualifier": "0",
-                                    "id": "2",
-                                    "port": "S_AXI_CONTROL",
-                                    "size": "0x4",
-                                    "offset": "0x24",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x1",
-                                    "type": "unsigned int"
-                                },
-                                {
-                                    "name": "index_stream_in1",
-                                    "address_qualifier": "4",
-                                    "id": "3",
-                                    "port": "INDEX_STREAM_IN1",
-                                    "size": "0x0",
-                                    "offset": "0x0",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x8",
-                                    "type": "stream<hls::axis<ap_uint<32>, 0, 0, 0>, 0>&"
-                                },
-                                {
-                                    "name": "complete_stream_out1_1",
-                                    "address_qualifier": "4",
-                                    "id": "4",
-                                    "port": "COMPLETE_STREAM_OUT1_1",
-                                    "size": "0x0",
-                                    "offset": "0x0",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x8",
-                                    "type": "stream<hls::axis<ap_uint<1>, 0, 0, 0>, 0>&"
-                                },
-                                {
-                                    "name": "complete_stream_out1_2",
-                                    "address_qualifier": "4",
-                                    "id": "5",
-                                    "port": "COMPLETE_STREAM_OUT1_2",
-                                    "size": "0x0",
-                                    "offset": "0x0",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x8",
-                                    "type": "stream<hls::axis<ap_uint<1>, 0, 0, 0>, 0>&"
-                                }
-                            ],
-                            "instances": [
-                                {
-                                    "name": "determin"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "hdis96_set_1",
-                            "ports": [
-                                {
-                                    "name": "M_AXI_FLAME_HD96_SET_1",
-                                    "mode": "master",
-                                    "range": "0xFFFFFFFF",
-                                    "data_width": "32",
-                                    "port_type": "addressable",
-                                    "base": "0x0"
-                                },
-                                {
-                                    "name": "TOP_STREAM_IN",
-                                    "mode": "read_only",
-                                    "range": "",
-                                    "data_width": "32",
-                                    "port_type": "stream",
-                                    "base": ""
-                                },
-                                {
-                                    "name": "END_STREAM_IN",
-                                    "mode": "read_only",
-                                    "range": "",
-                                    "data_width": "32",
-                                    "port_type": "stream",
-                                    "base": ""
-                                },
-                                {
-                                    "name": "FLAME96_STREAM_IN1",
-                                    "mode": "read_only",
-                                    "range": "",
-                                    "data_width": "96",
-                                    "port_type": "stream",
-                                    "base": ""
-                                },
-                                {
-                                    "name": "COUNT_STREAM_OUT",
-                                    "mode": "write_only",
-                                    "range": "",
-                                    "data_width": "32",
-                                    "port_type": "stream",
-                                    "base": ""
-                                },
-                                {
-                                    "name": "LOCATE_STREAM_OUT",
-                                    "mode": "write_only",
-                                    "range": "",
-                                    "data_width": "32",
-                                    "port_type": "stream",
-                                    "base": ""
-                                },
-                                {
-                                    "name": "S_AXI_CONTROL",
-                                    "mode": "slave",
-                                    "range": "0x1000",
-                                    "data_width": "32",
-                                    "port_type": "addressable",
-                                    "base": "0x0"
-                                }
-                            ],
-                            "arguments": [
-                                {
-                                    "name": "flame",
-                                    "address_qualifier": "1",
-                                    "id": "0",
-                                    "port": "M_AXI_FLAME_HD96_SET_1",
-                                    "size": "0x8",
-                                    "offset": "0x10",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x8",
-                                    "type": "void*"
-                                },
-                                {
-                                    "name": "top_stream_in",
-                                    "address_qualifier": "4",
-                                    "id": "1",
-                                    "port": "TOP_STREAM_IN",
-                                    "size": "0x0",
-                                    "offset": "0x0",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x8",
-                                    "type": "stream<hls::axis<ap_uint<32>, 0, 0, 0>, 0>&"
-                                },
-                                {
-                                    "name": "end_stream_in",
-                                    "address_qualifier": "4",
-                                    "id": "2",
-                                    "port": "END_STREAM_IN",
-                                    "size": "0x0",
-                                    "offset": "0x0",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x8",
-                                    "type": "stream<hls::axis<ap_uint<32>, 0, 0, 0>, 0>&"
-                                },
-                                {
-                                    "name": "flame96_stream_in1",
-                                    "address_qualifier": "4",
-                                    "id": "3",
-                                    "port": "FLAME96_STREAM_IN1",
-                                    "size": "0x0",
-                                    "offset": "0x0",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x8",
-                                    "type": "stream<hls::axis<ap_uint<96>, 0, 0, 0>, 0>&"
-                                },
-                                {
-                                    "name": "count_stream_out",
-                                    "address_qualifier": "4",
-                                    "id": "4",
-                                    "port": "COUNT_STREAM_OUT",
-                                    "size": "0x0",
-                                    "offset": "0x0",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x8",
-                                    "type": "stream<hls::axis<ap_uint<32>, 0, 0, 0>, 0>&"
-                                },
-                                {
-                                    "name": "locate_stream_out",
-                                    "address_qualifier": "4",
-                                    "id": "5",
-                                    "port": "LOCATE_STREAM_OUT",
-                                    "size": "0x0",
-                                    "offset": "0x0",
-                                    "host_offset": "0x0",
-                                    "host_size": "0x8",
-                                    "type": "stream<hls::axis<ap_uint<32>, 0, 0, 0>, 0>&"
-                                }
-                            ],
-                            "instances": [
-                                {
-                                    "name": "hdis96_set_1"
-                                }
-                            ]
-                        },
-                        {
                             "name": "judge_index_set_1",
                             "ports": [
                                 {
@@ -495,6 +243,258 @@
                             "instances": [
                                 {
                                     "name": "judge_index_set_1"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "hdis96_set_1",
+                            "ports": [
+                                {
+                                    "name": "M_AXI_FLAME_HD96_SET_1",
+                                    "mode": "master",
+                                    "range": "0xFFFFFFFF",
+                                    "data_width": "32",
+                                    "port_type": "addressable",
+                                    "base": "0x0"
+                                },
+                                {
+                                    "name": "TOP_STREAM_IN",
+                                    "mode": "read_only",
+                                    "range": "",
+                                    "data_width": "32",
+                                    "port_type": "stream",
+                                    "base": ""
+                                },
+                                {
+                                    "name": "END_STREAM_IN",
+                                    "mode": "read_only",
+                                    "range": "",
+                                    "data_width": "32",
+                                    "port_type": "stream",
+                                    "base": ""
+                                },
+                                {
+                                    "name": "FLAME96_STREAM_IN1",
+                                    "mode": "read_only",
+                                    "range": "",
+                                    "data_width": "96",
+                                    "port_type": "stream",
+                                    "base": ""
+                                },
+                                {
+                                    "name": "COUNT_STREAM_OUT",
+                                    "mode": "write_only",
+                                    "range": "",
+                                    "data_width": "32",
+                                    "port_type": "stream",
+                                    "base": ""
+                                },
+                                {
+                                    "name": "LOCATE_STREAM_OUT",
+                                    "mode": "write_only",
+                                    "range": "",
+                                    "data_width": "32",
+                                    "port_type": "stream",
+                                    "base": ""
+                                },
+                                {
+                                    "name": "S_AXI_CONTROL",
+                                    "mode": "slave",
+                                    "range": "0x1000",
+                                    "data_width": "32",
+                                    "port_type": "addressable",
+                                    "base": "0x0"
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "name": "flame",
+                                    "address_qualifier": "1",
+                                    "id": "0",
+                                    "port": "M_AXI_FLAME_HD96_SET_1",
+                                    "size": "0x8",
+                                    "offset": "0x10",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x8",
+                                    "type": "void*"
+                                },
+                                {
+                                    "name": "top_stream_in",
+                                    "address_qualifier": "4",
+                                    "id": "1",
+                                    "port": "TOP_STREAM_IN",
+                                    "size": "0x0",
+                                    "offset": "0x0",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x8",
+                                    "type": "stream<hls::axis<ap_uint<32>, 0, 0, 0>, 0>&"
+                                },
+                                {
+                                    "name": "end_stream_in",
+                                    "address_qualifier": "4",
+                                    "id": "2",
+                                    "port": "END_STREAM_IN",
+                                    "size": "0x0",
+                                    "offset": "0x0",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x8",
+                                    "type": "stream<hls::axis<ap_uint<32>, 0, 0, 0>, 0>&"
+                                },
+                                {
+                                    "name": "flame96_stream_in1",
+                                    "address_qualifier": "4",
+                                    "id": "3",
+                                    "port": "FLAME96_STREAM_IN1",
+                                    "size": "0x0",
+                                    "offset": "0x0",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x8",
+                                    "type": "stream<hls::axis<ap_uint<96>, 0, 0, 0>, 0>&"
+                                },
+                                {
+                                    "name": "count_stream_out",
+                                    "address_qualifier": "4",
+                                    "id": "4",
+                                    "port": "COUNT_STREAM_OUT",
+                                    "size": "0x0",
+                                    "offset": "0x0",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x8",
+                                    "type": "stream<hls::axis<ap_uint<32>, 0, 0, 0>, 0>&"
+                                },
+                                {
+                                    "name": "locate_stream_out",
+                                    "address_qualifier": "4",
+                                    "id": "5",
+                                    "port": "LOCATE_STREAM_OUT",
+                                    "size": "0x0",
+                                    "offset": "0x0",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x8",
+                                    "type": "stream<hls::axis<ap_uint<32>, 0, 0, 0>, 0>&"
+                                }
+                            ],
+                            "instances": [
+                                {
+                                    "name": "hdis96_set_1"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "determin",
+                            "ports": [
+                                {
+                                    "name": "M_AXI_JUDGE_DETERMIN_SET_1",
+                                    "mode": "master",
+                                    "range": "0xFFFFFFFF",
+                                    "data_width": "32",
+                                    "port_type": "addressable",
+                                    "base": "0x0"
+                                },
+                                {
+                                    "name": "INDEX_STREAM_IN1",
+                                    "mode": "read_only",
+                                    "range": "",
+                                    "data_width": "32",
+                                    "port_type": "stream",
+                                    "base": ""
+                                },
+                                {
+                                    "name": "COMPLETE_STREAM_OUT1_1",
+                                    "mode": "write_only",
+                                    "range": "",
+                                    "data_width": "1",
+                                    "port_type": "stream",
+                                    "base": ""
+                                },
+                                {
+                                    "name": "COMPLETE_STREAM_OUT1_2",
+                                    "mode": "write_only",
+                                    "range": "",
+                                    "data_width": "1",
+                                    "port_type": "stream",
+                                    "base": ""
+                                },
+                                {
+                                    "name": "S_AXI_CONTROL",
+                                    "mode": "slave",
+                                    "range": "0x1000",
+                                    "data_width": "32",
+                                    "port_type": "addressable",
+                                    "base": "0x0"
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "name": "judge",
+                                    "address_qualifier": "1",
+                                    "id": "0",
+                                    "port": "M_AXI_JUDGE_DETERMIN_SET_1",
+                                    "size": "0x8",
+                                    "offset": "0x10",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x8",
+                                    "type": "void*"
+                                },
+                                {
+                                    "name": "trial_flag",
+                                    "address_qualifier": "0",
+                                    "id": "1",
+                                    "port": "S_AXI_CONTROL",
+                                    "size": "0x4",
+                                    "offset": "0x1C",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x1",
+                                    "type": "unsigned int"
+                                },
+                                {
+                                    "name": "qe_flag",
+                                    "address_qualifier": "0",
+                                    "id": "2",
+                                    "port": "S_AXI_CONTROL",
+                                    "size": "0x4",
+                                    "offset": "0x24",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x1",
+                                    "type": "unsigned int"
+                                },
+                                {
+                                    "name": "index_stream_in1",
+                                    "address_qualifier": "4",
+                                    "id": "3",
+                                    "port": "INDEX_STREAM_IN1",
+                                    "size": "0x0",
+                                    "offset": "0x0",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x8",
+                                    "type": "stream<hls::axis<ap_uint<32>, 0, 0, 0>, 0>&"
+                                },
+                                {
+                                    "name": "complete_stream_out1_1",
+                                    "address_qualifier": "4",
+                                    "id": "4",
+                                    "port": "COMPLETE_STREAM_OUT1_1",
+                                    "size": "0x0",
+                                    "offset": "0x0",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x8",
+                                    "type": "stream<hls::axis<ap_uint<1>, 0, 0, 0>, 0>&"
+                                },
+                                {
+                                    "name": "complete_stream_out1_2",
+                                    "address_qualifier": "4",
+                                    "id": "5",
+                                    "port": "COMPLETE_STREAM_OUT1_2",
+                                    "size": "0x0",
+                                    "offset": "0x0",
+                                    "host_offset": "0x0",
+                                    "host_size": "0x8",
+                                    "type": "stream<hls::axis<ap_uint<1>, 0, 0, 0>, 0>&"
+                                }
+                            ],
+                            "instances": [
+                                {
+                                    "name": "determin"
                                 }
                             ]
                         },

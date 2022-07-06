@@ -11,7 +11,7 @@
 source /opt/Vitis_HLS/2020.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-120-generic) on Sun Jul 03 13:28:55 JST 2022
+INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-120-generic) on Tue Jul 05 22:00:01 JST 2022
 INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
 INFO: [HLS 200-10] In directory '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hid_bound_set_1/hid_bound_set_1'
 Sourcing Tcl script 'hid_bound_set_1.tcl'
@@ -43,9 +43,9 @@ INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64
 INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=0 
 INFO: [HLS 200-1510] Running: config_export -format ip_catalog -ipname hid_bound_set_1 
 INFO: [HLS 200-1510] Running: csynth_design -synthesis_check 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 189.698 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 189.715 MB.
 INFO: [HLS 200-10] Analyzing design file '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hid_bound_set_1.cpp' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.72 seconds. CPU system time: 0.19 seconds. Elapsed time: 2.5 seconds; current allocated memory: 190.322 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.69 seconds. CPU system time: 0.21 seconds. Elapsed time: 2.49 seconds; current allocated memory: 190.323 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
 INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_user_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<32>, 0ul, 0ul, 0ul> const&)' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:304:51)
 INFO: [HLS 214-131] Inlining function 'hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>::get_dest_ptr()' into 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<32>, 0ul, 0ul, 0ul> const&)' (/opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_axi_sdata.h:307:26)
@@ -71,11 +71,10 @@ INFO: [HLS 214-131] Inlining function 'hls::stream<unsigned int, 0>::stream()' i
 INFO: [HLS 214-131] Inlining function 'hls::stream<unsigned int, 0>::stream()' into 'hid_bound_set_1' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hid_bound_set_1.cpp:129:31)
 INFO: [HLS 214-186] Unrolling loop 'flame_read' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hid_bound_set_1.cpp:132:17) in function 'hid_bound_set_1' completely with a factor of 3 (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hid_bound_set_1.cpp:132:17)
 INFO: [HLS 214-178] Inlining function 'hash_func(ap_uint<96>)' into 'hid_bound_func(ap_uint<96>, unsigned int*, hls::stream<unsigned int, 0>&, hls::stream<unsigned int, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&)' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hid_bound_set_1.cpp:48:0)
-INFO: [HLS 214-178] Inlining function 'switch_func(unsigned int*, unsigned int*, hls::stream<unsigned int, 0>&, hls::stream<unsigned int, 0>&, hls::stream<hls::axis<ap_uint<96>, 0ul, 0ul, 0ul>, 0>&)' into 'hid_bound_set_1' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hid_bound_set_1.cpp:119:0)
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.56 seconds. CPU system time: 0.17 seconds. Elapsed time: 2.74 seconds; current allocated memory: 191.801 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 191.802 MB.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.57 seconds. CPU system time: 0.19 seconds. Elapsed time: 2.75 seconds; current allocated memory: 191.832 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 191.833 MB.
 INFO: [HLS 200-1493] Running only source code synthesis checks, skipping scheduling and RTL generation.
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5.29 seconds. CPU system time: 0.36 seconds. Elapsed time: 5.24 seconds; current allocated memory: 191.776 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5.27 seconds. CPU system time: 0.4 seconds. Elapsed time: 5.24 seconds; current allocated memory: 191.807 MB.
 HLS completed successfully
-INFO: [HLS 200-112] Total CPU user time: 7.05 seconds. Total CPU system time: 0.65 seconds. Total elapsed time: 6.47 seconds; peak allocated memory: 191.802 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Jul  3 13:29:02 2022...
+INFO: [HLS 200-112] Total CPU user time: 7.02 seconds. Total CPU system time: 0.69 seconds. Total elapsed time: 6.47 seconds; peak allocated memory: 191.833 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Tue Jul  5 22:00:08 2022...

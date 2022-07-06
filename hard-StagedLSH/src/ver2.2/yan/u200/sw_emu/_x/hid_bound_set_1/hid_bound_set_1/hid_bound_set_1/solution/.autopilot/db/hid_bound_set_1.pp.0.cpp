@@ -50719,7 +50719,8 @@ __attribute__((sdx_kernel("hid_bound_set_1", 0))) void hid_bound_set_1(
  ap_uint<32> temp32 = flame[i];
         flame96.range(((32*(3-i))-1), (32*(2-i))) = temp32;
     }
-    hid_bound_func(
+#pragma HLS dataflow
+ hid_bound_func(
         flame96,
         hash_table_pointer,
         top_switch,

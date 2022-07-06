@@ -134,6 +134,7 @@ void hid_bound_set_1(
         ap_uint<SUB_FP_SIZE> temp32 = flame[i];
         flame96.range(((32*(3-i))-1), (32*(2-i))) = temp32;
     }
+#pragma HLS dataflow
     hid_bound_func(
         flame96,
         hash_table_pointer,

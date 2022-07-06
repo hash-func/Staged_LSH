@@ -44,5 +44,5 @@ File   : '/dev/null'
 Section: 'IP_LAYOUT'(8) was successfully appended to.
 Format : JSON
 File   : 'ip_layout'
-Successfully wrote (1829404 bytes) to the output file: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/table_serch.xclbin
+Successfully wrote (1829368 bytes) to the output file: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/table_serch.xclbin
 Leaving xclbinutil.

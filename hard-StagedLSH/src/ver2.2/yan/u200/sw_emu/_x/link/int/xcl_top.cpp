@@ -14,36 +14,6 @@ using namespace std;
 
 extern "C" {
 
-void determin(size_t judge, unsigned int trial_flag, unsigned int qe_flag, size_t index_stream_in1, size_t complete_stream_out1_1, size_t complete_stream_out1_2);
-
-static pthread_mutex_t __xlnx_cl_determin_mutex = PTHREAD_MUTEX_INITIALIZER;
-void __stub____xlnx_cl_determin(char **argv) {
-  void **args = (void **)argv;
-  size_t judge = *((size_t*)args[0+1]);
-  unsigned int trial_flag = *((unsigned int*)args[1+1]);
-  unsigned int qe_flag = *((unsigned int*)args[2+1]);
-  size_t index_stream_in1 = *((size_t*)args[3+1]);
-  size_t complete_stream_out1_1 = *((size_t*)args[4+1]);
-  size_t complete_stream_out1_2 = *((size_t*)args[5+1]);
- //  pthread_mutex_lock(&__xlnx_cl_determin_mutex);
-  determin(judge, trial_flag, qe_flag, index_stream_in1, complete_stream_out1_1, complete_stream_out1_2);
- //   pthread_mutex_unlock(&__xlnx_cl_determin_mutex);
-}
-void hdis96_set_1(size_t flame, size_t top_stream_in, size_t end_stream_in, size_t flame96_stream_in1, size_t count_stream_out, size_t locate_stream_out);
-
-static pthread_mutex_t __xlnx_cl_hdis96_set_1_mutex = PTHREAD_MUTEX_INITIALIZER;
-void __stub____xlnx_cl_hdis96_set_1(char **argv) {
-  void **args = (void **)argv;
-  size_t flame = *((size_t*)args[0+1]);
-  size_t top_stream_in = *((size_t*)args[1+1]);
-  size_t end_stream_in = *((size_t*)args[2+1]);
-  size_t flame96_stream_in1 = *((size_t*)args[3+1]);
-  size_t count_stream_out = *((size_t*)args[4+1]);
-  size_t locate_stream_out = *((size_t*)args[5+1]);
- //  pthread_mutex_lock(&__xlnx_cl_hdis96_set_1_mutex);
-  hdis96_set_1(flame, top_stream_in, end_stream_in, flame96_stream_in1, count_stream_out, locate_stream_out);
- //   pthread_mutex_unlock(&__xlnx_cl_hdis96_set_1_mutex);
-}
 void judge_index_set_1(size_t FP_DB, size_t hash_table, size_t complete_stream_in, size_t fp32_stream_out, size_t haming_stream_in, size_t index_stream_out, size_t locate_stream_in, size_t count_stream_in);
 
 static pthread_mutex_t __xlnx_cl_judge_index_set_1_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -60,6 +30,36 @@ void __stub____xlnx_cl_judge_index_set_1(char **argv) {
  //  pthread_mutex_lock(&__xlnx_cl_judge_index_set_1_mutex);
   judge_index_set_1(FP_DB, hash_table, complete_stream_in, fp32_stream_out, haming_stream_in, index_stream_out, locate_stream_in, count_stream_in);
  //   pthread_mutex_unlock(&__xlnx_cl_judge_index_set_1_mutex);
+}
+void hdis96_set_1(size_t flame, size_t top_stream_in, size_t end_stream_in, size_t flame96_stream_in1, size_t count_stream_out, size_t locate_stream_out);
+
+static pthread_mutex_t __xlnx_cl_hdis96_set_1_mutex = PTHREAD_MUTEX_INITIALIZER;
+void __stub____xlnx_cl_hdis96_set_1(char **argv) {
+  void **args = (void **)argv;
+  size_t flame = *((size_t*)args[0+1]);
+  size_t top_stream_in = *((size_t*)args[1+1]);
+  size_t end_stream_in = *((size_t*)args[2+1]);
+  size_t flame96_stream_in1 = *((size_t*)args[3+1]);
+  size_t count_stream_out = *((size_t*)args[4+1]);
+  size_t locate_stream_out = *((size_t*)args[5+1]);
+ //  pthread_mutex_lock(&__xlnx_cl_hdis96_set_1_mutex);
+  hdis96_set_1(flame, top_stream_in, end_stream_in, flame96_stream_in1, count_stream_out, locate_stream_out);
+ //   pthread_mutex_unlock(&__xlnx_cl_hdis96_set_1_mutex);
+}
+void determin(size_t judge, unsigned int trial_flag, unsigned int qe_flag, size_t index_stream_in1, size_t complete_stream_out1_1, size_t complete_stream_out1_2);
+
+static pthread_mutex_t __xlnx_cl_determin_mutex = PTHREAD_MUTEX_INITIALIZER;
+void __stub____xlnx_cl_determin(char **argv) {
+  void **args = (void **)argv;
+  size_t judge = *((size_t*)args[0+1]);
+  unsigned int trial_flag = *((unsigned int*)args[1+1]);
+  unsigned int qe_flag = *((unsigned int*)args[2+1]);
+  size_t index_stream_in1 = *((size_t*)args[3+1]);
+  size_t complete_stream_out1_1 = *((size_t*)args[4+1]);
+  size_t complete_stream_out1_2 = *((size_t*)args[5+1]);
+ //  pthread_mutex_lock(&__xlnx_cl_determin_mutex);
+  determin(judge, trial_flag, qe_flag, index_stream_in1, complete_stream_out1_1, complete_stream_out1_2);
+ //   pthread_mutex_unlock(&__xlnx_cl_determin_mutex);
 }
 void hdis4096_set_1(size_t query, size_t complete_stream_in, size_t fp32_stream_in, size_t haming_stream_out);
 

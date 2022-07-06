@@ -1,4 +1,4 @@
-INFO-FLOW: Workspace /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution opened at Sun Jul 03 13:28:01 JST 2022
+INFO-FLOW: Workspace /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution opened at Tue Jul 05 21:59:08 JST 2022
 Execute       send_msg_by_id INFO @200-1505@%s%s  vitis 
 INFO: [HLS 200-1505] Using flow_target 'vitis'
 Execute       get_config_interface -m_axi_latency 
@@ -31,7 +31,7 @@ INFO-FLOW: DBG:set_part: RDI_DATADIR=/opt/Vivado/2020.2/data:/opt/Vitis_HLS/2020
 Execute       ap_part_info -name xcu200-fsgd2104-2-e -data single -quiet 
 DBG:HLSDevice: Trying to load device library: /opt/Vitis_HLS/2020.2/lib/lnx64.o/librdi_hlsvwrap.so
 DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /opt/Vivado/2020.2/data/parts/arch.xml
-Command       ap_part_info done; 0.9 sec.
+Command       ap_part_info done; 0.89 sec.
 Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
 Execute       add_library xilinx/virtexuplus/virtexuplus:xcu200:-fsgd2104:-2-e 
 Execute         get_default_platform 
@@ -64,11 +64,11 @@ Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.
 Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
 Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
 Execute           source /opt/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
-Command       add_library done; 0.13 sec.
+Command       add_library done; 0.12 sec.
 INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
 Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
 Execute       config_compile -quiet -complex-mul-dsp=0 
-Command     set_part done; 1.05 sec.
+Command     set_part done; 1.04 sec.
 Execute     create_clock -period 300.000000MHz -name default 
 INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
 Execute       ap_set_clock -name default -period 3.333 -unit ns -default=false 
@@ -102,7 +102,7 @@ Execute       get_config_compile -skip_syncheck
 Execute       get_config_compile -skip_transform 
 Execute       get_config_compile -keep_printf 
 Execute       elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -skip_cdt=0 -skip_transform=2 -ng=0 -g=0 -opt_fp=0 -from_csynth_design=1 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 189.665 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 189.698 MB.
 INFO: [HLS 200-10] Analyzing design file '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hdis96_set_1.cpp' ... 
 INFO-FLOW: Compiling one TU...
 Execute         get_config_compile -pragma_strict_mode 
@@ -126,7 +126,7 @@ Command         clang_tidy done; 0.51 sec.
 INFO-FLOW: Running: clang-tidy CDT preprocess 39
 Execute         clang_tidy xilinx-directive2pragma /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/hdis96_set_1.pp.0.cpp std=gnu++14 -target fpga  -directive=/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/all.directive.json 
 INFO-FLOW: exec /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/all.directive.json -fix-errors /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/hdis96_set_1.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
-Command         clang_tidy done; 0.77 sec.
+Command         clang_tidy done; 0.78 sec.
 Execute         clang_tidy xilinx-constantarray-param,xilinx-remove-assert /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/hdis96_set_1.pp.0.cpp std=gnu++14 -target fpga  
 INFO-FLOW: exec /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-constantarray-param,xilinx-remove-assert -fix-errors /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/hdis96_set_1.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
 Command         clang_tidy done; 0.58 sec.
@@ -134,8 +134,8 @@ INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 1.4 seconds per iteration
 Execute         ap_part_info -name xcu200-fsgd2104-2-e -data info 
 INFO-FLOW: compiling source code to llvm bc
 Execute         ap_eval exec -ignorestderr /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/clang.hdis96_set_1.pp.0.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/hdis96_set_1.pp.0.cpp -g -I/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /opt/Vitis_HLS/2020.2/common/technology/autopilot -I /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/hdis96_set_1.bc > /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/clang.hdis96_set_1.pp.0.cpp.out.log 2> /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/clang.hdis96_set_1.pp.0.cpp.err.log 
-Command         ap_eval done; 0.5 sec.
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.73 seconds. CPU system time: 0.17 seconds. Elapsed time: 2.49 seconds; current allocated memory: 190.290 MB.
+Command         ap_eval done; 0.49 sec.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.69 seconds. CPU system time: 0.2 seconds. Elapsed time: 2.47 seconds; current allocated memory: 190.323 MB.
 INFO-FLOW: Linking Debug ...
 INFO-FLOW: Linking dut bc code.
 Execute         run_link_or_opt -out /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.0.bc -args  "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/hdis96_set_1.g.bc"  
@@ -147,14 +147,14 @@ INFO-FLOW:
 INFO-FLOW: Linking math bc lib
 Execute         run_link_or_opt -out /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.2.m1.bc -args /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.1.lower.bc -only-needed /opt/Vitis_HLS/2020.2/lnx64/lib/libhlsm_39.bc /opt/Vitis_HLS/2020.2/lnx64/lib/libhlsmc++_39.bc 
 Execute           ap_eval exec -ignorestderr /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.1.lower.bc -only-needed /opt/Vitis_HLS/2020.2/lnx64/lib/libhlsm_39.bc /opt/Vitis_HLS/2020.2/lnx64/lib/libhlsmc++_39.bc -o /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.2.m1.bc > /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/llvm-link.a.g.ld.2.m1.bc.out.log 2> /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/llvm-link.a.g.ld.2.m1.bc.err.log 
-Command           ap_eval done; 1.68 sec.
+Command           ap_eval done; 1.67 sec.
 INFO-FLOW: 
-Command         run_link_or_opt done; 1.68 sec.
+Command         run_link_or_opt done; 1.67 sec.
 Execute         run_link_or_opt -opt -out /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.3.fpc.bc -args /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=hdis96_set_1 -reflow-float-conversion 
 Execute           ap_eval exec -ignorestderr /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/opt.a.g.ld.3.fpc.bc.diag.yml /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=hdis96_set_1 -reflow-float-conversion -o /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.3.fpc.bc > /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/opt.a.g.ld.3.fpc.bc.out.log 2> /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/opt.a.g.ld.3.fpc.bc.err.log 
-Command           ap_eval done; 0.59 sec.
+Command           ap_eval done; 0.58 sec.
 INFO-FLOW: 
-Command         run_link_or_opt done; 0.59 sec.
+Command         run_link_or_opt done; 0.58 sec.
 Execute         run_link_or_opt -out /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.4.m2.bc -args /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.3.fpc.bc -only-needed /opt/Vitis_HLS/2020.2/lnx64/lib/libfloatconversion_39.bc 
 Execute           ap_eval exec -ignorestderr /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.3.fpc.bc -only-needed /opt/Vitis_HLS/2020.2/lnx64/lib/libfloatconversion_39.bc -o /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/a.g.ld.4.m2.bc > /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/llvm-link.a.g.ld.4.m2.bc.out.log 2> /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/llvm-link.a.g.ld.4.m2.bc.err.log 
 INFO-FLOW: 
@@ -225,13 +225,13 @@ INFO: [HLS 214-186] Unrolling loop 'haming_dis96_loop' (/home/nomoto/src/StagedL
 WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis96_loop' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hdis96_set_1.cpp:69:28) in function 'hdis96_set_1' has been removed because the loop is unrolled completely (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hdis96_set_1.cpp:69:28)
 INFO: [HLS 214-186] Unrolling loop 'flame_read' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hdis96_set_1.cpp:45:17) in function 'hdis96_set_1' completely with a factor of 3 (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/serch_module_set_1/hdis96_set_1.cpp:45:17)
 INFO-FLOW: DBG:CMD: copy_raw_kernel_xml ap_link_39: copying raw kernel.xml: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/../../../kernel.xml -> /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/hdis96_set_1/hdis96_set_1/hdis96_set_1/solution/.autopilot/db/kernel.internal.xml
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.53 seconds. CPU system time: 0.16 seconds. Elapsed time: 2.68 seconds; current allocated memory: 191.784 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 191.785 MB.
-Command       elaborate done; 5.17 sec.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.49 seconds. CPU system time: 0.18 seconds. Elapsed time: 2.68 seconds; current allocated memory: 191.800 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 191.802 MB.
+Command       elaborate done; 5.16 sec.
 Execute       send_msg_by_id INFO @200-1493@ 
 INFO: [HLS 200-1493] Running only source code synthesis checks, skipping scheduling and RTL generation.
-Command     csynth_design done; 5.17 sec.
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5.26 seconds. CPU system time: 0.33 seconds. Elapsed time: 5.17 seconds; current allocated memory: 191.759 MB.
+Command     csynth_design done; 5.16 sec.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5.18 seconds. CPU system time: 0.39 seconds. Elapsed time: 5.16 seconds; current allocated memory: 191.776 MB.
 Execute     close_project 
 Execute       cleanup_all -project 
 Execute     cleanup_all 

@@ -1,9 +1,9 @@
 INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
 	Reports: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/reports/hdis4096_set_1
 	Log files: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/logs/hdis4096_set_1
-INFO: [v++ 60-1548] Creating build summary session with primary output /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/hdis4096_set_1.xo.compile_summary, at Sun Jul  3 13:28:19 2022
-INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Sun Jul  3 13:28:19 2022
-INFO: [v++ 60-1315] Creating rulecheck session with output '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/reports/hdis4096_set_1/v++_compile_hdis4096_set_1_guidance.html', at Sun Jul  3 13:28:20 2022
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/hdis4096_set_1.xo.compile_summary, at Tue Jul  5 21:59:25 2022
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Tue Jul  5 21:59:25 2022
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/reports/hdis4096_set_1/v++_compile_hdis4096_set_1_guidance.html', at Tue Jul  5 21:59:26 2022
 INFO: [v++ 60-895]   Target platform: /opt/xilinx/platforms/xilinx_u200_xdma_201830_2/xilinx_u200_xdma_201830_2.xpfm
 INFO: [v++ 60-1578]   This platform contains Device Support Archive '/opt/xilinx/platforms/xilinx_u200_xdma_201830_2/hw/xilinx_u200_xdma_201830_2.dsa'
 INFO: [v++ 74-74] Compiler Version string: 2020.2

@@ -1,3 +1,4 @@
+
 /*******************************************************************
  * StagedLSH [yan]
 ********************************************************************/
@@ -32,6 +33,10 @@
 
 std::random_device rnd1;
 
+/* 関数のプロトタイプ宣言 */
+std::vector<cl::Device> get_xilinx_devices();
+char* read_binary_file(const std::string &xclbin_file_name, unsigned &nb);
+
 /* main */
 int main(int argc, char** argv)
 {
@@ -64,8 +69,8 @@ int main(int argc, char** argv)
     unsigned int* hash_table;                   // ハッシュテーブル
     hash_table = (unsigned int*) aligned_alloc(full_table_size ,sizeof(unsigned int)*full_table_size);
                                                 // Hash関数bit取得位置
-    unsigned int* query;
-    query = (unsigned int*) aligned_alloc(ONEMUSIC_SUBNUM, sizeof(unsigned int)*ONEMUSIC_SUBNUM);
+    // unsigned int* query;
+    // query = (unsigned int*) aligned_alloc(ONEMUSIC_SUBNUM, sizeof(unsigned int)*ONEMUSIC_SUBNUM);
     unsigned int bit_element[K_HASHBIT*L_HASHNUM] = {
     get1, get2, get3, get4, get5, get6, get7, get8, get9, get10, 
     get11, get12, get13, get14, get15, get16, get17, get18, get19, get20, 
@@ -156,90 +161,93 @@ int main(int argc, char** argv)
 
 /****************************************************************************************************/
 // OpenCLホストコードエリア
-
-	// ---------------------------------------------------------------------------------
-	// Load XCLBIN file, create OpenCL context, device and program
-	// ---------------------------------------------------------------------------------
-    printf("Programming FPGA Area\n");
-    cl_context  context;
-    cl_program  program;
-    cl_device_id device;
-    // カーネルバイナリの名前格納変数
-    std::string fpgaBinary = (argc != 2) ? "table_serch.xclbin" : argv[1];
-    load_xclbin_file(fpgaBinary.c_str(), context, device, program);
-    printf("program context device作成完了");
-	// ---------------------------------------------------------------------------------
-	// Make requests to kernel(s) 
-	// ---------------------------------------------------------------------------------
-    /* カーネル変数宣言 */
-    cl_kernel         mKernel_hid         ;
-    cl_kernel         mKernel_hd96        ;
-    cl_kernel         mKernel_judge       ;
-    cl_kernel         mKernel_hd4096      ;
-    cl_kernel         mKernel_det         ;
-    /* cl変数宣言 */
-    cl_command_queue  mQueue;   // コマンドキュー
-    cl_context        mContext; // コンテキスト
-    cl_int            mErr;     // エラー
-    /* Buffer用宣言 */
-    cl_mem            mConstBuf[3];   // 常用データ用
-    cl_mem            mSrcBuf[1];     // query
-    cl_mem            mEvrBuf[1];     // flame
-    cl_mem            mDstBuf[1];     // judge
-
-    /* カーネルの定義 */
-    // clCreateKernel(プログラム, 宣言されたカーネル名, エラー)
-    mKernel_hid         = clCreateKernel(program, "hid_bound_set_1",    &mErr);
-    mKernel_hd96        = clCreateKernel(program, "hdis96_set_1",       &mErr);
-    mKernel_judge       = clCreateKernel(program, "judge_index_set_1",  &mErr);
-    mKernel_hd4096      = clCreateKernel(program, "hdis4096_set_1",     &mErr);
-    mKernel_det         = clCreateKernel(program, "determin",           &mErr);
-    /* キュー/コンテキスト定義 */
-    mQueue   = clCreateCommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &mErr);
-    mContext = context;
-    printf("常用データのバッファ作成開始\n");
-    /* 常用データのBuffer作成 */
-    // Create input buffers for coefficients (host to device)
-    mConstBuf[0] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
-    ONEMUSIC_SUBNUM*MUSIC_NUM*sizeof(unsigned int), &FP_DB, &mErr);
-    mConstBuf[1] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
-    full_table_size*sizeof(unsigned int), &hash_table, &mErr);
-    mConstBuf[2] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
-    division_num*sizeof(unsigned int), &hash_table_pointer, &mErr);
-    printf("常用データのバッファ作成完了\n");
-    // Set the kernel arguments
-    // FPDB
-    clSetKernelArg(mKernel_hid,        2, sizeof(cl_mem),       &mConstBuf[0]);
-    clSetKernelArg(mKernel_judge,      0, sizeof(cl_mem),       &mConstBuf[0]);
-    // hash_table
-    clSetKernelArg(mKernel_hid,        3, sizeof(cl_mem),       &mConstBuf[1]);
-    clSetKernelArg(mKernel_judge,      1, sizeof(cl_mem),       &mConstBuf[1]);
-    // hash_table_pointer
-    clSetKernelArg(mKernel_hid,        1, sizeof(cl_mem),       &mConstBuf[2]);
-    // イベント宣言
-    cl_event mEvent[2];
-    // Schedule the execution of the kernel
-    clEnqueueMigrateMemObjects(mQueue, 3, mConstBuf, 0, 0, nullptr,  &mEvent[0]);
-    /* 常用カーネルのスタート */
-    // Schedule the execution of the kernel
-    clEnqueueTask(mQueue, mKernel_judge,      1,  &mEvent[0], &mEvent[1]);
-    /* イベントの解放 */
-    for (int i=0; i<2; i++) {
-        clReleaseEvent(mEvent[i]);
-    }
-/****************************************************************************************************/
-    
-    /* 結果格納用 */
-    int* judge;
-    judge = (int*) aligned_alloc(1 ,sizeof(int)*1);
-    /* flame格納用 */
-    unsigned int* flame96;
-    flame96 = (unsigned int*) aligned_alloc(3 ,sizeof(unsigned int)*3);
-    unsigned int tempA;
-    unsigned int tempB;
     /* flag */
     bool trial_flag = true; // 最終試行回数フラグ
     bool qe_flag    = true; // クエリ末端フラグ
+    size_t count = 0;
+    //--------------------------------------------------------------
+    // Step:1 OpenCL環境の初期化
+    //--------------------------------------------------------------
+    cl_int err;     // APIコールからのエラーコード
+    // カーネルバイナリの名前格納
+    std::string binaryFile = (argc != 2) ? "table_serch.xclbin" : argv[1];
+    unsigned fileBufSize;   // 2バイトまたは4バイトの符号なし整数の値を記憶
+    std::vector<cl::Device> devices = get_xilinx_devices();
+    devices.resize(1);      // 要素数を変更する
+    // プラットフォームで仕様できる物理デバイス指定
+    cl::Device device = devices[0];
+    // OpenCLが動作する実行環境(コンテキスト)
+    cl::Context context(device, NULL, NULL, NULL, &err);
+    // バイナリファイルの読み込み
+    // カーネル関数のバイナリファイルをロード
+    char* fileBuf = read_binary_file(binaryFile, fileBufSize);
+    cl::Program::Binaries bins{{fileBuf, fileBufSize}};
+    // プログラムを作成
+    // FPGAにバイナリを送信
+    cl::Program program(context, devices, bins, NULL, &err);
+    // コマンドキュー作成
+    cl::CommandQueue hd96_q     (context, device, CL_QUEUE_PROFILING_ENABLE, &err);
+    cl::CommandQueue judge_q    (context, device, CL_QUEUE_PROFILING_ENABLE, &err);
+    cl::CommandQueue hd4096_q   (context, device, CL_QUEUE_PROFILING_ENABLE, &err);
+    cl::CommandQueue q          (context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, &err);
+    // カーネルの作成
+    cl::Kernel mKernel_hid      (program, "hid_bound_set_1",    &err);
+    cl::Kernel mKernel_hd96     (program, "hdis96_set_1",       &err);
+    cl::Kernel mKernel_judge    (program, "judge_index_set_1",  &err);
+    cl::Kernel mKernel_hd4096   (program, "hdis4096_set_1",     &err);
+    cl::Kernel mKernel_det      (program, "determin",           &err);
+    // イベント
+    std::vector<cl::Event> det_krnlWait;
+    std::vector<cl::Event> hid_krnlWait;
+    std::vector<cl::Event> finishWait;
+
+    cl::Event det_krnlDone, hid_krnlDone, finishDone;
+    //--------------------------------------------------------------
+    // Step:2 バッファの作成とテスト値の初期化
+    //--------------------------------------------------------------
+    // デバイスメモリ確保
+        // 結果格納用のメモリを確保
+        // グローバルメモリにバッファを確保
+    // バッファの作成とメモリの確保
+    // バッファの作成
+    // ホスト側のバッファメモリをユーザー空間のポインタにマップ
+    cl::Buffer FP_DB_buf(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, 
+    sizeof(unsigned int)*MUSIC_NUM*ONEMUSIC_SUBNUM, FP_DB, &err);
+    cl::Buffer hash_table_buf(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, 
+    sizeof(unsigned int)*full_table_size, hash_table, &err);
+    cl::Buffer hash_table_pointer_buf(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, 
+    sizeof(unsigned int)*division_num, hash_table_pointer, &err);
+    
+    /* queryとflameをカーネルにセット */
+    //--------------------------------------------------------------
+    // Step:3 カーネルの実行
+    //--------------------------------------------------------------
+    // バッファをカーネル引数にマッピングし、特定のデバイスメモリバンクに割り当てる
+    // FPDB
+    mKernel_hid.setArg      (2,  FP_DB_buf);
+    mKernel_judge.setArg    (0,  FP_DB_buf);
+    // hash_table
+    mKernel_hid.setArg      (3,  hash_table_buf);
+    mKernel_judge.setArg    (1,  hash_table_buf);
+    // hash_table_pointer
+    mKernel_hid.setArg      (1,  hash_table_pointer_buf);
+    // query
+    // mKernel_hd4096.setArg   (0,  query_buf);
+    // flame
+    // mKernel_hid.setArg      (0,  flame_buf);
+    // mKernel_hd96.setArg     (0,  flame_buf);
+    // judge
+    // mKernel_det.setArg      (0,  judge_buf);
+
+    // 入力のデバイスメモリへの転送
+    // ホストからデバイスのグローバルメモリに転送 読み込みだけ
+    judge_q.enqueueMigrateMemObjects({
+        FP_DB_buf,
+        hash_table_buf,
+        hash_table_pointer_buf
+    },0 /*0はホストからの意味*/);
+    // カーネルの実行
+    judge_q.enqueueTask(mKernel_judge);
 
     /*** 指定回数検索実行 ***/
     for (unsigned int i=0; i<QUERY_NUM; i++) {
@@ -248,6 +256,17 @@ int main(int argc, char** argv)
         /* 初期化 */
         qe_flag = true;
         judge[0] = -1;
+
+        /* バッファ作成 */
+        cl::Buffer query_buf(context, CL_MEM_READ_ONLY,
+                            sizeof(unsigned int)*ONEMUSIC_SUBNUM, NULL, &err);
+        // query
+        mKernel_hd4096.setArg(0,   query_buf);
+
+        unsigned int* query = (unsigned int*)q.enqueueMapBuffer(
+        query_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(unsigned int)*ONEMUSIC_SUBNUM);
+        mKernel_hd4096.setArg   (0,  query_buf);
+
         /* 楽曲識別子生成 */
         music_index = rnd1() % MUSIC_NUM;
         /* index楽曲格納 + 歪みのあるクエリの作成(ele_func.cpp) */
@@ -259,72 +278,69 @@ int main(int argc, char** argv)
             ONEMUSIC_SUBNUM                     // 1曲あたりのsubFP数
         );
         /* 検索処理（FPGA） */
-        // Create input buffers for coefficients (host to device)
-        mSrcBuf[0] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
-        ONEMUSIC_SUBNUM*sizeof(int), &query, &mErr);
-        // Set the kernel arguments
-        // query
-        clSetKernelArg(mKernel_hd4096,      0, sizeof(cl_mem),       &mSrcBuf[0]);
+        /* query送信 */
+        hd4096_q.enqueueMigrateMemObjects({
+            query_buf
+        },0 /*0はホストからの意味*/);
+        // カーネルの実行
+        hd4096_q.enqueueTask(mKernel_hd4096);
+
         // trial_flag
-        clSetKernelArg(mKernel_det,         1, sizeof(bool),         &trial_flag);
-        // イベント宣言
-        cl_event mEvent[2];
-        // Schedule the writing of the inputs
-        //(コマンドキュー, メモリオブジェクト数, メモリオブジェクトリストへのポインタ,
-        //フラグ(?), 同期ポイント指定なければ0, 左に同じ(内容), コマンドを識別するイベントオブジェクト )
-	    clEnqueueMigrateMemObjects(mQueue, 1, &mSrcBuf[0], 0, 0, nullptr,  &mEvent[0]);
-        // Schedule the execution of the kernel
-        //(コマンドキュー, 有効なカーネル, 同期ポイント, 左内容, 実行インスタンスを識別するイベント)
-        clEnqueueTask(mQueue, mKernel_hd4096,   1,  &mEvent[0], &mEvent[1]);
-        /* イベントの解放 */
-        for (int i=0; i<2; i++) {
-            clReleaseEvent(mEvent[i]);
-        }
+        mKernel_det.setArg      (1,  trial_flag);
         /* 126回検索 */
-        tempA = query[0];
-        tempB = query[1];
         for (int j=0; j<FLAME_IN_MUSIC; j++) {
             /* 最終フレームの時 */
             if (j == FLAME_IN_MUSIC-1) qe_flag = false;
-            /* フレームの作成 */
-            flame96[0] = tempA;
-            flame96[1] = tempB;
-            flame96[2] = query[j+2];
-            // Create input buffers for coefficients (host to device)
-            mEvrBuf[0] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
-            3*sizeof(unsigned int), &flame96, &mErr);
-            mDstBuf[0] = clCreateBuffer(mContext, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY,
-            sizeof(int), &judge, &mErr);
-            // Set the kernel arguments
+            // バッファ作成
+            cl::Buffer flame_buf(context, CL_MEM_READ_ONLY,
+                                sizeof(unsigned int)*3, NULL, &err);
             // flame
-            clSetKernelArg(mKernel_hid,         0, sizeof(cl_mem),       &mEvrBuf[0]);
-            clSetKernelArg(mKernel_hd96,        0, sizeof(cl_mem),       &mEvrBuf[0]);
+            mKernel_hid.setArg   (0,   flame_buf);
+            mKernel_hd96.setArg  (0,   flame_buf);
+            unsigned int* flame96 = (unsigned int*)q.enqueueMapBuffer(
+                                flame_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(unsigned int)*3);
+            mKernel_hid.setArg   (0,   flame_buf);
+            mKernel_hd96.setArg  (0,   flame_buf);
+            /* フレームの作成 */
+            flame96[0] = query[j];
+            flame96[1] = query[j+1];
+            flame96[2] = query[j+2];
             // judge
-            clSetKernelArg(mKernel_det,         0, sizeof(cl_mem),       &mDstBuf[0]);
-            // flag
-            clSetKernelArg(mKernel_det,         2, sizeof(bool),         &qe_flag);
-            // イベント宣言
-            cl_event mEvent[3];
-            // Schedule the writing of the inputs
-            clEnqueueMigrateMemObjects(mQueue, 1, &mEvrBuf[0], 0, 0, nullptr,  &mEvent[0]);
-            // Schedule the execution of the kernel
-            clEnqueueTask(mQueue, mKernel_hid,  1,  &mEvent[0], &mEvent[1]);
-            clEnqueueTask(mQueue, mKernel_hd96, 1,  &mEvent[0], &mEvent[1]);
-            clEnqueueTask(mQueue, mKernel_det,  1,  &mEvent[0], &mEvent[1]);
-            // Schedule the reading of the outputs
-            clEnqueueMigrateMemObjects(mQueue, 1, &mDstBuf[0], CL_MIGRATE_MEM_OBJECT_HOST, 1, &mEvent[1], &mEvent[2]);
-            /* 同期 */// Wait until the outputs have been read back
-            clWaitForEvents(1, &mEvent[2]);
-            /* イベントの解放 */
-            for (int i=0; i<3; i++) {
-                clReleaseEvent(mEvent[i]);
-            }
-            /* 解が見つかった時点で終了 */
+            cl::Buffer judge_buf(context, CL_MEM_WRITE_ONLY,
+                                sizeof(int), NULL, &err);
+            // judge
+            mKernel_det.setArg   (0,  judge_buf);
+            int* judge = (int*)q.enqueueMapBuffer(
+                        judge_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(int));
+            mKernel_det.setArg   (0,  judge_buf);
+            // qe_flag
+            mKernel_det.setArg      (2,  qe_flag);
+            /* query送信 */
+            hd96_q.enqueueMigrateMemObjects({
+                flame_buf
+            },0 /*0はホストからの意味*/);
+            // カーネルの実行
+            hd96_q.enqueueTask(mKernel_hd96);
+            q.enqueueTask(mKernel_hid, NULL, &hid_krnlDone);
+            q.enqueueTask(mKernel_det, NULL, &det_krnlDone);
+            hid_krnlWait.push_back(hid_krnlDone);
+            det_krnlWait.push_back(det_krnlDone);
+            // 出力のホストメモリへの転送をスケジュール
+            // 結果の取得
+            q.enqueueMigrateMemObjects({judge_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &det_krnlWait, &finishDone);
+            finishWait.push_back(finishDone);
+            /* スケジュールされた動作終了まで待ち */
+            finishWait[count].wait();
+            count++;
+            // printf("host : %u回目\n", count);
+            hd96_q.finish();
             if (judge[0] >= 0) break;
             // 更新
-            tempA = tempB;
-            tempB = flame96[2];
+            flame96[0] = flame96[1];
+            flame96[1] = flame96[2];
         }
+        hd4096_q.finish();
+        
         /* 結果の集計 */
         if (judge[0]<0)
         {
@@ -339,10 +355,15 @@ int main(int argc, char** argv)
             else
             {
                 printf("不正解 : %d\n", judge[0]);
+                printf("正しい解 : %d\n", music_index);
                 huseikai++;
             }
         }
     }
+    // 全てのカーネル終了まで待ち  
+    judge_q.finish();
+
+
 
 /****************************************************************************************************/
     /* 結果の表示 */
@@ -353,29 +374,10 @@ int main(int argc, char** argv)
 /****************************************************************************************************/
 
     /* 後処理後終了 */
-    clReleaseCommandQueue(mQueue);
-    clReleaseContext(mContext);
-    clReleaseKernel(mKernel_hid         );
-    clReleaseKernel(mKernel_hd96        );
-    clReleaseKernel(mKernel_judge        );
-    clReleaseKernel(mKernel_hd4096      );
-    clReleaseKernel(mKernel_det      );
-    clReleaseMemObject(mConstBuf[0]);
-    clReleaseMemObject(mConstBuf[1]);
-    clReleaseMemObject(mConstBuf[2]);
-    clReleaseMemObject(mSrcBuf[0]);
-    clReleaseMemObject(mEvrBuf[0]);
-    clReleaseMemObject(mDstBuf[0]);
-    // Release allocated memory
-    clReleaseProgram(program);
-    clReleaseContext(context);
-    clReleaseDevice(device);
+    delete[] fileBuf;
     free(FP_DB);
     free(hash_table_pointer);
     free(hash_table);
-    free(query);
-    free(judge);
-    free(flame96);
 
 #ifdef DEBUG
     printf("処理終了\n");
@@ -383,3 +385,57 @@ int main(int argc, char** argv)
     return 0;
 }
 /*-- main --*/
+
+
+
+
+std::vector<cl::Device> get_xilinx_devices()
+{
+    size_t i;   // バイト数を表現できる程度に大きい符号なし整数型
+    cl_int err;
+    // プラットフォームの特定 OpenCLが実行できるプラットフォーム一覧取得
+    std::vector<cl::Platform> platforms;
+    err = cl::Platform::get(&platforms);
+    cl::Platform platform;
+    for (i=0; i<platforms.size(); i++)
+    {
+        platform = platforms[i];
+        std::string platformName = platform.getInfo<CL_PLATFORM_NAME>(&err);
+        if (platformName == "Xilinx")
+        {
+            std::cout << "INFO: Found Xilinx Platform" << std::endl;
+            // Xilinxプラットフォームを見つけたら抜ける
+            break;
+        }
+    }
+    if (i == platforms.size())
+    {
+        std::cout << "ERROR: Failed to find Xilinx platform" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    // アクセラレータデバイスの取得と1台目デバイス選択
+    std::vector<cl::Device> devices;
+    // clGetDeviceIDs:指定したOpenCLプラットフォーム上の有効なOpenCLデバイスリスト取得
+    // デバイスタイプ: CL_DEVICE_TYPE_ACCELERATOR PCIeのような接続手段を用いてホストプロセッサとやり取り
+    err = platform.getDevices(CL_DEVICE_TYPE_ACCELERATOR, &devices);
+    return devices;
+}
+
+char* read_binary_file(const std::string & xclbin_file_name, unsigned &nb)
+{
+    if (access(xclbin_file_name.c_str(), R_OK) != 0)
+    {
+        printf("ERROR: %s xclbin not available please build\n", xclbin_file_name.c_str());
+        exit(EXIT_FAILURE);
+    }
+    // xclbinをchar bufferにロード
+    std::cout << "INFO: Loading '" << xclbin_file_name << "'\n";
+    std::ifstream bin_file(xclbin_file_name.c_str(), std::ifstream::binary);
+    bin_file.seekg(0, bin_file.end);
+    nb = bin_file.tellg();
+    bin_file.seekg(0, bin_file.beg);
+    char* buf = new char[nb];
+    bin_file.read(buf, nb);
+    return buf;
+}

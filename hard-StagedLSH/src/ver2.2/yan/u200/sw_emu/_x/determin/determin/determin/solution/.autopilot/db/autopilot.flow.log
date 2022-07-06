@@ -1,4 +1,4 @@
-INFO-FLOW: Workspace /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution opened at Sun Jul 03 13:27:35 JST 2022
+INFO-FLOW: Workspace /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution opened at Tue Jul 05 21:58:41 JST 2022
 Execute       send_msg_by_id INFO @200-1505@%s%s  vitis 
 INFO: [HLS 200-1505] Using flow_target 'vitis'
 Execute       get_config_interface -m_axi_latency 
@@ -31,7 +31,7 @@ INFO-FLOW: DBG:set_part: RDI_DATADIR=/opt/Vivado/2020.2/data:/opt/Vitis_HLS/2020
 Execute       ap_part_info -name xcu200-fsgd2104-2-e -data single -quiet 
 DBG:HLSDevice: Trying to load device library: /opt/Vitis_HLS/2020.2/lib/lnx64.o/librdi_hlsvwrap.so
 DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /opt/Vivado/2020.2/data/parts/arch.xml
-Command       ap_part_info done; 0.91 sec.
+Command       ap_part_info done; 0.9 sec.
 Execute       ap_part_info -name xcu200-fsgd2104-2-e -data info 
 Execute       add_library xilinx/virtexuplus/virtexuplus:xcu200:-fsgd2104:-2-e 
 Execute         get_default_platform 
@@ -102,7 +102,7 @@ Execute       get_config_compile -skip_syncheck
 Execute       get_config_compile -skip_transform 
 Execute       get_config_compile -keep_printf 
 Execute       elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -skip_cdt=0 -skip_transform=2 -ng=0 -g=0 -opt_fp=0 -from_csynth_design=1 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 189.697 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 189.667 MB.
 INFO: [HLS 200-10] Analyzing design file '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/determin.cpp' ... 
 INFO-FLOW: Compiling one TU...
 Execute         get_config_compile -pragma_strict_mode 
@@ -122,7 +122,7 @@ INFO-FLOW: Setting directive 'TOP' name=determin
 Execute         list_core -type functional_unit 
 Execute         clang_tidy xilinx-systemc-detector /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/determin.pp.0.cpp std=gnu++14 -target fpga  -directive=/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/.systemc_flag 
 INFO-FLOW: exec /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-systemc-detector -import-directive=/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/.systemc_flag -fix-errors /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/determin.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
-Command         clang_tidy done; 0.49 sec.
+Command         clang_tidy done; 0.5 sec.
 INFO-FLOW: Running: clang-tidy CDT preprocess 39
 Execute         clang_tidy xilinx-directive2pragma /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/determin.pp.0.cpp std=gnu++14 -target fpga  -directive=/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/all.directive.json 
 INFO-FLOW: exec /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/all.directive.json -fix-errors /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/determin.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
@@ -134,8 +134,8 @@ INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 1.3 seconds per iteration
 Execute         ap_part_info -name xcu200-fsgd2104-2-e -data info 
 INFO-FLOW: compiling source code to llvm bc
 Execute         ap_eval exec -ignorestderr /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/clang.determin.pp.0.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/determin.pp.0.cpp -g -I/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /opt/Vitis_HLS/2020.2/common/technology/autopilot -I /opt/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/determin.bc > /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/clang.determin.pp.0.cpp.out.log 2> /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/clang.determin.pp.0.cpp.err.log 
-Command         ap_eval done; 0.49 sec.
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.64 seconds. CPU system time: 0.21 seconds. Elapsed time: 2.44 seconds; current allocated memory: 190.304 MB.
+Command         ap_eval done; 0.48 sec.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.69 seconds. CPU system time: 0.16 seconds. Elapsed time: 2.43 seconds; current allocated memory: 190.321 MB.
 INFO-FLOW: Linking Debug ...
 INFO-FLOW: Linking dut bc code.
 Execute         run_link_or_opt -out /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/a.g.ld.0.bc -args  "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/determin.g.bc"  
@@ -147,9 +147,9 @@ INFO-FLOW:
 INFO-FLOW: Linking math bc lib
 Execute         run_link_or_opt -out /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/a.g.ld.2.m1.bc -args /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/a.g.ld.1.lower.bc -only-needed /opt/Vitis_HLS/2020.2/lnx64/lib/libhlsm_39.bc /opt/Vitis_HLS/2020.2/lnx64/lib/libhlsmc++_39.bc 
 Execute           ap_eval exec -ignorestderr /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/a.g.ld.1.lower.bc -only-needed /opt/Vitis_HLS/2020.2/lnx64/lib/libhlsm_39.bc /opt/Vitis_HLS/2020.2/lnx64/lib/libhlsmc++_39.bc -o /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/a.g.ld.2.m1.bc > /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/llvm-link.a.g.ld.2.m1.bc.out.log 2> /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/llvm-link.a.g.ld.2.m1.bc.err.log 
-Command           ap_eval done; 1.66 sec.
+Command           ap_eval done; 1.68 sec.
 INFO-FLOW: 
-Command         run_link_or_opt done; 1.66 sec.
+Command         run_link_or_opt done; 1.68 sec.
 Execute         run_link_or_opt -opt -out /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/a.g.ld.3.fpc.bc -args /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=determin -reflow-float-conversion 
 Execute           ap_eval exec -ignorestderr /opt/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/opt.a.g.ld.3.fpc.bc.diag.yml /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=determin -reflow-float-conversion -o /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/a.g.ld.3.fpc.bc > /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/opt.a.g.ld.3.fpc.bc.out.log 2> /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/opt.a.g.ld.3.fpc.bc.err.log 
 Command           ap_eval done; 0.58 sec.
@@ -217,13 +217,13 @@ INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0u
 INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<1>, 0ul, 0ul, 0ul>, 0>::write(hls::axis<ap_uint<1>, 0ul, 0ul, 0ul> const&)' into 'determin' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/determin.cpp:60:32)
 INFO: [HLS 214-131] Inlining function 'hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>::read()' into 'determin' (/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/src/kernel/determin.cpp:42:42)
 INFO-FLOW: DBG:CMD: copy_raw_kernel_xml ap_link_39: copying raw kernel.xml: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/../../../kernel.xml -> /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.2/yan/u200/sw_emu/_x/determin/determin/determin/solution/.autopilot/db/kernel.internal.xml
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.4 seconds. CPU system time: 0.15 seconds. Elapsed time: 2.55 seconds; current allocated memory: 191.766 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 191.767 MB.
-Command       elaborate done; 4.99 sec.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.41 seconds. CPU system time: 0.16 seconds. Elapsed time: 2.57 seconds; current allocated memory: 191.767 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 191.768 MB.
+Command       elaborate done; 5.01 sec.
 Execute       send_msg_by_id INFO @200-1493@ 
 INFO: [HLS 200-1493] Running only source code synthesis checks, skipping scheduling and RTL generation.
-Command     csynth_design done; 4.99 sec.
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5.06 seconds. CPU system time: 0.36 seconds. Elapsed time: 4.99 seconds; current allocated memory: 191.740 MB.
+Command     csynth_design done; 5.01 sec.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5.11 seconds. CPU system time: 0.32 seconds. Elapsed time: 5.01 seconds; current allocated memory: 191.741 MB.
 Execute     close_project 
 Execute       cleanup_all -project 
 Execute     cleanup_all 
