@@ -1,0 +1,171 @@
+<ENTRY>
+{
+ "thisFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/u200/sw_emu/judge_index_set_1.xo.compile_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Sat Jul  9 20:24:56 2022",
+ "timestampMillis": "1657365896215",
+ "buildStep": {
+  "cmdId": "afb3840b-80cf-4cde-a763-b465d52f0317",
+  "name": "v++",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1.steps.log",
+  "commandLine": "/opt/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -c --optimize 0 -t sw_emu --config ../../src/cfg/judge_index_set_1.cfg -k judge_index_set_1 -I../../src/kernel ../../src/kernel/serch_module_set_1/judge_index_set_1.cpp -o judge_index_set_1.xo ",
+  "args": [
+   "-c",
+   "--optimize",
+   "0",
+   "-t",
+   "sw_emu",
+   "--config",
+   "../../src/cfg/judge_index_set_1.cfg",
+   "-k",
+   "judge_index_set_1",
+   "-I../../src/kernel",
+   "../../src/kernel/serch_module_set_1/judge_index_set_1.cpp",
+   "-o",
+   "judge_index_set_1.xo"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/src/cfg/judge_index_set_1.cfg",
+    "content": "platform=xilinx_u200_xdma_201830_2\n# debug=1\n# save-temps=1\n\n# カーネルへのインスタンス数とSLR（Super Logic Region）の配置調整\n[connectivity]\n# カーネルのインスタンス数指定\n# カーネルに指定した数のCUがインスタンシエートされる\n# 8カーネル\nnk=judge_index_set_1:1:judge_index_set_1\n\n# slr=table_serch_1:SLR0\n# slr=table_serch_2:SLR1\n# slr=table_serch_3:SLR0\n# slr=table_serch_4:SLR1\n# slr=table_serch_5:SLR0\n# slr=table_serch_6:SLR1\n\n# 各インスタンスのDRAM接続を指定\n# カーネルインターフェースのプラットフォーム内のシステムポートへの割り当て\n# カーネルポートを特定のメモリリソースにマップする\n# FP_DB\nsp=judge_index_set_1.FP_DB:DDR[2]\n# hash_table\nsp=judge_index_set_1.hash_table:DDR[0]\n# hash_table_pointer\n# flame\n# query\nsp=judge_index_set_1.query:PLRAM[1]\n\n[hls]\njobs=4\n\n[profile]\n# data=all:all:all# Monitor data on all kernels and CUs\n#stall=all:all   # Monitor stalls for all CUs of all kernels\n#exec=all:all    # Monitor execution times for all CUs\n#aie=all         # Monitor all AIE streams\n"
+   }
+  ],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sat Jul  9 20:24:56 2022",
+ "timestampMillis": "1657365896215",
+ "status": {
+  "cmdId": "afb3840b-80cf-4cde-a763-b465d52f0317",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Sat Jul  9 20:25:03 2022",
+ "timestampMillis": "1657365903482",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u200_xdma_201830_2.xpfm",
+  "hardwareDsa": "xilinx_u200_xdma_201830_2.dsa",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u200_xdma_201830_2",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_COMPILE",
+  "target": "TT_SW_EMU",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "judge_index_set_1",
+     "file": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/u200/sw_emu/judge_index_set_1.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/src/kernel/serch_module_set_1/judge_index_set_1.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2020.2. SW Build (by xbuild) on 2020-11-18-05:13:29"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Sat Jul  9 20:25:03 2022",
+ "timestampMillis": "1657365903484",
+ "buildStep": {
+  "cmdId": "be928ed0-414c-420f-8918-65660c7a0804",
+  "name": "vitis_hls",
+  "logFile": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1/vitis_hls.log",
+  "commandLine": "vitis_hls -f /home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1/judge_index_set_1.tcl -messageDb vitis_hls.pb",
+  "args": [
+   "vitis_hls",
+   "-f",
+   "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1/judge_index_set_1.tcl",
+   "-messageDb",
+   "vitis_hls.pb"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/u200/sw_emu"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sat Jul  9 20:25:03 2022",
+ "timestampMillis": "1657365903484",
+ "status": {
+  "cmdId": "be928ed0-414c-420f-8918-65660c7a0804",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sat Jul  9 20:25:11 2022",
+ "timestampMillis": "1657365911754",
+ "status": {
+  "cmdId": "be928ed0-414c-420f-8918-65660c7a0804",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sat Jul  9 20:25:11 2022",
+ "timestampMillis": "1657365911849",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/u200/sw_emu/_x/reports/judge_index_set_1/v++_compile_judge_index_set_1_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Sat Jul  9 20:25:11 2022",
+ "timestampMillis": "1657365911850",
+ "report": {
+  "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/yan/u200/sw_emu/_x/v++_compile_judge_index_set_1_guidance.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Sat Jul  9 20:25:11 2022",
+ "timestampMillis": "1657365911850",
+ "status": {
+  "cmdId": "afb3840b-80cf-4cde-a763-b465d52f0317",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
