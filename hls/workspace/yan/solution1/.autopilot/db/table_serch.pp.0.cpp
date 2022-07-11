@@ -50262,10 +50262,8 @@ void screening_seisa_func(
     ap_uint<96> flame96,
     unsigned int FP_DB[],
     ap_uint<96>* temp_flame96,
-    ap_uint<96>* temp_flame96_ping,
     unsigned int* min_haming_dis,
     int* music_index_temp,
-    unsigned int backet_end,
     int backet_location
 )
 {
@@ -50275,24 +50273,10 @@ void screening_seisa_func(
 #pragma HLS stable variable=flame96
 #pragma HLS stable variable=FP_DB
 #pragma HLS stable variable=temp_flame96
-#pragma HLS stable variable=temp_flame96_ping
 #pragma HLS stable variable=min_haming_dis
 #pragma HLS stable variable=music_index_temp
 
-#pragma HLS shared variable=hash_table
-#pragma HLS shared variable=FP_DB
-
  unsigned int haming_dis_screen;
-
-
-    switch_module(
-        FP_DB,
-        hash_table,
-        backet_location,
-        backet_end,
-        temp_flame96_ping
-    );
-
 
 
     hd_cal96(
@@ -50348,17 +50332,27 @@ void backet_serch(
     bucket_loop : for (int i=top; i<=end; i++)
     {
 #pragma HLS loop_tripcount min=1 max=1800 avg=5
-# 1367 "../src/table_serch.cpp"
- screening_seisa_func(
+#pragma HLS stable variable=temp_flame96
+#pragma HLS stable variable=temp_flame96_ping
+
+
+ switch_module(
+            FP_DB,
+            hash_table,
+            i,
+            end,
+            &temp_flame96_ping
+        );
+
+
+        screening_seisa_func(
             hash_table,
             query,
             flame96,
             FP_DB,
             &temp_flame96,
-            &temp_flame96_ping,
             &min_haming_dis,
             &music_index_temp,
-            end,
             i
         );
 
@@ -50411,15 +50405,15 @@ void serch_module (
 
 extern "C" {
 __attribute__((sdx_kernel("table_serch", 0))) void table_serch(
-    unsigned int query[],
+    unsigned int query[(4096/32)],
     unsigned int FP_DB[],
     unsigned int hash_table[],
-    unsigned int hash_table_pointer[],
-    int* judge_temp
+    unsigned int hash_table_pointer[8192],
+    int judge_temp[1]
 )
-{
+{_ssdm_SpecArrayDimSize(query, 128);_ssdm_SpecArrayDimSize(hash_table_pointer, 8192);_ssdm_SpecArrayDimSize(judge_temp, 1);
 #pragma HLS TOP name=table_serch
-# 1435 "../src/table_serch.cpp"
+# 1414 "../src/table_serch.cpp"
 
 #pragma HLS TOP name=table_serch
 #pragma HLS INTERFACE m_axi depth=512 port=query bundle=query_plram0
@@ -50434,16 +50428,11 @@ __attribute__((sdx_kernel("table_serch", 0))) void table_serch(
 #pragma HLS INTERFACE s_axilite port=hash_table_pointer bundle=control
 #pragma HLS INTERFACE s_axilite port=judge_temp bundle=control
 #pragma HLS INTERFACE s_axilite port=return bundle=control
-
-#pragma HLS shared variable=query
-#pragma HLS shared variable=FP_DB
-#pragma HLS shared variable=hash_table
-#pragma HLS shared variable=hash_table_pointer
+#pragma HLS INTERFACE ap_ctrl_chain port=return
 
 
 
  int music_index = -1;
-    int music_index_det = -1;
 
 
     ap_uint<32> tempA32 = query[0];
@@ -50451,12 +50440,14 @@ __attribute__((sdx_kernel("table_serch", 0))) void table_serch(
     ap_uint<32> tempC32;
 
 
-    int index_array[6];
-
 
     flame_serch : for (int flame_index=0; flame_index<((4096/32)-(3 -1)); flame_index++)
     {
 #pragma HLS loop_tripcount min=1 max=126
+#pragma HLS dataflow
+#pragma HLS stable variable=music_index
+#pragma HLS stable variable=query
+#pragma HLS dependence array inter false
 
 
  tempC32 = query[flame_index + 2];
@@ -50465,6 +50456,17 @@ __attribute__((sdx_kernel("table_serch", 0))) void table_serch(
         serch_module_loop : for (int L=0; L<6; L++)
         {
 #pragma HLS UNROLL
+#pragma HLS stable variable=query
+#pragma HLS stable variable=FP_DB
+#pragma HLS stable variable=hash_table
+#pragma HLS stable variable=hash_table_pointer
+#pragma HLS stable variable=tempA32
+#pragma HLS stable variable=tempB32
+#pragma HLS stable variable=tempC32
+#pragma HLS stable variable=L
+#pragma HLS stable variable=music_index
+#pragma HLS dependence array inter false
+#pragma HLS dependence variable=music_index inter false
 
 
  serch_module(
@@ -50479,29 +50481,21 @@ __attribute__((sdx_kernel("table_serch", 0))) void table_serch(
             );
 
 
-            index_array[L] = music_index;
+            if (music_index >= 0) break;
 
         }
 
 
+        if (music_index >= 0) break;
 
-        check_loop:for (int check=0; check<6; check++)
-        {
-#pragma HLS loop_tripcount min=6 max=6 avg=6
-
-
- if (index_array[check] >= 0)
-            {
-                music_index_det = index_array[check];
-                break;
-            }
-        }
         tempA32 = tempB32;
         tempB32 = tempC32;
     }
 
 
 
-    *judge_temp = music_index_det;
+    judge_temp[0] = music_index;
+
+    return;
 }
 }

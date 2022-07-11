@@ -23,7 +23,8 @@
 #define L_HASHNUM 6             // ハッシュ関数gの数：L
 
 /* 手動計算 */
-#define FLAME_INDEX_OUT 128     // 2^K_HASHBIT
+#define FLAME_INDEX_OUT 8192     // 2^K_HASHBIT
+#define HTP_SIZE FLAME_INDEX_OUT // Hashテーブル分割サイズ
 
 /* ハッシュビット取得位置 */
 #define get1 73

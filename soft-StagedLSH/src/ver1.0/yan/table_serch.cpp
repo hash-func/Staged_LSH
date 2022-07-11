@@ -126,6 +126,7 @@ int table_serch(
         flame96[2] = tempC32;
 
         /* Hash値を計算して探索 */
+        // ここをFPGAに併せて1回にした（本来はL_HASHNUM回）
         hash_serch : for (int L=0; L<L_HASHNUM; L++)
         {
             /* Hash値の計算 */

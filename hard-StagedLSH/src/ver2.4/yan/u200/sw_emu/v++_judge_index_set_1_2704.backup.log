@@ -1,0 +1,23 @@
+INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
+	Reports: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/u200/sw_emu/_x/reports/judge_index_set_1
+	Log files: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/u200/sw_emu/_x/logs/judge_index_set_1
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/u200/sw_emu/judge_index_set_1.xo.compile_summary, at Tue Jul 12 02:47:36 2022
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Tue Jul 12 02:47:36 2022
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/u200/sw_emu/_x/reports/judge_index_set_1/v++_compile_judge_index_set_1_guidance.html', at Tue Jul 12 02:47:37 2022
+INFO: [v++ 60-895]   Target platform: /opt/xilinx/platforms/xilinx_u200_xdma_201830_2/xilinx_u200_xdma_201830_2.xpfm
+INFO: [v++ 60-1578]   This platform contains Device Support Archive '/opt/xilinx/platforms/xilinx_u200_xdma_201830_2/hw/xilinx_u200_xdma_201830_2.dsa'
+INFO: [v++ 74-74] Compiler Version string: 2020.2
+INFO: [v++ 60-1302] Platform 'xilinx_u200_xdma_201830_2.xpfm' has been explicitly enabled for this release.
+INFO: [v++ 60-585] Compiling for software emulation target
+INFO: [v++ 60-423]   Target device: xilinx_u200_xdma_201830_2
+INFO: [v++ 60-242] Creating kernel: 'judge_index_set_1'
+
+===>The following messages were generated while  performing high-level synthesis for kernel: judge_index_set_1 Log file: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1/vitis_hls.log :
+ERROR: [v++ 207-3712] invalid operands to binary expression ('int *' and 'int'): /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/src/kernel/serch_module_set_1/judge_index_set_1.cpp:197:35
+ERROR: [v++ 207-1276] expected parameter declarator: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/src/kernel/serch_module_set_1/judge_index_set_1.cpp:204:1
+ERROR: [v++ 60-300] Failed to build kernel(ip) judge_index_set_1, see log for details: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1/vitis_hls.log
+ERROR: [v++ 60-773] In '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1/vitis_hls.log', caught Tcl error: ERROR: [HLS 207-3712] invalid operands to binary expression ('int *' and 'int'): /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/src/kernel/serch_module_set_1/judge_index_set_1.cpp:197:35
+ERROR: [v++ 60-773] In '/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/u200/sw_emu/_x/judge_index_set_1/judge_index_set_1/vitis_hls.log', caught Tcl error: ERROR: [HLS 207-1276] expected parameter declarator: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/src/kernel/serch_module_set_1/judge_index_set_1.cpp:204:1
+ERROR: [v++ 60-599] Kernel compilation failed to complete
+ERROR: [v++ 60-592] Failed to finish compilation
+INFO: [v++ 60-1653] Closing dispatch client.

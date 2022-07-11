@@ -37,7 +37,7 @@ extern "C" void table_serch(__cosim_s40__*, __cosim_s40__*, int*, int*, int*, in
 extern "C" void apatb_table_serch_hw(volatile void * __xlx_apatb_param_query, volatile void * __xlx_apatb_param_FP_DB, volatile void * __xlx_apatb_param_hash_table, volatile void * __xlx_apatb_param_hash_table_pointer, volatile void * __xlx_apatb_param_judge_temp) {
   // Collect __xlx_query__tmp_vec
   vector<sc_bv<512> >__xlx_query__tmp_vec;
-  for (int j = 0, e = 32; j != e; ++j) {
+  for (int j = 0, e = 8; j != e; ++j) {
     sc_bv<512> _xlx_tmp_sc;
     _xlx_tmp_sc.range(63, 0) = ((long long*)__xlx_apatb_param_query)[j*8+0];
     _xlx_tmp_sc.range(127, 64) = ((long long*)__xlx_apatb_param_query)[j*8+1];
@@ -49,7 +49,7 @@ extern "C" void apatb_table_serch_hw(volatile void * __xlx_apatb_param_query, vo
     _xlx_tmp_sc.range(511, 448) = ((long long*)__xlx_apatb_param_query)[j*8+7];
     __xlx_query__tmp_vec.push_back(_xlx_tmp_sc);
   }
-  int __xlx_size_param_query = 32;
+  int __xlx_size_param_query = 8;
   int __xlx_offset_param_query = 0;
   int __xlx_offset_byte_param_query = 0*64;
   __cosim_s40__* __xlx_query__input_buffer= new __cosim_s40__[__xlx_query__tmp_vec.size()];
@@ -105,10 +105,10 @@ extern "C" void apatb_table_serch_hw(volatile void * __xlx_apatb_param_query, vo
   }
   // Collect __xlx_hash_table_pointer__tmp_vec
   vector<sc_bv<32> >__xlx_hash_table_pointer__tmp_vec;
-  for (int j = 0, e = 32768; j != e; ++j) {
+  for (int j = 0, e = 8192; j != e; ++j) {
     __xlx_hash_table_pointer__tmp_vec.push_back(((int*)__xlx_apatb_param_hash_table_pointer)[j]);
   }
-  int __xlx_size_param_hash_table_pointer = 32768;
+  int __xlx_size_param_hash_table_pointer = 8192;
   int __xlx_offset_param_hash_table_pointer = 0;
   int __xlx_offset_byte_param_hash_table_pointer = 0*4;
   int* __xlx_hash_table_pointer__input_buffer= new int[__xlx_hash_table_pointer__tmp_vec.size()];
@@ -117,10 +117,10 @@ extern "C" void apatb_table_serch_hw(volatile void * __xlx_apatb_param_query, vo
   }
   // Collect __xlx_judge_temp__tmp_vec
   vector<sc_bv<32> >__xlx_judge_temp__tmp_vec;
-  for (int j = 0, e = 4; j != e; ++j) {
+  for (int j = 0, e = 1; j != e; ++j) {
     __xlx_judge_temp__tmp_vec.push_back(((int*)__xlx_apatb_param_judge_temp)[j]);
   }
-  int __xlx_size_param_judge_temp = 4;
+  int __xlx_size_param_judge_temp = 1;
   int __xlx_offset_param_judge_temp = 0;
   int __xlx_offset_byte_param_judge_temp = 0*4;
   int* __xlx_judge_temp__input_buffer= new int[__xlx_judge_temp__tmp_vec.size()];

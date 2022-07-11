@@ -2999,7 +2999,7 @@ public:
     unsigned int* flame96;
     posix_memalign(reinterpret_cast<void**>(&flame96), 128, sizeof(unsigned int)*3);
     int* judge;
-    posix_memalign(reinterpret_cast<void**>(&judge), 128, sizeof(int));
+    posix_memalign(reinterpret_cast<void**>(&judge), 4096, sizeof(int));
     flame96[0] = query[j+0];
     flame96[1] = query[j+1];
     flame96[2] = query[j+2];
@@ -3119,7 +3119,8 @@ int main(int argc, char** argv)
     hash_table = (unsigned int*) aligned_alloc(full_table_size ,sizeof(unsigned int)*full_table_size);
                                                 // Hash関数bit取得位置
     unsigned int* query;
-    query = (unsigned int*) aligned_alloc(ONEMUSIC_SUBNUM, sizeof(unsigned int)*ONEMUSIC_SUBNUM);
+    // query = (unsigned int*) aligned_alloc(ONEMUSIC_SUBNUM, sizeof(unsigned int)*ONEMUSIC_SUBNUM);
+    posix_memalign(reinterpret_cast<void**>(&query), 4096, sizeof(unsigned int)*ONEMUSIC_SUBNUM);
     unsigned int bit_element[K_HASHBIT*L_HASHNUM] = {
     get1, get2, get3, get4, get5, get6, get7, get8, get9, get10, 
     get11, get12, get13, get14, get15, get16, get17, get18, get19, get20, 

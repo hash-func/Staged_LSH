@@ -143,9 +143,9 @@ public:
     }
     /* Flame検索 */
     unsigned int* flame96;
-    posix_memalign(reinterpret_cast<void**>(&flame96), 128, sizeof(unsigned int)*3);
+    posix_memalign(reinterpret_cast<void**>(&flame96), 4096, sizeof(unsigned int)*3);
     int* judge;
-    posix_memalign(reinterpret_cast<void**>(&judge), 128, sizeof(int));
+    posix_memalign(reinterpret_cast<void**>(&judge), 4096, sizeof(int));
     flame96[0] = query[j+0];
     flame96[1] = query[j+1];
     flame96[2] = query[j+2];
@@ -257,7 +257,8 @@ int main(int argc, char** argv)
     hash_table = (unsigned int*) aligned_alloc(full_table_size ,sizeof(unsigned int)*full_table_size);
                                                 // Hash関数bit取得位置
     unsigned int* query;
-    query = (unsigned int*) aligned_alloc(ONEMUSIC_SUBNUM, sizeof(unsigned int)*ONEMUSIC_SUBNUM);
+    // query = (unsigned int*) aligned_alloc(ONEMUSIC_SUBNUM, sizeof(unsigned int)*ONEMUSIC_SUBNUM);
+    posix_memalign(reinterpret_cast<void**>(&query), 4096, sizeof(unsigned int)*ONEMUSIC_SUBNUM);
     unsigned int bit_element[K_HASHBIT*L_HASHNUM] = {get1, get2, get3, get4, get5, get6, get7, get8};
     unsigned int* flame_addr;                   // 各フレームの先頭アドレス(一時処理使用)
     flame_addr = (unsigned int*) malloc(sizeof(unsigned int)*MUSIC_NUM*FLAME_IN_MUSIC);

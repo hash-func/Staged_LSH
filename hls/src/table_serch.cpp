@@ -1262,10 +1262,8 @@ void screening_seisa_func(
     ap_uint<96> flame96,                    // 対象フレーム
     unsigned int FP_DB[],                   // FPデータベース
     ap_uint<96>* temp_flame96,              // 処理用フレーム
-    ap_uint<96>* temp_flame96_ping,         // 事前読み出し用フレーム
     unsigned int* min_haming_dis,           // 最小error数一時保存
     int* music_index_temp,                  // 1時保存用楽曲識別子
-    unsigned int backet_end,                // バケットの最終位置
     int backet_location                     // フレーム開始位置
 )
 {
@@ -1275,21 +1273,10 @@ void screening_seisa_func(
 #pragma HLS stable variable=flame96
 #pragma HLS stable variable=FP_DB
 #pragma HLS stable variable=temp_flame96
-#pragma HLS stable variable=temp_flame96_ping
 #pragma HLS stable variable=min_haming_dis
 #pragma HLS stable variable=music_index_temp
 
     unsigned int haming_dis_screen;         // ハミング距離の一時格納(screening)
-
-    /* SWITCH_MODULE */
-    switch_module(
-        FP_DB,              // FPデータベース
-        hash_table,         // Hashテーブル
-        backet_location,    // フレーム開始位置
-        backet_end,         // バケットの最終位置
-        temp_flame96_ping   // 戻り値（96bitフレーム）
-    );
-    /* SWITCH_MODULE */
 
     /* 96bit Haming距離計算 */
     hd_cal96(
@@ -1345,6 +1332,18 @@ void backet_serch(
     bucket_loop : for (int i=top; i<=end; i++)
     {
     #pragma HLS loop_tripcount min=1 max=1800 avg=5 // 300曲
+    #pragma HLS stable variable=temp_flame96
+    #pragma HLS stable variable=temp_flame96_ping
+
+        /* SWITCH_MODULE */
+        switch_module(
+            FP_DB,              // FPデータベース
+            hash_table,         // Hashテーブル
+            i,                  // フレーム開始位置
+            end,                // バケットの最終位置
+            &temp_flame96_ping   // 戻り値（96bitフレーム）
+        );
+        /* SWITCH_MODULE */
 
         screening_seisa_func(
             hash_table,                     // Hashテーブル
@@ -1352,10 +1351,8 @@ void backet_serch(
             flame96,                        // 対象フレーム
             FP_DB,                          // FPデータベース
             &temp_flame96,                  // 処理用フレーム
-            &temp_flame96_ping,             // 事前読み出し用フレーム
             &min_haming_dis,                // 最小error数一時保存
             &music_index_temp,              // 1時保存用楽曲識別子
-            end,                            // バケット最終位置
             i                               // フレーム開始位置
         );
         /* 値の更新 */
@@ -1408,11 +1405,11 @@ void serch_module (
 /* mainからの呼び出し */
 extern "C" {
 void table_serch(
-    unsigned int query[],                   // クエリFP配列
-    unsigned int FP_DB[],                   // FPデータベース
-    unsigned int hash_table[],              // ハッシュテーブル
-    unsigned int hash_table_pointer[],      // ハッシュテーブルへの位置指定
-    int* judge_temp                         // 変換インデックス
+    unsigned int query[ONEMUSIC_SUBNUM],        // クエリFP配列
+    unsigned int FP_DB[],                       // FPデータベース
+    unsigned int hash_table[],                  // ハッシュテーブル
+    unsigned int hash_table_pointer[HTP_SIZE],  // ハッシュテーブルへの位置指定
+    int judge_temp[1]                           // 変換インデックス
 )
 {
 #pragma HLS TOP name=table_serch
@@ -1428,29 +1425,26 @@ void table_serch(
 #pragma HLS INTERFACE s_axilite port=hash_table_pointer bundle=control
 #pragma HLS INTERFACE s_axilite port=judge_temp bundle=control
 #pragma HLS INTERFACE s_axilite port=return bundle=control
-
-#pragma HLS shared variable=query
-#pragma HLS shared variable=FP_DB
-#pragma HLS shared variable=hash_table
-#pragma HLS shared variable=hash_table_pointer
+#pragma HLS INTERFACE ap_ctrl_chain port=return
 
 
     /* 戻り値 */
     int music_index = -1;              // 楽曲の識別子
-    int music_index_det = -1;
 
     /* 処理に用いる変数宣言 */
     ap_uint<SUB_FP_SIZE> tempA32 = query[0];
     ap_uint<SUB_FP_SIZE> tempB32 = query[1];
     ap_uint<SUB_FP_SIZE> tempC32;
 
-    // 結果を保存する配列
-    int index_array[L_HASHNUM];
 
     /* flameごとに処理 */
     flame_serch : for (int flame_index=0; flame_index<FLAME_IN_MUSIC; flame_index++)
     {
     #pragma HLS loop_tripcount min=1 max=126    // 反復回数の合計を手動指定
+    #pragma HLS dataflow
+    #pragma HLS stable variable=music_index
+    #pragma HLS stable variable=query
+    #pragma HLS dependence array inter false
 
         /* subFP-Read */
         tempC32 = query[flame_index + 2];
@@ -1459,44 +1453,47 @@ void table_serch(
         serch_module_loop : for (int L=0; L<L_HASHNUM; L++)
         {
         #pragma HLS UNROLL
+        #pragma HLS stable variable=query
+        #pragma HLS stable variable=FP_DB
+        #pragma HLS stable variable=hash_table
+        #pragma HLS stable variable=hash_table_pointer
+        #pragma HLS stable variable=tempA32
+        #pragma HLS stable variable=tempB32
+        #pragma HLS stable variable=tempC32
+        #pragma HLS stable variable=L
+        #pragma HLS stable variable=music_index
+        #pragma HLS dependence array inter false
+        #pragma HLS dependence variable=music_index inter false
 
             /* 探索 */
             serch_module(
-                query,                  // クエリFP配列
-                FP_DB,                  // FPデータベース
-                hash_table,             // ハッシュテーブル
-                hash_table_pointer,     // ハッシュテーブルへの位置指定
+                query,                      // クエリFP配列
+                FP_DB,                      // FPデータベース
+                hash_table,                 // ハッシュテーブル
+                hash_table_pointer,         // ハッシュテーブルへの位置指定
                 ((tempA32, tempB32), tempC32),
-                                        // フレーム
-                L,                      // ハッシュ関数インデックス
-                &music_index            // 戻り値
+                                            // フレーム
+                L,                          // ハッシュ関数インデックス
+                &music_index                // 戻り値
             );
 
             /* 楽曲識別子の一時保存 */
-            index_array[L] = music_index;
+            if (music_index >= 0) break;
 
         }
         /* --Serch Module-- */
 
-        /* 楽曲が特定できた時 */
-        check_loop:for (int check=0; check<L_HASHNUM; check++)
-        {
-        #pragma HLS loop_tripcount min=6 max=6 avg=6
-            // #pragma HLS UNROLL
-            // #pragma HLS PIPELINE
-            if (index_array[check] >= 0)
-            {
-                music_index_det = index_array[check];
-                break;
-            }
-        }
+        if (music_index >= 0) break;
+
         tempA32 = tempB32;
         tempB32 = tempC32;
     }
     /* --flameごとに処理-- */
 
     /* 戻り値 */
-    *judge_temp = music_index_det;
+    judge_temp[0] = music_index;
+
+    return;
 }
 }
 /* --mainからの呼び出し-- */

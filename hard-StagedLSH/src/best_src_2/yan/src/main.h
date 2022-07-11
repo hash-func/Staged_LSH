@@ -19,8 +19,8 @@
 #define SCRUTINY 1024           // 精査の閾値
 
 /* 変更パラメータ */
-#define MUSIC_NUM 300           // 楽曲数
-#define QUERY_NUM 1          // 検索数（試行回数）
+#define MUSIC_NUM 100000           // 楽曲数
+#define QUERY_NUM 15          // 検索数（試行回数）
 #define DISTORTION 0.0          // 歪み率(%)
 
 /* 考察するパラメータ(main＿fpga.h合わせる) */

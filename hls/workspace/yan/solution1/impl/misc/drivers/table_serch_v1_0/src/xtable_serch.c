@@ -83,79 +83,459 @@ void XTable_serch_DisableAutoRestart(XTable_serch *InstancePtr) {
     XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_AP_CTRL, 0);
 }
 
-void XTable_serch_Set_query(XTable_serch *InstancePtr, u64 Data) {
+void XTable_serch_Set_query_0(XTable_serch *InstancePtr, u64 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_DATA, (u32)(Data));
-    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_DATA + 4, (u32)(Data >> 32));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_0_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_0_DATA + 4, (u32)(Data >> 32));
 }
 
-u64 XTable_serch_Get_query(XTable_serch *InstancePtr) {
+u64 XTable_serch_Get_query_0(XTable_serch *InstancePtr) {
     u64 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_DATA);
-    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_DATA + 4) << 32;
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_0_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_0_DATA + 4) << 32;
     return Data;
 }
 
-void XTable_serch_Set_FP_DB(XTable_serch *InstancePtr, u64 Data) {
+void XTable_serch_Set_query_1(XTable_serch *InstancePtr, u64 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_DATA, (u32)(Data));
-    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_DATA + 4, (u32)(Data >> 32));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_1_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_1_DATA + 4, (u32)(Data >> 32));
 }
 
-u64 XTable_serch_Get_FP_DB(XTable_serch *InstancePtr) {
+u64 XTable_serch_Get_query_1(XTable_serch *InstancePtr) {
     u64 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_DATA);
-    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_DATA + 4) << 32;
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_1_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_1_DATA + 4) << 32;
     return Data;
 }
 
-void XTable_serch_Set_hash_table(XTable_serch *InstancePtr, u64 Data) {
+void XTable_serch_Set_query_2(XTable_serch *InstancePtr, u64 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_DATA, (u32)(Data));
-    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_DATA + 4, (u32)(Data >> 32));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_2_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_2_DATA + 4, (u32)(Data >> 32));
 }
 
-u64 XTable_serch_Get_hash_table(XTable_serch *InstancePtr) {
+u64 XTable_serch_Get_query_2(XTable_serch *InstancePtr) {
     u64 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_DATA);
-    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_DATA + 4) << 32;
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_2_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_2_DATA + 4) << 32;
     return Data;
 }
 
-void XTable_serch_Set_hash_table_pointer(XTable_serch *InstancePtr, u64 Data) {
+void XTable_serch_Set_query_3(XTable_serch *InstancePtr, u64 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_DATA, (u32)(Data));
-    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_DATA + 4, (u32)(Data >> 32));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_3_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_3_DATA + 4, (u32)(Data >> 32));
 }
 
-u64 XTable_serch_Get_hash_table_pointer(XTable_serch *InstancePtr) {
+u64 XTable_serch_Get_query_3(XTable_serch *InstancePtr) {
     u64 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_DATA);
-    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_DATA + 4) << 32;
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_3_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_3_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_query_4(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_4_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_4_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_query_4(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_4_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_4_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_query_5(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_5_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_5_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_query_5(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_5_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_QUERY_5_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_FP_DB_0(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_0_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_0_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_FP_DB_0(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_0_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_0_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_FP_DB_1(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_1_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_1_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_FP_DB_1(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_1_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_1_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_FP_DB_2(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_2_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_2_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_FP_DB_2(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_2_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_2_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_FP_DB_3(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_3_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_3_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_FP_DB_3(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_3_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_3_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_FP_DB_4(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_4_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_4_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_FP_DB_4(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_4_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_4_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_FP_DB_5(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_5_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_5_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_FP_DB_5(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_5_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_FP_DB_5_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_0(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_0_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_0_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_0(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_0_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_0_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_1(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_1_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_1_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_1(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_1_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_1_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_2(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_2_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_2_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_2(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_2_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_2_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_3(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_3_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_3_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_3(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_3_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_3_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_4(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_4_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_4_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_4(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_4_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_4_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_5(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_5_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_5_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_5(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_5_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_5_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_pointer_0(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_0_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_0_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_pointer_0(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_0_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_0_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_pointer_1(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_1_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_1_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_pointer_1(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_1_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_1_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_pointer_2(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_2_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_2_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_pointer_2(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_2_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_2_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_pointer_3(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_3_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_3_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_pointer_3(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_3_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_3_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_pointer_4(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_4_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_4_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_pointer_4(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_4_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_4_DATA + 4) << 32;
+    return Data;
+}
+
+void XTable_serch_Set_hash_table_pointer_5(XTable_serch *InstancePtr, u64 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_5_DATA, (u32)(Data));
+    XTable_serch_WriteReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_5_DATA + 4, (u32)(Data >> 32));
+}
+
+u64 XTable_serch_Get_hash_table_pointer_5(XTable_serch *InstancePtr) {
+    u64 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_5_DATA);
+    Data += (u64)XTable_serch_ReadReg(InstancePtr->Control_BaseAddress, XTABLE_SERCH_CONTROL_ADDR_HASH_TABLE_POINTER_5_DATA + 4) << 32;
     return Data;
 }
 

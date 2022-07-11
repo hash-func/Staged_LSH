@@ -1,9 +1,9 @@
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-113-generic) on Fri Jun 10 16:43:47 JST 2022
+INFO: [HLS 200-10] For user 'nomoto' on host 'alveo20' (Linux_x86_64 version 5.4.0-113-generic) on Sun Jun 12 00:08:46 JST 2022
 INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
 INFO: [HLS 200-10] In directory '/home/nomoto/src/StagedLSH/hls/workspace'
-Sourcing Tcl script '/home/nomoto/src/StagedLSH/hls/workspace/yan/solution1/csim.tcl'
+Sourcing Tcl script '/home/nomoto/src/StagedLSH/hls/workspace/yan/solution1/csynth.tcl'
 INFO: [HLS 200-1510] Running: open_project yan 
 INFO: [HLS 200-10] Opening project '/home/nomoto/src/StagedLSH/hls/workspace/yan'.
 INFO: [HLS 200-1510] Running: set_top table_serch 
@@ -35,44 +35,72 @@ INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xcu200-fsgd2104-2-e'
 INFO: [HLS 200-1505] Using flow_target 'vitis'
 Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_offset=slave
-INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_interface -default_interface=kernel
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_offset=slave
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
 INFO: [HLS 200-1510] Running: set_part xcu200-fsgd2104-2-e 
 INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num 3 
 INFO: [HLS 200-1510] Running: set_directive_top -name table_serch table_serch 
-INFO: [HLS 200-1510] Running: csim_design -clean -quiet 
-INFO: [SIM 211-2] *************** CSIM start ***************
-INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
-   Compiling ../../../../../src/ele_func.cpp in debug mode
-   Compiling ../../../../../src/hash_func.cpp in debug mode
-   Compiling ../../../../../src/hash_stock.cpp in debug mode
-   Compiling ../../../../../src/main.cpp in debug mode
-   Compiling ../../../../../src/table_serch.cpp in debug mode
-   Generating csim.exe
-処理開始
-StagedLSH[Yan]
-楽曲数 : 1000
-BER : 20.000000 %
-Hash値bit数 : 13 bit
-Hash関数個数 : 6 個
-試行回数 : 1 回
-DB作成完了
-フレーム先頭位置格納完了
-
-Hashテーブルへの要素格納完了
-
-正解率 : 100.000000 %
-不正解率 : 0.000000 %
-未発見 : 0.000000 %
-
-平均発見時間 : 0.222422 s
-最大発見時間 : 0.222422 s
-最小発見時間 : 0.222422 s
-処理終了
-INFO: [SIM 211-1] CSim done with 0 errors.
-INFO: [SIM 211-3] *************** CSIM finish ***************
-INFO: [HLS 200-111] Finished Command csim_design CPU user time: 3.21 seconds. CPU system time: 0.49 seconds. Elapsed time: 3.93 seconds; current allocated memory: 207.947 MB.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 207.894 MB.
+INFO: [HLS 200-10] Analyzing design file '../src/table_serch.cpp' ... 
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: ../src/table_serch.cpp:1450:2
+Resolution: For help on HLS 214-113 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=214-113.html
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: ../src/table_serch.cpp:1450:12
+Resolution: For help on HLS 214-113 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=214-113.html
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: ../src/table_serch.cpp:1488:9
+Resolution: For help on HLS 214-113 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=214-113.html
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: ../src/table_serch.cpp:1488:19
+Resolution: For help on HLS 214-113 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=214-113.html
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: ../src/table_serch.cpp:1489:9
+Resolution: For help on HLS 214-113 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=214-113.html
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: ../src/table_serch.cpp:1489:19
+Resolution: For help on HLS 214-113 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=214-113.html
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region: ../src/table_serch.cpp:1453:9
+Resolution: For help on HLS 214-114 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=214-114.html
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region: ../src/table_serch.cpp:1486:9
+Resolution: For help on HLS 214-114 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=214-114.html
+WARNING: [HLS 200-471] Dataflow form checks found 8 issue(s) in file ../src/table_serch.cpp
+Resolution: For help on HLS 200-471 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-471.html
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 5.31 seconds. CPU system time: 0.33 seconds. Elapsed time: 5.72 seconds; current allocated memory: 209.199 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+WARNING: [HLS 214-199] Ignoring dependence pragma on local scalar variable 'music_index'. (../src/table_serch.cpp:1465:9)
+INFO: [HLS 214-186] Unrolling loop 'haming_dis32_loop' (../src/table_serch.cpp:1127:23) in function 'hd_cal32' completely with a factor of 16 (../src/table_serch.cpp:1127:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis32_loop' (../src/table_serch.cpp:1127:23) in function 'hd_cal32' has been removed because the loop is unrolled completely (../src/table_serch.cpp:1127:23)
+INFO: [HLS 214-186] Unrolling loop 'haming_dis96_loop' (../src/table_serch.cpp:1153:23) in function 'hd_cal96' completely with a factor of 48 (../src/table_serch.cpp:1153:23)
+WARNING: [HLS 214-189] Pipeline directive for loop 'haming_dis96_loop' (../src/table_serch.cpp:1153:23) in function 'hd_cal96' has been removed because the loop is unrolled completely (../src/table_serch.cpp:1153:23)
+INFO: [HLS 214-188] Unrolling loop 'seisa_loop' (../src/table_serch.cpp:1201:18) in function 'fpdb_locate' partially with a factor of 4 (../src/table_serch.cpp:1201:18)
+INFO: [HLS 214-178] Inlining function 'fpdb_locate(unsigned int*, unsigned int*, unsigned int, unsigned int*)' into 'seisa_func(unsigned int, unsigned int*, unsigned int*, unsigned int*, int, unsigned int*, int*)' (../src/table_serch.cpp:1225:0)
+INFO: [HLS 214-178] Inlining function 'switch_module(unsigned int*, unsigned int*, unsigned int, unsigned int, ap_uint<96>*)' into 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*, int*)' (../src/table_serch.cpp:1311:0)
+INFO: [HLS 214-178] Inlining function 'backet_serch(ap_uint<32>, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, unsigned int*, int*)' into 'serch_module(unsigned int*, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, int, int*)' (../src/table_serch.cpp:1378:0)
+INFO: [HLS 214-178] Inlining function 'serch_module(unsigned int*, unsigned int*, unsigned int*, unsigned int*, ap_uint<96>, int, int*)' into 'table_serch' (../src/table_serch.cpp:1414:0)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'query_plram0' (../src/table_serch.cpp:1201:18)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 512 has been inferred on port 'DB_aximm0' (../src/table_serch.cpp:1201:18)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 6.25 seconds. CPU system time: 0.2 seconds. Elapsed time: 6.57 seconds; current allocated memory: 212.009 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 212.011 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.17 seconds. CPU system time: 0 seconds. Elapsed time: 0.19 seconds; current allocated memory: 218.369 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.34 seconds. CPU system time: 0 seconds. Elapsed time: 0.35 seconds; current allocated memory: 223.940 MB.
+WARNING: [HLS 200-932] Cannot unroll loop 'serch_module_loop' (../src/table_serch.cpp:1459) in function 'table_serch' completely: variable loop bound.
+INFO: [XFORM 203-721] Changing loop 'serch_module_loop' (../src/table_serch.cpp:1459)  to a process function for dataflow in function 'table_serch'.
+ERROR: [HLS 200-994] Cannot read value of  'music_index.load' (../src/table_serch.cpp:1486:13) from previous iterations in dataflow flame_serch  (../src/table_serch.cpp:1442)  of function 'table_serch'.
+ERROR: [HLS 200-70] Pre-synthesis failed.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 12.69 seconds. CPU system time: 0.54 seconds. Elapsed time: 13.46 seconds; current allocated memory: 233.533 MB.
+command 'ap_source' returned error code
+    while executing
+"source /home/nomoto/src/StagedLSH/hls/workspace/yan/solution1/csynth.tcl"
+    invoked from within
+"hls::main /home/nomoto/src/StagedLSH/hls/workspace/yan/solution1/csynth.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel 1 hls::main {*}$newargs"
+    (procedure "hls_proc" line 16)
+    invoked from within
+"hls_proc [info nameofexecutable] $argv"
+INFO: [HLS 200-112] Total CPU user time: 15.76 seconds. Total CPU system time: 0.9 seconds. Total elapsed time: 15.71 seconds; peak allocated memory: 227.320 MB.

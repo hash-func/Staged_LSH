@@ -20,9 +20,9 @@
 #define SCRUTINY 1024           // 精査の閾値
 
 /* 変更パラメータ */
-#define MUSIC_NUM 100000           // 楽曲数
-#define QUERY_NUM 1000          // 検索数（試行回数）
-#define DISTORTION 25.0          // 歪み率(%)
+#define MUSIC_NUM 10000000           // 楽曲数
+#define QUERY_NUM 100          // 検索数（試行回数）
+#define DISTORTION 0.0          // 歪み率(%)
 
 /* 考察するパラメータ */
 #define K_HASHBIT 8            // ハッシュ関数gのbit数：K

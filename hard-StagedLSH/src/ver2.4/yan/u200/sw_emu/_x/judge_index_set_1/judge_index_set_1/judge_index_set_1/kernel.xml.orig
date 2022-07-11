@@ -1,0 +1,23 @@
+<root versionMajor = "1" versionMinor = "5">
+  <kernel name="judge_index_set_1" language="c" vlnv="xilinx.com:hls:judge_index_set_1:1.0" attributes="" hash="" preferredWorkGroupSizeMultiple="0" workGroupSize="1" debug="false" compileOptions="" profileType="none" hwControlProtocol="ap_ctrl_chain">
+    <ports>
+      <port name="M_AXI_DB_JUDGE_SET_1" portType="addressable" mode="master" base="0x0" range="0xFFFFFFFF" dataWidth="512"/>
+      <port name="M_AXI_TABLE_JUDGE_SET_1" portType="addressable" mode="master" base="0x0" range="0xFFFFFFFF" dataWidth="32"/>
+      <port name="M_AXI_QUERY_JUDGE_SET_1" portType="addressable" mode="master" base="0x0" range="0xFFFFFFFF" dataWidth="512"/>
+      <port name="M_AXI_JUDGE_JUDGE_SET_1" portType="addressable" mode="master" base="0x0" range="0xFFFFFFFF" dataWidth="32"/>
+      <port name="LOCATE_STREAM_IN" mode="read_only" dataWidth="32" portType="stream"/>
+      <port name="COUNT_STREAM_IN" mode="read_only" dataWidth="32" portType="stream"/>
+      <port name="S_AXI_CONTROL" portType="addressable" mode="slave" base="0x0" range="0x1000" dataWidth="32"/>
+    </ports>
+    <args>
+    <arg id="0" name="FP_DB" addressQualifier="1" port="M_AXI_DB_JUDGE_SET_1" hostOffset="0x0" hostSize="0x8" offset="0x10" size="0x8" type="void*"/>
+    <arg id="1" name="hash_table" addressQualifier="1" port="M_AXI_TABLE_JUDGE_SET_1" hostOffset="0x0" hostSize="0x8" offset="0x1C" size="0x8" type="void*"/>
+    <arg id="2" name="query" addressQualifier="1" port="M_AXI_QUERY_JUDGE_SET_1" hostOffset="0x0" hostSize="0x8" offset="0x28" size="0x8" type="void*"/>
+    <arg id="3" name="judge" addressQualifier="1" port="M_AXI_JUDGE_JUDGE_SET_1" hostOffset="0x0" hostSize="0x8" offset="0x34" size="0x8" type="void*"/>
+      <arg id="4" name="locate_stream_in" addressQualifier="4" port="LOCATE_STREAM_IN" hostOffset="0x0" hostSize="0x8" offset="0x0" size="0x0" type="stream&lt;hls::axis&lt;ap_uint&lt;32&gt;, 0, 0, 0&gt;, 0&gt;&amp;" memSize="0x4" origName="locate_stream_in" origUse="variable"/>
+      <arg id="5" name="count_stream_in" addressQualifier="4" port="COUNT_STREAM_IN" hostOffset="0x0" hostSize="0x8" offset="0x0" size="0x0" type="stream&lt;hls::axis&lt;ap_uint&lt;32&gt;, 0, 0, 0&gt;, 0&gt;&amp;" memSize="0x4" origName="count_stream_in" origUse="variable"/>
+    </args>
+    <compileWorkGroupSize x="1" y="1" z="1"/>
+    <maxWorkGroupSize x="1" y="1" z="1"/>
+  </kernel>
+</root>

@@ -8,7 +8,7 @@ use IEEE.NUMERIC_STD.all;
 
 entity table_serch_control_s_axi is
 generic (
-    C_S_AXI_ADDR_WIDTH    : INTEGER := 7;
+    C_S_AXI_ADDR_WIDTH    : INTEGER := 9;
     C_S_AXI_DATA_WIDTH    : INTEGER := 32);
 port (
     ACLK                  :in   STD_LOGIC;
@@ -32,10 +32,30 @@ port (
     RVALID                :out  STD_LOGIC;
     RREADY                :in   STD_LOGIC;
     interrupt             :out  STD_LOGIC;
-    query                 :out  STD_LOGIC_VECTOR(63 downto 0);
-    FP_DB                 :out  STD_LOGIC_VECTOR(63 downto 0);
-    hash_table            :out  STD_LOGIC_VECTOR(63 downto 0);
-    hash_table_pointer    :out  STD_LOGIC_VECTOR(63 downto 0);
+    query_0               :out  STD_LOGIC_VECTOR(63 downto 0);
+    query_1               :out  STD_LOGIC_VECTOR(63 downto 0);
+    query_2               :out  STD_LOGIC_VECTOR(63 downto 0);
+    query_3               :out  STD_LOGIC_VECTOR(63 downto 0);
+    query_4               :out  STD_LOGIC_VECTOR(63 downto 0);
+    query_5               :out  STD_LOGIC_VECTOR(63 downto 0);
+    FP_DB_0               :out  STD_LOGIC_VECTOR(63 downto 0);
+    FP_DB_1               :out  STD_LOGIC_VECTOR(63 downto 0);
+    FP_DB_2               :out  STD_LOGIC_VECTOR(63 downto 0);
+    FP_DB_3               :out  STD_LOGIC_VECTOR(63 downto 0);
+    FP_DB_4               :out  STD_LOGIC_VECTOR(63 downto 0);
+    FP_DB_5               :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_0          :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_1          :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_2          :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_3          :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_4          :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_5          :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_pointer_0  :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_pointer_1  :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_pointer_2  :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_pointer_3  :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_pointer_4  :out  STD_LOGIC_VECTOR(63 downto 0);
+    hash_table_pointer_5  :out  STD_LOGIC_VECTOR(63 downto 0);
     judge_temp            :out  STD_LOGIC_VECTOR(63 downto 0);
     ap_start              :out  STD_LOGIC;
     ap_done               :in   STD_LOGIC;
@@ -46,50 +66,150 @@ port (
 end entity table_serch_control_s_axi;
 
 -- ------------------------Address Info-------------------
--- 0x00 : Control signals
---        bit 0  - ap_start (Read/Write/COH)
---        bit 1  - ap_done (Read)
---        bit 2  - ap_idle (Read)
---        bit 3  - ap_ready (Read)
---        bit 4  - ap_continue (Read/Write/SC)
---        bit 7  - auto_restart (Read/Write)
---        others - reserved
--- 0x04 : Global Interrupt Enable Register
---        bit 0  - Global Interrupt Enable (Read/Write)
---        others - reserved
--- 0x08 : IP Interrupt Enable Register (Read/Write)
---        bit 0  - enable ap_done interrupt (Read/Write)
---        bit 1  - enable ap_ready interrupt (Read/Write)
---        others - reserved
--- 0x0c : IP Interrupt Status Register (Read/TOW)
---        bit 0  - ap_done (COR/TOW)
---        bit 1  - ap_ready (COR/TOW)
---        others - reserved
--- 0x10 : Data signal of query
---        bit 31~0 - query[31:0] (Read/Write)
--- 0x14 : Data signal of query
---        bit 31~0 - query[63:32] (Read/Write)
--- 0x18 : reserved
--- 0x1c : Data signal of FP_DB
---        bit 31~0 - FP_DB[31:0] (Read/Write)
--- 0x20 : Data signal of FP_DB
---        bit 31~0 - FP_DB[63:32] (Read/Write)
--- 0x24 : reserved
--- 0x28 : Data signal of hash_table
---        bit 31~0 - hash_table[31:0] (Read/Write)
--- 0x2c : Data signal of hash_table
---        bit 31~0 - hash_table[63:32] (Read/Write)
--- 0x30 : reserved
--- 0x34 : Data signal of hash_table_pointer
---        bit 31~0 - hash_table_pointer[31:0] (Read/Write)
--- 0x38 : Data signal of hash_table_pointer
---        bit 31~0 - hash_table_pointer[63:32] (Read/Write)
--- 0x3c : reserved
--- 0x40 : Data signal of judge_temp
---        bit 31~0 - judge_temp[31:0] (Read/Write)
--- 0x44 : Data signal of judge_temp
---        bit 31~0 - judge_temp[63:32] (Read/Write)
--- 0x48 : reserved
+-- 0x000 : Control signals
+--         bit 0  - ap_start (Read/Write/COH)
+--         bit 1  - ap_done (Read)
+--         bit 2  - ap_idle (Read)
+--         bit 3  - ap_ready (Read)
+--         bit 4  - ap_continue (Read/Write/SC)
+--         bit 7  - auto_restart (Read/Write)
+--         others - reserved
+-- 0x004 : Global Interrupt Enable Register
+--         bit 0  - Global Interrupt Enable (Read/Write)
+--         others - reserved
+-- 0x008 : IP Interrupt Enable Register (Read/Write)
+--         bit 0  - enable ap_done interrupt (Read/Write)
+--         bit 1  - enable ap_ready interrupt (Read/Write)
+--         others - reserved
+-- 0x00c : IP Interrupt Status Register (Read/TOW)
+--         bit 0  - ap_done (COR/TOW)
+--         bit 1  - ap_ready (COR/TOW)
+--         others - reserved
+-- 0x010 : Data signal of query_0
+--         bit 31~0 - query_0[31:0] (Read/Write)
+-- 0x014 : Data signal of query_0
+--         bit 31~0 - query_0[63:32] (Read/Write)
+-- 0x018 : reserved
+-- 0x01c : Data signal of query_1
+--         bit 31~0 - query_1[31:0] (Read/Write)
+-- 0x020 : Data signal of query_1
+--         bit 31~0 - query_1[63:32] (Read/Write)
+-- 0x024 : reserved
+-- 0x028 : Data signal of query_2
+--         bit 31~0 - query_2[31:0] (Read/Write)
+-- 0x02c : Data signal of query_2
+--         bit 31~0 - query_2[63:32] (Read/Write)
+-- 0x030 : reserved
+-- 0x034 : Data signal of query_3
+--         bit 31~0 - query_3[31:0] (Read/Write)
+-- 0x038 : Data signal of query_3
+--         bit 31~0 - query_3[63:32] (Read/Write)
+-- 0x03c : reserved
+-- 0x040 : Data signal of query_4
+--         bit 31~0 - query_4[31:0] (Read/Write)
+-- 0x044 : Data signal of query_4
+--         bit 31~0 - query_4[63:32] (Read/Write)
+-- 0x048 : reserved
+-- 0x04c : Data signal of query_5
+--         bit 31~0 - query_5[31:0] (Read/Write)
+-- 0x050 : Data signal of query_5
+--         bit 31~0 - query_5[63:32] (Read/Write)
+-- 0x054 : reserved
+-- 0x058 : Data signal of FP_DB_0
+--         bit 31~0 - FP_DB_0[31:0] (Read/Write)
+-- 0x05c : Data signal of FP_DB_0
+--         bit 31~0 - FP_DB_0[63:32] (Read/Write)
+-- 0x060 : reserved
+-- 0x064 : Data signal of FP_DB_1
+--         bit 31~0 - FP_DB_1[31:0] (Read/Write)
+-- 0x068 : Data signal of FP_DB_1
+--         bit 31~0 - FP_DB_1[63:32] (Read/Write)
+-- 0x06c : reserved
+-- 0x070 : Data signal of FP_DB_2
+--         bit 31~0 - FP_DB_2[31:0] (Read/Write)
+-- 0x074 : Data signal of FP_DB_2
+--         bit 31~0 - FP_DB_2[63:32] (Read/Write)
+-- 0x078 : reserved
+-- 0x07c : Data signal of FP_DB_3
+--         bit 31~0 - FP_DB_3[31:0] (Read/Write)
+-- 0x080 : Data signal of FP_DB_3
+--         bit 31~0 - FP_DB_3[63:32] (Read/Write)
+-- 0x084 : reserved
+-- 0x088 : Data signal of FP_DB_4
+--         bit 31~0 - FP_DB_4[31:0] (Read/Write)
+-- 0x08c : Data signal of FP_DB_4
+--         bit 31~0 - FP_DB_4[63:32] (Read/Write)
+-- 0x090 : reserved
+-- 0x094 : Data signal of FP_DB_5
+--         bit 31~0 - FP_DB_5[31:0] (Read/Write)
+-- 0x098 : Data signal of FP_DB_5
+--         bit 31~0 - FP_DB_5[63:32] (Read/Write)
+-- 0x09c : reserved
+-- 0x0a0 : Data signal of hash_table_0
+--         bit 31~0 - hash_table_0[31:0] (Read/Write)
+-- 0x0a4 : Data signal of hash_table_0
+--         bit 31~0 - hash_table_0[63:32] (Read/Write)
+-- 0x0a8 : reserved
+-- 0x0ac : Data signal of hash_table_1
+--         bit 31~0 - hash_table_1[31:0] (Read/Write)
+-- 0x0b0 : Data signal of hash_table_1
+--         bit 31~0 - hash_table_1[63:32] (Read/Write)
+-- 0x0b4 : reserved
+-- 0x0b8 : Data signal of hash_table_2
+--         bit 31~0 - hash_table_2[31:0] (Read/Write)
+-- 0x0bc : Data signal of hash_table_2
+--         bit 31~0 - hash_table_2[63:32] (Read/Write)
+-- 0x0c0 : reserved
+-- 0x0c4 : Data signal of hash_table_3
+--         bit 31~0 - hash_table_3[31:0] (Read/Write)
+-- 0x0c8 : Data signal of hash_table_3
+--         bit 31~0 - hash_table_3[63:32] (Read/Write)
+-- 0x0cc : reserved
+-- 0x0d0 : Data signal of hash_table_4
+--         bit 31~0 - hash_table_4[31:0] (Read/Write)
+-- 0x0d4 : Data signal of hash_table_4
+--         bit 31~0 - hash_table_4[63:32] (Read/Write)
+-- 0x0d8 : reserved
+-- 0x0dc : Data signal of hash_table_5
+--         bit 31~0 - hash_table_5[31:0] (Read/Write)
+-- 0x0e0 : Data signal of hash_table_5
+--         bit 31~0 - hash_table_5[63:32] (Read/Write)
+-- 0x0e4 : reserved
+-- 0x0e8 : Data signal of hash_table_pointer_0
+--         bit 31~0 - hash_table_pointer_0[31:0] (Read/Write)
+-- 0x0ec : Data signal of hash_table_pointer_0
+--         bit 31~0 - hash_table_pointer_0[63:32] (Read/Write)
+-- 0x0f0 : reserved
+-- 0x0f4 : Data signal of hash_table_pointer_1
+--         bit 31~0 - hash_table_pointer_1[31:0] (Read/Write)
+-- 0x0f8 : Data signal of hash_table_pointer_1
+--         bit 31~0 - hash_table_pointer_1[63:32] (Read/Write)
+-- 0x0fc : reserved
+-- 0x100 : Data signal of hash_table_pointer_2
+--         bit 31~0 - hash_table_pointer_2[31:0] (Read/Write)
+-- 0x104 : Data signal of hash_table_pointer_2
+--         bit 31~0 - hash_table_pointer_2[63:32] (Read/Write)
+-- 0x108 : reserved
+-- 0x10c : Data signal of hash_table_pointer_3
+--         bit 31~0 - hash_table_pointer_3[31:0] (Read/Write)
+-- 0x110 : Data signal of hash_table_pointer_3
+--         bit 31~0 - hash_table_pointer_3[63:32] (Read/Write)
+-- 0x114 : reserved
+-- 0x118 : Data signal of hash_table_pointer_4
+--         bit 31~0 - hash_table_pointer_4[31:0] (Read/Write)
+-- 0x11c : Data signal of hash_table_pointer_4
+--         bit 31~0 - hash_table_pointer_4[63:32] (Read/Write)
+-- 0x120 : reserved
+-- 0x124 : Data signal of hash_table_pointer_5
+--         bit 31~0 - hash_table_pointer_5[31:0] (Read/Write)
+-- 0x128 : Data signal of hash_table_pointer_5
+--         bit 31~0 - hash_table_pointer_5[63:32] (Read/Write)
+-- 0x12c : reserved
+-- 0x130 : Data signal of judge_temp
+--         bit 31~0 - judge_temp[31:0] (Read/Write)
+-- 0x134 : Data signal of judge_temp
+--         bit 31~0 - judge_temp[63:32] (Read/Write)
+-- 0x138 : reserved
 -- (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 architecture behave of table_serch_control_s_axi is
@@ -97,26 +217,86 @@ architecture behave of table_serch_control_s_axi is
     signal wstate  : states := wrreset;
     signal rstate  : states := rdreset;
     signal wnext, rnext: states;
-    constant ADDR_AP_CTRL                   : INTEGER := 16#00#;
-    constant ADDR_GIE                       : INTEGER := 16#04#;
-    constant ADDR_IER                       : INTEGER := 16#08#;
-    constant ADDR_ISR                       : INTEGER := 16#0c#;
-    constant ADDR_QUERY_DATA_0              : INTEGER := 16#10#;
-    constant ADDR_QUERY_DATA_1              : INTEGER := 16#14#;
-    constant ADDR_QUERY_CTRL                : INTEGER := 16#18#;
-    constant ADDR_FP_DB_DATA_0              : INTEGER := 16#1c#;
-    constant ADDR_FP_DB_DATA_1              : INTEGER := 16#20#;
-    constant ADDR_FP_DB_CTRL                : INTEGER := 16#24#;
-    constant ADDR_HASH_TABLE_DATA_0         : INTEGER := 16#28#;
-    constant ADDR_HASH_TABLE_DATA_1         : INTEGER := 16#2c#;
-    constant ADDR_HASH_TABLE_CTRL           : INTEGER := 16#30#;
-    constant ADDR_HASH_TABLE_POINTER_DATA_0 : INTEGER := 16#34#;
-    constant ADDR_HASH_TABLE_POINTER_DATA_1 : INTEGER := 16#38#;
-    constant ADDR_HASH_TABLE_POINTER_CTRL   : INTEGER := 16#3c#;
-    constant ADDR_JUDGE_TEMP_DATA_0         : INTEGER := 16#40#;
-    constant ADDR_JUDGE_TEMP_DATA_1         : INTEGER := 16#44#;
-    constant ADDR_JUDGE_TEMP_CTRL           : INTEGER := 16#48#;
-    constant ADDR_BITS         : INTEGER := 7;
+    constant ADDR_AP_CTRL                     : INTEGER := 16#000#;
+    constant ADDR_GIE                         : INTEGER := 16#004#;
+    constant ADDR_IER                         : INTEGER := 16#008#;
+    constant ADDR_ISR                         : INTEGER := 16#00c#;
+    constant ADDR_QUERY_0_DATA_0              : INTEGER := 16#010#;
+    constant ADDR_QUERY_0_DATA_1              : INTEGER := 16#014#;
+    constant ADDR_QUERY_0_CTRL                : INTEGER := 16#018#;
+    constant ADDR_QUERY_1_DATA_0              : INTEGER := 16#01c#;
+    constant ADDR_QUERY_1_DATA_1              : INTEGER := 16#020#;
+    constant ADDR_QUERY_1_CTRL                : INTEGER := 16#024#;
+    constant ADDR_QUERY_2_DATA_0              : INTEGER := 16#028#;
+    constant ADDR_QUERY_2_DATA_1              : INTEGER := 16#02c#;
+    constant ADDR_QUERY_2_CTRL                : INTEGER := 16#030#;
+    constant ADDR_QUERY_3_DATA_0              : INTEGER := 16#034#;
+    constant ADDR_QUERY_3_DATA_1              : INTEGER := 16#038#;
+    constant ADDR_QUERY_3_CTRL                : INTEGER := 16#03c#;
+    constant ADDR_QUERY_4_DATA_0              : INTEGER := 16#040#;
+    constant ADDR_QUERY_4_DATA_1              : INTEGER := 16#044#;
+    constant ADDR_QUERY_4_CTRL                : INTEGER := 16#048#;
+    constant ADDR_QUERY_5_DATA_0              : INTEGER := 16#04c#;
+    constant ADDR_QUERY_5_DATA_1              : INTEGER := 16#050#;
+    constant ADDR_QUERY_5_CTRL                : INTEGER := 16#054#;
+    constant ADDR_FP_DB_0_DATA_0              : INTEGER := 16#058#;
+    constant ADDR_FP_DB_0_DATA_1              : INTEGER := 16#05c#;
+    constant ADDR_FP_DB_0_CTRL                : INTEGER := 16#060#;
+    constant ADDR_FP_DB_1_DATA_0              : INTEGER := 16#064#;
+    constant ADDR_FP_DB_1_DATA_1              : INTEGER := 16#068#;
+    constant ADDR_FP_DB_1_CTRL                : INTEGER := 16#06c#;
+    constant ADDR_FP_DB_2_DATA_0              : INTEGER := 16#070#;
+    constant ADDR_FP_DB_2_DATA_1              : INTEGER := 16#074#;
+    constant ADDR_FP_DB_2_CTRL                : INTEGER := 16#078#;
+    constant ADDR_FP_DB_3_DATA_0              : INTEGER := 16#07c#;
+    constant ADDR_FP_DB_3_DATA_1              : INTEGER := 16#080#;
+    constant ADDR_FP_DB_3_CTRL                : INTEGER := 16#084#;
+    constant ADDR_FP_DB_4_DATA_0              : INTEGER := 16#088#;
+    constant ADDR_FP_DB_4_DATA_1              : INTEGER := 16#08c#;
+    constant ADDR_FP_DB_4_CTRL                : INTEGER := 16#090#;
+    constant ADDR_FP_DB_5_DATA_0              : INTEGER := 16#094#;
+    constant ADDR_FP_DB_5_DATA_1              : INTEGER := 16#098#;
+    constant ADDR_FP_DB_5_CTRL                : INTEGER := 16#09c#;
+    constant ADDR_HASH_TABLE_0_DATA_0         : INTEGER := 16#0a0#;
+    constant ADDR_HASH_TABLE_0_DATA_1         : INTEGER := 16#0a4#;
+    constant ADDR_HASH_TABLE_0_CTRL           : INTEGER := 16#0a8#;
+    constant ADDR_HASH_TABLE_1_DATA_0         : INTEGER := 16#0ac#;
+    constant ADDR_HASH_TABLE_1_DATA_1         : INTEGER := 16#0b0#;
+    constant ADDR_HASH_TABLE_1_CTRL           : INTEGER := 16#0b4#;
+    constant ADDR_HASH_TABLE_2_DATA_0         : INTEGER := 16#0b8#;
+    constant ADDR_HASH_TABLE_2_DATA_1         : INTEGER := 16#0bc#;
+    constant ADDR_HASH_TABLE_2_CTRL           : INTEGER := 16#0c0#;
+    constant ADDR_HASH_TABLE_3_DATA_0         : INTEGER := 16#0c4#;
+    constant ADDR_HASH_TABLE_3_DATA_1         : INTEGER := 16#0c8#;
+    constant ADDR_HASH_TABLE_3_CTRL           : INTEGER := 16#0cc#;
+    constant ADDR_HASH_TABLE_4_DATA_0         : INTEGER := 16#0d0#;
+    constant ADDR_HASH_TABLE_4_DATA_1         : INTEGER := 16#0d4#;
+    constant ADDR_HASH_TABLE_4_CTRL           : INTEGER := 16#0d8#;
+    constant ADDR_HASH_TABLE_5_DATA_0         : INTEGER := 16#0dc#;
+    constant ADDR_HASH_TABLE_5_DATA_1         : INTEGER := 16#0e0#;
+    constant ADDR_HASH_TABLE_5_CTRL           : INTEGER := 16#0e4#;
+    constant ADDR_HASH_TABLE_POINTER_0_DATA_0 : INTEGER := 16#0e8#;
+    constant ADDR_HASH_TABLE_POINTER_0_DATA_1 : INTEGER := 16#0ec#;
+    constant ADDR_HASH_TABLE_POINTER_0_CTRL   : INTEGER := 16#0f0#;
+    constant ADDR_HASH_TABLE_POINTER_1_DATA_0 : INTEGER := 16#0f4#;
+    constant ADDR_HASH_TABLE_POINTER_1_DATA_1 : INTEGER := 16#0f8#;
+    constant ADDR_HASH_TABLE_POINTER_1_CTRL   : INTEGER := 16#0fc#;
+    constant ADDR_HASH_TABLE_POINTER_2_DATA_0 : INTEGER := 16#100#;
+    constant ADDR_HASH_TABLE_POINTER_2_DATA_1 : INTEGER := 16#104#;
+    constant ADDR_HASH_TABLE_POINTER_2_CTRL   : INTEGER := 16#108#;
+    constant ADDR_HASH_TABLE_POINTER_3_DATA_0 : INTEGER := 16#10c#;
+    constant ADDR_HASH_TABLE_POINTER_3_DATA_1 : INTEGER := 16#110#;
+    constant ADDR_HASH_TABLE_POINTER_3_CTRL   : INTEGER := 16#114#;
+    constant ADDR_HASH_TABLE_POINTER_4_DATA_0 : INTEGER := 16#118#;
+    constant ADDR_HASH_TABLE_POINTER_4_DATA_1 : INTEGER := 16#11c#;
+    constant ADDR_HASH_TABLE_POINTER_4_CTRL   : INTEGER := 16#120#;
+    constant ADDR_HASH_TABLE_POINTER_5_DATA_0 : INTEGER := 16#124#;
+    constant ADDR_HASH_TABLE_POINTER_5_DATA_1 : INTEGER := 16#128#;
+    constant ADDR_HASH_TABLE_POINTER_5_CTRL   : INTEGER := 16#12c#;
+    constant ADDR_JUDGE_TEMP_DATA_0           : INTEGER := 16#130#;
+    constant ADDR_JUDGE_TEMP_DATA_1           : INTEGER := 16#134#;
+    constant ADDR_JUDGE_TEMP_CTRL             : INTEGER := 16#138#;
+    constant ADDR_BITS         : INTEGER := 9;
 
     signal waddr               : UNSIGNED(ADDR_BITS-1 downto 0);
     signal wmask               : UNSIGNED(C_S_AXI_DATA_WIDTH-1 downto 0);
@@ -139,10 +319,30 @@ architecture behave of table_serch_control_s_axi is
     signal int_gie             : STD_LOGIC := '0';
     signal int_ier             : UNSIGNED(1 downto 0) := (others => '0');
     signal int_isr             : UNSIGNED(1 downto 0) := (others => '0');
-    signal int_query           : UNSIGNED(63 downto 0) := (others => '0');
-    signal int_FP_DB           : UNSIGNED(63 downto 0) := (others => '0');
-    signal int_hash_table      : UNSIGNED(63 downto 0) := (others => '0');
-    signal int_hash_table_pointer : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_query_0         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_query_1         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_query_2         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_query_3         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_query_4         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_query_5         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_FP_DB_0         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_FP_DB_1         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_FP_DB_2         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_FP_DB_3         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_FP_DB_4         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_FP_DB_5         : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_0    : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_1    : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_2    : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_3    : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_4    : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_5    : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_pointer_0 : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_pointer_1 : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_pointer_2 : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_pointer_3 : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_pointer_4 : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_hash_table_pointer_5 : UNSIGNED(63 downto 0) := (others => '0');
     signal int_judge_temp      : UNSIGNED(63 downto 0) := (others => '0');
 
 
@@ -272,22 +472,102 @@ begin
                         rdata_data(1 downto 0) <= int_ier;
                     when ADDR_ISR =>
                         rdata_data(1 downto 0) <= int_isr;
-                    when ADDR_QUERY_DATA_0 =>
-                        rdata_data <= RESIZE(int_query(31 downto 0), 32);
-                    when ADDR_QUERY_DATA_1 =>
-                        rdata_data <= RESIZE(int_query(63 downto 32), 32);
-                    when ADDR_FP_DB_DATA_0 =>
-                        rdata_data <= RESIZE(int_FP_DB(31 downto 0), 32);
-                    when ADDR_FP_DB_DATA_1 =>
-                        rdata_data <= RESIZE(int_FP_DB(63 downto 32), 32);
-                    when ADDR_HASH_TABLE_DATA_0 =>
-                        rdata_data <= RESIZE(int_hash_table(31 downto 0), 32);
-                    when ADDR_HASH_TABLE_DATA_1 =>
-                        rdata_data <= RESIZE(int_hash_table(63 downto 32), 32);
-                    when ADDR_HASH_TABLE_POINTER_DATA_0 =>
-                        rdata_data <= RESIZE(int_hash_table_pointer(31 downto 0), 32);
-                    when ADDR_HASH_TABLE_POINTER_DATA_1 =>
-                        rdata_data <= RESIZE(int_hash_table_pointer(63 downto 32), 32);
+                    when ADDR_QUERY_0_DATA_0 =>
+                        rdata_data <= RESIZE(int_query_0(31 downto 0), 32);
+                    when ADDR_QUERY_0_DATA_1 =>
+                        rdata_data <= RESIZE(int_query_0(63 downto 32), 32);
+                    when ADDR_QUERY_1_DATA_0 =>
+                        rdata_data <= RESIZE(int_query_1(31 downto 0), 32);
+                    when ADDR_QUERY_1_DATA_1 =>
+                        rdata_data <= RESIZE(int_query_1(63 downto 32), 32);
+                    when ADDR_QUERY_2_DATA_0 =>
+                        rdata_data <= RESIZE(int_query_2(31 downto 0), 32);
+                    when ADDR_QUERY_2_DATA_1 =>
+                        rdata_data <= RESIZE(int_query_2(63 downto 32), 32);
+                    when ADDR_QUERY_3_DATA_0 =>
+                        rdata_data <= RESIZE(int_query_3(31 downto 0), 32);
+                    when ADDR_QUERY_3_DATA_1 =>
+                        rdata_data <= RESIZE(int_query_3(63 downto 32), 32);
+                    when ADDR_QUERY_4_DATA_0 =>
+                        rdata_data <= RESIZE(int_query_4(31 downto 0), 32);
+                    when ADDR_QUERY_4_DATA_1 =>
+                        rdata_data <= RESIZE(int_query_4(63 downto 32), 32);
+                    when ADDR_QUERY_5_DATA_0 =>
+                        rdata_data <= RESIZE(int_query_5(31 downto 0), 32);
+                    when ADDR_QUERY_5_DATA_1 =>
+                        rdata_data <= RESIZE(int_query_5(63 downto 32), 32);
+                    when ADDR_FP_DB_0_DATA_0 =>
+                        rdata_data <= RESIZE(int_FP_DB_0(31 downto 0), 32);
+                    when ADDR_FP_DB_0_DATA_1 =>
+                        rdata_data <= RESIZE(int_FP_DB_0(63 downto 32), 32);
+                    when ADDR_FP_DB_1_DATA_0 =>
+                        rdata_data <= RESIZE(int_FP_DB_1(31 downto 0), 32);
+                    when ADDR_FP_DB_1_DATA_1 =>
+                        rdata_data <= RESIZE(int_FP_DB_1(63 downto 32), 32);
+                    when ADDR_FP_DB_2_DATA_0 =>
+                        rdata_data <= RESIZE(int_FP_DB_2(31 downto 0), 32);
+                    when ADDR_FP_DB_2_DATA_1 =>
+                        rdata_data <= RESIZE(int_FP_DB_2(63 downto 32), 32);
+                    when ADDR_FP_DB_3_DATA_0 =>
+                        rdata_data <= RESIZE(int_FP_DB_3(31 downto 0), 32);
+                    when ADDR_FP_DB_3_DATA_1 =>
+                        rdata_data <= RESIZE(int_FP_DB_3(63 downto 32), 32);
+                    when ADDR_FP_DB_4_DATA_0 =>
+                        rdata_data <= RESIZE(int_FP_DB_4(31 downto 0), 32);
+                    when ADDR_FP_DB_4_DATA_1 =>
+                        rdata_data <= RESIZE(int_FP_DB_4(63 downto 32), 32);
+                    when ADDR_FP_DB_5_DATA_0 =>
+                        rdata_data <= RESIZE(int_FP_DB_5(31 downto 0), 32);
+                    when ADDR_FP_DB_5_DATA_1 =>
+                        rdata_data <= RESIZE(int_FP_DB_5(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_0_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_0(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_0_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_0(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_1_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_1(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_1_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_1(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_2_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_2(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_2_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_2(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_3_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_3(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_3_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_3(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_4_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_4(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_4_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_4(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_5_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_5(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_5_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_5(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_POINTER_0_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_0(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_POINTER_0_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_0(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_POINTER_1_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_1(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_POINTER_1_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_1(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_POINTER_2_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_2(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_POINTER_2_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_2(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_POINTER_3_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_3(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_POINTER_3_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_3(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_POINTER_4_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_4(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_POINTER_4_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_4(63 downto 32), 32);
+                    when ADDR_HASH_TABLE_POINTER_5_DATA_0 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_5(31 downto 0), 32);
+                    when ADDR_HASH_TABLE_POINTER_5_DATA_1 =>
+                        rdata_data <= RESIZE(int_hash_table_pointer_5(63 downto 32), 32);
                     when ADDR_JUDGE_TEMP_DATA_0 =>
                         rdata_data <= RESIZE(int_judge_temp(31 downto 0), 32);
                     when ADDR_JUDGE_TEMP_DATA_1 =>
@@ -305,10 +585,30 @@ begin
     ap_start             <= int_ap_start;
     int_ap_done          <= ap_done;
     ap_continue          <= int_ap_continue;
-    query                <= STD_LOGIC_VECTOR(int_query);
-    FP_DB                <= STD_LOGIC_VECTOR(int_FP_DB);
-    hash_table           <= STD_LOGIC_VECTOR(int_hash_table);
-    hash_table_pointer   <= STD_LOGIC_VECTOR(int_hash_table_pointer);
+    query_0              <= STD_LOGIC_VECTOR(int_query_0);
+    query_1              <= STD_LOGIC_VECTOR(int_query_1);
+    query_2              <= STD_LOGIC_VECTOR(int_query_2);
+    query_3              <= STD_LOGIC_VECTOR(int_query_3);
+    query_4              <= STD_LOGIC_VECTOR(int_query_4);
+    query_5              <= STD_LOGIC_VECTOR(int_query_5);
+    FP_DB_0              <= STD_LOGIC_VECTOR(int_FP_DB_0);
+    FP_DB_1              <= STD_LOGIC_VECTOR(int_FP_DB_1);
+    FP_DB_2              <= STD_LOGIC_VECTOR(int_FP_DB_2);
+    FP_DB_3              <= STD_LOGIC_VECTOR(int_FP_DB_3);
+    FP_DB_4              <= STD_LOGIC_VECTOR(int_FP_DB_4);
+    FP_DB_5              <= STD_LOGIC_VECTOR(int_FP_DB_5);
+    hash_table_0         <= STD_LOGIC_VECTOR(int_hash_table_0);
+    hash_table_1         <= STD_LOGIC_VECTOR(int_hash_table_1);
+    hash_table_2         <= STD_LOGIC_VECTOR(int_hash_table_2);
+    hash_table_3         <= STD_LOGIC_VECTOR(int_hash_table_3);
+    hash_table_4         <= STD_LOGIC_VECTOR(int_hash_table_4);
+    hash_table_5         <= STD_LOGIC_VECTOR(int_hash_table_5);
+    hash_table_pointer_0 <= STD_LOGIC_VECTOR(int_hash_table_pointer_0);
+    hash_table_pointer_1 <= STD_LOGIC_VECTOR(int_hash_table_pointer_1);
+    hash_table_pointer_2 <= STD_LOGIC_VECTOR(int_hash_table_pointer_2);
+    hash_table_pointer_3 <= STD_LOGIC_VECTOR(int_hash_table_pointer_3);
+    hash_table_pointer_4 <= STD_LOGIC_VECTOR(int_hash_table_pointer_4);
+    hash_table_pointer_5 <= STD_LOGIC_VECTOR(int_hash_table_pointer_5);
     judge_temp           <= STD_LOGIC_VECTOR(int_judge_temp);
 
     process (ACLK)
@@ -442,8 +742,8 @@ begin
     begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_QUERY_DATA_0) then
-                    int_query(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query(31 downto 0));
+                if (w_hs = '1' and waddr = ADDR_QUERY_0_DATA_0) then
+                    int_query_0(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_0(31 downto 0));
                 end if;
             end if;
         end if;
@@ -453,8 +753,8 @@ begin
     begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_QUERY_DATA_1) then
-                    int_query(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query(63 downto 32));
+                if (w_hs = '1' and waddr = ADDR_QUERY_0_DATA_1) then
+                    int_query_0(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_0(63 downto 32));
                 end if;
             end if;
         end if;
@@ -464,8 +764,8 @@ begin
     begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_FP_DB_DATA_0) then
-                    int_FP_DB(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB(31 downto 0));
+                if (w_hs = '1' and waddr = ADDR_QUERY_1_DATA_0) then
+                    int_query_1(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_1(31 downto 0));
                 end if;
             end if;
         end if;
@@ -475,8 +775,8 @@ begin
     begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_FP_DB_DATA_1) then
-                    int_FP_DB(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB(63 downto 32));
+                if (w_hs = '1' and waddr = ADDR_QUERY_1_DATA_1) then
+                    int_query_1(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_1(63 downto 32));
                 end if;
             end if;
         end if;
@@ -486,8 +786,8 @@ begin
     begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_DATA_0) then
-                    int_hash_table(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table(31 downto 0));
+                if (w_hs = '1' and waddr = ADDR_QUERY_2_DATA_0) then
+                    int_query_2(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_2(31 downto 0));
                 end if;
             end if;
         end if;
@@ -497,8 +797,8 @@ begin
     begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_DATA_1) then
-                    int_hash_table(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table(63 downto 32));
+                if (w_hs = '1' and waddr = ADDR_QUERY_2_DATA_1) then
+                    int_query_2(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_2(63 downto 32));
                 end if;
             end if;
         end if;
@@ -508,8 +808,8 @@ begin
     begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_DATA_0) then
-                    int_hash_table_pointer(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer(31 downto 0));
+                if (w_hs = '1' and waddr = ADDR_QUERY_3_DATA_0) then
+                    int_query_3(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_3(31 downto 0));
                 end if;
             end if;
         end if;
@@ -519,8 +819,448 @@ begin
     begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_DATA_1) then
-                    int_hash_table_pointer(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer(63 downto 32));
+                if (w_hs = '1' and waddr = ADDR_QUERY_3_DATA_1) then
+                    int_query_3(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_3(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_QUERY_4_DATA_0) then
+                    int_query_4(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_4(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_QUERY_4_DATA_1) then
+                    int_query_4(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_4(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_QUERY_5_DATA_0) then
+                    int_query_5(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_5(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_QUERY_5_DATA_1) then
+                    int_query_5(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_query_5(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_0_DATA_0) then
+                    int_FP_DB_0(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_0(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_0_DATA_1) then
+                    int_FP_DB_0(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_0(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_1_DATA_0) then
+                    int_FP_DB_1(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_1(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_1_DATA_1) then
+                    int_FP_DB_1(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_1(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_2_DATA_0) then
+                    int_FP_DB_2(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_2(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_2_DATA_1) then
+                    int_FP_DB_2(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_2(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_3_DATA_0) then
+                    int_FP_DB_3(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_3(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_3_DATA_1) then
+                    int_FP_DB_3(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_3(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_4_DATA_0) then
+                    int_FP_DB_4(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_4(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_4_DATA_1) then
+                    int_FP_DB_4(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_4(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_5_DATA_0) then
+                    int_FP_DB_5(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_5(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_FP_DB_5_DATA_1) then
+                    int_FP_DB_5(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_FP_DB_5(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_0_DATA_0) then
+                    int_hash_table_0(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_0(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_0_DATA_1) then
+                    int_hash_table_0(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_0(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_1_DATA_0) then
+                    int_hash_table_1(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_1(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_1_DATA_1) then
+                    int_hash_table_1(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_1(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_2_DATA_0) then
+                    int_hash_table_2(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_2(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_2_DATA_1) then
+                    int_hash_table_2(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_2(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_3_DATA_0) then
+                    int_hash_table_3(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_3(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_3_DATA_1) then
+                    int_hash_table_3(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_3(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_4_DATA_0) then
+                    int_hash_table_4(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_4(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_4_DATA_1) then
+                    int_hash_table_4(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_4(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_5_DATA_0) then
+                    int_hash_table_5(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_5(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_5_DATA_1) then
+                    int_hash_table_5(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_5(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_0_DATA_0) then
+                    int_hash_table_pointer_0(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_0(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_0_DATA_1) then
+                    int_hash_table_pointer_0(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_0(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_1_DATA_0) then
+                    int_hash_table_pointer_1(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_1(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_1_DATA_1) then
+                    int_hash_table_pointer_1(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_1(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_2_DATA_0) then
+                    int_hash_table_pointer_2(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_2(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_2_DATA_1) then
+                    int_hash_table_pointer_2(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_2(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_3_DATA_0) then
+                    int_hash_table_pointer_3(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_3(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_3_DATA_1) then
+                    int_hash_table_pointer_3(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_3(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_4_DATA_0) then
+                    int_hash_table_pointer_4(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_4(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_4_DATA_1) then
+                    int_hash_table_pointer_4(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_4(63 downto 32));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_5_DATA_0) then
+                    int_hash_table_pointer_5(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_5(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_HASH_TABLE_POINTER_5_DATA_1) then
+                    int_hash_table_pointer_5(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_hash_table_pointer_5(63 downto 32));
                 end if;
             end if;
         end if;

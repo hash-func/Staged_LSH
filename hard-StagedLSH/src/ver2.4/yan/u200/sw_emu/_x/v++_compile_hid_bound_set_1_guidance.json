@@ -1,0 +1,41 @@
+{
+ "session": {
+  "name": "v++_compile_hid_bound_set_1",
+  "uuid": "6f20ae08-7227-4649-883c-0bb2a116cd52",
+  "description": "v++  -c --optimize 0 -t sw_emu --config ../../src/cfg/hid_bound_set_1.cfg -k hid_bound_set_1 -I../../src/kernel ../../src/kernel/serch_module_set_1/hid_bound_set_1.cpp -o hid_bound_set_1.xo ",
+  "timestamp": "0",
+  "report_file": {
+   "scheme": "FILE",
+   "host": "",
+   "port": 0,
+   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/u200/sw_emu/_x/reports/hid_bound_set_1/v++_compile_hid_bound_set_1_guidance.html",
+   "query": "",
+   "fragment": "",
+   "media_type": "",
+   "encoding": "",
+   "data": ""
+  },
+  "proto_file": {
+   "scheme": "FILE",
+   "host": "",
+   "port": 0,
+   "path": "/home/nomoto/src/StagedLSH/hard-StagedLSH/src/ver2.4/yan/u200/sw_emu/_x/v++_compile_hid_bound_set_1_guidance.pb",
+   "query": "",
+   "fragment": "",
+   "media_type": "",
+   "encoding": "",
+   "data": ""
+  },
+  "build_target": "",
+  "config_files": [
+   {
+    "fileName": "../../src/cfg/hid_bound_set_1.cfg",
+    "contents": "platform=xilinx_u200_xdma_201830_2\ndebug=1\nsave-temps=1\n\n# カーネルへのインスタンス数とSLR（Super Logic Region）の配置調整\n[connectivity]\n# カーネルのインスタンス数指定\n# カーネルに指定した数のCUがインスタンシエートされる\n# 8カーネル\nnk=hid_bound_set_1:1:hid_bound_set_1\n\n# slr=table_serch_1:SLR0\n# slr=table_serch_2:SLR1\n# slr=table_serch_3:SLR0\n# slr=table_serch_4:SLR1\n# slr=table_serch_5:SLR0\n# slr=table_serch_6:SLR1\n\n# 各インスタンスのDRAM接続を指定\n# カーネルインターフェースのプラットフォーム内のシステムポートへの割り当て\n# カーネルポートを特定のメモリリソースにマップする\n# FP_DB\nsp=hid_bound_set_1.FP_DB:DDR[2]\n# hash_table\nsp=hid_bound_set_1.hash_table:DDR[1]\n# hash_table_pointer\nsp=hid_bound_set_1.hash_table_pointer:DDR[1]\n# flame\nsp=hid_bound_set_1.flame:DDR[1]\n# query\n\n[hls]\njobs=4\n\n[profile]\ndata=all:all:all# Monitor data on all kernels and CUs\n#stall=all:all   # Monitor stalls for all CUs of all kernels\n#exec=all:all    # Monitor execution times for all CUs\n#aie=all         # Monitor all AIE streams\n"
+   }
+  ]
+ },
+ "violation_count": 0,
+ "waived_count": 0,
+ "affirmation_count": 0
+}
+
