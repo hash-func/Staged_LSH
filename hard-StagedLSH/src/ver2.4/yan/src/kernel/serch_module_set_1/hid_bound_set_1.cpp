@@ -162,7 +162,7 @@ void compute_dataflow (
 #pragma HLS dataflow
     /* AXI-Stream-BUS */
     hls::stream<ap_uint<96>> flame96_stream;
-    #pragma HLS STREAM variable=flame96_stream depth=32
+    #pragma HLS STREAM variable=flame96_stream depth=4
     /* 96bit flame呼び出し */
     switch_func(
         FP_DB,

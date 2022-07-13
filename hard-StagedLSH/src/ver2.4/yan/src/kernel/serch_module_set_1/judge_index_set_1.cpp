@@ -200,7 +200,7 @@ void read_locate(
 void read_4096(
     ap_uint<512>* FP_DB,                   // FPデータベース
     unsigned int db_locate,
-    ap_uint<512> fpdb_local[]
+    hls::stream<ap_uint<512>> &fpdb_stream
 )
 {
     /* バースト読み出し */
@@ -208,26 +208,27 @@ void read_4096(
     #pragma HLS PIPELINE
     #pragma HLS loop_tripcount min=8 max=8 avg=8
         ap_uint<512> temp = FP_DB[db_locate+i];
-        fpdb_local[i] = temp;
+        fpdb_stream.write(temp);
     }
 }
 /* Haming計算 */
 void haming_dis4096(
     ap_uint<512> query_local[],
-    ap_uint<512> fpdb_local[],
+    hls::stream<ap_uint<512>> &fpdb_stream,
     unsigned int* haming
 )
 {
     unsigned int reg = 0;
     unsigned int haming_temp = 0;
+    ap_uint<512> fpdb_512;
     /* 楽曲ハミング距離計算 */
     hd4096_loop: for (int i=0; i<8; i++) {
     #pragma HLS loop_tripcount min=8 max=8 avg=8
-    #pragma HLS UNROLL factor=2
+    // #pragma HLS UNROLL factor=2
     #pragma HLS PIPELINE
-    #pragma HLS shared variable=fpdb_local
     #pragma HLS shared variable=query_local
-        reg = hd_cal512(query_local[i], fpdb_local[i]);
+        fpdb_512 = fpdb_stream.read();
+        reg = hd_cal512(query_local[i], fpdb_512);
         haming_temp += reg;
     }
     *haming = haming_temp;
@@ -244,8 +245,9 @@ void dataflow_func(
 )
 {
 #pragma HLS dataflow
-    /* localFPDB */
-    ap_uint<512> fpdb_local[128];
+    /* AXI-Stream-BUS */
+    hls::stream<ap_uint<512>> fpdb_stream;
+    #pragma HLS STREAM variable=fpdb_stream depth=2
     /* 変数 */
     unsigned int db_locate;
     /* 位置情報読み取り */
@@ -259,12 +261,12 @@ void dataflow_func(
     read_4096(
         FP_DB,
         db_locate,
-        fpdb_local
+        fpdb_stream
     );
     /* ハミング距離計算 */
     haming_dis4096(
         query_local,
-        fpdb_local,
+        fpdb_stream,
         haming
     );
 }
@@ -290,9 +292,6 @@ void judge_index_set_1(
 // #pragma HLS shared variable=FP_DB
 // #pragma HLS array_partition variable=FP_DB cyclic factor=3
 // #pragma HLS dependence variable=FP_DB inter false
-    /* localFPDB */
-    ap_uint<512> fpdb_local[128];
-// #pragma HLS ARRAY_PARTITION variable=fpdb_local complete dim=1
     /* queryをローカルに格納->配列を小型のレジスタに分割 */
     ap_uint<512> query_local[128];
 // #pragma HLS ARRAY_PARTITION variable=query_local complete dim=1

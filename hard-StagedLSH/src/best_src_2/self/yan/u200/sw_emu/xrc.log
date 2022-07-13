@@ -1,0 +1,10 @@
+Tue Jul 12 13:50:35 2022: Server was asked to start on port: '44029'
+Tue Jul 12 13:50:35 2022: Server is using token UUID: 'd909e848-d48e-4d56-be5a-5eca92c336f7'
+Tue Jul 12 13:50:35 2022: Attempting to start server on port '44029'
+Tue Jul 12 13:50:35 2022: XRC main fifo: created main fifo '/tmp/xrcmaind909e848-d48e-4d56-be5a-5eca92c336f7', fd read = 13
+Tue Jul 12 13:50:35 2022: Running Rule Check Server
+Tue Jul 12 13:50:35 2022: Version 1.6.1
+Tue Jul 12 13:50:36 2022: Rule Check Server: Accepted socket connection from client
+Tue Jul 12 13:50:36 2022: EXCHANGE_TOKEN received, server token: d909e848-d48e-4d56-be5a-5eca92c336f7, passed token: d909e848-d48e-4d56-be5a-5eca92c336f7
+Tue Jul 12 13:50:36 2022: SESSION_MGR: creating session with session uuid: '6d02f494-4107-4a87-8a91-99999d840f62' and name 'v++_link_table_serch'
+Tue Jul 12 13:50:46 2022: SESSION_MGR: closing session for UUID '6d02f494-4107-4a87-8a91-99999d840f62' with name 'v++_link_table_serch'

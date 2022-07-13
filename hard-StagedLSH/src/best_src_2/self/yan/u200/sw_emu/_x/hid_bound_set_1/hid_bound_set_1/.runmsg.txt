@@ -1,0 +1,2 @@
+performing high-level synthesis for kernel: hid_bound_set_1
+Log file: /home/nomoto/src/StagedLSH/hard-StagedLSH/src/best_src_2/self/yan/u200/sw_emu/_x/hid_bound_set_1/hid_bound_set_1/vitis_hls.log

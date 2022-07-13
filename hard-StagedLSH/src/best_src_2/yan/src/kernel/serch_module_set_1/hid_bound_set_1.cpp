@@ -40,28 +40,21 @@ ap_uint<32> hash_func(
 void hid_bound_func (
     ap_uint<96> flame96,                        // 対象フレーム
     unsigned int hash_table_pointer[],          // Hashテーブル位置指定
-    hls::stream<unsigned int>& top_switch,       // バケット始端（出力->switch
-    hls::stream<unsigned int>& end_switch,       // バケット終端 (出力->switch
-    hls::stream<unsigned int>& top_hdis96,       // バケット始端（出力->hd96
-    hls::stream<unsigned int>& end_hdis96        // バケット終端 (出力->hd96
+    unsigned int* top,
+    unsigned int* end
 )
 {
     /* 入力用 */
     /* 変数 */
     unsigned int hash_value;
-    unsigned int top;    // 先頭バケット位置(含む)
-    unsigned int end;    // 末尾バケット位置(含む)
+    // unsigned int top;    // 先頭バケット位置(含む)
+    // unsigned int end;    // 末尾バケット位置(含む)
     /* Hash値生成 */
     hash_value = (unsigned int) hash_func(flame96);
     /* バケット境界(top-end)の確定 */
-    if (hash_value == 0) top = 0;
-    else top = (hash_table_pointer[hash_value-1]) + 1;
-    end = hash_table_pointer[hash_value];
-    /* Stream-portへ送信 */
-    top_switch.write(top);
-    end_switch.write(end);
-    top_hdis96.write(top);
-    end_hdis96.write(end);
+    if (hash_value == 0) *top = 0;
+    else *top = (hash_table_pointer[hash_value-1]) + 1;
+    *end = hash_table_pointer[hash_value];
     // printf("hid_bound : top-end共有情報送信完了\n");
     // printf("hid : 終了............\n");
 }
@@ -70,25 +63,31 @@ void hid_bound_func (
 void switch_func (
     unsigned int FP_DB[],                       // Fデータベース
     unsigned int hash_table[],                  // ハッシュテーブル
-    hls::stream<unsigned int>& top_switch,      // top(入力<-hid
-    hls::stream<unsigned int>& end_switch,      // end(入力<-hid
+    unsigned int top,      // top(入力<-hid
+    unsigned int end,      // end(入力<-hid
     hls::stream<ap_uint<96>>& flame96_stream    // 96bitフレーム(出力->hd96
 )
 {
     /* Switch_Module */
     // printf("switch : 開始\n");
     /* 入力用 */
-    unsigned int top;
-    unsigned int end;
     /* 変数 */
+    ap_uint<32> flame_local[3];
     ap_uint<96> temp_flame96;
+    unsigned int point;
+    unsigned int temp;
     /* 入力 */
-    top = top_switch.read();
-    end = end_switch.read();
     switch_read_loop: for (unsigned int i=top; i<=end; i++) {
-        temp_flame96 = (((ap_uint<32>) FP_DB[hash_table[i]],
-                        (ap_uint<32>) FP_DB[hash_table[i] + 1]),
-                        (ap_uint<32>) FP_DB[hash_table[i] + 2]);
+    #pragma HLS PIPELINE
+        point = hash_table[i];
+        /* バースト読み出し */
+        read_flame: for (int j=0; j<3; j++) {
+        #pragma HLS loop_tripcount min=3 max=3 avg=3
+        #pragma HLS PIPELINE
+            temp = FP_DB[point + j];
+            flame_local[j] = (ap_uint<32>) temp;
+        }
+        temp_flame96 = ((flame_local[0], flame_local[1]), flame_local[2]);
         /* Stream-portへ送信 */
         flame96_stream.write(temp_flame96);
         // printf("switch : 96bit flame書込み完了\n");
@@ -98,8 +97,8 @@ void switch_func (
 /* 96bitハミング距離計算 */
 void hdis96_func(
     ap_uint<96> flame96,                        // 対象フレーム
-    hls::stream<unsigned int> &top_hdis96,      // top(入力<-hid
-    hls::stream<unsigned int> &end_hdis96,      // end(入力<-hid
+    unsigned int top,      // top(入力<-hid
+    unsigned int end,      // end(入力<-hid
     hls::stream<ap_uint<96>> &flame96_stream,   // flame(入力<-switch
     hls::stream<ap_axiu<32, 0, 0, 0>>& count_stream_out,  // 処理数(出力->judge
     hls::stream<ap_axiu<32, 0, 0, 0>>& locate_stream_out  // 位置(出力->judge
@@ -110,18 +109,12 @@ void hdis96_func(
     ap_axiu<32, 0, 0, 0> locate_out;
     ap_axiu<32, 0, 0, 0> count_out;
     /* 入力用 */
-    unsigned int top;
-    unsigned int end;
     ap_uint<96> flame96_in;
     /* 変数 */
     ap_uint<32> count = 0;
     unsigned int haming_dis;
     ap_uint<96> xor96 = 0;
     ap_uint<2> reg = 0;
-    /* ループ回数読み出し */
-    top = top_hdis96.read();
-    end = end_hdis96.read();
-    // printf("hd96 : top-end読みだし完了\n");
     /* ハミング距離判定ループ */
     backet_96hd_loop: for (unsigned int locate=top; locate<=end; locate++) {
         /* 初期化 */
@@ -155,31 +148,61 @@ void hdis96_func(
     count_stream_out.write(count_out);
 }
 
+/* データフロー */
+void compute_dataflow (
+    ap_uint<96> flame96,
+    unsigned int FP_DB[],                       // Fデータベース
+    unsigned int hash_table[],                  // ハッシュテーブル
+    unsigned int top,
+    unsigned int end,
+    hls::stream<ap_axiu<32, 0, 0, 0>>& count_stream_out,  // 処理数(出力->judge
+    hls::stream<ap_axiu<32, 0, 0, 0>>& locate_stream_out  // 位置(出力->judge
+)
+{
+#pragma HLS dataflow
+    /* AXI-Stream-BUS */
+    hls::stream<ap_uint<96>> flame96_stream;
+    #pragma HLS STREAM variable=flame96_stream depth=2
+    /* 96bit flame呼び出し */
+    switch_func(
+        FP_DB,
+        hash_table,
+        top, // 入力
+        end, // 入力
+        flame96_stream // 出力
+    );
+    /* 96bit ハミング距離計算 */
+    hdis96_func(
+        flame96,
+        top, // 入力
+        end, // 入力
+        flame96_stream, // 入力
+        count_stream_out, // 出力
+        locate_stream_out // 出力
+    );
+}
+
 /* mainからの呼び出し */
 extern "C" {
 void hid_bound_set_1(
     unsigned int flame[],                       // クエリ(96bit)
     unsigned int hash_table_pointer[],          // Hashテーブル位置指定
-    unsigned int FP_DB[],                       // Fデータベース
+    unsigned int FP_DB[],                       // データベース
     unsigned int hash_table[],                  // ハッシュテーブル
     hls::stream<ap_axiu<32, 0, 0, 0>>& count_stream_out,  // 処理数(出力->judge
     hls::stream<ap_axiu<32, 0, 0, 0>>& locate_stream_out  // 位置(出力->judge
 )
 {
-// #pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
+#pragma HLS INTERFACE ap_ctrl_hs port=return bundle=control
 // 300曲想定値
-#pragma HLS INTERFACE m_axi depth=12 port=flame bundle=flame_hid_set_1
-#pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_hid_set_1
-#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=DB_switch_set_1
-#pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_switch_set_1
+#pragma HLS INTERFACE m_axi depth=12 port=flame bundle=flame_hid_set_1 offset=slave
+#pragma HLS INTERFACE m_axi depth=32768 port=hash_table_pointer bundle=pointer_hid_set_1 offset=slave
+#pragma HLS INTERFACE m_axi depth=153600 port=FP_DB bundle=db_switch_set_1 offset=slave max_read_burst_length=3
+#pragma HLS INTERFACE m_axi depth=907200 port=hash_table bundle=table_switch_set_1 offset=slave
+
+// #pragma HLS shared variable=FP_DB
+// #pragma HLS array_partition variable=FP_DB cyclic factor=3
     // printf("hid : 実行開始\n");
-    /* AXI-Stream-BUS */
-    hls::stream<unsigned int> top_switch;
-    hls::stream<unsigned int> end_switch;
-    hls::stream<unsigned int> top_hdis96;
-    hls::stream<unsigned int> end_hdis96;
-    hls::stream<ap_uint<96>> flame96_stream;
-    #pragma HLS STREAM variable=flame96_stream depth=4
     /* flameの用意 */
     ap_uint<96> flame96 = 0;
     flame_read: for (int i=0; i<3; i++) {
@@ -187,32 +210,26 @@ void hid_bound_set_1(
         ap_uint<SUB_FP_SIZE> temp32 = flame[i];
         flame96.range(((32*(3-i))-1), (32*(2-i))) = temp32;
     }
-#pragma HLS dataflow
+    /* 変数 */
+    unsigned int top;
+    unsigned int end;
+
     /* Hash値計算＆境界特定 */
     hid_bound_func(
         flame96,
         hash_table_pointer,
-        top_switch, // 出力
-        end_switch, // 出力
-        top_hdis96, // 出力
-        end_hdis96  // 出力
+        &top, // 出力
+        &end  // 出力
     );
-    /* 96bit flame呼び出し */
-    switch_func(
+    // データフロー領域
+    compute_dataflow(
+        flame96,
         FP_DB,
         hash_table,
-        top_switch, // 入力
-        end_switch, // 入力
-        flame96_stream // 出力
-    );
-    /* 96bit ハミング距離計算 */
-    hdis96_func(
-        flame96,
-        top_hdis96, // 入力
-        end_hdis96, // 入力
-        flame96_stream, // 入力
-        count_stream_out, // 出力
-        locate_stream_out // 出力
+        top,
+        end,
+        count_stream_out,
+        locate_stream_out
     );
 }
 }

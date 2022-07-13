@@ -387,7 +387,7 @@ int main(int argc, char** argv)
         count = 0;
         /* 楽曲識別子生成 */
         music_index = rnd1() % MUSIC_NUM;
-        printf("正解 : %d\n", music_index);
+        // printf("正解 : %d\n", music_index);
         /* index楽曲格納 + 歪みのあるクエリの作成(ele_func.cpp) */
         distortion_query_create(
             FP_DB,                              // FPデータベース
